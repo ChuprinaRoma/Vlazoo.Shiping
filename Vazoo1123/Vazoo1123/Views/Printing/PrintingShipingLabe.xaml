@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vazoo1123.Views.Printing.PrintingShipingLabe"
+             xmlns:local="clr-namespace:Vazoo1123.NewElement"
+             Title="Printing Shipping Label">
+    <ContentPage.Content>
+        <ScrollView Padding="10">
+            <FlexLayout Direction="Column">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Balance:" TextColor="#2abdea"/>
+                    <Label Text="{Binding Balance}" TextColor="#2abdea "/>
+                </StackLayout>
+                <Frame Padding="5" BorderColor="#2abdea">
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Button x:Name="fillInSender" Text="fill in the sender" FontSize="10" BackgroundColor="#2abdea" TextColor="White"
+                                    Clicked="ClicBtnIn"/>
+                            <Label Margin="3" Text="Ship From Address" TextColor="#2abdea" VerticalOptions="Center"/>
+                            <BoxView Margin="2" HeightRequest="1" BackgroundColor="#2abdea"/>
+                            <Label Text="{Binding ShipFromAddress}"  TextColor="#2abdea"/>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Button x:Name="fillOutSender" Text="fill out the recipient" FontSize="10" HorizontalOptions="Center" BackgroundColor="#2abdea" TextColor="White"
+                                    Clicked="ClicBtnOut"/>
+                            <Label Margin="3" Text="Ship To Address" TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                            <BoxView Margin="2" HeightRequest="1" BackgroundColor="#2abdea"/>
+                            <Label Text="{Binding ShipToAddress}" TextColor="#2abdea"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Orientation="Horizontal">
+                    <local:CrossEntry Placeholder="Order #" Text="{Binding OrderNumber}"/>
+                    <Label Text="How many Parcels?" TextColor="#2abdea" VerticalTextAlignment="Center" />
+                    <local:CrossEntry Placeholder="N" Keyboard="Numeric" Text="{Binding LabelsQty}"/>
+                </StackLayout>
+                <BoxView HeightRequest="1" Margin="2" BackgroundColor="#2abdea"/>
+                <local:CrossEdit Placeholder="Item Description" HeightRequest="70" FontSize="13" Text="{Binding ItemDescription}"/>
+                <StackLayout FlexLayout.AlignSelf="Center" Orientation="Horizontal">
+                    <Label Text="Weight:" TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                    <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding WeigthLbs}"/>
+                    <Label Text="(lbs)" TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                    <local:CrossEntry x:Name="ozInp" Placeholder="Num" Text="{Binding WeigthLOz}"/>
+                    <Label Text="(oz)" TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                    <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding WeigthLKg}"/>
+                    <Label Text="(kg)" TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                </StackLayout>
+                <StackLayout FlexLayout.AlignSelf="Center" Orientation="Horizontal">
+                    <Label Text="Dim (in):" TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                    <local:CrossEntry x:Name="DLength" Keyboard="Numeric" Placeholder="Num" Text="{Binding DLength}" TextChanged="CrossEntry_TextChanged"/>
+                    <Label Text="X" TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                    <local:CrossEntry x:Name="DWidth" Keyboard="Numeric" Placeholder="Num" Text="{Binding DWidth}" TextChanged="CrossEntry_TextChanged"/>
+                    <Label Text="X" TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                    <local:CrossEntry x:Name="DHeigh" Keyboard="Numeric" Placeholder="Num" Text="{Binding DHeigh}" TextChanged="CrossEntry_TextChanged"/>
+                </StackLayout>
+                <Label Text="{Binding StrCalc}" TextColor="#2abdea" VerticalTextAlignment="Center" FlexLayout.AlignSelf="Center"/>
+                
+                <Frame BorderColor="#2abdea">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Switch Toggled="switcher_Toggled" x:Name="sw" HorizontalOptions="Start"/>
+                            <Label x:Name="confirmationL" TextColor="#2abdea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Switch HorizontalOptions="Start" IsToggled="{Binding SignatureWaiver}"/>
+                            <Label Text="Signature Waiver" TextColor="#2abdea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Switch HorizontalOptions="Start" IsToggled="{Binding NoValidate}"/>
+                            <Label Text="No street level address validation" TextColor="#2abdea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Insurance, $" TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                            <local:CrossEntry Placeholder="0.00" Keyboard="Numeric" Text="{Binding InsuranceAmount}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Switch HorizontalOptions="Start"/>
+                            <Label Text="Agreement with Vlazoo.com" FontSize="10" TextColor="#2abdea"/>
+                            <Label Text="Terms and Conditions" TextColor="#1cffb3" FontSize="10">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTappedLabel" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                        <Button FontSize="10" TextColor="White" BackgroundColor="#2abdea" Text="Display shipping options"
+                                Clicked="Button_Clicked" x:Name="DSOBtn"/>
+                        <Frame Padding="5" BorderColor="#2abdea" CornerRadius="10">
+                            <FlexLayout Direction="Row" Wrap="Wrap">
+                                <Label Text="{Binding Carrier.Title}" TextColor="#2abdea"/>
+                                <Label Text="{Binding Carrier.Price}" TextColor="#2abdea"/>
+                                <Label Text="$" TextColor="#2abdea"/>
+                            </FlexLayout>
+                        </Frame>
+                        <StackLayout Orientation="Horizontal">
+                            <local:CrossEntry Placeholder="50.0" Keyboard="Numeric"/>
+                            <Image Source="PayPal.jpg" WidthRequest="40" HeightRequest="60"/>
+                            <Image Source="Visa.png" WidthRequest="40" HeightRequest="60"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Orientation="Horizontal" FlexLayout.AlignSelf="End" Margin="5">
+                    <Button FontSize="10" TextColor="White" BackgroundColor="#2abdea" Text="Create Label" Clicked="Button_Clicked_1"/>
+                </StackLayout>
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

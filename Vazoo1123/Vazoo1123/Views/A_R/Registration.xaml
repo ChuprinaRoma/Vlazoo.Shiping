@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:local="clr-namespace:Vazoo1123.NewElement"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Vazoo1123.Views.A_R.Registration">
+    <ContentPage.Content>
+        <ScrollView>
+            <FlexLayout SizeChanged="OnSizeChanged"  Direction="Column" BackgroundColor="White">
+                <StackLayout HeightRequest="23" BackgroundColor="White">
+                    <Image HorizontalOptions="Start" HeightRequest="23" WidthRequest="23" Source="Back.png" Margin="2">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <FlexLayout Direction="Row" x:Name="image" JustifyContent="Center" AlignContent="Center" AlignItems="Center">
+                    <Image x:Name="headImg" Source="head.png"/>
+                </FlexLayout>
+                <AbsoluteLayout HeightRequest="440">
+                    <Label Text="New User Registration" 
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       AbsoluteLayout.LayoutBounds=".5, 0, AutoSize, AutoSize"
+                       FontSize="23" TextColor="#2abdea"/>
+                    <local:CrossEntry Placeholder="Email" Keyboard="Email"
+                           AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                           AbsoluteLayout.LayoutBounds=".5, .1, .9, 45" Text="{Binding Email}"/>
+                    <local:CrossEntry Placeholder="Company Name"
+                       AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                       AbsoluteLayout.LayoutBounds=".5, .2, .9, 45"
+                       Text="{Binding IdCompany}"/>
+                    <local:CrossEntry x:Name="psw"
+                       Placeholder="Password"
+                       AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                       AbsoluteLayout.LayoutBounds=".5, .3, .9, 45"
+                       IsPassword="True"
+                           TextChanged="TextValid_Password"
+                       Text="{Binding Password}"/>
+                    <Image Source="icoShow.png" 
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       AbsoluteLayout.LayoutBounds=".95, .3, 50, 50">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnImageNameTapped" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <local:CrossEntry x:Name="cpsw"
+                       Placeholder="Confirm Password"
+                       AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                       AbsoluteLayout.LayoutBounds=".5, .4, .9, 45"
+                       IsPassword="True"
+                           TextChanged="CountValid_Password"
+                       Text="{Binding ConfirmPassword}"/>
+                    <Button Text="Sign Up" x:Name="sigUpBtn" IsEnabled="False"
+                            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                            BackgroundColor="#2abdea"  FontSize="15" TextColor="White"
+                            AbsoluteLayout.LayoutBounds=".5, .56, .9, 60"
+                            Command="{Binding ToRegistrationCommand}"/>
+                    <Frame CornerRadius="10" Padding="5" BackgroundColor="#F5A9BC"
+                         AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                         AbsoluteLayout.LayoutBounds=".5, .75, .9, AutoSize">
+                        <Label Text="Password at least 7 charset long, one Upper case, one special character ($) and one number"
+                               FontSize="13"/>
+                    </Frame>
+                    <FlexLayout Direction="Row" JustifyContent="Start" 
+                                AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                AbsoluteLayout.LayoutBounds=".5, .9, .85, 40">
+                        <Image Source="Yotube.png" HeightRequest="35" WidthRequest="35"/>
+                        <Image Source="fasbook.png" HeightRequest="35" WidthRequest="35"/>
+                        <Image Source="help.png" HeightRequest="35" WidthRequest="35">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToHelpeCommand}" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </FlexLayout>
+                    <Label Text="Alpha Omege USA inc. All Rights Reserved 2014-2019"
+                           AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                           AbsoluteLayout.LayoutBounds=".5, 1, .85, AutoSize" FontSize="13"
+                           TextColor="#2abdea"/>
+                </AbsoluteLayout>
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Vazoo1123.NewElement"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="Vazoo1123.Views.PageApp.Dashbord.OptinsPage">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="3"     
+            ScaleOut="1.5"
+            DurationIn="200"
+            DurationOut="200"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center"
+                 HorizontalOptions="FillAndExpand"
+                 Margin="10">
+        <Frame CornerRadius="4" Padding="8" BorderColor="#2abdea" Margin="4">
+            <StackLayout>
+                <FlexLayout Direction="Row" Margin="0">
+                    <Button x:Name="btnUSPS" Text="USPS" BackgroundColor="White" TextColor="#2abdea" Clicked="Button_Clicked"/>
+                    <Button x:Name="btnUPS" Text="UPS" BackgroundColor="White" TextColor="#2abdea" Clicked="Button_Clicked"/>
+                    <Button x:Name="btnFedEx" Text="FedEx" BackgroundColor="White" TextColor="#2abdea" Clicked="Button_Clicked"/>
+                </FlexLayout>
+                <BoxView HeightRequest="2" BackgroundColor="#2abdea"/>
+                <StackLayout x:Name="stLaUSPS" IsVisible="True">
+                    <Label FontSize="18" TextColor="#2abdea" Text="USPS" HorizontalTextAlignment="Center"/>
+                    <ListView ItemsSource="{Binding CarriersUSPS}" HasUnevenRows="True" SeparatorColor="#2abdea">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <Frame x:Name="fUSPS" Padding="6" BackgroundColor="White">
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
+                                            </Frame.GestureRecognizers>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label x:Name="IdLabel" Text="{Binding Id}" IsVisible="False"/>
+                                                <Label Text="{Binding Title}" TextColor="#2abdea"/>
+                                                <Label Text="{Binding Price}" TextColor="#2abdea"/>
+                                                <Label Text="$" TextColor="#2abdea"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <StackLayout x:Name="stLaUPS" IsVisible="False">
+                    <Label FontSize="18" TextColor="#2abdea" Text="UPS" HorizontalTextAlignment="Center"/>
+                    <ListView ItemsSource="{Binding CarriersUPS}" HasUnevenRows="True" SeparatorColor="#2abdea">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <Frame x:Name="fUPS" Padding="6" BackgroundColor="White">
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
+                                            </Frame.GestureRecognizers>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label x:Name="IdLabel" Text="{Binding Id}" IsVisible="False"/>
+                                                <Label Text="{Binding Title}" TextColor="#2abdea"/>
+                                                <Label Text="{Binding Price}" TextColor="#2abdea"/>
+                                                <Label Text="$" TextColor="#2abdea"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <StackLayout x:Name="stLaFedEx" IsVisible="False">
+                    <Label FontSize="18" TextColor="#2abdea" Text="FedEx" HorizontalTextAlignment="Center"/>
+                    <ListView  ItemsSource="{Binding CarriersFedEx}" HasUnevenRows="True" SeparatorColor="#2abdea">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <Frame x:Name="fFedEx" Padding="6" BackgroundColor="White">
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
+                                            </Frame.GestureRecognizers>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label x:Name="IdLabel" Text="{Binding Id}" IsVisible="False"/>
+                                                <Label Text="{Binding Title}" TextColor="#2abdea"/>
+                                                <Label Text="{Binding Price}" TextColor="#2abdea"/>
+                                                <Label Text="$" TextColor="#2abdea"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

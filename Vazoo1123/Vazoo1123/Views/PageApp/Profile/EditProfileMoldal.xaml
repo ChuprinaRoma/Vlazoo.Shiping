@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Vazoo1123.NewElement"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="Vazoo1123.Views.PageApp.Profile.EditProfileMoldal">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="3"
+            ScaleOut="1.5"
+            DurationIn="600"
+            DurationOut="200"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center"
+                 HorizontalOptions="FillAndExpand"
+                 Margin="20">
+        <Frame Padding="0" BackgroundColor="White" BorderColor="#2abdea">
+            <ScrollView>
+                <StackLayout Padding="10">
+                    <Label Text="Client" FontSize="22" TextColor="#2abdea" HorizontalOptions="Center" 
+                           VerticalTextAlignment="Center"/>
+                    <local:CrossEdit Placeholder="Contact Name" Text="{Binding Profile.ContactName}"/>
+                    <local:CrossEdit Placeholder="Contact Email" Text="{Binding Profile.ClientEmail}" Keyboard="Email"/>
+                    <local:CrossEdit Placeholder="Contact Phone" Text="{Binding Profile.ClientPhone}" Keyboard="Telephone"/>
+                    <Label Text="Warehouse Location" FontSize="22" TextColor="#2abdea" HorizontalOptions="Center" 
+                           VerticalTextAlignment="Center"/>
+                    <local:CrossEdit Placeholder="Contact Name" Text="{Binding Profile.WarehouseContactName}"/>
+                    <local:CrossEdit Placeholder="Company" Text="{Binding Profile.LegalName}"/>
+                    <local:CrossEdit Placeholder="Addres1" Text="{Binding Profile.WarehouseAddress1}"/>
+                    <local:CrossEdit Placeholder="Addres2" Text="{Binding Profile.WarehouseAddress2}"/>
+                    <local:CrossEdit Placeholder="Floor" Text="{Binding Profile.WarehouseFloor}"/>
+                    <local:CrossEdit Placeholder="City" Text="{Binding Profile.WarehouseCity}"/>
+                    <local:CrossEdit Placeholder="State" Text="{Binding Profile.WarehouseState}"/>
+                    <local:CrossEdit Placeholder="Zip" Text="{Binding Profile.WarehouseZip}"/>
+                    <local:CrossEdit Placeholder="Phone" Text="{Binding Profile.WarehousePhone}" Keyboard="Telephone"/>
+                    <FlexLayout Direction="Row" JustifyContent="End" HorizontalOptions="CenterAndExpand" >
+                        <Button Text="Cancle" BackgroundColor="#2abdea" TextColor="White" Margin="2"/>
+                        <Button Text="Edit" BackgroundColor="#2abdea" TextColor="White" Margin="2"
+                                Command="{Binding EditCommand}"/>
+                    </FlexLayout>
+                </StackLayout>
+            </ScrollView>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

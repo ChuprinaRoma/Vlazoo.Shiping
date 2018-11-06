@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="Vazoo1123.Views.LoadViews.Error">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="3"
+            ScaleOut="1.5"
+            DurationIn="600"
+            DurationOut="200"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center" Margin="40"
+                 HorizontalOptions="FillAndExpand">
+        <Frame CornerRadius="10"
+               Padding="0"
+               BackgroundColor="#FA5858">
+            <StackLayout Padding="17">
+                <Label Text="Error"
+                       FontSize="15"/>
+                <Label x:Name="errTextL"
+                       FontSize="13"/>
+                <Button Text="OK" BorderWidth="1" BorderColor="Black" BackgroundColor="#FA5858"
+                        FontSize="13" Clicked="Close"/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

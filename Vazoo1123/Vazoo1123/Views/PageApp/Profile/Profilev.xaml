@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vazoo1123.Views.PageApp.ProfileV"
+             xmlns:local="clr-namespace:Vazoo1123.NewElement"
+             Title="Profile">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding UpdateCommand}" Icon="Update.pngg" />
+        <ToolbarItem Command="{Binding ToEditCommand}" Icon="Edit.png" />
+    </ContentPage.ToolbarItems>
+        <ContentPage.Content>
+        <ScrollView x:Name="scrol"  Orientation="Vertical">
+            <StackLayout x:Name="body" SizeChanged="OnOrintable"  Orientation="Vertical" BackgroundColor="White" Margin="5">
+                <Frame CornerRadius="10" BorderColor="#2abdea" Margin="2">
+                    <FlexLayout Direction="Column">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Information about you" FontSize="22" TextColor="#2abdea" HorizontalOptions="Start"/>
+                        </StackLayout>
+                        <BoxView HeightRequest="2" BackgroundColor="#6ad1f0" Margin="0, 3, 0, 3"/>
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Label Text="Commpany ID:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                            <Label Text="{Binding IdCompany}" FontSize="16" TextColor="#2abdea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Label Text="Commpany Name:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                            <Label Text="{Binding CommpanyName}" FontSize="16" TextColor="#2abdea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Label Text="User Name:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                            <Label Text="{Binding UserName}" FontSize="16" TextColor="#2abdea"/>
+                        </StackLayout>
+                    </FlexLayout>
+                </Frame>
+                <Frame CornerRadius="10" BorderColor="#2abdea" Margin="2">
+                    <FlexLayout Direction="Column">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Client" FontSize="22" TextColor="#2abdea" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Client}" FontSize="22" TextColor="#2abdea"/>
+                        </StackLayout>
+                        <BoxView HeightRequest="2" BackgroundColor="#6ad1f0" Margin="0, 3, 0, 3"/>
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Label Text="Contact Name:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                            <Label Text="{Binding ContactName}" FontSize="16" TextColor="#2abdea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Label Text="Contact Email:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                            <Label Text="{Binding ContactEmail}" FontSize="16" TextColor="#2abdea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Label Text="Contact Phone:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                            <Label Text="{Binding ContactPhone}" FontSize="16" TextColor="#2abdea"/>
+                        </StackLayout>
+                    </FlexLayout>
+                </Frame>
+                <Frame CornerRadius="10" BorderColor="#2abdea" Margin="2">
+                    <FlexLayout Direction="Column">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Warehouse Location" FontSize="22" TextColor="#2abdea" HorizontalOptions="Start"/>
+                        </StackLayout>
+                        <BoxView HeightRequest="2" BackgroundColor="#6ad1f0" Margin="0, 3, 0, 3"/>
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Label Text="Contact Name:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                            <Label Text="{Binding ContactName1}" FontSize="16" TextColor="#2abdea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Label Text="Company:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Company}" FontSize="16" TextColor="#2abdea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Label Text="Address:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Address}" FontSize="16" TextColor="#2abdea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Label Text="Floor:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Floor}" FontSize="16" TextColor="#2abdea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" Margin="5">
+                                <Label Text="City:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                                <Label Text="{Binding City}" FontSize="16" TextColor="#2abdea"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="5">
+                                <Label Text="State:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                                <Label Text="{Binding State}" FontSize="16" TextColor="#2abdea"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" Margin="5">
+                                <Label Text="Zip:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Zip}" FontSize="16" TextColor="#2abdea"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="5">
+                                <Label Text="Phone:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Phone}" FontSize="16" TextColor="#2abdea"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </FlexLayout>
+                </Frame>
+                <Frame CornerRadius="10" BorderColor="#2abdea" Margin="2">
+                    <FlexLayout Direction="Column">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="eBay Account" FontSize="22" TextColor="#2abdea" HorizontalOptions="Start"/>
+                        </StackLayout>
+                        <BoxView HeightRequest="2" BackgroundColor="#6ad1f0" Margin="0, 3, 0, 3"/>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="5">
+                                <Label Text="User ID:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start" VerticalTextAlignment="Center"/>
+                                <local:CrossEntry Text="{Binding UserID}" TextColor="#2abdea" WidthRequest="150"/>
+                            </StackLayout>
+                            <Button BackgroundColor="#2abdea" TextColor="White" Text="ALLOW ACCESS" Command="{Binding EBayAllowAccessCommand}"/>
+                        </StackLayout>
+                    </FlexLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

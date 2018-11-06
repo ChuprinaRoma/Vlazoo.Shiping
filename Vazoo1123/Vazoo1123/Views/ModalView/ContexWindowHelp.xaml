@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="Vazoo1123.Views.ContexWindowHelp">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="3"
+            ScaleOut="1.5"
+            DurationIn="600"
+            DurationOut="200"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center"
+                 HorizontalOptions="FillAndExpand">
+        <Frame CornerRadius="10"
+               Padding="0"
+               BackgroundColor="#F5DA81">
+            <StackLayout Padding="17">
+                <Label Text="NEED HELP? CONTACT OUR TEAM!"
+                       FontSize="15"/>
+                <Label Text="Tech support: support@vlazoo.com"
+                       FontSize="13"/>
+                <Label Text="Phone:(888) 698-3720 Extension 0"
+                       FontSize="13"/>
+                <Label Text="10:00 AM - 7:00 PM Central time"
+                       FontSize="13"/>
+                <Label Text="Or you can ask us a question by clicking on the button"
+                       FontSize="14"/>
+                <Button Text="Go to"
+                        BorderWidth="1"
+                        BorderColor="#29220A"
+                        BackgroundColor="#F5DA81"
+                        FontSize="10"
+                        WidthRequest="40"
+                        Clicked="ToHelpe"/>
+                <Button Text="Close"
+                        BorderWidth="1"
+                        BorderColor="#29220A"
+                        BackgroundColor="#F5DA81"
+                        FontSize="10"
+                        Clicked="Close"/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

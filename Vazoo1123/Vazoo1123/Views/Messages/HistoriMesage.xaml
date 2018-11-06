@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vazoo1123.Views.Messages.HistoriMesage"
+             Title="Messages">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="OrderList" ItemsSource="{Binding Messagesss}"
+                      HasUnevenRows="True" SeparatorColor="#2abdea">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Vertical" BackgroundColor="White" Margin="2" Padding="7">
+                                    <Label HorizontalTextAlignment="Center" TextColor="#2abdea" FontSize="19" Text="{Binding Sender}"/>
+                                    <Label HorizontalTextAlignment="Center" TextColor="#2abdea" FontSize="12" Text="{Binding Subject}"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

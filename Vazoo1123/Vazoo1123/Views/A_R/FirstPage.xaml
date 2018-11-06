@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vazoo1123.Views.A_R.FirstPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <FlexLayout SizeChanged="OnSizeChanged"  Direction="Column">
+                <FlexLayout Direction="Row" x:Name="image" JustifyContent="Center" AlignContent="Center" AlignItems="Center">
+                    <Image x:Name="headImg" Source="head.png"/>
+                </FlexLayout>
+                <AbsoluteLayout HeightRequest="440">
+                    <Label Text="eBay Postage Printing" 
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       AbsoluteLayout.LayoutBounds=".5, .0, AutoSize, AutoSize"
+                       FontSize="23" TextColor="#2abdea"/>
+                    <Button Text="Log In"
+                            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                            AbsoluteLayout.LayoutBounds=".5, .3, .9, 70"
+                            BackgroundColor="#2abdea"  FontSize="15" TextColor="White"
+                            Command="{Binding ToLogInCommand}"/>
+                    <Button Text="Sig Up"
+                        AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                        AbsoluteLayout.LayoutBounds=".5, .55, .9, 70"
+                        BackgroundColor="#2abdea"  FontSize="15" TextColor="White"
+                        Command="{Binding ToSigUpCommand}"/>
+                    <FlexLayout Direction="Row" JustifyContent="Start" 
+                                AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                AbsoluteLayout.LayoutBounds=".5, .9, .9, 40">
+                        <Image Source="Yotube.png" HeightRequest="35" WidthRequest="35"/>
+                        <Image Source="fasbook.png" HeightRequest="35" WidthRequest="35"/>
+                        <Image Source="help.png" HeightRequest="35" WidthRequest="35">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToHelpCommand}" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </FlexLayout>
+                    <Label Text="Alpha Omege USA inc. All Rights Reserved 2014-2019"
+                           AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                           AbsoluteLayout.LayoutBounds=".5, 1, .9, AutoSize" FontSize="13"
+                           TextColor="#2abdea"/>
+                </AbsoluteLayout>
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

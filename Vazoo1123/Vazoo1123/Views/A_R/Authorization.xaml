@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:local="clr-namespace:Vazoo1123.NewElement"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Vazoo1123.Views.A_R.Authorization">
+    <ContentPage.Content>
+        <ScrollView>
+            <FlexLayout SizeChanged="OnSizeChanged"  Direction="Column" BackgroundColor="White">
+                <StackLayout HeightRequest="23" BackgroundColor="White">
+                    <Image HorizontalOptions="Start" HeightRequest="23" WidthRequest="23" Source="Back.png" Margin="2">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <FlexLayout Direction="Row" x:Name="image" JustifyContent="Center" AlignContent="Center" AlignItems="Center">
+                    <Image x:Name="headImg" Source="head.png"/>
+                </FlexLayout>
+                <AbsoluteLayout HeightRequest="440">
+                    <Label Text="Existing User Login" 
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       AbsoluteLayout.LayoutBounds=".5, 0, AutoSize, AutoSize"
+                       FontSize="23" TextColor="#2abdea"/>
+                    <local:CrossEntry Placeholder="Company ID or Name"
+                           AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                           AbsoluteLayout.LayoutBounds=".5, .1, .85, 45" Text="{Binding IdCompany}"/>
+                    <local:CrossEntry Placeholder="Username"
+                           AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                           AbsoluteLayout.LayoutBounds=".5, .2, .85, 45" Text="{Binding Username}"/>
+                    <local:CrossEntry x:Name="psw"
+                       Placeholder="Password"
+                       AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                       AbsoluteLayout.LayoutBounds=".5, .30, .85, 45" IsPassword="True"
+                       Text="{Binding Password}"/>
+                    <Image Source="icoShow.png" 
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       AbsoluteLayout.LayoutBounds=".85, .3, 50, 50">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnImageNameTapped" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Button Text="Log In"
+                            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                            BackgroundColor="#2abdea"  FontSize="15" TextColor="White"
+                            AbsoluteLayout.LayoutBounds=".5, .45, .85, 60"
+                            Command="{Binding AutorisationCommand}"/>
+                    <Button x:Name="btnSigIn" Text="Forgot username/password?"
+                        AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                        AbsoluteLayout.LayoutBounds=".5, .65, .85, 60"
+                        BackgroundColor="#2abdea"  FontSize="15" TextColor="White"
+                        Command="{Binding ToPasswordRecoveryCommand}"/>
+                    <FlexLayout Direction="Row" JustifyContent="Start" 
+                                AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                AbsoluteLayout.LayoutBounds=".5, .9, .85, 40">
+                        <Image Source="Yotube.png" HeightRequest="35" WidthRequest="35"/>
+                        <Image Source="fasbook.png" HeightRequest="35" WidthRequest="35"/>
+                        <Image Source="help.png" HeightRequest="35" WidthRequest="35">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToHelpCommand}" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </FlexLayout>
+                    <Label Text="Alpha Omege USA inc. All Rights Reserved 2014-2019"
+                           AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                           AbsoluteLayout.LayoutBounds=".5, 1, .85, AutoSize" FontSize="13"
+                           TextColor="#2abdea"/>
+                </AbsoluteLayout>
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

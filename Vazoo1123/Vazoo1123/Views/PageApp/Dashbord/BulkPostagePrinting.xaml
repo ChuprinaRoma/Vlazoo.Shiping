@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vazoo1123.Views.PageApp.Dashbord.BulkPostagePrinting"
+             Title="Bulk Postage Printing"
+             xmlns:local="clr-namespace:Vazoo1123.NewElement">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding PostageTotal}"/>
+        <ToolbarItem Text="{Binding TotalLabels}"/>
+        <ToolbarItem Icon="Update.png" Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem Text="S" Command="{Binding GoToSettingsCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="OrderList" ItemsSource="{Binding SelectProduct}"
+                      HasUnevenRows="True" SeparatorColor="#2abdea">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout x:Name="st" Padding="5" BackgroundColor="White">
+                                    <StackLayout Orientation="Horizontal" BackgroundColor="White">
+                                        <StackLayout HorizontalOptions="Start">
+                                            <Image HorizontalOptions="Start" HeightRequest="65" WidthRequest="65" Source="{Binding ImageFile}"/>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="{Binding EBayUserID}"  TextColor="#2abdea" FontSize="17"/>
+                                            <Label Text="{Binding ItemTitle}" TextColor="#2abdea" FontSize="10"/>
+                                            <Label Text="{Binding ShopperEmail}" TextColor="#2abdea" FontSize="10"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Price:" FontSize="10" TextColor="#2abdea"/>
+                                                <Label Text="{Binding TransactionPrice}" FontSize="10" TextColor="#2abdea"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout WidthRequest="320">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Item Id:" FontSize="10" TextColor="#2abdea"/>
+                                                <Label x:Name="itemId" Text="{Binding EBayItemID}" FontSize="10" TextColor="#2abdea"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Record Id:" FontSize="10" TextColor="#2abdea"/>
+                                                <Label x:Name="recordId" Text="{Binding RecordNumber}" FontSize="10" TextColor="#2abdea"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Qty:" VerticalTextAlignment="Center" FontSize="10" TextColor="#2abdea"/>
+                                                <local:CrossEdit Text="{Binding LabelsQty}" Placeholder="Qty" FontSize="10" TextColor="#2abdea"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="update1.jpg" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Margin="20, 0, 0, 0">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <Image Source="update1.jpg" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Margin="10, 0, 0, 0"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Button Text="Optins Shiping" HeightRequest="25" WidthRequest="60" HorizontalOptions="Center" Margin="20, 0, 0, 0"
+                                                        FontSize="4" TextColor="White" BackgroundColor="#2abdea" BorderWidth="0" Clicked="Button_Clicked" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Weight:" FontSize="12"  TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                                            <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightLBS}"/>
+                                            <Label Text="(lbs)"  FontSize="12" TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                                            <local:CrossEntry x:Name="WOzCrEntry" FontSize="12"  Placeholder="Num" Text="{Binding WeightOZ}"/>
+                                            <Label Text="(oz)" FontSize="12" TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                                            <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightKG}"/>
+                                            <Label Text="(kg)" FontSize="12"  TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout  Orientation="Horizontal">
+                                            <Label FontSize="12" Text="Dim (in):" TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                                            <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding DimensionsL}" TextChanged="CrossEntry_TextChanged"/>
+                                            <Label Text="X" FontSize="12"  TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                                            <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding DimensionsW}" TextChanged="CrossEntry_TextChanged"/>
+                                            <Label Text="X" FontSize="12"  TextColor="#2abdea" VerticalTextAlignment="Center"/>
+                                            <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding DimensionsH}" TextChanged="CrossEntry_TextChanged"/>
+                                        </StackLayout>
+                                        <Label Text="{Binding StrCalc}" TextColor="#2abdea" Margin="5, 0, 0, 0" VerticalTextAlignment="Start" FontSize="10"/>
+                                    </StackLayout>
+                                    <Frame Padding="5" BorderColor="#2abdea" CornerRadius="10">
+                                        <FlexLayout Direction="Row" Wrap="Wrap">
+                                            <Label Text="{Binding Carrier.Title}" TextColor="#2abdea"/>
+                                            <Label Text="{Binding Carrier.Price}" TextColor="#2abdea"/>
+                                            <Label Text="$" TextColor="#2abdea"/>
+                                        </FlexLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <Button Text="print to local printer" FontSize="10" TextColor="White" BackgroundColor="#2abdea"/>
+                <Button Text="print to remote printer" FontSize="10" TextColor="White" BackgroundColor="#2abdea"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

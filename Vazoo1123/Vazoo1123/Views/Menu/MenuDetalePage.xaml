@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vazoo1123.Views.Menu.MenuDetalePage"
+                  Title="Vazoo">
+    <MasterDetailPage.Master>
+        <ContentPage Title="Master" WidthRequest="500">
+            <ScrollView>
+                <FlexLayout x:Name="body" BackgroundColor="White"  Direction="Column">
+                    <AbsoluteLayout HeightRequest="150">
+                        <Image Margin="5,10,5,10" Source="" BackgroundColor="White"
+                               AbsoluteLayout.LayoutFlags="All"
+                               AbsoluteLayout.LayoutBounds=".5,.5,1,1"/>
+                        <StackLayout Orientation="Horizontal" Margin="10"
+                                     AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                     AbsoluteLayout.LayoutBounds=".1,.9, .99, AutoSize">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ReplaceMenu" NumberOfTapsRequired="1" />
+                            </StackLayout.GestureRecognizers>
+                            <Label x:Name="nameProfile" HorizontalOptions="Start" Text="{Binding NameProfile}"/>
+                        </StackLayout>
+                    </AbsoluteLayout>
+                    <BoxView BackgroundColor="#2abdea" Margin="3" HeightRequest="2"/>
+                    <StackLayout x:Name="mainMenu">
+                        <AbsoluteLayout HeightRequest="45">
+                            <AbsoluteLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ToDashbord" NumberOfTapsRequired="1" />
+                            </AbsoluteLayout.GestureRecognizers>
+                            <Image AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
+                                   Source="Dashbord.png"/>
+                            <Label Text="Awaiting shipment" TextColor="#2abdea" FontSize="15"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".35, .5, AutoSize, AutoSize"/>
+                            <Label Text="{Binding CountDashbord}" FontSize="15" TextColor="Red"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".9, .5, AutoSize, AutoSize"/>
+                            <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                     AbsoluteLayout.LayoutBounds=".1, 0.99, 1, 1" BackgroundColor="#8fcaf5"/>
+                        </AbsoluteLayout>
+                        <AbsoluteLayout HeightRequest="45">
+                            <AbsoluteLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ToMessges" NumberOfTapsRequired="1" />
+                            </AbsoluteLayout.GestureRecognizers>
+                            <Image AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
+                                   Source="Mesage.png"/>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Messages" TextColor="#2abdea" FontSize="15"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".233, .5, AutoSize, AutoSize"/>
+                            <Label Text="0" FontSize="15" TextColor="Red"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".9, .5, AutoSize, AutoSize"/>
+                            <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                     AbsoluteLayout.LayoutBounds=".1, 0.99, 1, 1" BackgroundColor="#8fcaf5"/>
+                        </AbsoluteLayout>
+                        <AbsoluteLayout HeightRequest="45">
+                            <AbsoluteLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AnimateBtn" NumberOfTapsRequired="1" />
+                            </AbsoluteLayout.GestureRecognizers>
+                            <Image AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
+                                   Source="Printing.png"/>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Print Shipping Labels" TextColor="#2abdea" FontSize="15"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".385, .5, AutoSize, AutoSize"/>
+                            <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                     AbsoluteLayout.LayoutBounds=".1, 0.99, 1, 1" BackgroundColor="#8fcaf5"/>
+                        </AbsoluteLayout>
+                        <AbsoluteLayout HeightRequest="45">
+                            <AbsoluteLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ToBuyPostage" NumberOfTapsRequired="1" />
+                            </AbsoluteLayout.GestureRecognizers>
+                            <Image AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
+                                   Source="Dalar.png"/>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Buy Postage" TextColor="#2abdea" FontSize="15"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".27, .5, AutoSize, AutoSize"/>
+                            <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                     AbsoluteLayout.LayoutBounds=".1, 0.99, 1, 1" BackgroundColor="#8fcaf5"/>
+                        </AbsoluteLayout>
+                        <AbsoluteLayout HeightRequest="45">
+                            <AbsoluteLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ToPrintingShiping" NumberOfTapsRequired="1" />
+                            </AbsoluteLayout.GestureRecognizers>
+                            <Image AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
+                                   Source="Donload.png"/>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Download Printing Application" TextColor="#2abdea" FontSize="15"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".7, .5, AutoSize, AutoSize"/>
+                            <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                     AbsoluteLayout.LayoutBounds=".1, 0.99, 1, 1" BackgroundColor="#8fcaf5"/>
+                        </AbsoluteLayout>
+                    </StackLayout>
+                    <StackLayout x:Name="setingsMenu">
+                        <AbsoluteLayout HeightRequest="45">
+                            <AbsoluteLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ToToProfile" NumberOfTapsRequired="1" />
+                            </AbsoluteLayout.GestureRecognizers>
+                            <Image AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
+                                   Source="Profile.jpg"/>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Profile" TextColor="#2abdea" FontSize="15"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".233, .5, AutoSize, AutoSize"/>
+                            <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                     AbsoluteLayout.LayoutBounds=".1, 0.99, 1, 1" BackgroundColor="#8fcaf5"/>
+                        </AbsoluteLayout>
+                        <AbsoluteLayout HeightRequest="45">
+                            <AbsoluteLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AnimateBtn" NumberOfTapsRequired="1" />
+                            </AbsoluteLayout.GestureRecognizers>
+                            <Image AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
+                                   Source="Seting.png"/>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Seting" TextColor="#2abdea" FontSize="15"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".233, .5, AutoSize, AutoSize"/>
+                            <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                     AbsoluteLayout.LayoutBounds=".1, 0.99, 1, 1" BackgroundColor="#8fcaf5"/>
+                        </AbsoluteLayout>
+                        <AbsoluteLayout HeightRequest="45">
+                            <AbsoluteLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SinOut" NumberOfTapsRequired="1" />
+                            </AbsoluteLayout.GestureRecognizers>
+                            <Image AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
+                                   Source="LogOut.png"/>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Log Out" TextColor="#2abdea" FontSize="15"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds=".233, .5, AutoSize, AutoSize"/>
+                            <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                     AbsoluteLayout.LayoutBounds=".1, 0.99, 1, 1" BackgroundColor="#8fcaf5"/>
+                        </AbsoluteLayout>
+                    </StackLayout>
+                </FlexLayout>
+            </ScrollView>
+        </ContentPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>
