@@ -56,7 +56,7 @@
                         </AbsoluteLayout>
                         <AbsoluteLayout HeightRequest="45">
                             <AbsoluteLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="AnimateBtn" NumberOfTapsRequired="1" />
+                                <TapGestureRecognizer Tapped="ToPrintingShiping" NumberOfTapsRequired="1" />
                             </AbsoluteLayout.GestureRecognizers>
                             <Image AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
@@ -82,7 +82,7 @@
                         </AbsoluteLayout>
                         <AbsoluteLayout HeightRequest="45">
                             <AbsoluteLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="ToPrintingShiping" NumberOfTapsRequired="1" />
+                                <TapGestureRecognizer Tapped="AnimateBtn" NumberOfTapsRequired="1" />
                             </AbsoluteLayout.GestureRecognizers>
                             <Image AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"

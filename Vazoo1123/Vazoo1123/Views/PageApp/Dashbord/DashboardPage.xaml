@@ -9,6 +9,7 @@
         <ToolbarItem Icon="Serch.png" Priority="3" Clicked="ToolbarItem_Clicked"/>
         <ToolbarItem x:Name="printing" Icon="Printing.png" Priority="2" Command="{Binding ToBulkPostagePrintingCommand}"/>
         <ToolbarItem Icon="filter.png" Clicked="ToolbarItem_Clicked_1" Priority="4"/>
+        <ToolbarItem Command="{Binding UpdateCommandOrder}" Priority="4" Icon="Update.pngg" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <AbsoluteLayout x:Name="body" SizeChanged="body_SizeChanged">

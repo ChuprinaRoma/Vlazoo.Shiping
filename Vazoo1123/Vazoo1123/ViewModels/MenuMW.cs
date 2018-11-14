@@ -20,7 +20,7 @@ namespace Vazoo1123.ViewModels
             get { return nameProfile; }
             set
             {
-                if(value != "")
+                if (value != "")
                 {
                     SetProperty(ref nameProfile, value);
                 }
@@ -65,17 +65,13 @@ namespace Vazoo1123.ViewModels
             }
         }
 
-        public void CheckAndSetCountDashbord()
+        public async void CheckAndSetCountDashbord(string count)
         {
-            Task.Run(() =>
+            await Task.Run(() =>
             {
-                while(true)
+                if (count != null && count != "")
                 {
-                    if(managerVazoo.orderInfos != null && managerVazoo.orderInfos.Count != 0)
-                    {
-                        CountDashbord = managerVazoo.orderInfos.Count.ToString();
-                        break;
-                    }
+                    CountDashbord = count;
                 }
             });
         }

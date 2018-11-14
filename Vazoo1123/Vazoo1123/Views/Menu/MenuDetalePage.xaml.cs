@@ -24,11 +24,10 @@ namespace Vazoo1123.Views.Menu
         {
             InitializeComponent();
             menuMW = new MenuMW();
-            Detail = new NavigationPage(new DashboardPage(menuMW.managerVazoo));
+            Detail = new NavigationPage(new DashboardPage(menuMW.managerVazoo, this));
             BtnFocusInMenu = new AbsoluteLayout();
             body.Children.Remove(setingsMenu);
             BindingContext = menuMW;
-            menuMW.CheckAndSetCountDashbord();
         }
 
         private void ReplaceMenu(object s, EventArgs e)
@@ -58,11 +57,10 @@ namespace Vazoo1123.Views.Menu
         {
             IsPresented = false;
             AnimateBtn(s, e);
-            Detail = new NavigationPage(new DashboardPage(menuMW.managerVazoo));
+            Detail = new NavigationPage(new DashboardPage(menuMW.managerVazoo, this));
         }
 
-        private void ToMessges(object s, EventArgs e)
-        {
+        private void ToMessges(object s, EventArgs e)        {
             IsPresented = false;
             AnimateBtn(s, e);
             Detail = new NavigationPage(new HistoriMesage(menuMW.managerVazoo));
@@ -95,6 +93,11 @@ namespace Vazoo1123.Views.Menu
             Application.Current.MainPage = new FirstPage();
             Task.Run(() => CheckAuth.RmovegAccount());
             IsPresented = false;
+        }
+
+        public void CheckAndSetCountDashbord(int count)
+        {
+            menuMW.CheckAndSetCountDashbord(count.ToString());
         }
     }
 }

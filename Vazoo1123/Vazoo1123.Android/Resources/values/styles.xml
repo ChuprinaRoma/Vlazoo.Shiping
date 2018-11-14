@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
-
   <style name="MainTheme" parent="MainTheme.Base">
   </style>
   <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -19,16 +18,16 @@
     <!-- You can also set colorControlNormal, colorControlActivated
          colorControlHighlight and colorSwitchThumbNormal. -->
     <item name="windowActionModeOverlay">true</item>
-
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+    <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+    <item name="android:colorFocusedHighlight">@color/color_coloredbackground</item>
+    <item name="android:colorActivatedHighlight">@color/color_coloredbackground</item>
+    <item name="android:activatedBackgroundIndicator">@color/color_coloredbackground</item>
   </style>
-
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#2abdea</item>
   </style>
-
-  
-  
+    
   <style name="logo" parent ="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowBackground">@drawable/laer</item>
     <item name="android:windowNoTitle">true</item>

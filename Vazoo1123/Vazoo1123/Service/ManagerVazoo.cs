@@ -128,7 +128,7 @@ namespace Vazoo1123.Service
             return Printing;
         }
 
-        public int DashbordWork(string typeDashbord, ref string description, int type, ref int countPage, params string[] dataDashbord)
+        public int DashbordWork(string typeDashbord, ref string description, int type, ref int countPage, ref int countOrder, params string[] dataDashbord)
         {
             dashbord = new Dashbord();
             if (orderInfos == null)
@@ -140,11 +140,11 @@ namespace Vazoo1123.Service
             {
                 if(typeDashbord == "OrdersGet")
                 { 
-                    stateDashbord = dashbord.GetDashbord(dataDashbord[0], dataDashbord[1], dataDashbord[2], type, ref countPage, ref description, ref orderInfos);
+                    stateDashbord = dashbord.GetDashbord(dataDashbord[0], dataDashbord[1], dataDashbord[2], type, ref countPage, ref description, ref orderInfos, ref countOrder);
                 }
                 else if (typeDashbord == "OrdersGet1")
                 {
-                    stateDashbord = dashbord.GetDashbord(dataDashbord[0], dataDashbord[1], dataDashbord[2], type, ref countPage, ref description, ref orderInfos);
+                    stateDashbord = dashbord.GetDashbord(dataDashbord[0], dataDashbord[1], dataDashbord[2], type, ref countPage, ref description, ref orderInfos, ref countOrder);
                 }
             }
             dashbord = null;

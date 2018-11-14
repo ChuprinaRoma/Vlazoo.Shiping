@@ -8,6 +8,7 @@ using Vazoo1123.Views.PageApp.Dashbord;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Services;
+using Vazoo1123.Views.Menu;
 
 namespace Vazoo1123.Views.PageApp
 {
@@ -16,10 +17,10 @@ namespace Vazoo1123.Views.PageApp
     {
         private DashbordMW dashbordMW = null;
 
-        public DashboardPage(ManagerVazoo managerVazoo)
+        public DashboardPage(ManagerVazoo managerVazoo, MenuDetalePage menuDetalePage)
         {
             InitializeComponent();
-            dashbordMW = new DashbordMW(managerVazoo)
+            dashbordMW = new DashbordMW(managerVazoo, menuDetalePage)
             { Navigation = this.Navigation };
             InitElement();
             BindingContext = dashbordMW;

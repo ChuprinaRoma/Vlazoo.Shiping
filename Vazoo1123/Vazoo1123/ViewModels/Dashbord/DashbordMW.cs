@@ -10,6 +10,7 @@ using Vazoo1123.Models;
 using Vazoo1123.Views.LoadViews;
 using Vazoo1123.Views.PageApp.Dashbord;
 using Xamarin.Forms;
+using Vazoo1123.Views.Menu;
 
 namespace Vazoo1123.ViewModels.Dashbord
 {
@@ -18,15 +19,19 @@ namespace Vazoo1123.ViewModels.Dashbord
         public ManagerVazoo managerVazoo = null;
         public INavigation Navigation { get; set; }
         public DelegateCommand ToBulkPostagePrintingCommand { get; set; }
+        public DelegateCommand UpdateCommandOrder { get; set; }
+        public MenuDetalePage menuDetalePage = null;
 
-        public DashbordMW(ManagerVazoo managerVazoo)
+        public DashbordMW(ManagerVazoo managerVazoo, MenuDetalePage menuDetalePage)
         {
             this.managerVazoo = managerVazoo;
+            this.menuDetalePage = menuDetalePage;
             SelectProduct = new List<OrderInfo>();
             serchOrder = new List<OrderInfo>();
             Type = 1;
             Init();
             ToBulkPostagePrintingCommand = new DelegateCommand(ToBulkPostagePrinting);
+            UpdateCommandOrder = new DelegateCommand(UpdateOrder);
         }
         
         private List<OrderInfo> serchOrder = null;
@@ -86,6 +91,7 @@ namespace Vazoo1123.ViewModels.Dashbord
         }
         public int countPage = 0;
         public int countFullPage = 0;
+        public int countOrder = 0;
 
         public async void Init()
         {
@@ -94,17 +100,72 @@ namespace Vazoo1123.ViewModels.Dashbord
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
             int stateAuth = 0;
+            int countOrder = 0;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.DashbordWork("OrdersGet", ref description, Type, ref countPage, idCompany, email, psw);
+                stateAuth = managerVazoo.DashbordWork("OrdersGet", ref description, Type, ref countPage, ref countOrder, idCompany, email, psw);
             });
             if (stateAuth == 3)
             {
                 Product = new ObservableCollection<OrderInfo>(managerVazoo.orderInfos.GetRange(0, managerVazoo.orderInfos.Count >= 40 ? 40 : managerVazoo.orderInfos.Count));
-                Title = $"Awaining {Product.Count.ToString()}";
+                Title = $"Awaining {countOrder}";
+                menuDetalePage.CheckAndSetCountDashbord(countOrder);
                 TypeCheck = true;
                 TypeCheck1 = false;
                 TypeCheck2 = false;
+            }
+            else if (stateAuth == 2)
+            {
+                await PopupNavigation.PushAsync(new Error(description), true);
+            }
+            else if (stateAuth == 1)
+            {
+                await PopupNavigation.PushAsync(new Error("No network"), true);
+            }
+            else if (stateAuth == 4)
+            {
+                await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
+            }
+        }
+
+
+        public async void UpdateOrder()
+        {
+            string description = null;
+            string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+            int stateAuth = 0;
+            int countOrder = 0;
+            await Task.Run(() =>
+            {
+                stateAuth = managerVazoo.DashbordWork("OrdersGet", ref description, Type, ref countPage, ref countOrder, idCompany, email, psw);
+            });
+            if (stateAuth == 3)
+            {
+                Product = new ObservableCollection<OrderInfo>(managerVazoo.orderInfos.GetRange(0, managerVazoo.orderInfos.Count >= 40 ? 40 : managerVazoo.orderInfos.Count));
+                if (Type == 1)
+                {
+                    Title = $"Awaining {countOrder}";
+                    TypeCheck = true;
+                    TypeCheck1 = false;
+                    TypeCheck2 = false;
+                    menuDetalePage.CheckAndSetCountDashbord(countOrder);
+                }
+                else if (Type == 2)
+                {
+                    Title = $"Sold Last 3 month {countOrder}";
+                    TypeCheck = false;
+                    TypeCheck1 = true;
+                    TypeCheck2 = false;
+                }
+                else if (Type == 3)
+                {
+                    Title = $"Labels Printed Last 72h {countOrder}";
+                    TypeCheck = false;
+                    TypeCheck1 = false;
+                    TypeCheck2 = true;
+                }
             }
             else if (stateAuth == 2)
             {
@@ -129,7 +190,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             int stateAuth = 0;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.DashbordWork("OrdersGet", ref description, Type, ref countPage, idCompany, email, psw);
+                stateAuth = managerVazoo.DashbordWork("OrdersGet", ref description, Type, ref countPage, ref countOrder, idCompany, email, psw);
             });
             if (stateAuth == 3 && isLoad)
             {

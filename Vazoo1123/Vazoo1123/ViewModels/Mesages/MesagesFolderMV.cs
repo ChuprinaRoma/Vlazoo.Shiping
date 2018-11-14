@@ -8,7 +8,7 @@ using Vazoo1123.Views.LoadViews;
 
 namespace Vazoo1123.ViewModels.Mesages
 {
-    class MesagesFolderMV : BindableBase
+    public class MesagesFolderMV : BindableBase
     {
         private ManagerVazoo managerVazoo = null;
 

@@ -43,21 +43,22 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                 {
                     if (dashbordMW.Type == 1)
                     {
-                        dashbordMW.Title = $"Awaining {dashbordMW.Product.Count.ToString()}";
+                        dashbordMW.Title = $"Awaining {dashbordMW.countOrder}";
                         dashbordMW.TypeCheck = true;
                         dashbordMW.TypeCheck1 = false;
                         dashbordMW.TypeCheck2 = false;
+                        dashbordMW.menuDetalePage.CheckAndSetCountDashbord(dashbordMW.countOrder);
                     }
                     else if (dashbordMW.Type == 2)
                     {
-                        dashbordMW.Title = $"Sold Last 3 month {dashbordMW.Product.Count.ToString()}";
+                        dashbordMW.Title = $"Sold Last 3 month {dashbordMW.countOrder}";
                         dashbordMW.TypeCheck = false;
                         dashbordMW.TypeCheck1 = true;
                         dashbordMW.TypeCheck2 = false;
                     }
                     else if (dashbordMW.Type == 3)
                     {
-                        dashbordMW.Title = $"Labels Printed Last 72h {dashbordMW.Product.Count.ToString()}";
+                        dashbordMW.Title = $"Labels Printed Last 72h {dashbordMW.countOrder}";
                         dashbordMW.TypeCheck = false;
                         dashbordMW.TypeCheck1 = false;
                         dashbordMW.TypeCheck2 = true;
