@@ -21,7 +21,7 @@
     <StackLayout VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"
                  Margin="20">
-        <Frame CornerRadius="7" Padding="10" BorderColor="#2abdea" Margin="4">
+        <Frame CornerRadius="7" Padding="10" BorderColor="#2aa0ea" Margin="4">
             <StackLayout SizeChanged="StackLayout_SizeChanged">
                 <ScrollView Orientation="Horizontal" >
                     <StackLayout x:Name="btnTab" Orientation="Horizontal">

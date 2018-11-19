@@ -33,6 +33,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             int idInp = inp.Idi;
             if (dashbordMW.Type != idInp)
             {
+                await PopupNavigation.PopAsync(true);
                 dashbordMW.Type = idInp;
                 int stateAuth = 0;
                 await Task.Run(async () =>
@@ -43,7 +44,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                 {
                     if (dashbordMW.Type == 1)
                     {
-                        dashbordMW.Title = $"Awaining {dashbordMW.countOrder}";
+                        dashbordMW.Title = $"Paid {dashbordMW.countOrder}";
                         dashbordMW.TypeCheck = true;
                         dashbordMW.TypeCheck1 = false;
                         dashbordMW.TypeCheck2 = false;

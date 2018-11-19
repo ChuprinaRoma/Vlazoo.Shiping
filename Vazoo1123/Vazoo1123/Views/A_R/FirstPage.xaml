@@ -12,16 +12,16 @@
                     <Label Text="eBay Postage Printing" 
                        AbsoluteLayout.LayoutFlags="PositionProportional"
                        AbsoluteLayout.LayoutBounds=".5, .0, AutoSize, AutoSize"
-                       FontSize="23" TextColor="#2abdea"/>
+                       FontSize="23" TextColor="#2aa0ea"/>
                     <Button Text="Log In"
                             AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
                             AbsoluteLayout.LayoutBounds=".5, .3, .9, 70"
-                            BackgroundColor="#2abdea"  FontSize="15" TextColor="White"
+                            BackgroundColor="#2aa0ea"  FontSize="15" TextColor="White"
                             Command="{Binding ToLogInCommand}"/>
                     <Button Text="Sig Up"
                         AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
                         AbsoluteLayout.LayoutBounds=".5, .55, .9, 70"
-                        BackgroundColor="#2abdea"  FontSize="15" TextColor="White"
+                        BackgroundColor="#2aa0ea"  FontSize="15" TextColor="White"
                         Command="{Binding ToSigUpCommand}"/>
                     <FlexLayout Direction="Row" JustifyContent="Start" 
                                 AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
@@ -37,7 +37,7 @@
                     <Label Text="Alpha Omege USA inc. All Rights Reserved 2014-2019"
                            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
                            AbsoluteLayout.LayoutBounds=".5, 1, .9, AutoSize" FontSize="13"
-                           TextColor="#2abdea"/>
+                           TextColor="#2aa0ea"/>
                 </AbsoluteLayout>
             </FlexLayout>
         </ScrollView>

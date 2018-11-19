@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Services;
 using Vazoo1123.Views.Menu;
+using Refractored.XamForms.PullToRefresh;
 
 namespace Vazoo1123.Views.PageApp
 {

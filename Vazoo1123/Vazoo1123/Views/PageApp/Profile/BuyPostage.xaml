@@ -4,17 +4,16 @@
              x:Class="Vazoo1123.Views.PageApp.Profile.BuyPostage"
              xmlns:local="clr-namespace:Vazoo1123.NewElement"
              Title="Postage Balance">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding Balance}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
             <FlexLayout SizeChanged="OnSizeChanged" Direction="Column" HorizontalOptions="CenterAndExpand" Margin="5">
                 <FlexLayout Direction="Row" Margin="10" JustifyContent="SpaceAround" HeightRequest="50" BackgroundColor="White">
-                    <StackLayout Orientation="Horizontal" BackgroundColor="White">
-                        <Label Text="Balance:" TextColor="#2abdea" FontSize="18" VerticalTextAlignment="Center"/>
-                        <Label Text="{Binding Balance}" TextColor="#2abdea" FontSize="18" VerticalTextAlignment="Center"/>
-                    </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Buy postage:" TextColor="#2abdea" FontSize="18" VerticalTextAlignment="Center"/>
-                        <local:CrossEntry Keyboard="Numeric"  TextColor="#2abdea" FontSize="18" 
+                        <local:CrossEntry Keyboard="Numeric"  TextColor="#2aa0ea" FontSize="18" 
                                       Placeholder="$" WidthRequest="50" />
                     </StackLayout>
                 </FlexLayout>
@@ -27,15 +26,15 @@
                     </ScrollView>
                 </Frame>
                 <Label Text="Warning: Printing application is not running"
-                       FontSize="15" TextColor="#2abdea" Margin="5"/>
-                <Button Text="Download printing Application" TextColor="White" BackgroundColor="#2abdea" Margin="2"/>
-                <Button Text="Choose Remote printer" TextColor="White" BackgroundColor="#2abdea" Margin="2"/>
+                       FontSize="15" TextColor="#2aa0ea" Margin="5"/>
+                <Button Text="Download printing Application" TextColor="White" BackgroundColor="#2aa0ea" Margin="2"/>
+                <Button Text="Choose Remote printer" TextColor="White" BackgroundColor="#2aa0ea" Margin="2"/>
                 <Label Text="1. Download and unzip printing application to any computer connected to the internet"
-                       FontSize="15" TextColor="#2abdea" Margin="5"/>
+                       FontSize="15" TextColor="#2aa0ea" Margin="5"/>
                 <Label Text="2. Instal printing application"
-                       FontSize="15" TextColor="#2abdea" Margin="3"/>
+                       FontSize="15" TextColor="#2aa0ea" Margin="3"/>
                 <Label Text="3. Choose remote print above  .by defult labes will prit to 'Print Label' Printer Login credentials were sent in initial SignIn email You can always create another  printer LogIn and have multiple printers runinng in differend locations"
-                       FontSize="15" TextColor="#2abdea" Margin="5"/>
+                       FontSize="15" TextColor="#2aa0ea" Margin="5"/>
             </FlexLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -6,8 +6,8 @@ namespace Vazoo1123.NewElement
     {
         public CrossEntry()
         {
-            this.TextColor = Color.FromHex("#2abdea");
-            this.PlaceholderColor = Color.FromHex("#95def5");
+            this.TextColor = Color.FromHex("#2aa0ea");
+            this.PlaceholderColor = Color.FromHex("#6abdf0");
         }
     }
 }

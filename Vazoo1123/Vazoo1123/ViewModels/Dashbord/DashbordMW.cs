@@ -33,7 +33,14 @@ namespace Vazoo1123.ViewModels.Dashbord
             ToBulkPostagePrintingCommand = new DelegateCommand(ToBulkPostagePrinting);
             UpdateCommandOrder = new DelegateCommand(UpdateOrder);
         }
-        
+
+        private bool isBusy = false;
+        public bool IsBusy
+        {
+            get => isBusy;
+            set => SetProperty(ref isBusy, value);
+        }
+
         private List<OrderInfo> serchOrder = null;
         public List<OrderInfo> SerchOrder
         {
@@ -95,6 +102,7 @@ namespace Vazoo1123.ViewModels.Dashbord
 
         public async void Init()
         {
+            IsBusy = true;
             string description = null;
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
@@ -108,7 +116,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             if (stateAuth == 3)
             {
                 Product = new ObservableCollection<OrderInfo>(managerVazoo.orderInfos.GetRange(0, managerVazoo.orderInfos.Count >= 40 ? 40 : managerVazoo.orderInfos.Count));
-                Title = $"Awaining {countOrder}";
+                Title = $"Paid {countOrder}";
                 menuDetalePage.CheckAndSetCountDashbord(countOrder);
                 TypeCheck = true;
                 TypeCheck1 = false;
@@ -126,6 +134,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             {
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
             }
+            IsBusy = false;
         }
 
 
@@ -146,7 +155,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 Product = new ObservableCollection<OrderInfo>(managerVazoo.orderInfos.GetRange(0, managerVazoo.orderInfos.Count >= 40 ? 40 : managerVazoo.orderInfos.Count));
                 if (Type == 1)
                 {
-                    Title = $"Awaining {countOrder}";
+                    Title = $"Paid {countOrder}";
                     TypeCheck = true;
                     TypeCheck1 = false;
                     TypeCheck2 = false;
@@ -179,10 +188,12 @@ namespace Vazoo1123.ViewModels.Dashbord
             {
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
             }
+            IsBusy = false;
         }
 
         public async Task<int> GetOrder(bool isLoad)
         {
+            IsBusy = true;
             string description = null;
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
@@ -197,6 +208,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 Product = new ObservableCollection<OrderInfo>(managerVazoo.orderInfos
                     .GetRange(0, managerVazoo.orderInfos.Count >= 40 ? 40 : managerVazoo.orderInfos.Count));
             }
+            IsBusy = false;
             return stateAuth;
         }
 

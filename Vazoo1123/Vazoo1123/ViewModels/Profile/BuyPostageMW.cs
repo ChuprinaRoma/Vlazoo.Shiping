@@ -25,7 +25,7 @@ namespace Vazoo1123.ViewModels.Profile
             {
                 if (value != "" || value != null)
                 {
-                    SetProperty(ref balance, value + "$");
+                    SetProperty(ref balance, "$"+ value);
                 }
                 else
                 {

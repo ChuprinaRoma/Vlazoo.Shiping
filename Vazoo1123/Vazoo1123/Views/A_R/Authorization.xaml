@@ -22,7 +22,7 @@
                     <Label Text="Existing User Login" 
                        AbsoluteLayout.LayoutFlags="PositionProportional"
                        AbsoluteLayout.LayoutBounds=".5, 0, AutoSize, AutoSize"
-                       FontSize="23" TextColor="#2abdea"/>
+                       FontSize="23" TextColor="#2aa0ea"/>
                     <local:CrossEntry Placeholder="Company ID or Name"
                            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
                            AbsoluteLayout.LayoutBounds=".5, .1, .85, 45" Text="{Binding IdCompany}"/>
@@ -43,13 +43,13 @@
                     </Image>
                     <Button Text="Log In"
                             AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
-                            BackgroundColor="#2abdea"  FontSize="15" TextColor="White"
+                            BackgroundColor="#2aa0ea"  FontSize="15" TextColor="White"
                             AbsoluteLayout.LayoutBounds=".5, .45, .85, 60"
                             Command="{Binding AutorisationCommand}"/>
                     <Button x:Name="btnSigIn" Text="Forgot username/password?"
                         AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
                         AbsoluteLayout.LayoutBounds=".5, .65, .85, 60"
-                        BackgroundColor="#2abdea"  FontSize="15" TextColor="White"
+                        BackgroundColor="#2aa0ea"  FontSize="15" TextColor="White"
                         Command="{Binding ToPasswordRecoveryCommand}"/>
                     <FlexLayout Direction="Row" JustifyContent="Start" 
                                 AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
@@ -65,7 +65,7 @@
                     <Label Text="Alpha Omege USA inc. All Rights Reserved 2014-2019"
                            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
                            AbsoluteLayout.LayoutBounds=".5, 1, .85, AutoSize" FontSize="13"
-                           TextColor="#2abdea"/>
+                           TextColor="#2aa0ea"/>
                 </AbsoluteLayout>
             </FlexLayout>
         </ScrollView>

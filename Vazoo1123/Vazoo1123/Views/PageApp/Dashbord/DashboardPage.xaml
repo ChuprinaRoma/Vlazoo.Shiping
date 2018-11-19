@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vazoo1123.Views.PageApp.DashboardPage"
+             xmlns:refresh="clr-namespace:Refractored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh"
              xmlns:local="clr-namespace:Vazoo1123.NewElement"
              Title="{Binding Title}">
     <ContentPage.ToolbarItems>
@@ -9,11 +10,10 @@
         <ToolbarItem Icon="Serch.png" Priority="3" Clicked="ToolbarItem_Clicked"/>
         <ToolbarItem x:Name="printing" Icon="Printing.png" Priority="2" Command="{Binding ToBulkPostagePrintingCommand}"/>
         <ToolbarItem Icon="filter.png" Clicked="ToolbarItem_Clicked_1" Priority="4"/>
-        <ToolbarItem Command="{Binding UpdateCommandOrder}" Priority="4" Icon="Update.pngg" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <AbsoluteLayout x:Name="body" SizeChanged="body_SizeChanged">
-            <Frame x:Name="serchBar" Margin="0" IsVisible="False" Padding="3" BorderColor="#2abdea" BackgroundColor="White"
+            <Frame x:Name="serchBar" Margin="0" IsVisible="False" Padding="3" BorderColor="#2aa0ea" BackgroundColor="White"
                    AbsoluteLayout.LayoutFlags="WidthProportional,PositionProportional"
                    AbsoluteLayout.LayoutBounds=".5, 0, 1, 60" CornerRadius="10">
                 <local:CrossEntry Placeholder="I'm looking for......" TextChanged="CrossEntry_TextChanged"/>
@@ -21,7 +21,8 @@
             <StackLayout AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional" 
                          AbsoluteLayout.LayoutBounds=".5, 1, 1, AutoSize" x:Name="bodySt">
                 <ListView x:Name="OrderList" ItemsSource="{Binding Product}"
-                      HasUnevenRows="True" SeparatorColor="#2abdea" ItemAppearing="OrderList_ItemAppearing">
+                      HasUnevenRows="True" SeparatorColor="#2aa0ea" ItemAppearing="OrderList_ItemAppearing" IsRefreshing="{Binding IsBusy}" 
+                          IsPullToRefreshEnabled="True" RefreshCommand="{Binding UpdateCommandOrder}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -34,25 +35,26 @@
                                             <Image HorizontalOptions="Start" HeightRequest="50" WidthRequest="50" Source="{Binding ImageFile}"/>
                                         </StackLayout>
                                         <StackLayout>
-                                            <Label Text="{Binding EBayUserID}"  TextColor="#2abdea" FontSize="17"/>
-                                            <Label Text="{Binding ItemTitle}" TextColor="#2abdea" FontSize="10"/>
-                                            <Label Text="{Binding ShopperEmail}" TextColor="#2abdea" FontSize="10"/>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="Price:" FontSize="10" TextColor="#2abdea"/>
-                                                <Label Text="{Binding TransactionPrice}" FontSize="10" TextColor="#2abdea"/>
-                                            </StackLayout>
+                                            <Label Text="{Binding EBayUserID}"  TextColor="#2aa0ea" FontSize="17"/>
+                                            <Label Text="{Binding ItemTitle}" TextColor="#2aa0ea" FontSize="10"/>
+                                            <Label Text="{Binding ShopperEmail}" TextColor="#2aa0ea" FontSize="10"/>
+                                            <FlexLayout Direction="Row">
+                                                <Label Text="Price:" FontSize="10" TextColor="#2aa0ea"/>
+                                                <Label Text="$" FontSize="10" TextColor="#2aa0ea"/>
+                                                <Label Text="{Binding TransactionPrice}" FontSize="10" TextColor="#2aa0ea"/>
+                                            </FlexLayout>
                                         </StackLayout>
                                         <StackLayout WidthRequest="320" Margin="10">
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="Item Id:" FontSize="10" TextColor="#2abdea"/>
-                                                <Label x:Name="itemId" Text="{Binding EBayItemID}" FontSize="10" TextColor="#2abdea"/>
+                                                <Label Text="Item Id:" FontSize="10" TextColor="#2aa0ea"/>
+                                                <Label x:Name="itemId" Text="{Binding EBayItemID}" FontSize="10" TextColor="#2aa0ea"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="Record Id:" FontSize="10" TextColor="#2abdea"/>
-                                                <Label x:Name="recordId" Text="{Binding RecordNumber}" FontSize="10" TextColor="#2abdea"/>
+                                                <Label Text="Record Id:" FontSize="10" TextColor="#2aa0ea"/>
+                                                <Label x:Name="recordId" Text="{Binding RecordNumber}" FontSize="10" TextColor="#2aa0ea"/>
                                             </StackLayout>
-                                            <Label Text="{Binding TrackingNumber}" FontSize="8" TextColor="#2abdea" />
-                                            <Label Text="{Binding PaymentMethod}" />
+                                            <Label Text="{Binding TrackingNumber}" FontSize="8" TextColor="#2aa0ea" />
+                                            <Label Text="{Binding PaymentMethod}" TextColor="#2aa0ea" />
                                         </StackLayout>
                                     </StackLayout>
                                 </ViewCell.View>

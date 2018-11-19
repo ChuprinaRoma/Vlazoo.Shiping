@@ -17,6 +17,7 @@
     <PackageReference Include="LiveXAML" Version="2.1.44" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Prism.Forms" Version="7.0.0.396" />
+    <PackageReference Include="Refractored.XamForms.PullToRefresh" Version="2.2.2" />
     <PackageReference Include="RestSharp" Version="106.3.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
     <PackageReference Include="System.Net.Http" Version="4.3.3" />

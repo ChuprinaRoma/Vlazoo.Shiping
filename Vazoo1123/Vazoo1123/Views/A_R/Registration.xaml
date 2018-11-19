@@ -22,7 +22,7 @@
                     <Label Text="New User Registration" 
                        AbsoluteLayout.LayoutFlags="PositionProportional"
                        AbsoluteLayout.LayoutBounds=".5, 0, AutoSize, AutoSize"
-                       FontSize="23" TextColor="#2abdea"/>
+                       FontSize="23" TextColor="#2aa0ea"/>
                     <local:CrossEntry Placeholder="Email" Keyboard="Email"
                            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
                            AbsoluteLayout.LayoutBounds=".5, .1, .9, 45" Text="{Binding Email}"/>
@@ -53,7 +53,7 @@
                        Text="{Binding ConfirmPassword}"/>
                     <Button Text="Sign Up" x:Name="sigUpBtn" IsEnabled="False"
                             AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
-                            BackgroundColor="#2abdea"  FontSize="15" TextColor="White"
+                            BackgroundColor="#2aa0ea"  FontSize="15" TextColor="White"
                             AbsoluteLayout.LayoutBounds=".5, .56, .9, 60"
                             Command="{Binding ToRegistrationCommand}"/>
                     <Frame CornerRadius="10" Padding="5" BackgroundColor="#F5A9BC"
@@ -76,7 +76,7 @@
                     <Label Text="Alpha Omege USA inc. All Rights Reserved 2014-2019"
                            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
                            AbsoluteLayout.LayoutBounds=".5, 1, .85, AutoSize" FontSize="13"
-                           TextColor="#2abdea"/>
+                           TextColor="#2aa0ea"/>
                 </AbsoluteLayout>
             </FlexLayout>
         </ScrollView>

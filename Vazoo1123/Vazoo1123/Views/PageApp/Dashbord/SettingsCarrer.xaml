@@ -21,25 +21,25 @@
     <StackLayout VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"
                  Margin="10">
-        <Frame CornerRadius="4" Padding="8" BorderColor="#2abdea" Margin="4">
+        <Frame CornerRadius="4" Padding="8" BorderColor="#2aa0ea" Margin="4">
             <StackLayout>
-                <Frame BorderColor="#2abdea">
+                <Frame BorderColor="#2aa0ea">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Switch Toggled="sw_Toggled" x:Name="sw" HorizontalOptions="Start"/>
-                            <Label x:Name="confirmationL" TextColor="#2abdea"/>
+                            <Label x:Name="confirmationL" TextColor="#2aa0ea"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Switch HorizontalOptions="Start" IsToggled="{Binding SignatureWaiver}"/>
-                            <Label Text="Signature Waiver" TextColor="#2abdea"/>
+                            <Label Text="Signature Waiver" TextColor="#2aa0ea"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Switch HorizontalOptions="Start" IsToggled="{Binding NoValidate}"/>
-                            <Label Text="No street level address validation" TextColor="#2abdea"/>
+                            <Label Text="No street level address validation" TextColor="#2aa0ea"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Switch HorizontalOptions="Start"/>
-                            <Label Text="Agreement with Vlazoo.com" FontSize="10" TextColor="#2abdea"/>
+                            <Label Text="Agreement with Vlazoo.com" FontSize="10" TextColor="#2aa0ea"/>
                             <Label Text="Terms and Conditions" TextColor="#1cffb3" FontSize="10">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />

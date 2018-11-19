@@ -24,15 +24,15 @@
                  Margin="10">
         <Frame Padding="0" BorderColor="#2abdea">
             <StackLayout>
-                <StackLayout BackgroundColor="#2abdea" HeightRequest="40" Padding="10">
+                <StackLayout BackgroundColor="#2aa0ea" HeightRequest="40" Padding="10">
                     <Label Text="Filter" FontSize="20" VerticalOptions="Center" VerticalTextAlignment="Center" TextColor="White"/>
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center" Padding="10">
-                    <Label HorizontalTextAlignment="Center" Text="" TextColor="#2abdea" Font="18"/>
+                    <Label HorizontalTextAlignment="Center" Text="" TextColor="#2aa0ea" Font="18"/>
                     <inp:RadioButtonGroupView x:Name="gr">
-                        <local:CrossAddRadiobtn Idi="1" Text="Dashbord" TextColor="#2abdea" Clicked="CrossAddRadiobtn_Clicked"  FontSize="15" />
-                        <local:CrossAddRadiobtn Idi="2" Text="Sold Last 3 month" TextColor="#2abdea" Clicked="CrossAddRadiobtn_Clicked"  FontSize="15" />
-                        <local:CrossAddRadiobtn Idi="3" Text="Labels Printed Last 72h" TextColor="#2abdea" Clicked="CrossAddRadiobtn_Clicked"  FontSize="15"/>
+                        <local:CrossAddRadiobtn Idi="1" Text="Dashbord" TextColor="#2aa0ea" Clicked="CrossAddRadiobtn_Clicked"  FontSize="15" />
+                        <local:CrossAddRadiobtn Idi="2" Text="Sold Last 3 month" TextColor="#2aa0ea" Clicked="CrossAddRadiobtn_Clicked"  FontSize="15" />
+                        <local:CrossAddRadiobtn Idi="3" Text="Labels Printed Last 72h" TextColor="#2aa0ea" Clicked="CrossAddRadiobtn_Clicked"  FontSize="15"/>
                     </inp:RadioButtonGroupView>
                 </StackLayout>
             </StackLayout>

@@ -21,7 +21,7 @@
     <StackLayout VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"
                  Margin="20">
-        <Frame CornerRadius="7" Padding="10" BorderColor="#2abdea" Margin="4">
+        <Frame CornerRadius="7" Padding="10" BorderColor="#2aa0ea" Margin="4">
             <StackLayout>
                 <Label Text="1. I understand that the price displayed is what I will need to pay to print shipping label and I agree to pay this price."/>
                 <Label Text="2. I understand that UPS and FedEx recalculate the price of shipping labels after weighing and measuring them. I understand that if UPS or FedEx recalculate the price of a label and it does not match the price I paid for it, I will be subject to a refund or an additional charge. I agree to pay the additional charge if one exists."/>

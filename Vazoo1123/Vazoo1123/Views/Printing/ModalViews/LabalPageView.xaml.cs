@@ -25,7 +25,7 @@ namespace Vazoo1123.Views.Printing.ModalViews
                     Button button = new Button();
                     button.Text = $"{i+1}";
                     button.BackgroundColor = Color.White;
-                    button.TextColor = Color.FromHex("#2abdea");
+                    button.TextColor = Color.FromHex("#2aa0ea");
                     button.Clicked += Button_Clicked;
                     btnTab.Children.Add(button);
                 }

@@ -21,10 +21,10 @@
     <StackLayout VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"
                  Margin="20">
-        <Frame Padding="10" BorderColor="#2abdea" Margin="4">
+        <Frame Padding="10" BorderColor="#2aa0ea" Margin="4">
             <ScrollView>
                 <StackLayout WidthRequest="300">
-                    <Label Text="Ship To Address" TextColor="#2abdea" HorizontalOptions="Center" FontSize="17"/>
+                    <Label Text="Ship To Address" TextColor="#2aa0ea" HorizontalOptions="Center" FontSize="17"/>
                     <BoxView BackgroundColor="#2abdea" HeightRequest="2" />
                     <local:CrossEntry Placeholder="Company Name" Text="{Binding ToCompanyName}"/>
                     <local:CrossEntry Placeholder="Contact Name" Text="{Binding ToContactName}"/>
@@ -39,7 +39,7 @@
                         <Switch IsToggled="{Binding ToNotification}"/>
                         <Label Text="Send notification"/>
                     </StackLayout>
-                    <Button Text="Ок" TextColor="White" BackgroundColor="#2abdea" Command="{Binding InitToAddressCommand}"/>
+                    <Button Text="Ок" TextColor="White" BackgroundColor="#2aa0ea" Command="{Binding InitToAddressCommand}"/>
                 </StackLayout>
             </ScrollView>
         </Frame>

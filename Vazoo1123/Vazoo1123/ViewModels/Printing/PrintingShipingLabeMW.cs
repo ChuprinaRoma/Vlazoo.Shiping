@@ -48,7 +48,7 @@ namespace Vazoo1123.ViewModels.Printing
         public string Balance
         {
             get { return balance; }
-            set { SetProperty(ref balance, value); }
+            set { SetProperty(ref balance, "$"+value); }
         }
         /////////////////////////////////////////////////////
         private string fromCompanyName = "";
@@ -256,11 +256,11 @@ namespace Vazoo1123.ViewModels.Printing
         }
         /////////////////////////////////////////////////////
         private double weigthLbs;
-        public double WeigthLbs
-        {
-            get { return WeigthLbs; }
-            set { SetProperty(ref weigthLbs, value); }
-        }
+        //public double WeigthLbs
+        //{
+        //    get { return WeigthLbs; }
+        //    set { SetProperty(ref weigthLbs, value); }
+        //}
 
         private double weigthLOz = 0;
         public double WeigthLOz

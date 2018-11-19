@@ -29,7 +29,7 @@
                             <Image AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
                                    Source="Dashbord.png"/>
-                            <Label Text="Awaiting shipment" TextColor="#2abdea" FontSize="15"
+                            <Label Text="Awaiting shipment" TextColor="#2aa0ea" FontSize="15"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".35, .5, AutoSize, AutoSize"/>
                             <Label Text="{Binding CountDashbord}" FontSize="15" TextColor="Red"
@@ -45,7 +45,7 @@
                             <Image AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
                                    Source="Mesage.png"/>
-                            <Label HorizontalOptions="CenterAndExpand" Text="Messages" TextColor="#2abdea" FontSize="15"
+                            <Label HorizontalOptions="CenterAndExpand" Text="Messages" TextColor="#2aa0ea" FontSize="15"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".233, .5, AutoSize, AutoSize"/>
                             <Label Text="0" FontSize="15" TextColor="Red"
@@ -61,7 +61,7 @@
                             <Image AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
                                    Source="Printing.png"/>
-                            <Label HorizontalOptions="CenterAndExpand" Text="Print Shipping Labels" TextColor="#2abdea" FontSize="15"
+                            <Label HorizontalOptions="CenterAndExpand" Text="Print Shipping Labels" TextColor="#2aa0ea" FontSize="15"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".385, .5, AutoSize, AutoSize"/>
                             <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
@@ -74,7 +74,7 @@
                             <Image AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
                                    Source="Dalar.png"/>
-                            <Label HorizontalOptions="CenterAndExpand" Text="Buy Postage" TextColor="#2abdea" FontSize="15"
+                            <Label HorizontalOptions="CenterAndExpand" Text="Buy Postage" TextColor="#2aa0ea" FontSize="15"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".27, .5, AutoSize, AutoSize"/>
                             <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
@@ -87,7 +87,7 @@
                             <Image AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
                                    Source="Donload.png"/>
-                            <Label HorizontalOptions="CenterAndExpand" Text="Download Printing Application" TextColor="#2abdea" FontSize="15"
+                            <Label HorizontalOptions="CenterAndExpand" Text="Download Printing Application" TextColor="#2aa0ea" FontSize="15"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".7, .5, AutoSize, AutoSize"/>
                             <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
@@ -102,7 +102,7 @@
                             <Image AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
                                    Source="Profile.jpg"/>
-                            <Label HorizontalOptions="CenterAndExpand" Text="Profile" TextColor="#2abdea" FontSize="15"
+                            <Label HorizontalOptions="CenterAndExpand" Text="Profile" TextColor="#2aa0ea" FontSize="15"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".233, .5, AutoSize, AutoSize"/>
                             <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
@@ -115,7 +115,7 @@
                             <Image AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
                                    Source="Seting.png"/>
-                            <Label HorizontalOptions="CenterAndExpand" Text="Seting" TextColor="#2abdea" FontSize="15"
+                            <Label HorizontalOptions="CenterAndExpand" Text="Seting" TextColor="#2aa0ea" FontSize="15"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".233, .5, AutoSize, AutoSize"/>
                             <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
@@ -128,7 +128,7 @@
                             <Image AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
                                    Source="LogOut.png"/>
-                            <Label HorizontalOptions="CenterAndExpand" Text="Log Out" TextColor="#2abdea" FontSize="15"
+                            <Label HorizontalOptions="CenterAndExpand" Text="Log Out" TextColor="#2aa0ea" FontSize="15"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".233, .5, AutoSize, AutoSize"/>
                             <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"

@@ -55,8 +55,8 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                 .Find(s => s.EBayItemID == itemId && s.RecordNumber == recordId);
             if (fullOrderSettings.WeightOZ != 0.ToString() && fullOrderSettings.WeightOZ != "")
             {
-                WOzCrEntry.TextColor = Color.FromHex("#2abdea");
-                WOzCrEntry.PlaceholderColor = Color.FromHex("#2abdea");
+                WOzCrEntry.TextColor = Color.FromHex("#2aa0ea");
+                WOzCrEntry.PlaceholderColor = Color.FromHex("#2aa0ea");
                 bulkPostagePrintingMV.UpdateOneOrder(itemId, recordId);
             }
             else

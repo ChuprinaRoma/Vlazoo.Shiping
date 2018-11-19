@@ -19,12 +19,12 @@
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
     <StackLayout VerticalOptions="Center" Padding="20">
-        <Frame CornerRadius="10"  BorderColor="#2abdea">
+        <Frame CornerRadius="10"  BorderColor="#2aa0ea">
             <StackLayout >
                 <Label Text="Enter the code we sent to your e-mail" FontSize="15" TextColor="#2abdea" 
                        HorizontalTextAlignment="Center"/>
                 <local:CrossEntry x:Name="codeEnrry" Text="{Binding Code}" Placeholder="Enter Code" />
-                <Button Text="Check" Command="{Binding CheckCommand}" BackgroundColor="#2abdea" TextColor="White" />
+                <Button Text="Check" Command="{Binding CheckCommand}" BackgroundColor="#2aa0ea" TextColor="White" />
                 <Label Text="{Binding Warrning}" TextColor="Red" HorizontalTextAlignment="Center" />
             </StackLayout>
         </Frame>

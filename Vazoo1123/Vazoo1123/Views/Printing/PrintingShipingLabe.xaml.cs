@@ -108,7 +108,7 @@ namespace Vazoo1123.Views.Printing
             if (printingShipingLabeMW.WeigthLOz != 0)
             {
                 isWeigthLOz = true;
-                ozInp.TextColor = Color.FromHex("#2abdea");
+                ozInp.TextColor = Color.FromHex("#2aa0ea");
             }
             else
             {
