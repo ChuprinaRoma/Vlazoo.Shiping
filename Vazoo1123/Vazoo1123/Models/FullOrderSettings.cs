@@ -38,7 +38,7 @@ namespace Vazoo1123.Models
             get { return carrier; }
             set { SetProperty(ref carrier, value); }
         }
-        public CAddressBase SourceAddr = null;
+        public CAddressBase cAddressBase = null;
         public CDimensions cDimensions = null;
         public List<Carrier> CarriersUSPS { get; set; }
         public List<Carrier> CarriersUPS { get; set; }
@@ -63,7 +63,7 @@ namespace Vazoo1123.Models
 
         public FullOrderSettings(OrderInfo orderInfo)
         {
-            SourceAddr = new CAddressBase();
+            cAddressBase = new CAddressBase();
             cDimensions = new CDimensions();
             CarriersUSPS = new List<Carrier>();
             CarriersUPS = new List<Carrier>();
@@ -87,24 +87,24 @@ namespace Vazoo1123.Models
             cDimensions.Width = Convert.ToDouble(orderInfo.DimensionsW != "" ? orderInfo.DimensionsW.Replace('.', ',') : "0");
             cDimensions.Length = Convert.ToDouble(orderInfo.DimensionsL != "" ? orderInfo.DimensionsL.Replace('.', ',') : "0");
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            SourceAddr.Address1 = orderInfo.ShipToAddress.Address1;
-            SourceAddr.Address2 = orderInfo.ShipToAddress.Address2;
-            SourceAddr.Address3 = orderInfo.ShipToAddress.Address3;
-            SourceAddr.City = orderInfo.ShipToAddress.City;
-            SourceAddr.Comments = orderInfo.ShipToAddress.Comments;
-            SourceAddr.CompanyName = orderInfo.ShipToAddress.CompanyName;
-            SourceAddr.Name = orderInfo.ShipToAddress.Name;
-            SourceAddr.Phone = orderInfo.ShipToAddress.Phone;
-            SourceAddr.RDI = orderInfo.ShipToAddress.RDI;
-            SourceAddr.State = orderInfo.ShipToAddress.State;
-            SourceAddr.Status = orderInfo.ShipToAddress.Status;
+            cAddressBase.Address1 = orderInfo.ShipToAddress.Address1;
+            cAddressBase.Address2 = orderInfo.ShipToAddress.Address2;
+            cAddressBase.Address3 = orderInfo.ShipToAddress.Address3;
+            cAddressBase.City = orderInfo.ShipToAddress.City;
+            cAddressBase.Comments = orderInfo.ShipToAddress.Comments;
+            cAddressBase.CompanyName = orderInfo.ShipToAddress.CompanyName;
+            cAddressBase.Name = orderInfo.ShipToAddress.Name;
+            cAddressBase.Phone = orderInfo.ShipToAddress.Phone;
+            cAddressBase.RDI = orderInfo.ShipToAddress.RDI;
+            cAddressBase.State = orderInfo.ShipToAddress.State;
+            cAddressBase.Status = orderInfo.ShipToAddress.Status;
             if (orderInfo.ShipToAddress.ZIP5.IndexOf('-') != -1)
             {
-                SourceAddr.ZIP5 = orderInfo.ShipToAddress.ZIP5.Remove(orderInfo.ShipToAddress.ZIP5.IndexOf('-'));
+                cAddressBase.ZIP5 = orderInfo.ShipToAddress.ZIP5.Remove(orderInfo.ShipToAddress.ZIP5.IndexOf('-'));
             }
             else
             {
-                SourceAddr.ZIP5 = orderInfo.ShipToAddress.ZIP5;
+                cAddressBase.ZIP5 = orderInfo.ShipToAddress.ZIP5;
             }
         }
 
@@ -123,6 +123,10 @@ namespace Vazoo1123.Models
         public void SetCarrier(Carrier carrier1)
         {
             Carrier = carrier1;
+            if(Carrier != null)
+            {
+                TypeShipeMethod = Carrier.CompanyName;
+            }
         }
     }
 }

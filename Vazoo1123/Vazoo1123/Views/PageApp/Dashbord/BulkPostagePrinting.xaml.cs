@@ -88,6 +88,10 @@ namespace Vazoo1123.Views.PageApp.Dashbord
 
         private void CrossEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (e.OldTextValue != null)
+            {
+                bulkPostagePrintingMV.IsValid = false;
+            }
             string itemId = ((CrossEntry)sender).FindByName<Label>("itemId").Text;
             string recordId = ((CrossEntry)sender).FindByName<Label>("recordId").Text;
             FullOrderSettings fullOrderSettings = bulkPostagePrintingMV.SelectProduct
@@ -107,6 +111,22 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             {
                 bulkPostagePrintingMV.SelectProduct
                 .Find(s => s.EBayItemID == itemId && s.RecordNumber == recordId).StrCalc = "";
+            }
+        }
+
+        private void Button_Clicked_1(object sender, EventArgs e)
+        {
+            if (bulkPostagePrintingMV.IsValid)
+            {
+                bulkPostagePrintingMV.ShippingCreate();
+            }
+        }
+
+        private void WOzCrEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.OldTextValue != null)
+            {
+                bulkPostagePrintingMV.IsValid = false;
             }
         }
     }

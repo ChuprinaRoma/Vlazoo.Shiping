@@ -26,7 +26,10 @@
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Price:" FontSize="14" TextColor="#2aa0ea"/>
-                            <Label Text="{Binding OrderInfo.TransactionPrice}" FontSize="14" TextColor="#2aa0ea"/>
+                            <FlexLayout>
+                                <Label Text="$" FontSize="14" TextColor="#2aa0ea"/>
+                                <Label Text="{Binding OrderInfo.TransactionPrice}" FontSize="14" TextColor="#2aa0ea"/>
+                            </FlexLayout>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="SKU:" FontSize="14" TextColor="#2aa0ea"/>
@@ -73,7 +76,7 @@
                     <Label Text="Weight:" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightLBS}"/>
                     <Label Text="(lbs)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                    <local:CrossEntry x:Name="ozInp" Placeholder="Num" Text="{Binding OrderInfo.WeightOZ}"/>
+                    <local:CrossEntry x:Name="ozInp" Placeholder="Num" Text="{Binding OrderInfo.WeightOZ}" TextChanged="OzInp_TextChanged"/>
                     <Label Text="(oz)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightKG}"/>
                     <Label Text="(kg)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>

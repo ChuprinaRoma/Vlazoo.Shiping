@@ -10,14 +10,14 @@ using Xamarin.Forms.Xaml;
 namespace Vazoo1123.Views.PageApp.Dashbord
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class OrderOnePinting : ContentPage
-	{
+    public partial class OrderOnePinting : ContentPage
+    {
         FullInfoOneOrderAndPrintingMV fullInfoOneOrderAndPrintingMV = null;
 
-        public OrderOnePinting (OrderInfo orderInfo, ManagerVazoo managerVazoo)
-		{
+        public OrderOnePinting(OrderInfo orderInfo, ManagerVazoo managerVazoo)
+        {
             fullInfoOneOrderAndPrintingMV = new FullInfoOneOrderAndPrintingMV(orderInfo, managerVazoo);
-			InitializeComponent ();
+            InitializeComponent();
             BindingContext = fullInfoOneOrderAndPrintingMV;
             sw.IsToggled = false;
             confirmationL.Text = "Delivery Confirmation";
@@ -94,7 +94,19 @@ namespace Vazoo1123.Views.PageApp.Dashbord
 
         private void CrossEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (e.OldTextValue != null)
+            {
+                fullInfoOneOrderAndPrintingMV.IsValid = false;
+            }
             Init();
+        }
+
+        private void OzInp_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(e.OldTextValue != null)
+            {
+                fullInfoOneOrderAndPrintingMV.IsValid = false;
+            }
         }
     }
 }

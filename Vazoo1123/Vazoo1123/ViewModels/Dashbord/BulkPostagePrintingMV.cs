@@ -16,13 +16,13 @@ namespace Vazoo1123.ViewModels.Dashbord
     public class BulkPostagePrintingMV : BindableBase
     {
         private ManagerVazoo managerVazoo = null;
-        public CAddressBase cAddressBase = null;
+        public CAddressBase SourceAddr = null;
         public DelegateCommand GoToSettingsCommand { get; set; }
 
         public BulkPostagePrintingMV(ManagerVazoo managerVazoo, List<OrderInfo> selectProducts)
         {
             GoToSettingsCommand = new DelegateCommand(GoToSettings);
-            cAddressBase = new CAddressBase();
+            SourceAddr = new CAddressBase();
             this.managerVazoo = managerVazoo;
             Init(selectProducts);
         }
@@ -48,21 +48,20 @@ namespace Vazoo1123.ViewModels.Dashbord
             int stateAuth = Convert.ToInt32(_xzType[0]);
             if (stateAuth == 3)
             {
-                cAddressBase.CompanyName = _xzType[2];
-                cAddressBase.Name = _xzType[5];
-                cAddressBase.Address1 = _xzType[10].Remove(_xzType[10].IndexOf(','));
-                cAddressBase.Address2 = _xzType[10].Remove(0, _xzType[10].IndexOf(',') + 2);
-                cAddressBase.City = _xzType[12];
-                cAddressBase.State = _xzType[13];
-                cAddressBase.ZIP5 = _xzType[14];
-                cAddressBase.Phone = _xzType[15];
+                SourceAddr.CompanyName = _xzType[2];
+                SourceAddr.Name = _xzType[5];
+                SourceAddr.Address1 = _xzType[10].Remove(_xzType[10].IndexOf(','));
+                SourceAddr.Address2 = _xzType[10].Remove(0, _xzType[10].IndexOf(',') + 2);
+                SourceAddr.City = _xzType[12];
+                SourceAddr.State = _xzType[13];
+                SourceAddr.ZIP5 = _xzType[14];
+                SourceAddr.Phone = _xzType[15];
             }
             return stateAuth;
         }
 
         private void InitSettingOrders(List<OrderInfo> selectProducts)
         {
-            IsBusy = true;
             SelectProduct = new List<FullOrderSettings>();
             foreach (var selectProduct in selectProducts)
             {
@@ -91,18 +90,23 @@ namespace Vazoo1123.ViewModels.Dashbord
                 fullOrderSettings.WeightLBS = selectProduct.WeightLBS;
                 fullOrderSettings.WeightOZ = selectProduct.WeightOZ;
                 SelectProduct.Add(fullOrderSettings);
-                Task.Run(() =>
-                {
-                    double tempPostage = 0;
-                    foreach (var selectProduct1 in SelectProduct)
-                    {
-                        selectProduct1.SetCarrier(selectProduct1.CarrierOptimal);
-                        tempPostage += selectProduct1.CarrierOptimal.Price;
-                    }
-                    PostageTotal = $"{tempPostage}$";
-                });
             }
-            IsBusy = false;
+            Task.Run(() =>
+            {
+                bool isValidTemp = true;
+                double tempPostage = 0;
+                foreach (var selectProduct1 in SelectProduct)
+                {
+                    if(isValidTemp)
+                    {
+                        isValidTemp = selectProduct1.CarrierOptimal != null;
+                    }
+                    selectProduct1.SetCarrier(selectProduct1.CarrierOptimal);
+                    tempPostage += selectProduct1.CarrierOptimal.Price;
+                }
+                IsValid = isValidTemp;
+                PostageTotal = $"{tempPostage}$";
+            });
         }
 
         public async void InitDisplayShippingOptions()
@@ -117,18 +121,20 @@ namespace Vazoo1123.ViewModels.Dashbord
                 int stateAuth = 0;
                 await Task.Run(() =>
                 {
-                    stateAuth = managerVazoo.PrintingWork("Options", ref description, order.cDimensions, order.SourceAddr, cAddressBase,
+                    stateAuth = managerVazoo.PrintingWork("Options", ref description, order.cDimensions, SourceAddr, order.cAddressBase,
                            Convert.ToDouble(order.WeightOZ != "" ? order.WeightOZ.Replace(',', '.') : "0"), SignatureConfirmation,
                            DeliveryConfirmation, NoValidate, 0, ref order.carriers, email, idCompany, psw);
                 });
                 if (stateAuth == 3)
                 {
+                    IsValid = true;
                     order.CarriersUSPS = new List<Carrier>(order.carriers.FindAll(c => c.Company == 1));
                     order.CarriersUPS = new List<Carrier>(order.carriers.FindAll(c => c.Company == 2));
                     order.CarriersFedEx = new List<Carrier>(order.carriers.FindAll(c => c.Company == 3));
                 }
                 else if (stateAuth != 3)
                 {
+                    IsValid = false;
                     order.CarriersUSPS = new List<Carrier>();
                     order.CarriersUPS = new List<Carrier>();
                     order.CarriersFedEx = new List<Carrier>();
@@ -147,7 +153,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.PrintingWork("Options", ref description, order.cDimensions, order.SourceAddr, cAddressBase,
+                stateAuth = managerVazoo.PrintingWork("Options", ref description, order.cDimensions, SourceAddr, order.cAddressBase,
                        Convert.ToDouble(order.WeightOZ != "" ? order.WeightOZ.Replace(',', '.') : "0"), SignatureConfirmation,
                        DeliveryConfirmation, NoValidate, 0, ref order.carriers, email, idCompany, psw);
                 Task.Run(() =>
@@ -186,11 +192,12 @@ namespace Vazoo1123.ViewModels.Dashbord
             FullOrderSettings fullOrderSettings = SelectProduct.Find(s => s.EBayItemID == idItem && s.RecordNumber == RecordNum);
             await Task.Run(() =>
             {
-                int stateAuth = managerVazoo.PrintingWork("Options", ref description, fullOrderSettings.cDimensions, fullOrderSettings.SourceAddr, cAddressBase,
+                int stateAuth = managerVazoo.PrintingWork("Options", ref description, fullOrderSettings.cDimensions, SourceAddr, fullOrderSettings.cAddressBase,
                            Convert.ToDouble(fullOrderSettings.WeightOZ != "" ? fullOrderSettings.WeightOZ.Replace(',', '.') : "0"), SignatureConfirmation,
                            DeliveryConfirmation, NoValidate, 0, ref fullOrderSettings.carriers, email, idCompany, psw);
                 if (stateAuth == 3)
                 {
+                    isValid = true;
                     fullOrderSettings.CarriersUSPS = new List<Carrier>(fullOrderSettings.carriers.FindAll(c => c.Company == 1));
                     fullOrderSettings.CarriersUPS = new List<Carrier>(fullOrderSettings.carriers.FindAll(c => c.Company == 2));
                     fullOrderSettings.CarriersFedEx = new List<Carrier>(fullOrderSettings.carriers.FindAll(c => c.Company == 3));
@@ -207,6 +214,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 }
                 else if (stateAuth != 3)
                 {
+                    isValid = false;
                     fullOrderSettings.CarriersUSPS = new List<Carrier>();
                     fullOrderSettings.CarriersUPS = new List<Carrier>();
                     fullOrderSettings.CarriersFedEx = new List<Carrier>();
@@ -241,8 +249,8 @@ namespace Vazoo1123.ViewModels.Dashbord
                     shipingMethod = "FedEx_" + serlectProduct.Carrier.Code;
                 }
                 int stateAuth = managerVazoo.ShippingCreateOrder(Convert.ToInt32(idCompany), email, psw, serlectProduct.ID, serlectProduct.LabelsQty, shipingMethod, 
-                    serlectProduct.ShopperEmail, SignatureWaiver, Convert.ToDouble(serlectProduct.WeightOZ != "" ? serlectProduct.WeightOZ.Replace(',', '.') : "0"), serlectProduct.cDimensions, serlectProduct.SourceAddr,
-                    cAddressBase, DeliveryConfirmation, SignatureWaiver, NoValidate, true, "", "", "", 0, ref tracking, ref description);
+                    serlectProduct.ShopperEmail, SignatureWaiver, Convert.ToDouble(serlectProduct.WeightOZ != "" ? serlectProduct.WeightOZ.Replace(',', '.') : "0"), serlectProduct.cDimensions, SourceAddr,
+                    serlectProduct.cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, true, "", "", "", 0, ref tracking, ref description);
                 if (stateAuth == 3)
                 {
                     await PopupNavigation.PushAsync(new LabalPageView(tracking), true);
@@ -268,7 +276,14 @@ namespace Vazoo1123.ViewModels.Dashbord
             await PopupNavigation.PushAsync(new SettingsCarrer(this), true);
         }
 
-        private bool isBusy = false;
+        private bool isValid = false;
+        public bool IsValid
+        {
+            get => isValid;
+            set => SetProperty(ref isValid, value);
+        }
+
+        private bool isBusy = true;
         public bool IsBusy
         {
             get => isBusy;

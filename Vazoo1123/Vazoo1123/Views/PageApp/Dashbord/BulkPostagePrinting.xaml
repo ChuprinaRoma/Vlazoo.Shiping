@@ -28,7 +28,10 @@
                                             <Label Text="{Binding ShopperEmail}" TextColor="#2aa0ea" FontSize="10"/>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="Price:" FontSize="10" TextColor="#2aa0ea"/>
-                                                <Label Text="{Binding TransactionPrice}" FontSize="10" TextColor="#2aa0ea"/>
+                                                <FlexLayout>
+                                                    <Label Text="$" FontSize="10" TextColor="#2aa0ea"/>
+                                                    <Label Text="{Binding TransactionPrice}" FontSize="10" TextColor="#2aa0ea"/>
+                                                </FlexLayout>
                                             </StackLayout>
                                         </StackLayout>
                                         <StackLayout WidthRequest="320">
@@ -63,7 +66,7 @@
                                             <Label Text="Weight:" FontSize="12"  TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightLBS}"/>
                                             <Label Text="(lbs)"  FontSize="12" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                                            <local:CrossEntry x:Name="WOzCrEntry" FontSize="12"  Placeholder="Num" Text="{Binding WeightOZ}"/>
+                                            <local:CrossEntry x:Name="WOzCrEntry" FontSize="12"  Placeholder="Num" Text="{Binding WeightOZ}" TextChanged="WOzCrEntry_TextChanged"/>
                                             <Label Text="(oz)" FontSize="12" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightKG}"/>
                                             <Label Text="(kg)" FontSize="12"  TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
@@ -81,8 +84,8 @@
                                     <Frame Padding="5" BorderColor="#2aa0ea" CornerRadius="10">
                                         <FlexLayout Direction="Row" Wrap="Wrap">
                                             <Label Text="{Binding Carrier.Title}" TextColor="#2aa0ea"/>
+                                            <Label Text="$" TextColor="#2aa0ea" Margin="5,0,0,0"/>
                                             <Label Text="{Binding Carrier.Price}" TextColor="#2aa0ea"/>
-                                            <Label Text="$" TextColor="#2aa0ea"/>
                                         </FlexLayout>
                                     </Frame>
                                 </StackLayout>
@@ -93,7 +96,7 @@
             </ListView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="End">
                 <Button Text="print to local printer" FontSize="10" TextColor="White" BackgroundColor="#2aa0ea"/>
-                <Button Text="print to remote printer" FontSize="10" TextColor="White" BackgroundColor="#2aa0ea"/>
+                <Button Text="print to remote printer" FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Clicked="Button_Clicked_1"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

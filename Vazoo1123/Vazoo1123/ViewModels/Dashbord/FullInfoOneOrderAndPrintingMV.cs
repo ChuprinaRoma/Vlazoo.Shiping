@@ -4,6 +4,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Vazoo1123.Models;
 using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Printing.Models;
@@ -25,13 +26,14 @@ namespace Vazoo1123.ViewModels.Dashbord
             carriers = new List<Carrier>();
             this.managerVazoo = managerVazoo;
             OrderInfo = orderInfo;
-            IsValid = false;
             Carrier = orderInfo.CarrierOptimal;
             if(Carrier != null)
             {
                 IsValid = true;
+                TypeShipeMethod = Carrier.CompanyName;
             }
             InitForFullInfoOrder(orderInfo.ShipToAddress);
+            InitForDisplayShippingOptions();
         }
 
         private Carrier carrier = null;
@@ -170,7 +172,12 @@ namespace Vazoo1123.ViewModels.Dashbord
             set => SetProperty(ref strCalc, value);
         }
 
-        public bool IsValid { get; set; } = false;
+        private bool isValid = false;
+        public bool IsValid
+        {
+            get => isValid;
+            set => SetProperty(ref isValid, value);
+        }
 
         private void InitForFullInfoOrder(CAddressBase cAddressBase)
         {
@@ -191,7 +198,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
-            int stateAuth = InitForDisplayShippingOptions();
+            int stateAuth = await InitForDisplayShippingOptions();
             if (stateAuth == 3)
             {
                 stateAuth = managerVazoo.PrintingWork("Options", ref description, cDimensions, SourceAddr, cAddressBase,
@@ -223,7 +230,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             }
         }
 
-        private  int InitForDisplayShippingOptions()
+        private async Task<int> InitForDisplayShippingOptions()
         {
             cAddressBase = new CAddressBase();
             cDimensions = new CDimensions();
@@ -232,7 +239,11 @@ namespace Vazoo1123.ViewModels.Dashbord
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
-            string[] _xzType = managerVazoo.PofiletWork("profileGet", ref description, null, idCompany, email, psw);
+            string[] _xzType = null;
+            await Task.Run(() =>
+            {
+                _xzType = managerVazoo.PofiletWork("profileGet", ref description, null, idCompany, email, psw);
+            });
             int stateAuth = Convert.ToInt32(_xzType[0]);
             if (stateAuth == 3)
             {
@@ -310,7 +321,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             }
             int stateAuth = managerVazoo.ShippingCreateOrder(Convert.ToInt32(idCompany), email, psw, OrderInfo.ID, LabelsQty, shipingMethod, OrderInfo.ShopperEmail, SignatureWaiver, 
                 Convert.ToDouble(OrderInfo.WeightOZ != "" ? OrderInfo.WeightOZ.Replace(',', '.') : "0"), cDimensions, SourceAddr,
-                cAddressBase, DeliveryConfirmation, SignatureWaiver, NoValidate, true, "", "", "128", 0, ref tracking, ref description);
+                cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, true, "", "", "128", 0, ref tracking, ref description);
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)
             {
