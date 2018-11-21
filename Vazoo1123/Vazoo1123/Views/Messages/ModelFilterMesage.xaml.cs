@@ -1,4 +1,5 @@
 ﻿using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using System;
 using Vazoo1123.NewElement;
 using Vazoo1123.ViewModels.Mesages;
@@ -15,11 +16,14 @@ namespace Vazoo1123.Views.Messages
 		{
             this.mesagesFolderMV = mesagesFolderMV;
             InitializeComponent ();
-		}
+            gr.SelectedIndex = this.mesagesFolderMV.Type;
+        }
 
-        private void CrossAddRadiobtn_Clicked(object sender, EventArgs e)
+        private async void CrossAddRadiobtn_Clicked(object sender, EventArgs e)
         {
+            await PopupNavigation.PopAllAsync(true);
             crossAddRadiobtnSelect = ((CrossAddRadiobtn)sender);
+            mesagesFolderMV.InitMessages(crossAddRadiobtnSelect.Idi, crossAddRadiobtnSelect.Text);
         }
     }
 }

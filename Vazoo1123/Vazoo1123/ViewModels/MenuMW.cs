@@ -1,5 +1,7 @@
 ﻿using Plugin.Settings;
 using Prism.Mvvm;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Vazoo1123.Service;
 
@@ -12,6 +14,7 @@ namespace Vazoo1123.ViewModels
         {
             managerVazoo = new ManagerVazoo();
             NameProfile = CrossSettings.Current.GetValueOrDefault("userName", "");
+            InitMessages();
         }
 
         private string nameProfile;
@@ -31,19 +34,19 @@ namespace Vazoo1123.ViewModels
             }
         }
 
-        private int countMesage;
-        public int CountMesage
+        private string countMesage;
+        public string CountMesage
         {
             get { return countMesage; }
             set
             {
-                if (value != 0)
+                if (value != "")
                 {
                     SetProperty(ref countMesage, value);
                 }
                 else
                 {
-                    SetProperty(ref countMesage, 0);
+                    SetProperty(ref countMesage, "0");
                 }
             }
         }
@@ -72,6 +75,36 @@ namespace Vazoo1123.ViewModels
                 if (count != null && count != "")
                 {
                     CountDashbord = count;
+                }
+            });
+        }
+
+        public async void CheckAndSetCountMessage(string count)
+        {
+            await Task.Run(() =>
+            {
+                if (count != null && count != "")
+                {
+                    CountMesage = count;
+                }
+            });
+        }
+
+        public async void InitMessages()
+        {
+            await Task.Run(() =>
+            {
+                string description = null;
+                int totalResulte = 0;
+                string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+                string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+                string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+                int stateAuth = 0;
+                List<Models.Messages> messagess = null;
+                stateAuth = managerVazoo.MesagesWork("MesageCountToDay", ref description, ref totalResulte, ref messagess, email, idCompany, psw, "1", "", "0");
+                if (stateAuth == 3)
+                {
+                    CheckAndSetCountMessage(totalResulte.ToString());
                 }
             });
         }

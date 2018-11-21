@@ -69,6 +69,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
 
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
+            bulkPostagePrintingMV.IsBusy = true;
             if (bulkPostagePrintingMV.SelectProduct.Find(s => s.WeightOZ == "0" || s.WeightOZ == "" ) == null)
             {
                 foreach (var order in bulkPostagePrintingMV.SelectProduct)
@@ -82,6 +83,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             {
                 await PopupNavigation.PushAsync(new Error("Please fill in the 'Weight OZ' field"), true);
             }
+            bulkPostagePrintingMV.IsBusy = false;
         }
 
         private void CrossEntry_TextChanged(object sender, TextChangedEventArgs e)

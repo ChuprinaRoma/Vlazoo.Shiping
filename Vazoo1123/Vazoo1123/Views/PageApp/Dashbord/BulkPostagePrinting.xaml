@@ -7,13 +7,12 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{Binding PostageTotal}"/>
         <ToolbarItem Text="{Binding TotalLabels}"/>
-        <ToolbarItem Icon="Update.png" Clicked="ToolbarItem_Clicked"/>
         <ToolbarItem Text="S" Command="{Binding GoToSettingsCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="OrderList" ItemsSource="{Binding SelectProduct}"
-                      HasUnevenRows="True" SeparatorColor="#2abdea">
+            <ListView x:Name="OrderList" ItemsSource="{Binding SelectProduct}" IsRefreshing="{Binding IsBusy}" IsPullToRefreshEnabled="True"
+                      HasUnevenRows="True" SeparatorColor="#2abdea" Refreshing="ToolbarItem_Clicked">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

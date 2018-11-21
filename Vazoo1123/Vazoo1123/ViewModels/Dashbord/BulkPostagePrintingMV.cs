@@ -62,6 +62,7 @@ namespace Vazoo1123.ViewModels.Dashbord
 
         private void InitSettingOrders(List<OrderInfo> selectProducts)
         {
+            IsBusy = true;
             SelectProduct = new List<FullOrderSettings>();
             foreach (var selectProduct in selectProducts)
             {
@@ -101,10 +102,12 @@ namespace Vazoo1123.ViewModels.Dashbord
                     PostageTotal = $"{tempPostage}$";
                 });
             }
+            IsBusy = false;
         }
 
         public async void InitDisplayShippingOptions()
         {
+            IsBusy = true;
             string description = null;
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
@@ -131,10 +134,12 @@ namespace Vazoo1123.ViewModels.Dashbord
                     order.CarriersFedEx = new List<Carrier>();
                 }
             }
+            IsBusy = false;
         }
 
         public async void FullUpdateOrders(FullOrderSettings order)
         {
+            IsBusy = true;
             int stateAuth = 0;
             string description = null;
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
@@ -168,10 +173,12 @@ namespace Vazoo1123.ViewModels.Dashbord
                 order.CarriersUPS = new List<Carrier>();
                 order.CarriersFedEx = new List<Carrier>();
             }
+            IsBusy = false;
         }
 
         public async void UpdateOneOrder(string idItem, string RecordNum)
         {
+            IsBusy = true;
             string description = null;
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
@@ -205,6 +212,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                     fullOrderSettings.CarriersFedEx = new List<Carrier>();
                 }
             });
+            IsBusy = false;
         }
 
         public async void ShippingCreate()
@@ -232,7 +240,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 {
                     shipingMethod = "FedEx_" + serlectProduct.Carrier.Code;
                 }
-                int stateAuth = managerVazoo.ShippingCreate(Convert.ToInt32(idCompany), email, psw, serlectProduct.LabelsQty, shipingMethod, 
+                int stateAuth = managerVazoo.ShippingCreateOrder(Convert.ToInt32(idCompany), email, psw, serlectProduct.ID, serlectProduct.LabelsQty, shipingMethod, 
                     serlectProduct.ShopperEmail, SignatureWaiver, Convert.ToDouble(serlectProduct.WeightOZ != "" ? serlectProduct.WeightOZ.Replace(',', '.') : "0"), serlectProduct.cDimensions, serlectProduct.SourceAddr,
                     cAddressBase, DeliveryConfirmation, SignatureWaiver, NoValidate, true, "", "", "", 0, ref tracking, ref description);
                 if (stateAuth == 3)
@@ -258,6 +266,13 @@ namespace Vazoo1123.ViewModels.Dashbord
         private async void GoToSettings()
         {
             await PopupNavigation.PushAsync(new SettingsCarrer(this), true);
+        }
+
+        private bool isBusy = false;
+        public bool IsBusy
+        {
+            get => isBusy;
+            set => SetProperty(ref isBusy, value);
         }
 
         private string postageTotal = "0";

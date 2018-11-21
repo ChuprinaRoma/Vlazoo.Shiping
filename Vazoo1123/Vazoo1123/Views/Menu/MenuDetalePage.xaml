@@ -29,7 +29,7 @@
                             <Image AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
                                    Source="Dashbord.png"/>
-                            <Label Text="Awaiting shipment" TextColor="#2aa0ea" FontSize="15"
+                            <Label Text="Paid" TextColor="#2aa0ea" FontSize="15"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".35, .5, AutoSize, AutoSize"/>
                             <Label Text="{Binding CountDashbord}" FontSize="15" TextColor="Red"
@@ -48,7 +48,7 @@
                             <Label HorizontalOptions="CenterAndExpand" Text="Messages" TextColor="#2aa0ea" FontSize="15"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".233, .5, AutoSize, AutoSize"/>
-                            <Label Text="0" FontSize="15" TextColor="Red"
+                            <Label Text="{Binding CountMesage}" FontSize="15" TextColor="Red"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                    AbsoluteLayout.LayoutBounds=".9, .5, AutoSize, AutoSize"/>
                             <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"

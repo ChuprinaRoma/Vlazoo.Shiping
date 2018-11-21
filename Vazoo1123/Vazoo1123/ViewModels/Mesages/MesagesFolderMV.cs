@@ -3,19 +3,23 @@ using Prism.Mvvm;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Vazoo1123.Service;
 using Vazoo1123.Views.LoadViews;
+using Vazoo1123.Views.Menu;
 
 namespace Vazoo1123.ViewModels.Mesages
 {
     public class MesagesFolderMV : BindableBase
     {
-        private ManagerVazoo managerVazoo = null;
+        public ManagerVazoo managerVazoo = null;
+        public MenuDetalePage menuDetalePage = null;
 
-        public MesagesFolderMV(ManagerVazoo managerVazoo)
+        public MesagesFolderMV(ManagerVazoo managerVazoo, MenuDetalePage menuDetalePage)
         {
             this.managerVazoo = managerVazoo;
-            InitMessages(1);
+            this.menuDetalePage = menuDetalePage;
+            InitMessages(1, "ToDay");
         }
 
         private List<Models.Messages> messagesss = null;
@@ -25,21 +29,51 @@ namespace Vazoo1123.ViewModels.Mesages
             set => SetProperty(ref messagesss, value);
         }
 
-        private async void InitMessages(int type)
+        private string title = null;
+        public string Title
         {
-            await PopupNavigation.PushAsync(new LoadPage());
+            get => title;
+            set => SetProperty(ref title, value);
+        }
+
+        private int type = 1;
+        public int Type
+        {
+            get => type - 1;
+            set => SetProperty(ref type, value);
+        }
+
+        private bool isBusy = false;
+        public bool IsBusy
+        {
+            get => isBusy;
+            set => SetProperty(ref isBusy, value);
+        }
+
+        public async void InitMessages(int type, string name)
+        {
+            IsBusy = true;
             string description = null;
             int totalResulte = 0;
             List<Models.Messages> messagess = null;
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
-            int stateAuth = managerVazoo.MesagesWork("MessagesGet", ref description, ref totalResulte, ref messagess, email, idCompany, psw, type.ToString(), "", "0");
-            await PopupNavigation.PopAllAsync();
-            if (stateAuth == 3)
+            int stateAuth = 0;
+            await Task.Run(() =>
+            {
+                stateAuth = managerVazoo.MesagesWork("MessagesGet", ref description, ref totalResulte, ref messagess, email, idCompany, psw, type.ToString(), "", "0");
+            });
+                if (stateAuth == 3)
             {
                 //TranslationIntoFormatDate(messagess);
                 Messagesss = messagess;
+                Title = $"{name} {totalResulte}";
+                Type = type;
+                if(type == 1)
+                {
+                    menuDetalePage.CheckAndSetCountMessage(totalResulte);
+                }
             }
             else if (stateAuth == 2)
             {
@@ -53,6 +87,7 @@ namespace Vazoo1123.ViewModels.Mesages
             {
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
             }
+            IsBusy = false;
         }
 
         private List<Models.Messages> TranslationIntoFormatDate(List<Models.Messages> messagess1)

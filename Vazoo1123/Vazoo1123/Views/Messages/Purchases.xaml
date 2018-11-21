@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="Vazoo1123.Views.Messages.Purchases">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="3"
+            ScaleOut="1.5"
+            DurationIn="200"
+            DurationOut="200"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center"
+                 HorizontalOptions="FillAndExpand"
+                 Margin="10">
+        <Frame Padding="0" CornerRadius="5" BorderColor="#2abdea">
+            <StackLayout Orientation="Vertical"  Padding="6" BackgroundColor="White">
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround">
+                    <StackLayout Orientation="Vertical">
+                        <Image Source="{Binding OrderInfo.ImageFile}" HeightRequest="69" WidthRequest="80"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="UPC:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="{Binding OrderInfo.UPC}" FontSize="14" TextColor="#2aa0ea"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="item id:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="{Binding OrderInfo.EBayItemID}" FontSize="14" TextColor="#2aa0ea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="RNumber:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="{Binding OrderInfo.RecordNumber}" FontSize="14" TextColor="#2aa0ea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Price:" FontSize="14" TextColor="#2aa0ea"/>
+                            <FlexLayout>
+                                <Label Text="$" FontSize="14" TextColor="#2aa0ea"/>
+                                <Label Text="{Binding OrderInfo.TransactionPrice}" FontSize="14" TextColor="#2aa0ea"/>
+                            </FlexLayout>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="SKU:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="{Binding OrderInfo.SKU}" FontSize="14" TextColor="#2aa0ea"/>
+                        </StackLayout>
+                    </StackLayout>
+                </FlexLayout>
+                <Label Text="{Binding OrderInfo.ItemTitle}" FontSize="14" TextColor="#2aa0ea" HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Label Text="Data Create:" FontSize="14" TextColor="#2aa0ea"/>
+                    <Label Text="{Binding OrderInfo.DateCreated}" FontSize="14" TextColor="#2aa0ea"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label Text="Tracking:" FontSize="14" TextColor="#2aa0ea"/>
+                    <Label Text="{Binding OrderInfo.TrackingNumber}" FontSize="14" TextColor="#2aa0ea"/>
+                </StackLayout>
+                <Frame Padding="5" BorderColor="#2aa0ea" CornerRadius="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Carrier.Title}" TextColor="#2aa0ea"/>
+                        <FlexLayout>
+                            <Label Text="$" TextColor="#2aa0ea"/>
+                            <Label Text="{Binding Carrier.Price}" TextColor="#2aa0ea"/>
+                        </FlexLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

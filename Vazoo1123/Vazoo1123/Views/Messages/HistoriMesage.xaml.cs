@@ -1,6 +1,7 @@
 ﻿using Rg.Plugins.Popup.Services;
 using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Mesages;
+using Vazoo1123.Views.Menu;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,16 +12,27 @@ namespace Vazoo1123.Views.Messages
 	{
         MesagesFolderMV mesagesFolderMV = null;
 
-        public HistoriMesage (ManagerVazoo managerVazoo)
+        public HistoriMesage (ManagerVazoo managerVazoo, MenuDetalePage menuDetalePage)
 		{
 			InitializeComponent ();
-            this.mesagesFolderMV = new MesagesFolderMV(managerVazoo);
+            this.mesagesFolderMV = new MesagesFolderMV(managerVazoo, menuDetalePage);
             BindingContext = mesagesFolderMV;
         }
 
         private async void ToolbarItem_Clicked(object sender, System.EventArgs e)
         {
             await PopupNavigation.PushAsync(new ModelFilterMesage(mesagesFolderMV), true);
+        }
+
+        private async void OrderList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Models.Messages messages = (Models.Messages)e.SelectedItem;
+            await Navigation.PushAsync(new Conversation(mesagesFolderMV.managerVazoo, messages));
+        }
+
+        private async void OrderList_Refreshing(object sender, System.EventArgs e)
+        {
+            mesagesFolderMV.InitMessages(mesagesFolderMV.Type + 1, Title.Remove(Title.IndexOf(" ")));
         }
     }
 }

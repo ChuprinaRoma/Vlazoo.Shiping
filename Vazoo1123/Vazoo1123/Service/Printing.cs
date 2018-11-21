@@ -88,7 +88,44 @@ namespace Vazoo1123.Service
             return profilear;
         }
 
-
+        public int ShippingCreateOrder(int ClientID, string Login, string Password, int OrderID, int LabelsQty, string ShippingMethod, string ShipToEmail, bool SignatureWaiver,
+            double WeightOZ, CDimensions dim, Models.CAddressBase SourceAddr, Models.CAddressBase DestinationAddr, bool DeliveryConfirmation, bool SignatureConfirmation, bool NoValidate,
+            bool EmailNotification, string OrderNumber, string ItemDescription, string PrinterID, decimal InsuranceAmount, ref string tracking, ref string description)
+        {
+            string content = null;
+            int profilear = 1;
+            try
+            {
+                string dimJsonStr = JsonConvert.SerializeObject(dim);
+                string DestinationAddrJsonStr = JsonConvert.SerializeObject(DestinationAddr);
+                string SourceAddrJsonStr = JsonConvert.SerializeObject(SourceAddr);
+                string body = "{" + $"'ClientID':'{ClientID}','Login':'{Login}','OrderID':'{OrderID}','Password':'{Password}','LabelsQty':'{LabelsQty}','ShippingMethod':'{ShippingMethod}'," +
+                    $"'ShipToEmail':'{ShipToEmail}','SignatureWaiver':'{SignatureWaiver}','WeightOZ':'{WeightOZ}','dim':{dimJsonStr},'SourceAddr':{SourceAddrJsonStr}," +
+                    $"'DestinationAddr':{DestinationAddrJsonStr},'DeliveryConfirmation':'{DeliveryConfirmation}','SignatureConfirmation':'{SignatureConfirmation}'," +
+                    $"'NoValidate':'{NoValidate}','EmailNotification':'{EmailNotification}','OrderNumber':'{OrderNumber}','ItemDescription':'{ItemDescription}'," +
+                    $"'PrinterID':'{128}','InsuranceAmount':'{InsuranceAmount}'" + "}";
+                RestClient client = new RestClient("https://vlazoo.com");
+                RestRequest request = new RestRequest("/WS/Mobile.asmx/ShippingCreateOrder", Method.POST);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                content = response.Content;
+                if (content == "" || response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return 4;
+                }
+                else
+                {
+                    ParseJson1(content, out profilear, ref description, ref tracking);
+                }
+            }
+            catch (Exception e)
+            {
+                return 2;
+            }
+            return profilear;
+        }
 
         public int OptionsGet(int ClientID, string Login, string Password)
         {

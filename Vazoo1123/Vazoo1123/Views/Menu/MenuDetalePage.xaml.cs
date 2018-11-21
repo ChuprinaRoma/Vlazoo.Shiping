@@ -63,7 +63,7 @@ namespace Vazoo1123.Views.Menu
         private void ToMessges(object s, EventArgs e)        {
             IsPresented = false;
             AnimateBtn(s, e);
-            Detail = new NavigationPage(new HistoriMesage(menuMW.managerVazoo));
+            Detail = new NavigationPage(new HistoriMesage(menuMW.managerVazoo, this));
         }
 
         private void ToPrintingShiping(object s, EventArgs e)
@@ -98,6 +98,11 @@ namespace Vazoo1123.Views.Menu
         public void CheckAndSetCountDashbord(int count)
         {
             menuMW.CheckAndSetCountDashbord(count.ToString());
+        }
+
+        public void CheckAndSetCountMessage(int count)
+        {
+            menuMW.CheckAndSetCountMessage(count.ToString());
         }
     }
 }

@@ -27,6 +27,10 @@ namespace Vazoo1123.ViewModels.Dashbord
             OrderInfo = orderInfo;
             IsValid = false;
             Carrier = orderInfo.CarrierOptimal;
+            if(Carrier != null)
+            {
+                IsValid = true;
+            }
             InitForFullInfoOrder(orderInfo.ShipToAddress);
         }
 
@@ -232,50 +236,50 @@ namespace Vazoo1123.ViewModels.Dashbord
             int stateAuth = Convert.ToInt32(_xzType[0]);
             if (stateAuth == 3)
             {
-                cAddressBase.CompanyName = _xzType[2];
-                cAddressBase.Name = _xzType[5];
-                cAddressBase.Address1 = _xzType[10].Remove(_xzType[10].IndexOf(','));
-                cAddressBase.Address2 = _xzType[10].Remove(0, _xzType[10].IndexOf(',') + 2);
-                cAddressBase.City = _xzType[12];
-                cAddressBase.State = _xzType[13];
-                cAddressBase.ZIP5 = _xzType[14];
-                cAddressBase.Phone = _xzType[15];
+                SourceAddr.CompanyName = _xzType[2];
+                SourceAddr.Name = _xzType[5];
+                SourceAddr.Address1 = _xzType[10].Remove(_xzType[10].IndexOf(','));
+                SourceAddr.Address2 = _xzType[10].Remove(0, _xzType[10].IndexOf(',') + 2);
+                SourceAddr.City = _xzType[12];
+                SourceAddr.State = _xzType[13];
+                SourceAddr.ZIP5 = _xzType[14];
+                SourceAddr.Phone = _xzType[15];
                 cDimensions.Heigh = Convert.ToDouble(OrderInfo.DimensionsH != "" ? OrderInfo.DimensionsH.Replace('.', ',') : "0");
                 cDimensions.Width = Convert.ToDouble(OrderInfo.DimensionsW != "" ? OrderInfo.DimensionsW.Replace('.', ',') : "0");
                 cDimensions.Length = Convert.ToDouble(OrderInfo.DimensionsL != "" ? OrderInfo.DimensionsL.Replace('.', ',') : "0");
                 if (orderInfo.ShipToAddress.Address1 != "")
                 {
-                    SourceAddr.Address1 = orderInfo.ShipToAddress.Address1;
-                    SourceAddr.Address2 = orderInfo.ShipToAddress.Address2;
-                    SourceAddr.Address3 = orderInfo.ShipToAddress.Address3;
+                    cAddressBase.Address1 = orderInfo.ShipToAddress.Address1;
+                    cAddressBase.Address2 = orderInfo.ShipToAddress.Address2;
+                    cAddressBase.Address3 = orderInfo.ShipToAddress.Address3;
                 }
                 else if (orderInfo.ShipToAddress.Address2 != "")
                 {
-                    SourceAddr.Address1 = orderInfo.ShipToAddress.Address2;
-                    SourceAddr.Address2 = orderInfo.ShipToAddress.Address1;
-                    SourceAddr.Address3 = orderInfo.ShipToAddress.Address3;
+                    cAddressBase.Address1 = orderInfo.ShipToAddress.Address2;
+                    cAddressBase.Address2 = orderInfo.ShipToAddress.Address1;
+                    cAddressBase.Address3 = orderInfo.ShipToAddress.Address3;
                 }
                 else
                 {
-                    SourceAddr.Address1 = orderInfo.ShipToAddress.Address3;
-                    SourceAddr.Address2 = orderInfo.ShipToAddress.Address2;
-                    SourceAddr.Address3 = orderInfo.ShipToAddress.Address1;
+                    cAddressBase.Address1 = orderInfo.ShipToAddress.Address3;
+                    cAddressBase.Address2 = orderInfo.ShipToAddress.Address2;
+                    cAddressBase.Address3 = orderInfo.ShipToAddress.Address1;
                 }
-                SourceAddr.City = orderInfo.ShipToAddress.City;
-                SourceAddr.Comments = orderInfo.ShipToAddress.Comments;
-                SourceAddr.CompanyName = orderInfo.ShipToAddress.CompanyName;
-                SourceAddr.Name = orderInfo.ShipToAddress.Name;
-                SourceAddr.Phone = orderInfo.ShipToAddress.Phone;
-                SourceAddr.RDI = orderInfo.ShipToAddress.RDI;
-                SourceAddr.State = orderInfo.ShipToAddress.State;
-                SourceAddr.Status = orderInfo.ShipToAddress.Status;
+                cAddressBase.City = orderInfo.ShipToAddress.City;
+                cAddressBase.Comments = orderInfo.ShipToAddress.Comments;
+                cAddressBase.CompanyName = orderInfo.ShipToAddress.CompanyName;
+                cAddressBase.Name = orderInfo.ShipToAddress.Name;
+                cAddressBase.Phone = orderInfo.ShipToAddress.Phone;
+                cAddressBase.RDI = orderInfo.ShipToAddress.RDI;
+                cAddressBase.State = orderInfo.ShipToAddress.State;
+                cAddressBase.Status = orderInfo.ShipToAddress.Status;
                 if (orderInfo.ShipToAddress.ZIP5.IndexOf('-') != -1)
                 {
-                    SourceAddr.ZIP5 = orderInfo.ShipToAddress.ZIP5.Remove(orderInfo.ShipToAddress.ZIP5.IndexOf('-'));
+                    cAddressBase.ZIP5 = orderInfo.ShipToAddress.ZIP5.Remove(orderInfo.ShipToAddress.ZIP5.IndexOf('-'));
                 }
                 else
                 {
-                    SourceAddr.ZIP5 = orderInfo.ShipToAddress.ZIP5;
+                    cAddressBase.ZIP5 = orderInfo.ShipToAddress.ZIP5;
                 }
             }
             return stateAuth;
@@ -304,7 +308,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             {
                 shipingMethod = "FedEx_" + carrier.Code;
             }
-            int stateAuth = managerVazoo.ShippingCreate(Convert.ToInt32(idCompany), email, psw, LabelsQty, shipingMethod, OrderInfo.ShopperEmail, SignatureWaiver, 
+            int stateAuth = managerVazoo.ShippingCreateOrder(Convert.ToInt32(idCompany), email, psw, OrderInfo.ID, LabelsQty, shipingMethod, OrderInfo.ShopperEmail, SignatureWaiver, 
                 Convert.ToDouble(OrderInfo.WeightOZ != "" ? OrderInfo.WeightOZ.Replace(',', '.') : "0"), cDimensions, SourceAddr,
                 cAddressBase, DeliveryConfirmation, SignatureWaiver, NoValidate, true, "", "", "128", 0, ref tracking, ref description);
             await PopupNavigation.PopAllAsync();

@@ -2,14 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vazoo1123.Views.Messages.HistoriMesage"
-             Title="Messages">
+             Title="{Binding Title}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="filter.png" Clicked="ToolbarItem_Clicked" Priority="4"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="OrderList" ItemsSource="{Binding Messagesss}"
-                      HasUnevenRows="True" SeparatorColor="#2abdea">
+            <ListView x:Name="OrderList" ItemsSource="{Binding Messagesss}" Refreshing="OrderList_Refreshing"
+                      HasUnevenRows="True" SeparatorColor="#2abdea" IsRefreshing="{Binding IsBusy}"
+                      ItemSelected="OrderList_ItemSelected" IsPullToRefreshEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
