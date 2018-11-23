@@ -18,6 +18,7 @@
                                 <TapGestureRecognizer Tapped="ReplaceMenu" NumberOfTapsRequired="1" />
                             </StackLayout.GestureRecognizers>
                             <Label x:Name="nameProfile" HorizontalOptions="Start" Text="{Binding NameProfile}"/>
+                            <Label Text="23.11.18" HorizontalOptions="End"/>
                         </StackLayout>
                     </AbsoluteLayout>
                     <BoxView BackgroundColor="#2abdea" Margin="3" HeightRequest="2"/>

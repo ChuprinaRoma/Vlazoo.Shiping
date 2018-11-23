@@ -253,7 +253,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                     serlectProduct.cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, true, "", "", "", 0, ref tracking, ref description);
                 if (stateAuth == 3)
                 {
-                    await PopupNavigation.PushAsync(new LabalPageView(tracking), true);
+                    await PopupNavigation.PushAsync(new Compleat("Print Succefull"), true);
                 }
                 else if (stateAuth == 2)
                 {

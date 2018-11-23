@@ -3,5 +3,5 @@
 	<uses-sdk android:minSdkVersion="21" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-	<application android:label="Vazoo1123.Android"></application>
+	<application android:label="Vlazoo Shiping Printing 23.11.18"></application>
 </manifest>
