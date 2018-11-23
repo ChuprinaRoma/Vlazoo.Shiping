@@ -2,6 +2,7 @@
 using System;
 using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Printing;
+using Vazoo1123.Views.ModalView;
 using Vazoo1123.Views.Printing.ModalViews;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -122,11 +123,11 @@ namespace Vazoo1123.Views.Printing
             }
         }
 
-        private void Button_Clicked_1(object sender, EventArgs e)
+        private async void Button_Clicked_1(object sender, EventArgs e)
         {
             if (printingShipingLabeMW.IsValid)
             {
-                printingShipingLabeMW.ShippingCreate();
+                await PopupNavigation.PushAsync(new Confirm(printingShipingLabeMW, printingShipingLabeMW.Carrier.Price.ToString(), null, printingShipingLabeMW.Carrier));
                 DSOBtn.BorderColor = Color.Default;
                 DSOBtn.BorderWidth = 0;
             }

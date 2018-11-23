@@ -13,7 +13,7 @@ using Vazoo1123.Views.Printing.ModalViews;
 
 namespace Vazoo1123.ViewModels.Dashbord
 {
-    public class BulkPostagePrintingMV : BindableBase
+    public class BulkPostagePrintingMV : BindableBase, ICreateShiping
     {
         private ManagerVazoo managerVazoo = null;
         public CAddressBase SourceAddr = null;

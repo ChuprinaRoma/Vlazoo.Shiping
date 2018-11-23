@@ -200,6 +200,10 @@ namespace Vazoo1123.Service
                 {
                     stateMesges = mesages.OrderHistoryGet(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], Convert.ToInt32(dataMesages[3]), Convert.ToInt32(dataMesages[4]), ref orderInfo);
                 }
+                else if(typeMesages == "Conversation")
+                {
+                    stateMesges = mesages.MessageHistoryGet(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], Convert.ToInt32(dataMesages[3]), Convert.ToInt32(dataMesages[4]));
+                }
             }
             mesages = null;
             return stateMesges;

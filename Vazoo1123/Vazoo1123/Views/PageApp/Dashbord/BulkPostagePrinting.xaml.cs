@@ -1,11 +1,13 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Vazoo1123.Models;
 using Vazoo1123.NewElement;
 using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Dashbord;
 using Vazoo1123.Views.LoadViews;
+using Vazoo1123.Views.ModalView;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -114,11 +116,11 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             }
         }
 
-        private void Button_Clicked_1(object sender, EventArgs e)
+        private async void Button_Clicked_1(object sender, EventArgs e)
         {
             if (bulkPostagePrintingMV.IsValid)
             {
-                bulkPostagePrintingMV.ShippingCreate();
+                await PopupNavigation.PushAsync(new Confirm(bulkPostagePrintingMV, bulkPostagePrintingMV.PostageTotal, bulkPostagePrintingMV.SelectProduct.Select(s => s.Carrier).ToList(), null));
             }
         }
 

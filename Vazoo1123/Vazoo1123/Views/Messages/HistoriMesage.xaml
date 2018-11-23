@@ -16,7 +16,10 @@
                         <ViewCell>
                             <ViewCell.View>
                                 <StackLayout Orientation="Vertical" BackgroundColor="White" Margin="2" Padding="7">
-                                    <Label HorizontalTextAlignment="Center" TextColor="#2aa0ea" FontSize="19" Text="{Binding Sender}"/>
+                                    <FlexLayout>
+                                        <Image HeightRequest="15" WidthRequest="15" Source="{Binding ImageStatusMessage}"/>
+                                        <Label HorizontalTextAlignment="Center" TextColor="#2aa0ea" FontSize="19" Text="{Binding Sender}"/>
+                                    </FlexLayout>
                                     <Label HorizontalTextAlignment="Center" TextColor="#2aa0ea" FontSize="12" Text="{Binding Subject}"/>
                                 </StackLayout>
                             </ViewCell.View>

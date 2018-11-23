@@ -21,6 +21,7 @@ namespace Vazoo1123.ViewModels.Mesages
             this.managerVazoo = managerVazoo;
             Messages = messages;
             ToPurchasesCommand = new DelegateCommand(ToPurchases);
+            InitConversation();
             InitPurchases();
         }
 
@@ -57,6 +58,41 @@ namespace Vazoo1123.ViewModels.Mesages
             await Task.Run(() =>
             {
                 stateAuth = managerVazoo.MesagesWork("Purchases", ref totalResulte, ref orderInfo, email, idCompany, psw, Messages.ID.ToString(), "0");
+            });
+            if (stateAuth == 3)
+            {
+                OrderInfo = orderInfo;
+                if (OrderInfo != null)
+                {
+                    Carrier = OrderInfo.CarrierOptimal;
+                }
+            }
+            else if (stateAuth == 2)
+            {
+                await PopupNavigation.PushAsync(new Error(description), true);
+            }
+            else if (stateAuth == 1)
+            {
+                await PopupNavigation.PushAsync(new Error(description), true);
+            }
+            else if (stateAuth == 4)
+            {
+                await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
+            }
+        }
+
+        private async void InitConversation()
+        {
+            string description = null;
+            int totalResulte = 0;
+            OrderInfo orderInfo = null;
+            string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+            int stateAuth = 0;
+            await Task.Run(() =>
+            {
+                stateAuth = managerVazoo.MesagesWork("Conversation", ref totalResulte, ref orderInfo, email, idCompany, psw, Messages.ID.ToString(), "0");
             });
             if (stateAuth == 3)
             {

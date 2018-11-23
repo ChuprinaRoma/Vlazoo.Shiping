@@ -13,7 +13,7 @@ using Vazoo1123.Views.Printing.ModalViews;
 
 namespace Vazoo1123.ViewModels.Printing
 {
-    public class PrintingShipingLabeMW : BindableBase
+    public class PrintingShipingLabeMW : BindableBase , ICreateShiping
     {
         public DelegateCommand InitToAddressCommand { get; set; }
         public DelegateCommand InitFromAddressCommand { get; set; }
@@ -23,6 +23,7 @@ namespace Vazoo1123.ViewModels.Printing
         private CAddressBase SourceAddr = null;
         private CDimensions cDimensions = null;
         private List<Carrier> carriers = null;
+
         public PrintingShipingLabeMW(ManagerVazoo managerVazoo)
         {
             carriers = new List<Carrier>();
@@ -275,9 +276,7 @@ namespace Vazoo1123.ViewModels.Printing
             get { return weigtKg; }
             set { SetProperty(ref weigtKg, value); }
         }
-
         /////////////////////////////////////////////////////
-
         private double dLength = 0;
         public double DLength
         {
@@ -310,9 +309,7 @@ namespace Vazoo1123.ViewModels.Printing
                 cDimensions.Heigh = dHeigh;
             }
         }
-
         //////////////////////////////////////////////////////
-
         private bool deliveryConfirmation = true;
         public bool DeliveryConfirmation
         {

@@ -69,8 +69,8 @@ namespace Vazoo1123.Service
                 request.Parameters.Clear();
                 request.AddParameter("application/json", body, ParameterType.RequestBody);
                 IRestResponse response = client.Execute(request);
-                string strResponse = JsonConvert.SerializeObject(response);
-                string strReqvest = JsonConvert.SerializeObject(request);
+                //string strResponse = JsonConvert.SerializeObject(response);
+                //string strReqvest = JsonConvert.SerializeObject(request);
                 content = response.Content;
                 if (content == "" || response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {

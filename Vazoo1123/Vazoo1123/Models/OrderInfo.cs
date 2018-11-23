@@ -23,6 +23,11 @@
         public string DimensionsH { get; set; }
         public string DimensionsW { get; set; }
         public string TrackingNumber { get; set; }
+        public int UnansweredMessages { get; set; }
+        public bool IsMesages
+        {
+            get => UnansweredMessages > 0 ? true : false; 
+        }
         public Carrier CarrierOptimal { get; set; }
         public CAddressBase ShipToAddress { get; set; }
     }

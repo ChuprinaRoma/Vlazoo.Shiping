@@ -33,6 +33,7 @@
                                         </StackLayout.GestureRecognizers>
                                         <StackLayout HorizontalOptions="Start">
                                             <Image HorizontalOptions="Start" HeightRequest="50" WidthRequest="50" Source="{Binding ImageFile}"/>
+                                            <Image IsVisible="{Binding IsMesages}" HorizontalOptions="Start" HeightRequest="15" WidthRequest="15" Source="https://vlazoo.com/images/MsgClosed.gif" Margin="5"/>
                                         </StackLayout>
                                         <StackLayout>
                                             <Label Text="{Binding EBayUserID}"  TextColor="#2aa0ea" FontSize="17"/>

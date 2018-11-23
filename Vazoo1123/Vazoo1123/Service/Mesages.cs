@@ -133,6 +133,36 @@ namespace Vazoo1123.Service
             return profilear;
         }
 
+        public int MessageHistoryGet(int ClientID, string Login, string Password, int MessageID, int Page)
+        {
+            string content = null;
+            int profilear = 1;
+            try
+            {
+                string body = "{" + $"'ClientID':'{ClientID}','Login':'{Login}','Password':'{Password}', 'MessageID':'{MessageID}','Page':'{Page}'" + "}";
+                RestClient client = new RestClient("https://vlazoo.com");
+                RestRequest request = new RestRequest("/WS/Mobile.asmx/MessageHistoryGet", Method.POST);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                content = response.Content;
+                if (content == "" || response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return 4;
+                }
+                else
+                {
+                    //ParseJson(content, ref profilear);
+                }
+            }
+            catch (Exception e)
+            {
+                return 2;
+            }
+
+            return profilear;
+        }
 
         private void ParseJson(string jsonResponse, ref int state, ref int totalResulte)
         {

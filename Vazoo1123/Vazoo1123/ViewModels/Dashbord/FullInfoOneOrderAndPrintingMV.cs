@@ -13,7 +13,7 @@ using Vazoo1123.Views.Printing.ModalViews;
 
 namespace Vazoo1123.ViewModels.Dashbord
 {
-    public class FullInfoOneOrderAndPrintingMV : BindableBase
+    public class FullInfoOneOrderAndPrintingMV : BindableBase, ICreateShiping
     {
         private ManagerVazoo managerVazoo = null;
         private CAddressBase cAddressBase = null;
@@ -296,6 +296,8 @@ namespace Vazoo1123.ViewModels.Dashbord
             return stateAuth;
         }
 
+
+
         public async void ShippingCreate()
         {
             await PopupNavigation.PushAsync(new LoadPage());
@@ -325,7 +327,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)
             {
-                await PopupNavigation.PushAsync(new LabalPageView(tracking), true);
+                await PopupNavigation.PushAsync(new Compleat("Print Succefull"), true);
             }
             else if (stateAuth == 2)
             {

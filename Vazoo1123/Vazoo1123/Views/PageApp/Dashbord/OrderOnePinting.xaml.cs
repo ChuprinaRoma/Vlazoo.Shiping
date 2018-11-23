@@ -3,6 +3,7 @@ using System;
 using Vazoo1123.Models;
 using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Dashbord;
+using Vazoo1123.Views.ModalView;
 using Vazoo1123.Views.Printing.ModalViews;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -71,11 +72,11 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             await PopupNavigation.PushAsync(new Conditions(), true);
         }
 
-        private void Button_Clicked_1(object sender, EventArgs e)
+        private async void Button_Clicked_1(object sender, EventArgs e)
         {
             if (fullInfoOneOrderAndPrintingMV.IsValid)
             {
-                fullInfoOneOrderAndPrintingMV.ShippingCreate();
+                await PopupNavigation.PushAsync(new Confirm(fullInfoOneOrderAndPrintingMV, fullInfoOneOrderAndPrintingMV.Carrier.Price.ToString(), null, fullInfoOneOrderAndPrintingMV.Carrier));
                 DSOBtn.BorderColor = Color.Default;
                 DSOBtn.BorderWidth = 0;
             }
