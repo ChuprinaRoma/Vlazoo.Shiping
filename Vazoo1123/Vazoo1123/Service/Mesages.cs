@@ -133,7 +133,7 @@ namespace Vazoo1123.Service
             return profilear;
         }
 
-        public int MessageHistoryGet(int ClientID, string Login, string Password, int MessageID, int Page)
+        public int MessageHistoryGet(int ClientID, string Login, string Password, int MessageID, int Page, ref List<Models.Messages> mesages, ref int totalResulte, ref string description)
         {
             string content = null;
             int profilear = 1;
@@ -153,7 +153,38 @@ namespace Vazoo1123.Service
                 }
                 else
                 {
-                    //ParseJson(content, ref profilear);
+                     ParseJson(content, ref profilear, ref description, ref mesages, ref totalResulte);
+                }
+            }
+            catch (Exception e)
+            {
+                return 2;
+            }
+
+            return profilear;
+        }
+
+        public int SendMessageReply(int ClientID, string Login, string Password, int OriginalMessageID, bool DisplayToPublic, bool EmailCopyToSender, string Body, ref string description)
+        {
+            string content = null;
+            int profilear = 1;
+            try
+            {
+                string body = "{" + $"'ClientID':'{ClientID}','Login':'{Login}','Password':'{Password}', 'OriginalMessageID':'{OriginalMessageID}','DisplayToPublic':'{DisplayToPublic}','EmailCopyToSender':'{EmailCopyToSender}','Body':'{Body}'" + "}";
+                RestClient client = new RestClient("https://vlazoo.com");
+                RestRequest request = new RestRequest("/WS/Mobile.asmx/SendMessageReply", Method.POST);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                content = response.Content;
+                if (content == "" || response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return 4;
+                }
+                else
+                {
+                    ParseJson(content, ref profilear, ref description);
                 }
             }
             catch (Exception e)
@@ -205,6 +236,25 @@ namespace Vazoo1123.Service
             }
         }
 
+        private void ParseJson(string jsonResponse, ref int state, ref string description)
+        {
+            string stateResponse = null;
+            JObject objJsonRespons = JObject.Parse(jsonResponse);
+            stateResponse = objJsonRespons.First
+                .First.Value<string>("status");
+            description = objJsonRespons.First
+                .First.Value<string>("description");
+            if (stateResponse == "success")
+            {
+                state = 3;
+            }
+            else
+            {
+                state = 2;
+            }
+        }
+
+
         private void ParseJson(string jsonResponse, ref int state, ref OrderInfo orderInfo)
         {
             string stateResponse = null;
@@ -219,7 +269,7 @@ namespace Vazoo1123.Service
                 var orderInfos = new List<OrderInfo>();
                 orderInfos.AddRange(JsonConvert.DeserializeObject<List<OrderInfo>>(objJsonRespons.
                         First.First.SelectToken("Orders").ToString()));
-                if(orderInfos.Count != 0)
+                if (orderInfos.Count != 0)
                 {
                     orderInfo = orderInfos[0];
                 }

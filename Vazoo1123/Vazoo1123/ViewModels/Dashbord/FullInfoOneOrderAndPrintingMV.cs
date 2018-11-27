@@ -10,6 +10,8 @@ using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Printing.Models;
 using Vazoo1123.Views.LoadViews;
 using Vazoo1123.Views.Printing.ModalViews;
+using Xamarin.Forms;
+using static Vazoo1123.ViewModels.Dashbord.DashbordMW;
 
 namespace Vazoo1123.ViewModels.Dashbord
 {
@@ -20,11 +22,15 @@ namespace Vazoo1123.ViewModels.Dashbord
         private CAddressBase SourceAddr = null;
         private CDimensions cDimensions = null;
         private List<Carrier> carriers = null;
+        public INavigation Navigation { get; set; }
+        InitDasbordDelegate initDasbord;
 
-        public FullInfoOneOrderAndPrintingMV(OrderInfo orderInfo, ManagerVazoo managerVazoo)
+
+        public FullInfoOneOrderAndPrintingMV(OrderInfo orderInfo, ManagerVazoo managerVazoo, InitDasbordDelegate initDasbord)
         {
             carriers = new List<Carrier>();
             this.managerVazoo = managerVazoo;
+            this.initDasbord = initDasbord;
             OrderInfo = orderInfo;
             Carrier = orderInfo.CarrierOptimal;
             if(Carrier != null)
@@ -34,6 +40,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             }
             InitForFullInfoOrder(orderInfo.ShipToAddress);
             InitForDisplayShippingOptions();
+            
         }
 
         private Carrier carrier = null;
@@ -328,6 +335,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             if (stateAuth == 3)
             {
                 await PopupNavigation.PushAsync(new Compleat("Print Succefull"), true);
+                initDasbord.Invoke();
             }
             else if (stateAuth == 2)
             {

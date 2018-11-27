@@ -11,129 +11,129 @@
                     <StackLayout Orientation="Vertical">
                         <Image Source="{Binding OrderInfo.ImageFile}" HeightRequest="80" WidthRequest="80"/>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="UPC:" FontSize="14" TextColor="#2aa0ea"/>
-                            <Label Text="{Binding OrderInfo.UPC}" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="UPC:" FontSize="14" TextColor="#2c4dff"/>
+                            <Label Text="{Binding OrderInfo.UPC}" FontSize="14" TextColor="#2c4dff"/>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Orientation="Vertical">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="item id:" FontSize="14" TextColor="#2aa0ea"/>
-                            <Label Text="{Binding OrderInfo.EBayItemID}" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="item id:" FontSize="14" TextColor="#2c4dff"/>
+                            <Label Text="{Binding OrderInfo.EBayItemID}" FontSize="14" TextColor="#2c4dff"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="RNumber:" FontSize="14" TextColor="#2aa0ea"/>
-                            <Label Text="{Binding OrderInfo.RecordNumber}" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="RNumber:" FontSize="14" TextColor="#2c4dff"/>
+                            <Label Text="{Binding OrderInfo.RecordNumber}" FontSize="14" TextColor="#2c4dff"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Price:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="Price:" FontSize="14" TextColor="#2c4dff"/>
                             <FlexLayout>
-                                <Label Text="$" FontSize="14" TextColor="#2aa0ea"/>
-                                <Label Text="{Binding OrderInfo.TransactionPrice}" FontSize="14" TextColor="#2aa0ea"/>
+                                <Label Text="$" FontSize="14" TextColor="#2c4dff"/>
+                                <Label Text="{Binding OrderInfo.TransactionPrice}" FontSize="14" TextColor="#2c4dff"/>
                             </FlexLayout>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="SKU:" FontSize="14" TextColor="#2aa0ea"/>
-                            <Label Text="{Binding OrderInfo.SKU}" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="SKU:" FontSize="14" TextColor="#2c4dff"/>
+                            <Label Text="{Binding OrderInfo.SKU}" FontSize="14" TextColor="#2c4dff"/>
                         </StackLayout>
                     </StackLayout>
                 </FlexLayout>
-                <BoxView BackgroundColor="#2aa0ea" HeightRequest="1"/>
-                <Label Text="{Binding OrderInfo.ItemTitle}" FontSize="12" TextColor="#2aa0ea" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                <Frame CornerRadius="10" BorderColor="#2aa0ea" Margin="2">
+                <BoxView BackgroundColor="#2c4dff" HeightRequest="1"/>
+                <Label Text="{Binding OrderInfo.ItemTitle}" FontSize="12" TextColor="#2c4dff" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                <Frame CornerRadius="10" BorderColor="#2c4dff" Margin="2">
                     <FlexLayout Direction="Column">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Shipping Address" FontSize="22" TextColor="#2aa0ea" HorizontalOptions="Start"/>
-                            <Button HorizontalOptions="End" Text="Edit" TextColor="#2aa0ea" BackgroundColor="White" Clicked="Button_Clicked_2"/>
+                            <Label Text="Shipping Address" FontSize="22" TextColor="#2c4dff" HorizontalOptions="Start"/>
+                            <Button HorizontalOptions="End" Text="Edit" TextColor="#2c4dff" BackgroundColor="White" Clicked="Button_Clicked_2"/>
                         </StackLayout>
-                        <BoxView HeightRequest="2" BackgroundColor="#6ad1f0" Margin="0, 3, 0, 3"/>
+                        <BoxView HeightRequest="2" BackgroundColor="#2c4dff" Margin="0, 3, 0, 3"/>
                         <StackLayout Orientation="Horizontal" Margin="5">
-                            <Label Text="Name:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
-                            <Label Text="{Binding Name}" FontSize="16" TextColor="#2aa0ea"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal" Margin="5">
-                            <Label Text="Address:" FontSize="16" TextColor="#2aa0ea" HorizontalOptions="Start"/>
-                            <Label Text="{Binding Addres}" FontSize="16" TextColor="#2aa0ea"/>
+                            <Label Text="Name:" FontSize="16" TextColor="#2c4dff" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Name}" FontSize="16" TextColor="#2c4dff"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="5">
-                            <Label Text="City:" FontSize="16" TextColor="#2aa0ea" HorizontalOptions="Start"/>
-                            <Label Text="{Binding City}" FontSize="16" TextColor="#2aa0ea"/>
+                            <Label Text="Address:" FontSize="16" TextColor="#2c4dff" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Addres}" FontSize="16" TextColor="#2c4dff"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="5">
-                            <Label Text="State:" FontSize="16" TextColor="#2aa0ea" HorizontalOptions="Start"/>
-                            <Label Text="{Binding State}" FontSize="16" TextColor="#2aa0ea"/>
+                            <Label Text="City:" FontSize="16" TextColor="#2c4dff" HorizontalOptions="Start"/>
+                            <Label Text="{Binding City}" FontSize="16" TextColor="#2c4dff"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="5">
-                            <Label Text="Zip:" FontSize="16" TextColor="#2aa0ea" HorizontalOptions="Start"/>
-                            <Label Text="{Binding Zip}" FontSize="16" TextColor="#2aa0ea"/>
+                            <Label Text="State:" FontSize="16" TextColor="#2c4dff" HorizontalOptions="Start"/>
+                            <Label Text="{Binding State}" FontSize="16" TextColor="#2c4dff"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="5">
-                            <Label Text="Phone:" FontSize="16" TextColor="#2aa0ea" HorizontalOptions="Start"/>
-                            <Label Text="{Binding Phone}" FontSize="16" TextColor="#2aa0ea"/>
+                            <Label Text="Zip:" FontSize="16" TextColor="#2c4dff" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Zip}" FontSize="16" TextColor="#2c4dff"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Label Text="Phone:" FontSize="16" TextColor="#2c4dff" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Phone}" FontSize="16" TextColor="#2c4dff"/>
                         </StackLayout>
                     </FlexLayout>
                 </Frame>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                    <Label Text="Weight:" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                    <Label Text="Weight:" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                     <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightLBS}"/>
-                    <Label Text="(lbs)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                    <Label Text="(lbs)" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="ozInp" Placeholder="Num" Text="{Binding OrderInfo.WeightOZ}" TextChanged="OzInp_TextChanged"/>
-                    <Label Text="(oz)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                    <Label Text="(oz)" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                     <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightKG}"/>
-                    <Label Text="(kg)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                    <Label Text="(kg)" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                    <Label Text="Dim (in):" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                    <Label Text="Dim (in):" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="DLength" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsW}" TextChanged="CrossEntry_TextChanged"/>
-                    <Label Text="X" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                    <Label Text="X" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="DWidth" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsH}" TextChanged="CrossEntry_TextChanged"/>
-                    <Label Text="X" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                    <Label Text="X" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="DHeigh" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsL}" TextChanged="CrossEntry_TextChanged"/>
                 </StackLayout>
-                <Label Text="{Binding StrCalc}" TextColor="#2aa0ea" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                <Label Text="{Binding StrCalc}" TextColor="#2c4dff" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
                 <local:CrossEntry Placeholder="Email" Text="{Binding OrderInfo.ShopperEmail}" HorizontalOptions="Center"/>
-                <Frame Padding="5" BorderColor="#2aa0ea" CornerRadius="10">
+                <Frame Padding="5" BorderColor="#2c4dff" CornerRadius="10">
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding Carrier.Title}" TextColor="#2aa0ea"/>
+                        <Label Text="{Binding Carrier.Title}" TextColor="#2c4dff"/>
                         <FlexLayout>
-                            <Label Text="$" TextColor="#2aa0ea"/>
-                            <Label Text="{Binding Carrier.Price}" TextColor="#2aa0ea"/>
+                            <Label Text="$" TextColor="#2c4dff"/>
+                            <Label Text="{Binding Carrier.Price}" TextColor="#2c4dff"/>
                         </FlexLayout>
                     </StackLayout>
                 </Frame>
                 <Frame BorderColor="#2aa0ea">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="How many Parcels?" TextColor="#2aa0ea" VerticalTextAlignment="Center" />
+                            <Label Text="How many Parcels?" TextColor="#2c4dff" VerticalTextAlignment="Center" />
                             <local:CrossEntry Placeholder="N" Keyboard="Numeric" Text="{Binding LabelsQty}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Switch Toggled="sw_Toggled" x:Name="sw" HorizontalOptions="Start"/>
-                            <Label x:Name="confirmationL" TextColor="#2abdea"/>
+                            <Label x:Name="confirmationL" TextColor="#2c4dff"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Switch HorizontalOptions="Start" IsToggled="{Binding SignatureWaiver}"/>
-                            <Label Text="Signature Waiver" TextColor="#2aa0ea"/>
+                            <Label Text="Signature Waiver" TextColor="#2c4dff"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Switch HorizontalOptions="Start" IsToggled="{Binding NoValidate}"/>
-                            <Label Text="No street level address validation" TextColor="#2aa0ea"/>
+                            <Label Text="No street level address validation" TextColor="#2c4dff"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Switch HorizontalOptions="Start" IsToggled="True"/>
-                            <Label Text="Agreement with Vlazoo.com" FontSize="10" TextColor="#2aa0ea"/>
+                            <Label Text="Agreement with Vlazoo.com" FontSize="10" TextColor="#2c4dff"/>
                             <Label Text="Terms and Conditions" TextColor="#1cffb3" FontSize="10">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"  NumberOfTapsRequired="1" />
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>
-                        <Button FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Text="Display shipping options"
+                        <Button FontSize="10" TextColor="White" BackgroundColor="#2c4dff" Text="Display shipping options"
                                 Clicked="Button_Clicked" x:Name="DSOBtn"/>
                     </StackLayout>
                 </Frame>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                    <Button Text="print to local printer" FontSize="10" TextColor="White" BackgroundColor="#2aa0ea"/>
-                    <Button Text="print to remote printer" FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Clicked="Button_Clicked_1"/>
+                    <Button Text="print to local printer" FontSize="10" TextColor="White" BackgroundColor="#2c4dff"/>
+                    <Button Text="print to remote printer" FontSize="10" TextColor="White" BackgroundColor="#2c4dff" Clicked="Button_Clicked_1"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

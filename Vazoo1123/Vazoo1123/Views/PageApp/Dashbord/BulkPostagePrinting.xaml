@@ -12,7 +12,7 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="OrderList" ItemsSource="{Binding SelectProduct}" IsRefreshing="{Binding IsBusy}" IsPullToRefreshEnabled="True"
-                      HasUnevenRows="True" SeparatorColor="#2abdea" Refreshing="ToolbarItem_Clicked">
+                      HasUnevenRows="True" SeparatorColor="#2c4dff" Refreshing="ToolbarItem_Clicked">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -23,29 +23,29 @@
                                             <Image HorizontalOptions="Start" HeightRequest="65" WidthRequest="65" Source="{Binding ImageFile}"/>
                                         </StackLayout>
                                         <StackLayout>
-                                            <Label Text="{Binding EBayUserID}"  TextColor="#2aa0ea" FontSize="17"/>
-                                            <Label Text="{Binding ItemTitle}" TextColor="#2aa0ea" FontSize="10"/>
-                                            <Label Text="{Binding ShopperEmail}" TextColor="#2aa0ea" FontSize="10"/>
+                                            <Label Text="{Binding EBayUserID}"  TextColor="#2c4dff" FontSize="17"/>
+                                            <Label Text="{Binding ItemTitle}" TextColor="#2c4dff" FontSize="12"/>
+                                            <Label Text="{Binding ShopperEmail}" TextColor="#2c4dff" FontSize="12"/>
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="Price:" FontSize="10" TextColor="#2aa0ea"/>
+                                                <Label Text="Price:" FontSize="12" TextColor="#2c4dff"/>
                                                 <FlexLayout>
-                                                    <Label Text="$" FontSize="10" TextColor="#2aa0ea"/>
-                                                    <Label Text="{Binding TransactionPrice}" FontSize="10" TextColor="#2aa0ea"/>
+                                                    <Label Text="$" FontSize="12" TextColor="#2c4dff"/>
+                                                    <Label Text="{Binding TransactionPrice}" FontSize="12" TextColor="#2c4dff"/>
                                                 </FlexLayout>
                                             </StackLayout>
                                         </StackLayout>
                                         <StackLayout WidthRequest="320">
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="Item Id:" FontSize="10" TextColor="#2aa0ea"/>
-                                                <Label x:Name="itemId" Text="{Binding EBayItemID}" FontSize="10" TextColor="#2aa0ea"/>
+                                                <Label Text="Item Id:" FontSize="12" TextColor="#2c4dff"/>
+                                                <Label x:Name="itemId" Text="{Binding EBayItemID}" FontSize="12" TextColor="#2c4dff"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="Record Id:" FontSize="10" TextColor="#2aa0ea"/>
-                                                <Label x:Name="recordId" Text="{Binding RecordNumber}" FontSize="10" TextColor="#2aa0ea"/>
+                                                <Label Text="Record Id:" FontSize="12" TextColor="#2c4dff"/>
+                                                <Label x:Name="recordId" Text="{Binding RecordNumber}" FontSize="12" TextColor="#2c4dff"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="Qty:" VerticalTextAlignment="Center" FontSize="10" TextColor="#2aa0ea"/>
-                                                <local:CrossEdit Text="{Binding LabelsQty}" Placeholder="Qty" FontSize="10" TextColor="#2aa0ea"/>
+                                                <Label Text="Qty:" VerticalTextAlignment="Center" FontSize="12" TextColor="#2c4dff"/>
+                                                <local:CrossEdit Text="{Binding LabelsQty}" Placeholder="Qty" FontSize="12" TextColor="#2c4dff"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
                                                 <Image Source="update1.jpg" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Margin="20, 0, 0, 0">
@@ -56,36 +56,36 @@
                                                 <Image Source="update1.jpg" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Margin="10, 0, 0, 0"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
-                                                <Button Text="Optins Shiping" HeightRequest="25" WidthRequest="60" HorizontalOptions="Center" Margin="20, 0, 0, 0"
-                                                        FontSize="4" TextColor="White" BackgroundColor="#2aa0ea" BorderWidth="0" Clicked="Button_Clicked" />
+                                                <Button Text="Display Shiping" HorizontalOptions="Center" Margin="20, 0, 0, 0" HeightRequest="50" WidthRequest="70"
+                                                        FontSize="10" TextColor="White" BackgroundColor="#2c4dff" BorderWidth="0" Clicked="Button_Clicked" />
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
                                     <StackLayout>
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="Weight:" FontSize="12"  TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                                            <Label Text="Weight:" FontSize="12"  TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightLBS}"/>
-                                            <Label Text="(lbs)"  FontSize="12" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                                            <Label Text="(lbs)"  FontSize="12" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry x:Name="WOzCrEntry" FontSize="12"  Placeholder="Num" Text="{Binding WeightOZ}" TextChanged="WOzCrEntry_TextChanged"/>
-                                            <Label Text="(oz)" FontSize="12" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                                            <Label Text="(oz)" FontSize="12" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightKG}"/>
-                                            <Label Text="(kg)" FontSize="12"  TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                                            <Label Text="(kg)" FontSize="12"  TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                                         </StackLayout>
                                         <StackLayout  Orientation="Horizontal">
-                                            <Label FontSize="12" Text="Dim (in):" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                                            <Label FontSize="12" Text="Dim (in):" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding DimensionsL}" TextChanged="CrossEntry_TextChanged"/>
-                                            <Label Text="X" FontSize="12"  TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                                            <Label Text="X" FontSize="12"  TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding DimensionsW}" TextChanged="CrossEntry_TextChanged"/>
-                                            <Label Text="X" FontSize="12"  TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                                            <Label Text="X" FontSize="12"  TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding DimensionsH}" TextChanged="CrossEntry_TextChanged"/>
                                         </StackLayout>
-                                        <Label Text="{Binding StrCalc}" TextColor="#2aa0ea" Margin="5, 0, 0, 0" VerticalTextAlignment="Start" FontSize="10"/>
+                                        <Label Text="{Binding StrCalc}" TextColor="#2c4dff" Margin="5, 0, 0, 0" VerticalTextAlignment="Start" FontSize="12"/>
                                     </StackLayout>
-                                    <Frame Padding="5" BorderColor="#2aa0ea" CornerRadius="10">
+                                    <Frame Padding="3" BorderColor="#2c4dff" CornerRadius="10">
                                         <FlexLayout Direction="Row" Wrap="Wrap">
-                                            <Label Text="{Binding Carrier.Title}" TextColor="#2aa0ea"/>
-                                            <Label Text="$" TextColor="#2aa0ea" Margin="5,0,0,0"/>
-                                            <Label Text="{Binding Carrier.Price}" TextColor="#2aa0ea"/>
+                                            <Label Text="{Binding Carrier.Title}" TextColor="#2c4dff"/>
+                                            <Label Text="$" TextColor="#2c4dff" Margin="5,0,0,0"/>
+                                            <Label Text="{Binding Carrier.Price}" TextColor="#2c4dff"/>
                                         </FlexLayout>
                                     </Frame>
                                 </StackLayout>
@@ -95,8 +95,8 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                <Button Text="print to local printer" FontSize="10" TextColor="White" BackgroundColor="#2aa0ea"/>
-                <Button Text="print to remote printer" FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Clicked="Button_Clicked_1"/>
+                <Button Text="print to local printer" FontSize="12" TextColor="White" BackgroundColor="#2c4dff"/>
+                <Button Text="print to remote printer" FontSize="12" TextColor="White" BackgroundColor="#2c4dff" Clicked="Button_Clicked_1"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

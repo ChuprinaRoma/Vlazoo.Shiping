@@ -19,6 +19,12 @@ namespace Vazoo1123.Views.Messages
             conversationMV = new ConversationAndPurchasesMV(managerVazoo, messages);
 			InitializeComponent ();
             BindingContext = conversationMV;
-		}
-	}
+           // msgList.ScrollTo(new object(), ScrollToPosition.End, true);
+
+        }
+
+        private void StackLayout_SizeChanged(object sender, EventArgs e)
+        {
+        }
+    }
 }

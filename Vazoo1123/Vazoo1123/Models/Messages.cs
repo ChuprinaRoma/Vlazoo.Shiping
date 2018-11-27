@@ -27,6 +27,11 @@
         public string Sender { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
+        public string BodyShort { get; set; }
+        public string Color
+        {
+            get => ParentID != null || Status == 2 ? "#b4fc9b" : "#eff299";
+        }
         public string DateEntered { get; set; }
         public string DateCompleted { get; set; }
         public string DateArchived { get; set; }

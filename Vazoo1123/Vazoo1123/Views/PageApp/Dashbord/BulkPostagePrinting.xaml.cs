@@ -10,6 +10,7 @@ using Vazoo1123.Views.LoadViews;
 using Vazoo1123.Views.ModalView;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static Vazoo1123.ViewModels.Dashbord.DashbordMW;
 
 namespace Vazoo1123.Views.PageApp.Dashbord
 {
@@ -18,9 +19,9 @@ namespace Vazoo1123.Views.PageApp.Dashbord
 	{
         private BulkPostagePrintingMV bulkPostagePrintingMV = null;
 
-        public BulkPostagePrinting (ManagerVazoo managerVazoo, List<OrderInfo> SelectProduct)
+        public BulkPostagePrinting (ManagerVazoo managerVazoo, List<OrderInfo> SelectProduct, InitDasbordDelegate initDasbord)
 		{
-            bulkPostagePrintingMV = new BulkPostagePrintingMV(managerVazoo, SelectProduct);
+            bulkPostagePrintingMV = new BulkPostagePrintingMV(managerVazoo, SelectProduct, initDasbord);
             InitializeComponent ();
             BindingContext = bulkPostagePrintingMV;
         }
@@ -57,8 +58,8 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                 .Find(s => s.EBayItemID == itemId && s.RecordNumber == recordId);
             if (fullOrderSettings.WeightOZ != 0.ToString() && fullOrderSettings.WeightOZ != "")
             {
-                WOzCrEntry.TextColor = Color.FromHex("#2aa0ea");
-                WOzCrEntry.PlaceholderColor = Color.FromHex("#2aa0ea");
+                WOzCrEntry.TextColor = Color.FromHex("#2c4dff");
+                WOzCrEntry.PlaceholderColor = Color.FromHex("#2c4dff");
                 bulkPostagePrintingMV.UpdateOneOrder(itemId, recordId);
             }
             else

@@ -7,6 +7,7 @@ using Vazoo1123.Views.ModalView;
 using Vazoo1123.Views.Printing.ModalViews;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static Vazoo1123.ViewModels.Dashbord.DashbordMW;
 
 namespace Vazoo1123.Views.PageApp.Dashbord
 {
@@ -15,9 +16,9 @@ namespace Vazoo1123.Views.PageApp.Dashbord
     {
         FullInfoOneOrderAndPrintingMV fullInfoOneOrderAndPrintingMV = null;
 
-        public OrderOnePinting(OrderInfo orderInfo, ManagerVazoo managerVazoo)
+        public OrderOnePinting(OrderInfo orderInfo, ManagerVazoo managerVazoo, InitDasbordDelegate initDasbord)
         {
-            fullInfoOneOrderAndPrintingMV = new FullInfoOneOrderAndPrintingMV(orderInfo, managerVazoo);
+            fullInfoOneOrderAndPrintingMV = new FullInfoOneOrderAndPrintingMV(orderInfo, managerVazoo, initDasbord) { Navigation = this.Navigation};
             InitializeComponent();
             BindingContext = fullInfoOneOrderAndPrintingMV;
             sw.IsToggled = false;

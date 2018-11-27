@@ -14,6 +14,8 @@ namespace Vazoo1123.ViewModels.Mesages
     {
         public ManagerVazoo managerVazoo = null;
         public MenuDetalePage menuDetalePage = null;
+        public delegate void UpdateMsg();
+        public UpdateMsg updateMsg;
 
         public MesagesFolderMV(ManagerVazoo managerVazoo, MenuDetalePage menuDetalePage)
         {

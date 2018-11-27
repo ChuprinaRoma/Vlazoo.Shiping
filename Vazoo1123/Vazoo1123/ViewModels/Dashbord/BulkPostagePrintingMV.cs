@@ -9,7 +9,7 @@ using Vazoo1123.Models;
 using Vazoo1123.Service;
 using Vazoo1123.Views.LoadViews;
 using Vazoo1123.Views.PageApp.Dashbord;
-using Vazoo1123.Views.Printing.ModalViews;
+using static Vazoo1123.ViewModels.Dashbord.DashbordMW;
 
 namespace Vazoo1123.ViewModels.Dashbord
 {
@@ -18,11 +18,13 @@ namespace Vazoo1123.ViewModels.Dashbord
         private ManagerVazoo managerVazoo = null;
         public CAddressBase SourceAddr = null;
         public DelegateCommand GoToSettingsCommand { get; set; }
+        private InitDasbordDelegate initDasbord;
 
-        public BulkPostagePrintingMV(ManagerVazoo managerVazoo, List<OrderInfo> selectProducts)
+        public BulkPostagePrintingMV(ManagerVazoo managerVazoo, List<OrderInfo> selectProducts, InitDasbordDelegate initDasbord)
         {
             GoToSettingsCommand = new DelegateCommand(GoToSettings);
             SourceAddr = new CAddressBase();
+            this.initDasbord = initDasbord;
             this.managerVazoo = managerVazoo;
             Init(selectProducts);
         }
@@ -257,6 +259,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 }
                 else if (stateAuth == 2)
                 {
+                    initDasbord.Invoke();
                     await PopupNavigation.PushAsync(new Error(description), true);
                 }
                 else if (stateAuth == 1)

@@ -7,7 +7,7 @@ namespace Vazoo1123.NewElement
         public CrossEntry()
         {
             this.TextColor = Color.FromHex("#2c4dff");
-            this.PlaceholderColor = Color.FromHex("#6abdf0");
+            this.PlaceholderColor = Color.FromHex("#8094ff");
         }
     }
 }

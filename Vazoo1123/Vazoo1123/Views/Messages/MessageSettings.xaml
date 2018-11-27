@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Vazoo1123.NewElement"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="Vazoo1123.Views.Messages.MessageSettings">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="3"     
+            ScaleOut="1.5"
+            DurationIn="200"
+            DurationOut="200"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center"
+                 HorizontalOptions="FillAndExpand"
+                 Margin="10">
+        <Frame CornerRadius="4" Padding="8" BorderColor="#2aa0ea" Margin="4">
+            <StackLayout>
+                <Label TextColor="#2aa0ea" FontSize="18" FlexLayout.AlignSelf="2" Text="Setings messages"/>
+                <BoxView BackgroundColor="#2aa0ea" HeightRequest="1"/>
+                <FlexLayout>
+                    <Switch IsToggled="{Binding DisplayToPublic}"/>
+                    <Label TextColor="#2aa0ea" FontSize="13" FlexLayout.AlignSelf="2" Text="Display To Public"/>
+                </FlexLayout>
+                <FlexLayout>
+                    <Switch IsToggled="{Binding EmailCopyToSender}"/>
+                    <Label TextColor="#2aa0ea" FontSize="13" FlexLayout.AlignSelf="2" Text="Email Copy To Sender"/>
+                </FlexLayout>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

@@ -21,11 +21,14 @@ namespace Vazoo1123.ViewModels.Dashbord
         public DelegateCommand ToBulkPostagePrintingCommand { get; set; }
         public DelegateCommand UpdateCommandOrder { get; set; }
         public MenuDetalePage menuDetalePage = null;
+        public delegate  void InitDasbordDelegate();
+        public InitDasbordDelegate initDasbordDelegate;
 
         public DashbordMW(ManagerVazoo managerVazoo, MenuDetalePage menuDetalePage)
         {
             this.managerVazoo = managerVazoo;
             this.menuDetalePage = menuDetalePage;
+            this.initDasbordDelegate = UpdateOrder;
             SelectProduct = new List<OrderInfo>();
             serchOrder = new List<OrderInfo>();
             Type = 1;
@@ -96,6 +99,15 @@ namespace Vazoo1123.ViewModels.Dashbord
             get { return title; }
             set { SetProperty(ref title, value); }
         }
+
+        //CountSelectOrder
+        private string countSelectOrder = "";
+        public string CountSelectOrder
+        {
+            get { return countSelectOrder; }
+            set { SetProperty(ref countSelectOrder, value); }
+        }
+
         public int countPage = 0;
         public int countFullPage = 0;
         public int countOrder = 0;
@@ -118,6 +130,8 @@ namespace Vazoo1123.ViewModels.Dashbord
                 Product = new ObservableCollection<OrderInfo>(managerVazoo.orderInfos.GetRange(0, managerVazoo.orderInfos.Count >= 40 ? 40 : managerVazoo.orderInfos.Count));
                 Title = $"Paid {countOrder}";
                 menuDetalePage.CheckAndSetCountDashbord(countOrder);
+                SelectProduct = new List<OrderInfo>();
+                CountSelectOrder = "";
                 TypeCheck = true;
                 TypeCheck1 = false;
                 TypeCheck2 = false;
@@ -160,6 +174,8 @@ namespace Vazoo1123.ViewModels.Dashbord
                     TypeCheck1 = false;
                     TypeCheck2 = false;
                     menuDetalePage.CheckAndSetCountDashbord(countOrder);
+                    SelectProduct = new List<OrderInfo>();
+                    CountSelectOrder = "";
                 }
                 else if (Type == 2)
                 {
@@ -216,11 +232,11 @@ namespace Vazoo1123.ViewModels.Dashbord
         {
             if (SelectProduct.Count == 1)
             {
-                await Navigation.PushAsync(new OrderOnePinting(SelectProduct[0], managerVazoo));
+                await Navigation.PushAsync(new OrderOnePinting(SelectProduct[0], managerVazoo, initDasbordDelegate));
             }
             else if(SelectProduct.Count != 0)
             {
-                await Navigation.PushAsync(new BulkPostagePrinting(managerVazoo, SelectProduct));
+                await Navigation.PushAsync(new BulkPostagePrinting(managerVazoo, SelectProduct, initDasbordDelegate));
             }
             else
             {

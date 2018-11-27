@@ -26,8 +26,12 @@ namespace Vazoo1123.Views.Messages
 
         private async void OrderList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Models.Messages messages = (Models.Messages)e.SelectedItem;
-            await Navigation.PushAsync(new Conversation(mesagesFolderMV.managerVazoo, messages));
+            if (e.SelectedItem != null)
+            {
+                Models.Messages messages = (Models.Messages)e.SelectedItem;
+                await Navigation.PushAsync(new Conversation(mesagesFolderMV.managerVazoo, messages));
+                messageList.SelectedItem = null;
+            }
         }
 
         private async void OrderList_Refreshing(object sender, System.EventArgs e)

@@ -5,13 +5,36 @@
              Title="Conversation">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Purchases" Command="{Binding ToPurchasesCommand}"/>
+        <ToolbarItem Text="S" Command="{Binding ToSettingsCommand}"/>
+        <ToolbarItem Text="D" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <ListView></ListView>
+            <ListView ItemsSource="{Binding Messagess}" x:Name="msgList"
+                      HasUnevenRows="True" SeparatorVisibility="None" IsRefreshing="{Binding IsBusy}" IsPullToRefreshEnabled="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <FlexLayout Margin="10" Direction="Column">
+                                    <StackLayout Orientation="Horizontal" HeightRequest="30" Margin="15, 0, 0, 0">
+                                        <Label TextColor="#2aa0ea" FontSize="12" FlexLayout.AlignSelf="2" Text="{Binding ReceiveDate}"/>
+                                    </StackLayout>
+                                    <Frame BackgroundColor="{Binding Color}" Padding="8" CornerRadius="30">
+                                            <FlexLayout BackgroundColor="{Binding Color}" Padding="7">
+                                                <Label TextColor="#2aa0ea" FontSize="12" FlexLayout.AlignSelf="2" Text="{Binding BodyShort}"/>
+                                            </FlexLayout>
+                                        </Frame>
+                                    </FlexLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <FlexLayout Wrap="Wrap" >
-                <Editor FlexLayout.Grow="4" />
-                <Button Text="send" FlexLayout.Grow="1"/>
+                <Editor FlexLayout.Grow="4"  Text="{Binding Msg}"/>
+                <Button Text="send" FlexLayout.Grow="1" BackgroundColor="#2aa0ea" TextColor="White" IsEnabled="{Binding IsEnambleSend}" 
+                        BorderRadius="6" Font="13" HeightRequest="40" Margin="1" Command="{Binding SendOrRaplyCommand}"/>
             </FlexLayout>
         </StackLayout>
     </ContentPage.Content>

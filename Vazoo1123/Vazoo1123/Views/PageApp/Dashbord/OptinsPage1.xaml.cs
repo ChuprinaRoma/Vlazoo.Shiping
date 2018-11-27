@@ -40,7 +40,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                 string id = frame.FindByName<Label>("IdLabel").Text;
                 if (bulkPostagePrintingMV.SelectProduct[IndexSelectOrder].SetCarrier(id))
                 {
-                    frame.BorderColor = Color.FromHex("#2abdea");
+                    frame.BorderColor = Color.FromHex("#2c4dff");
                 }
                 
                 Task.Run(() =>

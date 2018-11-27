@@ -185,6 +185,10 @@ namespace Vazoo1123.Service
                 {
                     stateMesges = mesages.MessagesGetCount(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], 1, "", ref totalResulte);
                 }
+                else if (typeMesages == "Conversation")
+                {
+                    stateMesges = mesages.MessageHistoryGet(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], Convert.ToInt32(dataMesages[3]), 0, ref mesagess, ref totalResulte, ref description);
+                }
             }
             mesages = null;
             return stateMesges;
@@ -200,9 +204,20 @@ namespace Vazoo1123.Service
                 {
                     stateMesges = mesages.OrderHistoryGet(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], Convert.ToInt32(dataMesages[3]), Convert.ToInt32(dataMesages[4]), ref orderInfo);
                 }
-                else if(typeMesages == "Conversation")
+            }
+            mesages = null;
+            return stateMesges;
+        }
+
+        public int MesagesWork(string typeMesages, int Id, bool DisplayToPublic, bool EmailCopyToSender, ref string description, params string[] dataMesages)
+        {
+            mesages = new Mesages();
+            int stateMesges = 1;
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                if (typeMesages == "SendMessageReply")
                 {
-                    stateMesges = mesages.MessageHistoryGet(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], Convert.ToInt32(dataMesages[3]), Convert.ToInt32(dataMesages[4]));
+                    stateMesges = mesages.SendMessageReply(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], Id, DisplayToPublic, EmailCopyToSender, dataMesages[3], ref description);
                 }
             }
             mesages = null;
