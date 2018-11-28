@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Vazoo1123.Service.settings;
 using Vazoo1123.ViewModels;
 using Vazoo1123.Views.A_R;
+using Vazoo1123.Views.Download_Application;
 using Vazoo1123.Views.LoadViews;
 using Vazoo1123.Views.Messages;
 using Vazoo1123.Views.PageApp;
@@ -26,24 +27,7 @@ namespace Vazoo1123.Views.Menu
             menuMW = new MenuMW();
             Detail = new NavigationPage(new DashboardPage(menuMW.managerVazoo, this));
             BtnFocusInMenu = new AbsoluteLayout();
-            body.Children.Remove(setingsMenu);
             BindingContext = menuMW;
-        }
-
-        private void ReplaceMenu(object s, EventArgs e)
-        {
-            if (isMenu)
-            {
-                body.Children.Remove(mainMenu);
-                body.Children.Add(setingsMenu);
-                isMenu = false;
-            }
-            else
-            {
-                body.Children.Remove(setingsMenu);
-                body.Children.Add(mainMenu);
-                isMenu = true;
-            }
         }
 
         private void AnimateBtn(object s, EventArgs e)
@@ -93,6 +77,13 @@ namespace Vazoo1123.Views.Menu
             Application.Current.MainPage = new FirstPage();
             Task.Run(() => CheckAuth.RmovegAccount());
             IsPresented = false;
+        }
+
+        private void ToDownLoadApp(object s, EventArgs e)
+        {
+            IsPresented = false;
+            AnimateBtn(s, e);
+            Detail = new NavigationPage(new DownloadApp());
         }
 
         public void CheckAndSetCountDashbord(int count)

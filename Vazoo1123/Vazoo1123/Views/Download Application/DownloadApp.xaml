@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vazoo1123.Views.Download_Application.DownloadApp"
+             Title="Download App">
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Label Text="Warning: Printing application is not running"
+                       FontSize="18" TextColor="#2aa0ea" Margin="5"/>
+            <Button Text="Download printing Application" TextColor="White" BackgroundColor="#2aa0ea" Margin="2"/>
+            <Label Text="1. Download and unzip printing application to any computer connected to the internet"
+                       FontSize="18" TextColor="#2aa0ea" Margin="5"/>
+            <Label Text="2. Instal printing application"
+                       FontSize="18" TextColor="#2aa0ea" Margin="3"/>
+            <Label Text="3. Choose remote print above  .by defult labes will prit to 'Print Label' Printer Login credentials were sent in initial SignIn email You can always create another  printer LogIn and have multiple printers runinng in differend locations"
+                       FontSize="18" TextColor="#2aa0ea" Margin="5"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

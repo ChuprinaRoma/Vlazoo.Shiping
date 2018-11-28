@@ -17,6 +17,7 @@ namespace Vazoo1123.ViewModels.Mesages
         public DelegateCommand ToPurchasesCommand { get; set; }
         public DelegateCommand ToSettingsCommand { get; set; }
         public DelegateCommand SendOrRaplyCommand { get; set; }
+        public DelegateCommand DeletedMsgCommand { get; set; }
 
         public ConversationAndPurchasesMV(ManagerVazoo managerVazoo, Models.Messages messages)
         {
@@ -25,6 +26,7 @@ namespace Vazoo1123.ViewModels.Mesages
             ToPurchasesCommand = new DelegateCommand(ToPurchases);
             ToSettingsCommand = new DelegateCommand(ToSettings);
             SendOrRaplyCommand = new DelegateCommand(SendOrRaply);
+            DeletedMsgCommand = new DelegateCommand(Confirm);
             InitConversation();
             InitPurchases();
         }
@@ -56,8 +58,7 @@ namespace Vazoo1123.ViewModels.Mesages
             get => emailCopyToSender;
             set => SetProperty(ref emailCopyToSender, value);
         }
-
-        //Msg
+        
         private string msg = "";
         public string Msg
         {
@@ -222,8 +223,8 @@ namespace Vazoo1123.ViewModels.Mesages
             });
             if (stateAuth == 3)
             {
+                await PopupNavigation.PushAsync(new Compleat("Send Successfully"), true);
                 InitConversation();
-
             }
             else if (stateAuth == 2)
             {
@@ -238,6 +239,45 @@ namespace Vazoo1123.ViewModels.Mesages
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
             }
             IsBusy = false;
+        }
+
+        private async void Confirm()
+        {
+            if (IsEnambleSend)
+            {
+                await PopupNavigation.PushAsync(new ConnfirmDelited(this));
+            }
+        }
+
+        public async void DeletedMsg()
+        {
+            string description = null;
+            int totalResulte = 0;
+            OrderInfo orderInfo = null;
+            string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+            int stateAuth = 0;
+            await Task.Run(() =>
+            {
+                stateAuth = managerVazoo.MesagesWork("SendMessageReply", Messages.ID, ref description, email, idCompany, psw, Msg);
+            });
+            if (stateAuth == 3)
+            {
+                await PopupNavigation.PushAsync(new Compleat("Send Deleted"), true);
+            }
+            else if (stateAuth == 2)
+            {
+                await PopupNavigation.PushAsync(new Error(description), true);
+            }
+            else if (stateAuth == 1)
+            {
+                await PopupNavigation.PushAsync(new Error(description), true);
+            }
+            else if (stateAuth == 4)
+            {
+                await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
+            }
         }
     }
 }

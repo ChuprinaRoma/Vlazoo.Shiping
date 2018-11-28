@@ -6,7 +6,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Purchases" Command="{Binding ToPurchasesCommand}"/>
         <ToolbarItem Text="S" Command="{Binding ToSettingsCommand}"/>
-        <ToolbarItem Text="D" />
+        <ToolbarItem Text="D" Command="{Binding DeletedMsgCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>

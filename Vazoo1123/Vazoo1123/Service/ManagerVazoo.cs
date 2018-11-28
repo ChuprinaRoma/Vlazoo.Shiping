@@ -1,4 +1,5 @@
-﻿using Plugin.Connectivity;
+﻿
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using Vazoo1123.Models;
@@ -218,6 +219,21 @@ namespace Vazoo1123.Service
                 if (typeMesages == "SendMessageReply")
                 {
                     stateMesges = mesages.SendMessageReply(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], Id, DisplayToPublic, EmailCopyToSender, dataMesages[3], ref description);
+                }
+            }
+            mesages = null;
+            return stateMesges;
+        }
+        
+        public int MesagesWork(string typeMesages, int Id, ref string description, params string[] dataMesages)
+        {
+            mesages = new Mesages();
+            int stateMesges = 1;
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                if (typeMesages == "MessageDelete")
+                {
+                    stateMesges = mesages.MessageDelete(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], Id, ref description);
                 }
             }
             mesages = null;

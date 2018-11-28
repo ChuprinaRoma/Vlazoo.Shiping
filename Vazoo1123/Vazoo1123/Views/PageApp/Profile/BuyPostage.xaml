@@ -17,24 +17,17 @@
                                       Placeholder="$" WidthRequest="50" />
                     </StackLayout>
                 </FlexLayout>
-                <Frame CornerRadius="10" Padding="10" BorderColor="#2abdea">
-                    <ScrollView Orientation="Horizontal">
-                        <FlexLayout x:Name="PaymentMethod" Direction="Row" HeightRequest="90">
-                            <Image Source="PayPal.jpg" Margin="3" />
-                            <Image Source="Visa.png"  Margin="3"/>
-                        </FlexLayout>
-                    </ScrollView>
-                </Frame>
-                <Label Text="Warning: Printing application is not running"
-                       FontSize="15" TextColor="#2aa0ea" Margin="5"/>
-                <Button Text="Download printing Application" TextColor="White" BackgroundColor="#2aa0ea" Margin="2"/>
-                <Button Text="Choose Remote printer" TextColor="White" BackgroundColor="#2aa0ea" Margin="2"/>
-                <Label Text="1. Download and unzip printing application to any computer connected to the internet"
-                       FontSize="15" TextColor="#2aa0ea" Margin="5"/>
-                <Label Text="2. Instal printing application"
-                       FontSize="15" TextColor="#2aa0ea" Margin="3"/>
-                <Label Text="3. Choose remote print above  .by defult labes will prit to 'Print Label' Printer Login credentials were sent in initial SignIn email You can always create another  printer LogIn and have multiple printers runinng in differend locations"
-                       FontSize="15" TextColor="#2aa0ea" Margin="5"/>
+                <StackLayout>
+                    <Frame CornerRadius="10" Padding="10" BorderColor="#2abdea">
+                        <ScrollView Orientation="Horizontal">
+                            <FlexLayout x:Name="PaymentMethod" Direction="Row" HeightRequest="90">
+                                <Image Source="PayPal.jpg" Margin="3" />
+                                <Image Source="Visa.png"  Margin="3"/>
+                            </FlexLayout>
+                        </ScrollView>
+                    </Frame>
+                    <Button Text="Choose Remote printer" TextColor="White" BackgroundColor="#2aa0ea" Margin="2"/>
+                </StackLayout>
             </FlexLayout>
         </ScrollView>
     </ContentPage.Content>
