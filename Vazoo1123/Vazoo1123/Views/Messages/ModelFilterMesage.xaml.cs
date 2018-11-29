@@ -16,14 +16,16 @@ namespace Vazoo1123.Views.Messages
 		{
             this.mesagesFolderMV = mesagesFolderMV;
             InitializeComponent ();
-            gr.SelectedIndex = this.mesagesFolderMV.Type;
+            gr.SelectedIndex = this.mesagesFolderMV.Type - 1;
         }
 
         private async void CrossAddRadiobtn_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.PopAllAsync(true);
             crossAddRadiobtnSelect = ((CrossAddRadiobtn)sender);
-            mesagesFolderMV.InitMessages(crossAddRadiobtnSelect.Idi, crossAddRadiobtnSelect.Text);
+            mesagesFolderMV.Type = crossAddRadiobtnSelect.Idi;
+            mesagesFolderMV.Name = crossAddRadiobtnSelect.Text;
+            mesagesFolderMV.InitMessages();
         }
     }
 }

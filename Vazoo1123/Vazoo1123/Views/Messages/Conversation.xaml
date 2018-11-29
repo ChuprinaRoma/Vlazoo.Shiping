@@ -10,7 +10,7 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Messagess}" x:Name="msgList"
+            <ListView ItemsSource="{Binding Messagess}" x:Name="msgList" RefreshCommand="{Binding RefreshMessageCommand}"
                       HasUnevenRows="True" SeparatorVisibility="None" IsRefreshing="{Binding IsBusy}" IsPullToRefreshEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

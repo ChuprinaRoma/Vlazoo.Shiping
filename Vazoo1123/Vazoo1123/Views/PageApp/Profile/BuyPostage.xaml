@@ -14,15 +14,23 @@
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Buy postage:" TextColor="#2abdea" FontSize="18" VerticalTextAlignment="Center"/>
                         <local:CrossEntry Keyboard="Numeric"  TextColor="#2aa0ea" FontSize="18" 
-                                      Placeholder="$" WidthRequest="50" />
+                                      Placeholder="$" WidthRequest="50" Text="{Binding Postage}" />
                     </StackLayout>
                 </FlexLayout>
                 <StackLayout>
                     <Frame CornerRadius="10" Padding="10" BorderColor="#2abdea">
                         <ScrollView Orientation="Horizontal">
                             <FlexLayout x:Name="PaymentMethod" Direction="Row" HeightRequest="90">
-                                <Image Source="PayPal.jpg" Margin="3" />
-                                <Image Source="Visa.png"  Margin="3"/>
+                                <Image Source="PayPal.jpg" Margin="3" >
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image Source="Visa.png"  Margin="3">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
                             </FlexLayout>
                         </ScrollView>
                     </Frame>

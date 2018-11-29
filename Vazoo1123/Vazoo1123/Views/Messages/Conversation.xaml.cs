@@ -7,6 +7,7 @@ using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Mesages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static Vazoo1123.ViewModels.Mesages.MesagesFolderMV;
 
 namespace Vazoo1123.Views.Messages
 {
@@ -14,17 +15,23 @@ namespace Vazoo1123.Views.Messages
 	public partial class Conversation : ContentPage
 	{
         private ConversationAndPurchasesMV conversationMV = null;
-        public Conversation (ManagerVazoo managerVazoo, Models.Messages messages)
+
+        public Conversation (ManagerVazoo managerVazoo, Models.Messages messages, InitMesage initMesage)
 		{
-            conversationMV = new ConversationAndPurchasesMV(managerVazoo, messages);
-			InitializeComponent ();
+            conversationMV = new ConversationAndPurchasesMV(managerVazoo, messages, initMesage);
+            conversationMV.Navigation = Navigation;
+            InitializeComponent ();
             BindingContext = conversationMV;
-           // msgList.ScrollTo(new object(), ScrollToPosition.End, true);
 
         }
 
         private void StackLayout_SizeChanged(object sender, EventArgs e)
         {
+        }
+
+        private void MsgList_Refreshing(object sender, EventArgs e)
+        {
+
         }
     }
 }

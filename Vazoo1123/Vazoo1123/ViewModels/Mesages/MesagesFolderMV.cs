@@ -16,12 +16,18 @@ namespace Vazoo1123.ViewModels.Mesages
         public MenuDetalePage menuDetalePage = null;
         public delegate void UpdateMsg();
         public UpdateMsg updateMsg;
+        public delegate void InitMesage();
+        public InitMesage initMesage;
+
 
         public MesagesFolderMV(ManagerVazoo managerVazoo, MenuDetalePage menuDetalePage)
         {
             this.managerVazoo = managerVazoo;
             this.menuDetalePage = menuDetalePage;
-            InitMessages(1, "ToDay");
+            Type = 1;
+            Name = "To Day";
+            initMesage = InitMessages;
+            InitMessages();
         }
 
         private List<Models.Messages> messagesss = null;
@@ -41,7 +47,7 @@ namespace Vazoo1123.ViewModels.Mesages
         private int type = 1;
         public int Type
         {
-            get => type - 1;
+            get => type;
             set => SetProperty(ref type, value);
         }
 
@@ -52,7 +58,14 @@ namespace Vazoo1123.ViewModels.Mesages
             set => SetProperty(ref isBusy, value);
         }
 
-        public async void InitMessages(int type, string name)
+        private string name = null;
+        public string Name
+        {
+            get => name;
+            set => SetProperty(ref name, value);
+        }
+
+        public async void InitMessages()
         {
             IsBusy = true;
             string description = null;
@@ -64,15 +77,14 @@ namespace Vazoo1123.ViewModels.Mesages
             int stateAuth = 0;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.MesagesWork("MessagesGet", ref description, ref totalResulte, ref messagess, email, idCompany, psw, type.ToString(), "", "0");
+                stateAuth = managerVazoo.MesagesWork("MessagesGet", ref description, ref totalResulte, ref messagess, email, idCompany, psw, (Type).ToString(), "", "0");
             });
-                if (stateAuth == 3)
+            if (stateAuth == 3)
             {
                 //TranslationIntoFormatDate(messagess);
                 Messagesss = messagess;
                 Title = $"{name} {totalResulte}";
-                Type = type;
-                if(type == 1)
+                if (type == 1)
                 {
                     menuDetalePage.CheckAndSetCountMessage(totalResulte);
                 }

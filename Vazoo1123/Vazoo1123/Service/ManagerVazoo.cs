@@ -235,6 +235,10 @@ namespace Vazoo1123.Service
                 {
                     stateMesges = mesages.MessageDelete(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], Id, ref description);
                 }
+                else if(typeMesages == "MessageSetRead")
+                {
+                    stateMesges = mesages.MessageSetRead(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], Id, ref description);
+                }
             }
             mesages = null;
             return stateMesges;

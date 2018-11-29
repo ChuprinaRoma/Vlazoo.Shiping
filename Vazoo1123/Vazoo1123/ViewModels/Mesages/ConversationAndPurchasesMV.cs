@@ -8,6 +8,8 @@ using Vazoo1123.Models;
 using Vazoo1123.Service;
 using Vazoo1123.Views.LoadViews;
 using Vazoo1123.Views.Messages;
+using Xamarin.Forms;
+using static Vazoo1123.ViewModels.Mesages.MesagesFolderMV;
 
 namespace Vazoo1123.ViewModels.Mesages
 {
@@ -18,8 +20,11 @@ namespace Vazoo1123.ViewModels.Mesages
         public DelegateCommand ToSettingsCommand { get; set; }
         public DelegateCommand SendOrRaplyCommand { get; set; }
         public DelegateCommand DeletedMsgCommand { get; set; }
+        public DelegateCommand RefreshMessageCommand { get; set; }
+        InitMesage initMesage;
+        public INavigation Navigation { get; set; } 
 
-        public ConversationAndPurchasesMV(ManagerVazoo managerVazoo, Models.Messages messages)
+        public ConversationAndPurchasesMV(ManagerVazoo managerVazoo, Models.Messages messages, InitMesage initMesage)
         {
             this.managerVazoo = managerVazoo;
             Messages = messages;
@@ -27,6 +32,8 @@ namespace Vazoo1123.ViewModels.Mesages
             ToSettingsCommand = new DelegateCommand(ToSettings);
             SendOrRaplyCommand = new DelegateCommand(SendOrRaply);
             DeletedMsgCommand = new DelegateCommand(Confirm);
+            RefreshMessageCommand = new DelegateCommand(InitConversation);
+            this.initMesage = initMesage;
             InitConversation();
             InitPurchases();
         }
@@ -148,6 +155,11 @@ namespace Vazoo1123.ViewModels.Mesages
             });
             if (stateAuth == 3)
             {
+                await Task.Run(() =>
+                {
+                    managerVazoo.MesagesWork("MessageSetRead", Messages.ID, ref description, email, idCompany, psw, Msg);
+                });
+                initMesage();
                 Messagess = messagesss;
                 if (Messagess.Count != 0)
                 {
@@ -224,7 +236,9 @@ namespace Vazoo1123.ViewModels.Mesages
             if (stateAuth == 3)
             {
                 await PopupNavigation.PushAsync(new Compleat("Send Successfully"), true);
-                InitConversation();
+                initMesage();
+                await Navigation.PopAsync(true);
+
             }
             else if (stateAuth == 2)
             {

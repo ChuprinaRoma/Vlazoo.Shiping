@@ -15,7 +15,7 @@
                                      AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
                                      AbsoluteLayout.LayoutBounds=".1,.9, .99, AutoSize">
                             <Label x:Name="nameProfile" HorizontalOptions="Start" Text="{Binding NameProfile}"/>
-                            <Label Text="23.11.18" HorizontalOptions="End"/>
+                            <Label Text="29.11.18" HorizontalOptions="End"/>
                         </StackLayout>
                     </AbsoluteLayout>
                     <BoxView BackgroundColor="#2abdea" Margin="3" HeightRequest="2"/>
