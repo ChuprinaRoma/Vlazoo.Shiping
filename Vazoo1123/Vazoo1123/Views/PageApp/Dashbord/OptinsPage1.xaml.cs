@@ -50,7 +50,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                     {
                         tempPostage += selectProduct1.Carrier.Price;
                     }
-                    bulkPostagePrintingMV.PostageTotal = $"{tempPostage}$";
+                    bulkPostagePrintingMV.PostageTotal = $"${tempPostage}";
                 });
             }
         }

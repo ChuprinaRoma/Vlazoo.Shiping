@@ -11,6 +11,7 @@ using Vazoo1123.Views.LoadViews;
 using Vazoo1123.Views.PageApp.Dashbord;
 using Xamarin.Forms;
 using Vazoo1123.Views.Menu;
+using System.Threading;
 
 namespace Vazoo1123.ViewModels.Dashbord
 {
@@ -123,7 +124,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             int countOrder = 0;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.DashbordWork("OrdersGet", ref description, Type, ref countPage, ref countOrder, idCompany, email, psw);
+                stateAuth = managerVazoo.DashbordWork("OrdersGet", ref description, Type, ref countPage, ref countOrder, true, idCompany, email, psw);
             });
             if (stateAuth == 3)
             {
@@ -154,6 +155,7 @@ namespace Vazoo1123.ViewModels.Dashbord
 
         public async void UpdateOrder()
         {
+            countPage = 0;
             string description = null;
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
@@ -162,11 +164,12 @@ namespace Vazoo1123.ViewModels.Dashbord
             int countOrder = 0;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.DashbordWork("OrdersGet", ref description, Type, ref countPage, ref countOrder, idCompany, email, psw);
+                stateAuth = managerVazoo.DashbordWork("OrdersGet", ref description, Type, ref countPage, ref countOrder, true, idCompany, email, psw);
             });
             if (stateAuth == 3)
             {
-                Product = new ObservableCollection<OrderInfo>(managerVazoo.orderInfos.GetRange(0, managerVazoo.orderInfos.Count >= 40 ? 40 : managerVazoo.orderInfos.Count));
+                Thread.Sleep(100);
+                SelectProduct = new List<OrderInfo>();
                 if (Type == 1)
                 {
                     Title = $"Paid {countOrder}";
@@ -174,7 +177,6 @@ namespace Vazoo1123.ViewModels.Dashbord
                     TypeCheck1 = false;
                     TypeCheck2 = false;
                     menuDetalePage.CheckAndSetCountDashbord(countOrder);
-                    SelectProduct = new List<OrderInfo>();
                     CountSelectOrder = "";
                 }
                 else if (Type == 2)
@@ -191,6 +193,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                     TypeCheck1 = false;
                     TypeCheck2 = true;
                 }
+                Product = new ObservableCollection<OrderInfo>(managerVazoo.orderInfos.GetRange(0, managerVazoo.orderInfos.Count >= 40 ? 40 : managerVazoo.orderInfos.Count));
             }
             else if (stateAuth == 2)
             {
@@ -217,7 +220,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             int stateAuth = 0;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.DashbordWork("OrdersGet", ref description, Type, ref countPage, ref countOrder, idCompany, email, psw);
+                stateAuth = managerVazoo.DashbordWork("OrdersGet", ref description, Type, ref countPage, ref countOrder, false, idCompany, email, psw);
             });
             if (stateAuth == 3 && isLoad)
             {

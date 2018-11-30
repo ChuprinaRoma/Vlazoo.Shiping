@@ -39,11 +39,14 @@
                                             <Label Text="{Binding EBayUserID}"  TextColor="#2c4dff" FontSize="17"/>
                                             <Label Text="{Binding ItemTitle}" TextColor="#2c4dff" FontSize="12"/>
                                             <Label Text="{Binding ShopperEmail}" TextColor="#2c4dff" FontSize="12"/>
-                                            <FlexLayout Direction="Row">
+                                            <StackLayout Orientation="Horizontal">
                                                 <Label Text="Price:" FontSize="12" TextColor="#2c4dff"/>
-                                                <Label Text="$" FontSize="12" TextColor="#2c4dff"/>
-                                                <Label Text="{Binding TransactionPrice}" FontSize="12" TextColor="#2c4dff"/>
-                                            </FlexLayout>
+                                                <FlexLayout>
+                                                    <Label Text="$" FontSize="12" TextColor="#2c4dff"/>
+                                                    <Label Text="{Binding TransactionPrice}" FontSize="12" TextColor="#2c4dff"/>
+                                                    <Label Text="{Binding TotalTransactionPrice}" FontSize="12" TextColor="#2c4dff"/>
+                                                </FlexLayout>
+                                            </StackLayout>
                                         </StackLayout>
                                         <StackLayout WidthRequest="470">
                                             <StackLayout Orientation="Horizontal">
@@ -56,6 +59,10 @@
                                             </StackLayout>
                                             <Label Text="{Binding TrackingNumber}" FontSize="10" TextColor="#2c4dff" />
                                             <Label Text="{Binding PaymentMethod}" TextColor="#2c4dff" />
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Qty:" FontSize="12" TextColor="#2c4dff"/>
+                                                <Label Text="{Binding TrackingNumbersCount}" FontSize="12" TextColor="#2c4dff"/>
+                                            </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
                                 </ViewCell.View>

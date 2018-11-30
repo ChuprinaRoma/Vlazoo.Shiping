@@ -31,6 +31,7 @@
                                                 <FlexLayout>
                                                     <Label Text="$" FontSize="12" TextColor="#2c4dff"/>
                                                     <Label Text="{Binding TransactionPrice}" FontSize="12" TextColor="#2c4dff"/>
+                                                    <Label Text="{Binding TotalTransactionPrice}" FontSize="12" TextColor="#2c4dff"/>
                                                 </FlexLayout>
                                             </StackLayout>
                                         </StackLayout>

@@ -4,6 +4,9 @@
              x:Class="Vazoo1123.Views.PageApp.Dashbord.OrderOnePinting"
              xmlns:local="clr-namespace:Vazoo1123.NewElement"
              Title="{Binding OrderInfo.EBayUserID}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding OrderInfo.TrackingNumbersCount}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical"  Padding="10" BackgroundColor="White">
@@ -29,6 +32,7 @@
                             <FlexLayout>
                                 <Label Text="$" FontSize="14" TextColor="#2c4dff"/>
                                 <Label Text="{Binding OrderInfo.TransactionPrice}" FontSize="14" TextColor="#2c4dff"/>
+                                <Label Text="{Binding OrderInfo.TotalTransactionPrice}" FontSize="14" TextColor="#2c4dff"/>
                             </FlexLayout>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
@@ -37,6 +41,7 @@
                         </StackLayout>
                     </StackLayout>
                 </FlexLayout>
+                <Label Text="{Binding OrderInfo.TrackingNumber}" FontSize="14" TextColor="#2c4dff" Margin="2" FlexLayout.Grow="2"/>
                 <BoxView BackgroundColor="#2c4dff" HeightRequest="1"/>
                 <Label Text="{Binding OrderInfo.ItemTitle}" FontSize="12" TextColor="#2c4dff" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                 <Frame CornerRadius="10" BorderColor="#2c4dff" Margin="2">

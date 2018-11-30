@@ -31,6 +31,14 @@ namespace Vazoo1123.Models
         public string TrackingNumber { get; set; }
         public Carrier CarrierOptimal { get; set; }
         public CAddressBase ShipToAddress { get; set; }
+        public int TrackingNumbersCount
+        {
+            get => TrackingNumber.Split(';').Length;
+        }
+        public string TotalTransactionPrice
+        {
+            get => TransactionPrice * TrackingNumbersCount != TransactionPrice ? $"/{(TransactionPrice * TrackingNumbersCount)}" : "";
+        }
         //////////////////////////////////////////////////
         private Carrier carrier = null;
         public Carrier Carrier

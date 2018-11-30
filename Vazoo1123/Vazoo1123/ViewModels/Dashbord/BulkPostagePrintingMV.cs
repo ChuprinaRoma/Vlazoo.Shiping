@@ -107,7 +107,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                     tempPostage += selectProduct1.CarrierOptimal.Price;
                 }
                 IsValid = isValidTemp;
-                PostageTotal = $"{tempPostage}$";
+                PostageTotal = $"${tempPostage}";
             });
         }
 
@@ -166,7 +166,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                         selectProduct1.SetCarrier(selectProduct1.CarrierOptimal);
                         tempPostage += selectProduct1.CarrierOptimal.Price;
                     }
-                    PostageTotal = $"{tempPostage}$";
+                    PostageTotal = $"${tempPostage}";
                 });
             });
             if (stateAuth == 3)
@@ -211,7 +211,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                             selectProduct1.SetCarrier(selectProduct1.CarrierOptimal);
                             tempPostage += selectProduct1.CarrierOptimal.Price;
                         }
-                        PostageTotal = $"{tempPostage}$";
+                        PostageTotal = $"${tempPostage}";
                     });
                 }
                 else if (stateAuth != 3)
@@ -255,11 +255,11 @@ namespace Vazoo1123.ViewModels.Dashbord
                     serlectProduct.cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, true, "", "", "", 0, ref tracking, ref description);
                 if (stateAuth == 3)
                 {
-                    await PopupNavigation.PushAsync(new Compleat("Print Succefull"), true);
+                    await PopupNavigation.PushAsync(new Compleat($"Print Succefull {serlectProduct.Name}"), true);
+                    initDasbord.Invoke();
                 }
                 else if (stateAuth == 2)
                 {
-                    initDasbord.Invoke();
                     await PopupNavigation.PushAsync(new Error(description), true);
                 }
                 else if (stateAuth == 1)

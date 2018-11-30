@@ -23,7 +23,7 @@
                Padding="0"
                BackgroundColor="#81F781">
             <StackLayout Padding="17">
-                <Label Text="Complet"
+                <Label Text="Completed"
                        FontSize="15"/>
                 <Label x:Name="CompTextL"
                        FontSize="13"/>

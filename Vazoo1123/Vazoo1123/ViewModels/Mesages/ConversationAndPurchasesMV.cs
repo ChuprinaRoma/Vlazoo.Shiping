@@ -168,7 +168,6 @@ namespace Vazoo1123.ViewModels.Mesages
                 }
                 else
                 {
-                    await PopupNavigation.PushAsync(new Error("there is no messages or it has not loaded yet"), true);
                     IsEnambleSend = false;
                 }
             }

@@ -145,23 +145,19 @@ namespace Vazoo1123.Service
             return Printing;
         }
 
-        public int DashbordWork(string typeDashbord, ref string description, int type, ref int countPage, ref int countOrder, params string[] dataDashbord)
+        public int DashbordWork(string typeDashbord, ref string description, int type, ref int countPage, ref int countOrder, bool isNewOrder, params string[] dataDashbord)
         {
             dashbord = new Dashbord();
-            if (orderInfos == null)
-            {
-                orderInfos = new List<OrderInfo>();
-            }
             int stateDashbord = 1;
             if (CrossConnectivity.Current.IsConnected)
             {
                 if (typeDashbord == "OrdersGet")
                 {
-                    stateDashbord = dashbord.GetDashbord(dataDashbord[0], dataDashbord[1], dataDashbord[2], type, ref countPage, ref description, ref orderInfos, ref countOrder);
+                    stateDashbord = dashbord.GetDashbord(dataDashbord[0], dataDashbord[1], dataDashbord[2], type, ref countPage, ref description, ref orderInfos, ref countOrder, isNewOrder);
                 }
                 else if (typeDashbord == "OrdersGet1")
                 {
-                    stateDashbord = dashbord.GetDashbord(dataDashbord[0], dataDashbord[1], dataDashbord[2], type, ref countPage, ref description, ref orderInfos, ref countOrder);
+                    stateDashbord = dashbord.GetDashbord(dataDashbord[0], dataDashbord[1], dataDashbord[2], type, ref countPage, ref description, ref orderInfos, ref countOrder, isNewOrder);
                 }
             }
             dashbord = null;

@@ -26,7 +26,16 @@
         public int UnansweredMessages { get; set; }
         public bool IsMesages
         {
-            get => UnansweredMessages > 0 ? true : false; 
+            get => UnansweredMessages > 0 ? true : false;
+        }
+        public int TrackingNumbersCount
+        {
+            get => TrackingNumber.Split(';').Length;
+        }
+
+        public string TotalTransactionPrice
+        {
+            get => TransactionPrice * TrackingNumbersCount != TransactionPrice ? $"/{(TransactionPrice * TrackingNumbersCount)}" : "";
         }
         public Carrier CarrierOptimal { get; set; }
         public CAddressBase ShipToAddress { get; set; }

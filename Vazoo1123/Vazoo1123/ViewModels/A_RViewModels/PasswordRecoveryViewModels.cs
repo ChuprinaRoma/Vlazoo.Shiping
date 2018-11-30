@@ -57,7 +57,7 @@ namespace Vazoo1123.ViewModels
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)
             {
-                await PopupNavigation.PushAsync(new Compleat("In ten minutes, instructions will come to your mail"), true);
+                await PopupNavigation.PushAsync(new Compleat("Instructions were sent to your email"), true);
             }
             else if (stateAuth == 2)
             {

@@ -10,7 +10,7 @@ namespace Vazoo1123.Service
     class Dashbord
     {
         public int GetDashbord(string clientID, string login, string password, int type, ref int page, ref string description,
-            ref List<OrderInfo> orderInfos, ref int countOrder)
+            ref List<OrderInfo> orderInfos, ref int countOrder, bool isNewOrder)
         {
             string content = null;
             int state = 0;
@@ -30,11 +30,11 @@ namespace Vazoo1123.Service
                 }
                 else
                 {
-                    ParseJson(content, ref state, ref description,ref orderInfos, ref countOrder, ref page);
+                    ParseJson(content, ref state, ref description,ref orderInfos, ref countOrder, ref page, isNewOrder);
                     page++;
                     if (page == 1 && countOrder >= 99)
                     {
-                        state = GetDashbord(clientID, login, password, type, ref page, ref description, ref orderInfos, ref countOrder);
+                        state = GetDashbord(clientID, login, password, type, ref page, ref description, ref orderInfos, ref countOrder, false);
                     }
                 }
             }
@@ -50,7 +50,7 @@ namespace Vazoo1123.Service
             return state;
         }
 
-        private void ParseJson(string jsonResponse, ref int state, ref string description, ref List<OrderInfo> orderInfos, ref int countOrder, ref int countPage)
+        private void ParseJson(string jsonResponse, ref int state, ref string description, ref List<OrderInfo> orderInfos, ref int countOrder, ref int countPage, bool isNewOrder)
         {
             string stateResponse = null;
             JObject objJsonRespons = JObject.Parse(jsonResponse);
@@ -62,7 +62,7 @@ namespace Vazoo1123.Service
                 .First.Value<int>("totalResults");
             if (stateResponse == "success")
             {
-                if (countPage > 0)
+                if (countPage > 0 && orderInfos != null && !isNewOrder)
                 {
                     orderInfos.AddRange(JsonConvert.DeserializeObject<List<OrderInfo>>(objJsonRespons.
                         First.First.SelectToken("Orders").ToString()));

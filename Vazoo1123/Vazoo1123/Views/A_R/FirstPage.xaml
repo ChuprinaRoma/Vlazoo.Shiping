@@ -9,9 +9,9 @@
                     <Image x:Name="headImg" Source="head.png"/>
                 </FlexLayout>
                 <AbsoluteLayout HeightRequest="440">
-                    <Label Text="eBay Postage Printing" 
+                    <Label Text="eBay Postage Printing, Message" 
                        AbsoluteLayout.LayoutFlags="PositionProportional"
-                       AbsoluteLayout.LayoutBounds=".5, .0, AutoSize, AutoSize"
+                       AbsoluteLayout.LayoutBounds=".6, .0, AutoSize, AutoSize"
                        FontSize="23" TextColor="#2aa0ea"/>
                     <Button Text="Log In"
                             AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"

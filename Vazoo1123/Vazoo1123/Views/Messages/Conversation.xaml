@@ -32,7 +32,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <FlexLayout Wrap="Wrap" >
-                <Editor FlexLayout.Grow="4"  Text="{Binding Msg}"/>
+                <Editor FlexLayout.Grow="4"  Text="{Binding Msg}" HeightRequest="100"/>
                 <Button Text="send" FlexLayout.Grow="1" BackgroundColor="#2aa0ea" TextColor="White" IsEnabled="{Binding IsEnambleSend}" 
                         BorderRadius="6" Font="13" HeightRequest="40" Margin="1" Command="{Binding SendOrRaplyCommand}"/>
             </FlexLayout>
