@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Vazoo1123.Models;
 using Vazoo1123.ViewModels.Printing.Models;
 
@@ -127,7 +128,7 @@ namespace Vazoo1123.Service
             return profilear;
         }
 
-        public int OptionsGet(int ClientID, string Login, string Password)
+        public int OptionsGet(int ClientID, string Login, string Password, ref List<string[]> dropDwnChooseRemovePrinter)
         {
             string content = null;
             int profilear = 1;
@@ -147,7 +148,7 @@ namespace Vazoo1123.Service
                 }
                 else
                 {
-                    //ParseJson(content, out profilear, ref description, ref carriers);
+                    ParseJson(content, out profilear, ref dropDwnChooseRemovePrinter);
                 }
             }
             catch (Exception e)
@@ -155,6 +156,24 @@ namespace Vazoo1123.Service
                 return 2;
             }
             return profilear;
+        }
+
+        private void ParseJson(string jsonResponse, out int profile, ref List<string[]> dropDwnChooseRemovePrinter)
+        {
+            string stateResponse = null;
+            JObject objJsonRespons = JObject.Parse(jsonResponse);
+            stateResponse = objJsonRespons.First
+                .First.Value<string>("status");
+            if (stateResponse == "success")
+            {
+                dropDwnChooseRemovePrinter = JsonConvert.DeserializeObject<List<string[]>>(objJsonRespons
+                    .First.First.Value<object>("Options").ToString());
+                profile = 3;
+            }
+            else
+            {
+                profile = 2;
+            }
         }
 
         private void ParseJson1(string jsonResponse, out int profile, ref string description, ref string tracking)

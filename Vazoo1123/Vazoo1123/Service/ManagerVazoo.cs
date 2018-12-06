@@ -96,6 +96,21 @@ namespace Vazoo1123.Service
             return profilear;
         }
 
+        public int PrintingWork(string typeProfile, ref List<string[]> dropDwnChooseRemovePrinter, params string[] dataSuport)
+        {
+            printing = new Printing();
+            int Printing = 1;
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                if (typeProfile == "OptionsGet")
+                {
+                    Printing = printing.OptionsGet(Convert.ToInt32(dataSuport[0]), dataSuport[1], dataSuport[2], ref dropDwnChooseRemovePrinter);
+                }
+            }
+            printing = null;
+            return Printing;
+        }
+
         public int PrintingWork(string typeSuport, ref string description, CDimensions dim, Models.CAddressBase SourceAddr, Models.CAddressBase DestinationAddr,
             double WeightOZ, bool SignatureConfirmation, bool DeliveryConfirmation, bool NoValidate, decimal InsuranceAmount, ref List<Carrier> carriers, params string[] dataSuport)
         {

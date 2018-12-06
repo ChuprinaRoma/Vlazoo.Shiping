@@ -65,11 +65,11 @@
                                     <StackLayout>
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="Weight:" FontSize="12"  TextColor="#2c4dff" VerticalTextAlignment="Center"/>
-                                            <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightLBS}"/>
-                                            <Label Text="(lbs)"  FontSize="12" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
+                                            <local:CrossEntry x:Name="WLbsCrEntry" FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightLBS}" TextChanged="WOzCrEntry_TextChanged"/>
+                                            <Label Text="(lbs)" FontSize="12" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry x:Name="WOzCrEntry" FontSize="12"  Placeholder="Num" Text="{Binding WeightOZ}" TextChanged="WOzCrEntry_TextChanged"/>
                                             <Label Text="(oz)" FontSize="12" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
-                                            <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightKG}"/>
+                                            <local:CrossEntry x:Name="WkgCrEntry" FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightKG}" TextChanged="WOzCrEntry_TextChanged"/>
                                             <Label Text="(kg)" FontSize="12"  TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                                         </StackLayout>
                                         <StackLayout  Orientation="Horizontal">

@@ -1,19 +1,23 @@
 ﻿using Plugin.Settings;
+using Prism.Commands;
 using Prism.Mvvm;
-using System;
+using Rg.Plugins.Popup.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Vazoo1123.Service;
+using Vazoo1123.Views;
 
 namespace Vazoo1123.ViewModels
 {
     public class MenuMW : BindableBase
     {
+        public DelegateCommand ToHelpCommand { get; set; }
         public ManagerVazoo managerVazoo = null;
+
         public MenuMW()
         {
             managerVazoo = new ManagerVazoo();
-            NameProfile = CrossSettings.Current.GetValueOrDefault("userName", "");
+            ToHelpCommand = new DelegateCommand(ToHelp);
             InitMessages();
         }
 
@@ -107,6 +111,11 @@ namespace Vazoo1123.ViewModels
                     CheckAndSetCountMessage(totalResulte.ToString());
                 }
             });
+        }
+
+        private async void ToHelp()
+        {
+            await PopupNavigation.PushAsync(new ContexWindowHelp(), true);
         }
     }
 }

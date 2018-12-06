@@ -68,6 +68,30 @@ namespace Vazoo1123.Models
         public string Comments { get; set; }
         public List<Carrier> carriers = null;
         public string TypeShipeMethod { get; set; }
+        public double Oz
+        {
+            get
+            {
+                double tempOz = 0;
+                if ((WeightOZ != "" && WeightOZ != "0") && (WeightLBS != "" && WeightLBS != "0"))
+                {
+                    tempOz = Convert.ToDouble(WeightOZ) + (Convert.ToDouble(WeightLBS) * 16);
+                }
+                else if (WeightOZ != "" && WeightOZ != "0")
+                {
+                    tempOz = Convert.ToDouble(WeightOZ);
+                }
+                else if (WeightLBS != "" && WeightLBS != "0")
+                {
+                    tempOz = Convert.ToDouble(WeightLBS) * 16;
+                }
+                else if (WeightKG != "" && WeightKG != "0")
+                {
+                    tempOz = Convert.ToDouble(WeightKG) * 35.274;
+                }
+                return tempOz;
+            }
+        }
 
         public FullOrderSettings(OrderInfo orderInfo)
         {

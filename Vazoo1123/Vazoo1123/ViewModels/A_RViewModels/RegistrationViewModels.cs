@@ -67,7 +67,7 @@ namespace Vazoo1123.ViewModels
         {
             await PopupNavigation.PushAsync(new LoadPage(), true);
             string description = null;
-            int stateAuth = managerVazoo.A_RWork("RegistrationSt", ref description, userName, IdCompany, Password);
+            int stateAuth = managerVazoo.A_RWork("RegistrationSt", ref description, UserName, IdCompany, Password);
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)
             {

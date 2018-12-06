@@ -6,52 +6,39 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Master" WidthRequest="500">
             <ScrollView>
-                <FlexLayout x:Name="body" BackgroundColor="White"  Direction="Column">
+                <StackLayout x:Name="body" BackgroundColor="White"  SizeChanged="Body_SizeChanged">
                     <AbsoluteLayout HeightRequest="150">
-                        <Image Margin="5,10,5,10" Source="" BackgroundColor="White"
+                        <Image Margin="5,10,5,10" Source="head.png" BackgroundColor="White"
                                AbsoluteLayout.LayoutFlags="All"
                                AbsoluteLayout.LayoutBounds=".5,.5,1,1"/>
                         <StackLayout Orientation="Horizontal" Margin="10"
                                      AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
                                      AbsoluteLayout.LayoutBounds=".1,.9, .99, AutoSize">
-                            <Label x:Name="nameProfile" HorizontalOptions="Start" Text="{Binding NameProfile}"/>
-                            <Label Text="29.11.18" HorizontalOptions="End"/>
+                            <Label HorizontalOptions="Start" Text="User:" FontSize="18" TextColor="#2aa0ea"/>
+                            <Label x:Name="nameProfile" HorizontalOptions="Start" Text="{Binding NameProfile}" FontSize="18" TextColor="#2aa0ea"/>
+                            <Label Text="29.11.18" HorizontalTextAlignment="End"/>
                         </StackLayout>
                     </AbsoluteLayout>
                     <BoxView BackgroundColor="#2abdea" Margin="3" HeightRequest="2"/>
                     <StackLayout x:Name="mainMenu">
-                        <AbsoluteLayout HeightRequest="45">
-                            <AbsoluteLayout.GestureRecognizers>
+                        <StackLayout HeightRequest="45" Orientation="Horizontal">
+                            <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="ToDashbord" NumberOfTapsRequired="1" />
-                            </AbsoluteLayout.GestureRecognizers>
-                            <Image AbsoluteLayout.LayoutFlags="PositionProportional"
-                                   AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
-                                   Source="Dashbord.png"/>
-                            <Label Text="Paid and Awaiting" TextColor="#2aa0ea" FontSize="15"
-                                   AbsoluteLayout.LayoutFlags="PositionProportional"
-                                   AbsoluteLayout.LayoutBounds=".35, .5, AutoSize, AutoSize"/>
-                            <Label Text="{Binding CountDashbord}" FontSize="15" TextColor="Red"
-                                   AbsoluteLayout.LayoutFlags="PositionProportional"
-                                   AbsoluteLayout.LayoutBounds=".9, .5, AutoSize, AutoSize"/>
-                            <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
-                                     AbsoluteLayout.LayoutBounds=".1, 0.99, 1, 1" BackgroundColor="#8fcaf5"/>
-                        </AbsoluteLayout>
-                        <AbsoluteLayout HeightRequest="45">
-                            <AbsoluteLayout.GestureRecognizers>
+                            </StackLayout.GestureRecognizers>
+                            <Image Source="Dashbord.png" HorizontalOptions="Start" HeightRequest="25" WidthRequest="25" Margin="10,0,10,0"/>
+                            <Label Text="Paid and Awaiting" TextColor="#2aa0ea" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <Label x:Name="countDasbord" Text="{Binding CountDashbord}" FontSize="15" TextColor="Red" HorizontalTextAlignment="End" VerticalOptions="Center" />
+                        </StackLayout>
+                        <BoxView Margin="4, 0, 4, 0" BackgroundColor="#8fcaf5" HeightRequest="1"/>
+                        <StackLayout HeightRequest="45">
+                            <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="ToMessges" NumberOfTapsRequired="1" />
-                            </AbsoluteLayout.GestureRecognizers>
-                            <Image AbsoluteLayout.LayoutFlags="PositionProportional"
-                                   AbsoluteLayout.LayoutBounds=".05, .5, 25, 25"
-                                   Source="Mesage.png"/>
-                            <Label HorizontalOptions="CenterAndExpand" Text="Messages" TextColor="#2aa0ea" FontSize="15"
-                                   AbsoluteLayout.LayoutFlags="PositionProportional"
-                                   AbsoluteLayout.LayoutBounds=".233, .5, AutoSize, AutoSize"/>
-                            <Label Text="{Binding CountMesage}" FontSize="15" TextColor="Red"
-                                   AbsoluteLayout.LayoutFlags="PositionProportional"
-                                   AbsoluteLayout.LayoutBounds=".9, .5, AutoSize, AutoSize"/>
-                            <BoxView Margin="4, 0, 4, 0" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
-                                     AbsoluteLayout.LayoutBounds=".1, 0.99, 1, 1" BackgroundColor="#8fcaf5"/>
-                        </AbsoluteLayout>
+                            </StackLayout.GestureRecognizers>
+                            <Image Source="Mesage.png" WidthRequest="25" Margin="10,0,10,0"/>
+                            <Label Text="Messages" TextColor="#2aa0ea" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <Label Text="{Binding CountMesage}" FontSize="15" TextColor="Red"  HorizontalTextAlignment="End" VerticalOptions="Center" Margin="200, 0, 0, 0"/>
+                        </StackLayout>
+                        <BoxView Margin="4, 0, 4, 0" HeightRequest="1" BackgroundColor="#8fcaf5"/>
                         <AbsoluteLayout HeightRequest="45">
                             <AbsoluteLayout.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="ToPrintingShiping" NumberOfTapsRequired="1" />
@@ -118,7 +105,22 @@
                                      AbsoluteLayout.LayoutBounds=".1, 0.99, 1, 1" BackgroundColor="#8fcaf5"/>
                         </AbsoluteLayout>
                     </StackLayout>
-                </FlexLayout>
+                    <StackLayout Margin="10">
+                        <FlexLayout JustifyContent="Start">
+                            <Image Source="Yotube.png" HeightRequest="35" WidthRequest="35"/>
+                            <Image Source="fasbook.png" HeightRequest="35" WidthRequest="35"/>
+                            <Image Source="help.png" HeightRequest="35" WidthRequest="35">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ToHelpCommand}" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </FlexLayout>
+                        <Label Text="Alpha Omege USA inc. All Rights Reserved 2014-2019"
+                           AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                           AbsoluteLayout.LayoutBounds=".5, 1, .85, AutoSize" FontSize="13"
+                           TextColor="#2aa0ea"/>
+                    </StackLayout>
+                </StackLayout>
             </ScrollView>
         </ContentPage>
     </MasterDetailPage.Master>

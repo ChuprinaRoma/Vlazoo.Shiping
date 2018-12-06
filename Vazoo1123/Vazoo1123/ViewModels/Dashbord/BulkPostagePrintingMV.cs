@@ -124,7 +124,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 await Task.Run(() =>
                 {
                     stateAuth = managerVazoo.PrintingWork("Options", ref description, order.cDimensions, SourceAddr, order.cAddressBase,
-                           Convert.ToDouble(order.WeightOZ != "" ? order.WeightOZ.Replace(',', '.') : "0"), SignatureConfirmation,
+                           order.Oz, SignatureConfirmation,
                            DeliveryConfirmation, NoValidate, 0, ref order.carriers, email, idCompany, psw);
                 });
                 if (stateAuth == 3)
@@ -156,7 +156,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             await Task.Run(() =>
             {
                 stateAuth = managerVazoo.PrintingWork("Options", ref description, order.cDimensions, SourceAddr, order.cAddressBase,
-                       Convert.ToDouble(order.WeightOZ != "" ? order.WeightOZ.Replace(',', '.') : "0"), SignatureConfirmation,
+                       order.Oz, SignatureConfirmation,
                        DeliveryConfirmation, NoValidate, 0, ref order.carriers, email, idCompany, psw);
                 Task.Run(() =>
                 {
@@ -195,7 +195,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             await Task.Run(() =>
             {
                 int stateAuth = managerVazoo.PrintingWork("Options", ref description, fullOrderSettings.cDimensions, SourceAddr, fullOrderSettings.cAddressBase,
-                           Convert.ToDouble(fullOrderSettings.WeightOZ != "" ? fullOrderSettings.WeightOZ.Replace(',', '.') : "0"), SignatureConfirmation,
+                           fullOrderSettings.Oz, SignatureConfirmation,
                            DeliveryConfirmation, NoValidate, 0, ref fullOrderSettings.carriers, email, idCompany, psw);
                 if (stateAuth == 3)
                 {
@@ -251,7 +251,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                     shipingMethod = "FedEx_" + serlectProduct.Carrier.Code;
                 }
                 int stateAuth = managerVazoo.ShippingCreateOrder(Convert.ToInt32(idCompany), email, psw, serlectProduct.ID, serlectProduct.LabelsQty, shipingMethod, 
-                    serlectProduct.ShopperEmail, SignatureWaiver, Convert.ToDouble(serlectProduct.WeightOZ != "" ? serlectProduct.WeightOZ.Replace(',', '.') : "0"), serlectProduct.cDimensions, SourceAddr,
+                    serlectProduct.ShopperEmail, SignatureWaiver, serlectProduct.Oz, serlectProduct.cDimensions, SourceAddr,
                     serlectProduct.cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, true, "", "", "", 0, ref tracking, ref description);
                 if (stateAuth == 3)
                 {

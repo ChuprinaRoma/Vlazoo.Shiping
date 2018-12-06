@@ -79,11 +79,11 @@
                 </Frame>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label Text="Weight:" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
-                    <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightLBS}"/>
+                    <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightLBS}" TextChanged="OzInp_TextChanged"/>
                     <Label Text="(lbs)" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="ozInp" Placeholder="Num" Text="{Binding OrderInfo.WeightOZ}" TextChanged="OzInp_TextChanged"/>
                     <Label Text="(oz)" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
-                    <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightKG}"/>
+                    <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightKG}" TextChanged="OzInp_TextChanged"/>
                     <Label Text="(kg)" TextColor="#2c4dff" VerticalTextAlignment="Center"/>
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">

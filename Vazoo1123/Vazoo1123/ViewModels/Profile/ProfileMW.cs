@@ -3,6 +3,9 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Vazoo1123.Service;
 using Vazoo1123.Views.LoadViews;
 using Vazoo1123.Views.PageApp.Profile;
@@ -311,6 +314,22 @@ namespace Vazoo1123.ViewModels.Profile
 
         private string SesionID { get; set; }
 
+        private string[] nameDropDwnSourse = null;
+        public string[] NameDropDwnSourse
+        {
+            get => nameDropDwnSourse;
+            set => SetProperty(ref nameDropDwnSourse, value);
+        }
+
+        private string selectDropDwmSourse = "";
+        public string SelectDropDwmSourse
+        {
+            get => selectDropDwmSourse;
+            set => SetProperty(ref selectDropDwmSourse, value);
+        }
+
+        public List<string[]> DropDwnChooseRemovePrinters { get; set; }
+
         private async void Init()
         {
             string description = null;
@@ -320,6 +339,10 @@ namespace Vazoo1123.ViewModels.Profile
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
             string[] _xzType = managerVazoo.PofiletWork("profileGet", ref description, null, idCompany, email, psw);
             int stateAuth = Convert.ToInt32(_xzType[0]);
+            if(stateAuth == 3)
+            {
+                stateAuth = InitDropDwnChoseRemotePrinter();
+            }
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)
             {
@@ -352,6 +375,26 @@ namespace Vazoo1123.ViewModels.Profile
             {
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
             }
+        }
+
+        private int InitDropDwnChoseRemotePrinter()
+        {
+            List<string[]> dropDwnChooseRemovePrinters = null;
+            string description = null;
+            string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+            int stateAuth = managerVazoo.PrintingWork("OptionsGet", ref dropDwnChooseRemovePrinters, idCompany, email, psw);
+            Task.Run(() =>
+            {
+                DropDwnChooseRemovePrinters = dropDwnChooseRemovePrinters;
+                SelectDropDwmSourse = CrossSettings.Current.GetValueOrDefault("printer", "Default printer");
+                if (stateAuth == 3)
+                {
+                    NameDropDwnSourse = dropDwnChooseRemovePrinters.Select(d => d[0]).ToArray();
+                }
+            });
+            return stateAuth;
         }
 
         private async void Update()

@@ -25,7 +25,7 @@
                        FontSize="23" TextColor="#2aa0ea"/>
                     <local:CrossEntry Placeholder="Email" Keyboard="Email"
                            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
-                           AbsoluteLayout.LayoutBounds=".5, .1, .9, 45" Text="{Binding Email}"/>
+                           AbsoluteLayout.LayoutBounds=".5, .1, .9, 45" Text="{Binding UserName}"/>
                     <local:CrossEntry Placeholder="Company Name"
                        AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
                        AbsoluteLayout.LayoutBounds=".5, .2, .9, 45"

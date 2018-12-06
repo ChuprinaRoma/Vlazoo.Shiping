@@ -40,6 +40,7 @@ namespace Vazoo1123.ViewModels.Profile
             get => postage;
             set => SetProperty(ref postage, value);
         }
+        
 
         private async void Init()
         {

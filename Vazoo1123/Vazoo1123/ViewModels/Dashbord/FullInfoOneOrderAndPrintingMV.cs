@@ -9,7 +9,6 @@ using Vazoo1123.Models;
 using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Printing.Models;
 using Vazoo1123.Views.LoadViews;
-using Vazoo1123.Views.Printing.ModalViews;
 using Xamarin.Forms;
 using static Vazoo1123.ViewModels.Dashbord.DashbordMW;
 
@@ -24,8 +23,7 @@ namespace Vazoo1123.ViewModels.Dashbord
         private List<Carrier> carriers = null;
         public INavigation Navigation { get; set; }
         InitDasbordDelegate initDasbord;
-
-
+        
         public FullInfoOneOrderAndPrintingMV(OrderInfo orderInfo, ManagerVazoo managerVazoo, InitDasbordDelegate initDasbord)
         {
             carriers = new List<Carrier>();
@@ -186,6 +184,31 @@ namespace Vazoo1123.ViewModels.Dashbord
             set => SetProperty(ref isValid, value);
         }
 
+        public double Oz
+        {
+            get
+            {
+                double tempOz = 0;
+                if ((OrderInfo.WeightOZ != "" && OrderInfo.WeightOZ != "0") && (OrderInfo.WeightLBS != "" && OrderInfo.WeightLBS != "0"))
+                {
+                    tempOz = Convert.ToDouble(OrderInfo.WeightOZ) + (Convert.ToDouble(OrderInfo.WeightLBS) * 16);
+                }
+                else if (OrderInfo.WeightOZ != "" && OrderInfo.WeightOZ != "0")
+                {
+                    tempOz = Convert.ToDouble(OrderInfo.WeightOZ);
+                }
+                else if (OrderInfo.WeightLBS != "" && OrderInfo.WeightLBS != "0")
+                {
+                    tempOz = Convert.ToDouble(OrderInfo.WeightLBS) * 16;
+                }
+                else if (OrderInfo.WeightKG != "" && OrderInfo.WeightKG != "0")
+                {
+                    tempOz = Convert.ToDouble(OrderInfo.WeightKG) * 35.274;
+                }
+                return tempOz;
+            }
+        }
+
         private void InitForFullInfoOrder(CAddressBase cAddressBase)
         {
             Name = cAddressBase.Name;
@@ -209,7 +232,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             if (stateAuth == 3)
             {
                 stateAuth = managerVazoo.PrintingWork("Options", ref description, cDimensions, SourceAddr, cAddressBase,
-                    Convert.ToDouble(OrderInfo.WeightOZ != "" ? OrderInfo.WeightOZ.Replace(',', '.') : "0"), SignatureConfirmation, DeliveryConfirmation, NoValidate, 0, ref carriers, email, idCompany, psw);
+                   Oz, SignatureConfirmation, DeliveryConfirmation, NoValidate, 0, ref carriers, email, idCompany, psw);
             }
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)
@@ -328,9 +351,8 @@ namespace Vazoo1123.ViewModels.Dashbord
             {
                 shipingMethod = "FedEx_" + carrier.Code;
             }
-            int stateAuth = managerVazoo.ShippingCreateOrder(Convert.ToInt32(idCompany), email, psw, OrderInfo.ID, LabelsQty, shipingMethod, OrderInfo.ShopperEmail, SignatureWaiver, 
-                Convert.ToDouble(OrderInfo.WeightOZ != "" ? OrderInfo.WeightOZ.Replace(',', '.') : "0"), cDimensions, SourceAddr,
-                cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, true, "", "", "128", 0, ref tracking, ref description);
+            int stateAuth = managerVazoo.ShippingCreateOrder(Convert.ToInt32(idCompany), email, psw, OrderInfo.ID, LabelsQty, shipingMethod, OrderInfo.ShopperEmail, SignatureWaiver,
+                Oz, cDimensions, SourceAddr, cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, true, "", "", "128", 0, ref tracking, ref description);
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)
             {

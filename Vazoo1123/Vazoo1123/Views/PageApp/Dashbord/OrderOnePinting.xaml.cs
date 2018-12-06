@@ -33,8 +33,8 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                 fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsW != "" && fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsW != "0" &&
                 fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsL != "" && fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsL != "0")
             {
-                double UPS = (Convert.ToDouble(fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsH.Replace('.', ',')) * Convert.ToDouble(fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsW.Replace('.', ',')) * Convert.ToDouble(fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsL.Replace('.', ','))) / 166;
-                double USPS = (Convert.ToDouble(fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsH.Replace('.', ',')) * Convert.ToDouble(fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsW.Replace('.', ',')) * Convert.ToDouble(fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsL.Replace('.', ','))) / 194;
+                double UPS = Convert.ToDouble(fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsH) * Convert.ToDouble(fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsW) * Convert.ToDouble(fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsL) / 166;
+                double USPS = Convert.ToDouble(fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsH) * Convert.ToDouble(fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsW) * Convert.ToDouble(fullInfoOneOrderAndPrintingMV.OrderInfo.DimensionsL) / 194;
 
                 fullInfoOneOrderAndPrintingMV.StrCalc = $"(UPS: {UPS.ToString("0.00")}, USPS: {USPS.ToString("0.00")})";
             }
@@ -65,6 +65,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
         private void Button_Clicked(object sender, EventArgs e)
         {
             fullInfoOneOrderAndPrintingMV.TypeShipeMethod = "USPS";
+            ValidWeight();
             fullInfoOneOrderAndPrintingMV.DisplayShippingOptions();
         }
 
@@ -100,7 +101,27 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             {
                 fullInfoOneOrderAndPrintingMV.IsValid = false;
             }
+            if (((Entry)sender).Text == "")
+            {
+                ((Entry)sender).Text = "0";
+            }
             Init();
+        }
+
+        private void ValidWeight()
+        {
+            if (fullInfoOneOrderAndPrintingMV.OrderInfo.WeightOZ != "0" && fullInfoOneOrderAndPrintingMV.orderInfo.WeightLBS != "0")
+            {
+                fullInfoOneOrderAndPrintingMV.OrderInfo.WeightKG = "0";
+            }
+            else if (fullInfoOneOrderAndPrintingMV.OrderInfo.WeightOZ != "0")
+            {
+                fullInfoOneOrderAndPrintingMV.OrderInfo.WeightKG = "0";
+            }
+            else if (fullInfoOneOrderAndPrintingMV.OrderInfo.WeightLBS != "0")
+            {
+                fullInfoOneOrderAndPrintingMV.OrderInfo.WeightKG = "0";
+            }
         }
 
         private void OzInp_TextChanged(object sender, TextChangedEventArgs e)
@@ -108,6 +129,10 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             if(e.OldTextValue != null)
             {
                 fullInfoOneOrderAndPrintingMV.IsValid = false;
+            }
+            if (((Entry)sender).Text == "")
+            {
+                ((Entry)sender).Text = "0";
             }
         }
     }

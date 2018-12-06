@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.InputKit.Shared.Utils;
+using Plugin.Settings;
+using System;
 using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Profile;
 using Xamarin.Forms;
@@ -32,5 +34,13 @@ namespace Vazoo1123.Views.PageApp
                 body.Orientation = StackOrientation.Horizontal;
             }
         }
-	}
+
+        private void Dropdown_SelectedItemChanged(object sender, SelectedItemChangedArgs e)
+        {
+            if (e.NewItemIndex != -1 && e.NewItem != null && e.NewItem.ToString() != "")
+            {
+                CrossSettings.Current.AddOrUpdateValue("printer", $"{profileMW.DropDwnChooseRemovePrinters[e.NewItemIndex][0]}, {profileMW.DropDwnChooseRemovePrinters[e.NewItemIndex][1]}");
+            }
+        }
+    }
 }

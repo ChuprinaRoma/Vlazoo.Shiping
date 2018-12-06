@@ -1,5 +1,6 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
+using Vazoo1123.NewElement;
 using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Printing;
 using Vazoo1123.Views.ModalView;
@@ -60,7 +61,11 @@ namespace Vazoo1123.Views.Printing
         
         private void CrossEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(printingShipingLabeMW.DHeigh != 0 && printingShipingLabeMW.DWidth != 0 && printingShipingLabeMW.DLength != 0)
+            if (((Entry)sender).Text == "")
+            {
+                ((CrossEntry)sender).Text = "0";
+            }
+            if (printingShipingLabeMW.DHeigh != 0 && printingShipingLabeMW.DWidth != 0 && printingShipingLabeMW.DLength != 0)
             {
                 double UPS = (printingShipingLabeMW.DHeigh * printingShipingLabeMW.DWidth * printingShipingLabeMW.DLength) / 166;
                 double USPS = (printingShipingLabeMW.DHeigh * printingShipingLabeMW.DWidth * printingShipingLabeMW.DLength) / 194;
@@ -75,6 +80,23 @@ namespace Vazoo1123.Views.Printing
         private void Button_Clicked(object sender, EventArgs e)
         {
             ValidOption();
+            ValidWeight();
+        }
+
+        private void ValidWeight()
+        {
+            if(printingShipingLabeMW.WeigthLOz != 0 && printingShipingLabeMW.WeigthLbs != 0)
+            {
+                printingShipingLabeMW.WeigthLKg = 0;
+            }
+            else if(printingShipingLabeMW.WeigthLOz != 0)
+            {
+                printingShipingLabeMW.WeigthLKg = 0;
+            }
+            else if(printingShipingLabeMW.WeigthLbs != 0)
+            {
+                printingShipingLabeMW.WeigthLKg = 0;
+            }
         }
 
         private void ValidOption()
@@ -106,14 +128,18 @@ namespace Vazoo1123.Views.Printing
                 fillInSender.BorderWidth = 1;
                 fillInSender.BorderColor = Color.Red;
             }
-            if (printingShipingLabeMW.WeigthLOz != 0)
+            if (printingShipingLabeMW.Oz != 0)
             {
                 isWeigthLOz = true;
                 ozInp.TextColor = Color.FromHex("#2aa0ea");
+                lbsInp.TextColor = Color.FromHex("#2aa0ea");
+                kgInp.TextColor = Color.FromHex("#2aa0ea");
             }
             else
             {
                 ozInp.TextColor = Color.Red;
+                lbsInp.TextColor = Color.Red;
+                kgInp.TextColor = Color.Red;
                 isWeigthLOz = false;
             }
             if (isToAddress && isFromAddress && isWeigthLOz)
@@ -135,6 +161,14 @@ namespace Vazoo1123.Views.Printing
             {
                 DSOBtn.BorderColor = Color.Red;
                 DSOBtn.BorderWidth = 1;
+            }
+        }
+
+        private void KgInp_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (((Entry)sender).Text == "")
+            {
+                ((CrossEntry)sender).Text = "0";
             }
         }
     }

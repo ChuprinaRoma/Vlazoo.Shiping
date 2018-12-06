@@ -34,7 +34,6 @@
                             </FlexLayout>
                         </ScrollView>
                     </Frame>
-                    <Button Text="Choose Remote printer" TextColor="White" BackgroundColor="#2aa0ea" Margin="2"/>
                 </StackLayout>
             </FlexLayout>
         </ScrollView>

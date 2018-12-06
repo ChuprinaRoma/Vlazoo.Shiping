@@ -45,6 +45,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             {
                 await PopupNavigation.PushAsync(new Error("Carrer does not exist or did not have time to boot"), true);
             }
+            ValidWeight(itemId, recordId);
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -54,18 +55,22 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             string itemId = ((Image)sender).FindByName<Label>("itemId").Text;
             string recordId = ((Image)sender).FindByName<Label>("recordId").Text;
             var WOzCrEntry = ((Image)sender).FindByName<CrossEntry>("WOzCrEntry");
+            var WLbsCrEntry = ((Image)sender).FindByName<CrossEntry>("WLbsCrEntry");
+            var WkgCrEntry = ((Image)sender).FindByName<CrossEntry>("WkgCrEntry");
             FullOrderSettings fullOrderSettings = bulkPostagePrintingMV.SelectProduct
                 .Find(s => s.EBayItemID == itemId && s.RecordNumber == recordId);
-            if (fullOrderSettings.WeightOZ != 0.ToString() && fullOrderSettings.WeightOZ != "")
+            if (fullOrderSettings.Oz != 0)
             {
                 WOzCrEntry.TextColor = Color.FromHex("#2c4dff");
-                WOzCrEntry.PlaceholderColor = Color.FromHex("#2c4dff");
+                WLbsCrEntry.TextColor = Color.FromHex("#2c4dff");
+                WkgCrEntry.TextColor = Color.FromHex("#2c4dff");
                 bulkPostagePrintingMV.UpdateOneOrder(itemId, recordId);
             }
             else
             {
-                WOzCrEntry.PlaceholderColor = Color.Red;
                 WOzCrEntry.TextColor = Color.Red;
+                WLbsCrEntry.TextColor = Color.Red;
+                WkgCrEntry.TextColor = Color.Red;
             }
             await stackLayout.FadeTo(1, 250);
         }
@@ -99,9 +104,9 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             string recordId = ((CrossEntry)sender).FindByName<Label>("recordId").Text;
             FullOrderSettings fullOrderSettings = bulkPostagePrintingMV.SelectProduct
                 .Find(s => s.EBayItemID == itemId && s.RecordNumber == recordId);
-            double DHeigh = Convert.ToDouble(fullOrderSettings.DimensionsH != "" ? fullOrderSettings.DimensionsH.Replace('.', ',') : "0");
-            double DWidth = Convert.ToDouble(fullOrderSettings.DimensionsW != "" ? fullOrderSettings.DimensionsW.Replace('.', ',') : "0");
-            double DLength = Convert.ToDouble(fullOrderSettings.DimensionsL != "" ? fullOrderSettings.DimensionsL.Replace('.', ',') : "0");
+            double DHeigh = Convert.ToDouble(fullOrderSettings.DimensionsH != "" ? fullOrderSettings.DimensionsH : "0");
+            double DWidth = Convert.ToDouble(fullOrderSettings.DimensionsW != "" ? fullOrderSettings.DimensionsW : "0");
+            double DLength = Convert.ToDouble(fullOrderSettings.DimensionsL != "" ? fullOrderSettings.DimensionsL : "0");
             if (DHeigh != 0 && DWidth != 0 && DLength != 0)
             {
                 double UPS = (DHeigh * DWidth * DLength) / 166;
@@ -114,6 +119,10 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             {
                 bulkPostagePrintingMV.SelectProduct
                 .Find(s => s.EBayItemID == itemId && s.RecordNumber == recordId).StrCalc = "";
+            }
+            if (((Entry)sender).Text == "")
+            {
+                ((Entry)sender).Text = "0";
             }
         }
 
@@ -130,6 +139,28 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             if (e.OldTextValue != null)
             {
                 bulkPostagePrintingMV.IsValid = false;
+            }
+            if (((Entry)sender).Text == "")
+            {
+                ((Entry)sender).Text = "0";
+            }
+        }
+
+        private void ValidWeight(string itemId, string recordId)
+        {
+            FullOrderSettings fullOrderSettings = bulkPostagePrintingMV.SelectProduct
+                .Find(s => s.EBayItemID == itemId && s.RecordNumber == recordId);
+            if (fullOrderSettings.WeightOZ != "0" && fullOrderSettings.WeightLBS != "0")
+            {
+                fullOrderSettings.WeightKG = "0";
+            }
+            else if (fullOrderSettings.WeightOZ != "0")
+            {
+                fullOrderSettings.WeightKG = "0";
+            }
+            else if (fullOrderSettings.WeightLBS != "0")
+            {
+                fullOrderSettings.WeightKG = "0";
             }
         }
     }

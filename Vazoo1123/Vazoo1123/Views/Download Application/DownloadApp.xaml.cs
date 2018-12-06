@@ -16,5 +16,10 @@ namespace Vazoo1123.Views.Download_Application
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://vlazoo.com/Attachments/PrintLabels.zip"));
+        }
+    }
 }

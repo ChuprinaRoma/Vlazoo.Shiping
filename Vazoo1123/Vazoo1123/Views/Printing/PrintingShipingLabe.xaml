@@ -34,14 +34,14 @@
                     <local:CrossEntry Placeholder="N" Keyboard="Numeric" Text="{Binding LabelsQty}"/>
                 </StackLayout>
                 <BoxView HeightRequest="1" Margin="2" BackgroundColor="#2aa0ea"/>
-                <local:CrossEdit Placeholder="Item Description" HeightRequest="70" FontSize="13" Text="{Binding ItemDescription}"/>
+                <local:CrossEdit Placeholder="Item Description" HeightRequest="70" FontSize="13" Text="{Binding ItemDescription}" />
                 <StackLayout FlexLayout.AlignSelf="Center" Orientation="Horizontal">
                     <Label Text="Weight:" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                    <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding WeigthLbs}"/>
+                    <local:CrossEntry x:Name="lbsInp" Keyboard="Numeric" Placeholder="Num" Text="{Binding WeigthLbs}" TextChanged="KgInp_TextChanged"/>
                     <Label Text="(lbs)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                    <local:CrossEntry x:Name="ozInp" Placeholder="Num" Text="{Binding WeigthLOz}"/>
+                    <local:CrossEntry x:Name="ozInp" Placeholder="Num" Text="{Binding WeigthLOz}" TextChanged="KgInp_TextChanged"/>
                     <Label Text="(oz)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                    <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding WeigthLKg}"/>
+                    <local:CrossEntry x:Name="kgInp" Keyboard="Numeric" Placeholder="Num" Text="{Binding WeigthLKg}" TextChanged="KgInp_TextChanged"/>
                     <Label Text="(kg)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                 </StackLayout>
                 <StackLayout FlexLayout.AlignSelf="Center" Orientation="Horizontal">
@@ -53,7 +53,6 @@
                     <local:CrossEntry x:Name="DHeigh" Keyboard="Numeric" Placeholder="Num" Text="{Binding DHeigh}" TextChanged="CrossEntry_TextChanged"/>
                 </StackLayout>
                 <Label Text="{Binding StrCalc}" TextColor="#2aa0ea" VerticalTextAlignment="Center" FlexLayout.AlignSelf="Center"/>
-
                 <Frame BorderColor="#2aa0ea">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
@@ -84,11 +83,13 @@
                         <Button FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Text="Display shipping options"
                                 Clicked="Button_Clicked" x:Name="DSOBtn"/>
                         <Frame Padding="5" BorderColor="#2aa0ea" CornerRadius="10">
-                            <FlexLayout Direction="Row" Wrap="Wrap">
+                            <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Carrier.Title}" TextColor="#2aa0ea"/>
-                                <Label Text="{Binding Carrier.Price}" TextColor="#2aa0ea"/>
-                                <Label Text="$" TextColor="#2aa0ea"/>
-                            </FlexLayout>
+                                <FlexLayout>
+                                    <Label Text="$" TextColor="#2aa0ea"/>
+                                    <Label Text="{Binding Carrier.Price}" TextColor="#2aa0ea"/>
+                                </FlexLayout>
+                            </StackLayout>
                         </Frame>
                         <StackLayout Orientation="Horizontal">
                             <local:CrossEntry Placeholder="50.0" Keyboard="Numeric"/>

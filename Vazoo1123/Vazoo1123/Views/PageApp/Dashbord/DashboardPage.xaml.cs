@@ -105,19 +105,19 @@ namespace Vazoo1123.Views.PageApp
 
         private void OrderList_ItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
-            Task.Run(() =>
+            bool isLoad = true;
+             Task.Run( async() =>
             {
                 if ((((OrderInfo)e.Item).EBayUserID == dashbordMW.Product[dashbordMW.Product.Count - 21].EBayUserID
                 || ((OrderInfo)e.Item).EBayUserID == dashbordMW.Product[dashbordMW.Product.Count - 11].EBayUserID)
                 && dashbordMW.Product.Count >= 40)
                 {
+                    if (dashbordMW.managerVazoo.orderInfos.Count-40 <= dashbordMW.Product.Count)
+                    {
+                        await Task.Run(() => dashbordMW.GetOrder(false));
+                    }
                     Device.StartTimer(TimeSpan.FromSeconds(1),() =>
                     {
-                        if (dashbordMW.managerVazoo.orderInfos.Count - 40 <= dashbordMW.Product.Count
-                       && dashbordMW.managerVazoo.orderInfos.Count % 100 == 0)
-                        {
-                            Task.Run(() => dashbordMW.GetOrder(false));
-                        }
                         int countPageAddP = (dashbordMW.Product.Count / 10);
                         int pageOrMV = dashbordMW.managerVazoo.orderInfos.Count / 10;
                         int pageP = dashbordMW.Product.Count / 10;

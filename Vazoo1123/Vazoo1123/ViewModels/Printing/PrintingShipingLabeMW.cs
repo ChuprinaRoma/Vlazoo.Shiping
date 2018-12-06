@@ -257,11 +257,11 @@ namespace Vazoo1123.ViewModels.Printing
         }
         /////////////////////////////////////////////////////
         private double weigthLbs;
-        //public double WeigthLbs
-        //{
-        //    get { return WeigthLbs; }
-        //    set { SetProperty(ref weigthLbs, value); }
-        //}
+        public double WeigthLbs
+        {
+            get { return weigthLbs; }
+            set { SetProperty(ref weigthLbs, value); }
+        }
 
         private double weigthLOz = 0;
         public double WeigthLOz
@@ -276,6 +276,33 @@ namespace Vazoo1123.ViewModels.Printing
             get { return weigtKg; }
             set { SetProperty(ref weigtKg, value); }
         }
+        
+        public double Oz
+        {
+            get
+            {
+                double tempWeigth = 0;
+                if(WeigthLOz != 0 && WeigthLbs != 0)
+                {
+                    tempWeigth = WeigthLOz + (WeigthLbs * 16);
+                }
+                else if(WeigthLOz != 0)
+                {
+                    tempWeigth = WeigthLOz;
+                }
+                else if(WeigthLbs != 0)
+                {
+                    tempWeigth = WeigthLbs * 16;
+                }
+                else if (WeigthLKg != 0)
+                {
+                    tempWeigth = WeigthLKg * 35.274;
+                }
+                return tempWeigth;
+            }
+        }
+        
+
         /////////////////////////////////////////////////////
         private double dLength = 0;
         public double DLength
@@ -400,7 +427,7 @@ namespace Vazoo1123.ViewModels.Printing
 
         public string TypeShipeMethod { get; set; }
 
-        private void InitToAddress()
+        private async void InitToAddress()
         {
             IsValid = false;
             if ((ToAddress1 != "" && ToAddress1 != null)  && (ToCity != "" && ToCity != null) && (ToState != "" && ToState != null) 
@@ -425,7 +452,7 @@ namespace Vazoo1123.ViewModels.Printing
             return isToAddress;
         }
 
-        private void InitFromAddress()
+        private async void InitFromAddress()
         {
             IsValid = false;
             Carrier = null;
@@ -497,11 +524,16 @@ namespace Vazoo1123.ViewModels.Printing
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
-            if (Carrier == null)
+            
+            if(Oz != 0)
+            {
+                stateAuth = 5;
+            }
+            else if (Carrier == null)
             {
                 stateAuth = managerVazoo.PrintingWork("Options", ref description, cDimensions, SourceAddr, cAddressBase,
-                    WeigthLOz, SignatureConfirmation, DeliveryConfirmation, NoValidate, InsuranceAmount, ref carriers, email, idCompany, psw);
-            }
+                    Oz, SignatureConfirmation, DeliveryConfirmation, NoValidate, InsuranceAmount, ref carriers, email, idCompany, psw);
+            }   
             else
             {
                 stateAuth = 3;
@@ -530,13 +562,17 @@ namespace Vazoo1123.ViewModels.Printing
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
                 IsValid = false;
             }
+            else if(stateAuth == 5)
+            {
+
+            }
         }
 
         public async void ShippingCreate()
         {
             await PopupNavigation.PushAsync(new LoadPage());
             string description = null;
-            string tracking = null; ;
+            string tracking = null;
             string shipingMethod = null;
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
@@ -555,7 +591,7 @@ namespace Vazoo1123.ViewModels.Printing
             {
                  shipingMethod = "FedEx_" + carrier.Code;
             }
-            int stateAuth = managerVazoo.ShippingCreate(Convert.ToInt32(idCompany), email, psw, LabelsQty, shipingMethod, ToEmaile, SignatureWaiver, WeigthLOz, cDimensions, SourceAddr, 
+            int stateAuth = managerVazoo.ShippingCreate(Convert.ToInt32(idCompany), email, psw, LabelsQty, shipingMethod, ToEmaile, SignatureWaiver, Oz, cDimensions, SourceAddr, 
                 cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, ToNotification, OrderNumber, ItemDescription, "", InsuranceAmount, ref tracking, ref description);
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)
