@@ -18,8 +18,7 @@ namespace Vazoo1123.Views.Menu
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MenuDetalePage : MasterDetailPage
     {
-        private AbsoluteLayout BtnFocusInMenu { get; set; }
-        private StackLayout BtnFocusInMenu1 { get; set; }
+        private StackLayout BtnFocusInMenu { get; set; }
         MenuMW menuMW = null;
         private bool isMenu = true;
         public MenuDetalePage()
@@ -27,14 +26,14 @@ namespace Vazoo1123.Views.Menu
             InitializeComponent();
             menuMW = new MenuMW();
             Detail = new NavigationPage(new DashboardPage(menuMW.managerVazoo, this));
-            BtnFocusInMenu = new AbsoluteLayout();
+            BtnFocusInMenu = new StackLayout();
             BindingContext = menuMW;
         }
 
         private void AnimateBtn(object s, EventArgs e)
         {
             BtnFocusInMenu.BackgroundColor = Color.White;
-            BtnFocusInMenu1 = (StackLayout)s;
+            BtnFocusInMenu = (StackLayout)s;
             BtnFocusInMenu.BackgroundColor = Color.Azure;
         }
 
@@ -103,7 +102,8 @@ namespace Vazoo1123.Views.Menu
             double height = Application.Current.MainPage.Height;
             double Width = mainMenu.Width;
             body.HeightRequest = height - 20;
-            countDasbord.Margin = new Thickness(mainMenu.Height - 108, 0, 0, 0);
+            countDasbord.Margin = new Thickness(mainMenu.Width - 216, 0, 0, 0);
+            countMessage.Margin = new Thickness(mainMenu.Width - 161, 0, 0, 0);
         }
     }
 }
