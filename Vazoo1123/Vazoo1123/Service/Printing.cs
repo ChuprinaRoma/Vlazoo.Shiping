@@ -48,6 +48,36 @@ namespace Vazoo1123.Service
             return profilear;
         }
 
+        public int ShippingEstimateOrderint (int ClientID, string Login, string Password, int OrderID, ref List<Carrier> carriers, ref string description)
+        {
+            string content = null;
+            int profilear;
+            try
+            {
+                string body = "{" + $"'ClientID':'{ClientID}','Login':'{Login}','Password':'{Password}','OrderID':'{OrderID}'" + "}";
+                RestClient client = new RestClient("https://vlazoo.com");
+                RestRequest request = new RestRequest("/WS/Mobile.asmx/ShippingEstimateOrder", Method.POST);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                content = response.Content;
+                if (content == "" || response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return 4;
+                }
+                else
+                {
+                    ParseJson(content, out profilear, ref description, ref carriers);
+                }
+            }
+            catch (Exception e)
+            {
+                return 2;
+            }
+            return profilear;
+        }
+
         public int ShippingCreate(int ClientID, string Login, string Password, int LabelsQty, string ShippingMethod, string ShipToEmail, bool SignatureWaiver,
             double WeightOZ, CDimensions dim, Models.CAddressBase SourceAddr, Models.CAddressBase DestinationAddr, bool DeliveryConfirmation, bool SignatureConfirmation, bool NoValidate,
             bool EmailNotification, string OrderNumber, string ItemDescription, string PrinterID, decimal InsuranceAmount, ref string tracking, ref string description)

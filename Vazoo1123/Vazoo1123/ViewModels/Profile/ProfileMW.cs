@@ -388,7 +388,7 @@ namespace Vazoo1123.ViewModels.Profile
             Task.Run(() =>
             {
                 DropDwnChooseRemovePrinters = dropDwnChooseRemovePrinters;
-                SelectDropDwmSourse = CrossSettings.Current.GetValueOrDefault("printer", "Default printer");
+                SelectDropDwmSourse = CrossSettings.Current.GetValueOrDefault("printer", "");
                 if (stateAuth == 3)
                 {
                     NameDropDwnSourse = dropDwnChooseRemovePrinters.Select(d => d[0]).ToArray();

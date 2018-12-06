@@ -19,6 +19,7 @@ namespace Vazoo1123.Service.settings
             CrossSettings.Current.Remove("idCompany");
             CrossSettings.Current.Remove("userName");
             CrossSettings.Current.Remove("psw");
+            CrossSettings.Current.Remove("printer");
         }
 
         public void Authorization()

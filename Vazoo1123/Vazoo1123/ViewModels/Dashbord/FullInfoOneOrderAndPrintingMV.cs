@@ -37,6 +37,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 TypeShipeMethod = Carrier.CompanyName;
             }
             InitForFullInfoOrder(orderInfo.ShipToAddress);
+            InitDisplayShippingOptions();
             InitForDisplayShippingOptions();
             
         }
@@ -221,6 +222,40 @@ namespace Vazoo1123.ViewModels.Dashbord
             Comments = cAddressBase.Comments;
         }
 
+        public async void InitDisplayShippingOptions()
+        {
+            await PopupNavigation.PushAsync(new LoadPage());
+            string description = null;
+            string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+            int stateAuth = 0;
+                stateAuth = managerVazoo.ShippingEstimateOrderint("Options", OrderInfo.ID, ref description, ref carriers, email, idCompany, psw);
+            await PopupNavigation.PopAllAsync();
+            if (stateAuth == 3)
+            {
+                CarriersUSPS = new List<Carrier>(carriers.FindAll(c => c.Company == 1));
+                CarriersUPS = new List<Carrier>(carriers.FindAll(c => c.Company == 2));
+                CarriersFedEx = new List<Carrier>(carriers.FindAll(c => c.Company == 3));
+                IsValid = true;
+            }
+            else if (stateAuth == 2)
+            {
+                await PopupNavigation.PushAsync(new Error(description), true);
+                IsValid = false;
+            }
+            else if (stateAuth == 1)
+            {
+                await PopupNavigation.PushAsync(new Error(description), true);
+                IsValid = false;
+            }
+            else if (stateAuth == 4)
+            {
+                await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
+                IsValid = false;
+            }
+        }
+
         public async void DisplayShippingOptions()
         {
             await PopupNavigation.PushAsync(new LoadPage());
@@ -228,11 +263,19 @@ namespace Vazoo1123.ViewModels.Dashbord
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
-            int stateAuth = await InitForDisplayShippingOptions();
-            if (stateAuth == 3)
+            int stateAuth = 0;
+            if (((CarriersFedEx != null && CarriersFedEx.Count != 0) || (CarriersUPS != null && CarriersUPS.Count != 0) || (CarriersUPS != null && CarriersUPS.Count != 0)) && !IsValid)
             {
-                stateAuth = managerVazoo.PrintingWork("Options", ref description, cDimensions, SourceAddr, cAddressBase,
-                   Oz, SignatureConfirmation, DeliveryConfirmation, NoValidate, 0, ref carriers, email, idCompany, psw);
+                stateAuth = await InitForDisplayShippingOptions();
+                if (stateAuth == 3)
+                {
+                    stateAuth = managerVazoo.PrintingWork("Options", ref description, cDimensions, SourceAddr, cAddressBase,
+                       Oz, SignatureConfirmation, DeliveryConfirmation, NoValidate, 0, ref carriers, email, idCompany, psw);
+                }
+            }
+            else
+            {
+                stateAuth = 3;
             }
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)

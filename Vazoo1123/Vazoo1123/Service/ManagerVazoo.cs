@@ -128,6 +128,21 @@ namespace Vazoo1123.Service
             return Printing;
         }
 
+        public int ShippingEstimateOrderint(string typeSuport, int OrderID, ref string description, ref List<Carrier> carriers, params string[] dataSuport)
+        {
+            printing = new Printing();
+            int Printing = 1;
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                if (typeSuport == "Options")
+                {
+                    Printing = printing.ShippingEstimateOrderint(Convert.ToInt32(dataSuport[1]), dataSuport[0], dataSuport[2], OrderID, ref carriers, ref description);
+                }
+            }
+            printing = null;
+            return Printing;
+        }
+
         public int ShippingCreate(int ClientID, string Login, string Password, int LabelsQty, string ShippingMethod, string ShipToEmail, bool SignatureWaiver,
             double WeightOZ, CDimensions dim, Models.CAddressBase SourceAddr, Models.CAddressBase DestinationAddr, bool DeliveryConfirmation, bool SignatureConfirmation, bool NoValidate,
             bool EmailNotification, string OrderNumber, string ItemDescription, string PrinterID, decimal InsuranceAmount, ref string tracking, ref string description)

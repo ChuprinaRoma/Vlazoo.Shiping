@@ -123,9 +123,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 int stateAuth = 0;
                 await Task.Run(() =>
                 {
-                    stateAuth = managerVazoo.PrintingWork("Options", ref description, order.cDimensions, SourceAddr, order.cAddressBase,
-                           order.Oz, SignatureConfirmation,
-                           DeliveryConfirmation, NoValidate, 0, ref order.carriers, email, idCompany, psw);
+                    stateAuth = managerVazoo.ShippingEstimateOrderint("Options", order.ID, ref description, ref order.carriers, email, idCompany, psw);
                 });
                 if (stateAuth == 3)
                 {
