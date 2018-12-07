@@ -21,7 +21,7 @@
     <StackLayout VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"
                  Margin="20">
-        <Frame Padding="10" BorderColor="#2aa0ea" Margin="4">
+        <Frame Padding="10" BorderColor="#2aa0ea" Margin="4" CornerRadius="6">
             <ScrollView>
                 <StackLayout WidthRequest="300">
                     <Label Text="Ship From Address" TextColor="#2aa0ea" HorizontalOptions="Center" FontSize="17"/>

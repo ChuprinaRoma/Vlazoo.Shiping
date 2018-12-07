@@ -21,7 +21,7 @@
     <StackLayout VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"
                  Margin="10">
-        <Frame CornerRadius="4" Padding="8" BorderColor="#2aa0ea" Margin="4">
+        <Frame CornerRadius="6" Padding="8" BorderColor="#2aa0ea" Margin="4">
             <StackLayout>
                 <Label TextColor="#2aa0ea" FontSize="18" FlexLayout.AlignSelf="2" Text="Setings messages"/>
                 <BoxView BackgroundColor="#2aa0ea" HeightRequest="1"/>

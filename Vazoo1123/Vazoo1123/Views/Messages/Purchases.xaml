@@ -20,7 +20,7 @@
     <StackLayout VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"
                  Margin="10">
-        <Frame Padding="0" CornerRadius="5" BorderColor="#2abdea">
+        <Frame Padding="0" BorderColor="#2abdea" CornerRadius="6">
             <StackLayout Orientation="Vertical"  Padding="6" BackgroundColor="White">
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround">
                     <StackLayout Orientation="Vertical">

@@ -36,7 +36,7 @@
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
-                                        <Frame x:Name="fUSPS" Padding="6" BackgroundColor="White">
+                                        <Frame x:Name="fUSPS" Padding="6" BackgroundColor="White" CornerRadius="4">
                                             <Frame.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
                                             </Frame.GestureRecognizers>

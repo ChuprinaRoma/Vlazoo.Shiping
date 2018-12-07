@@ -21,7 +21,7 @@
     <StackLayout VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"
                  Margin="5">
-        <Frame CornerRadius="5" Padding="5" BorderColor="#2aa0ea" Margin="4">
+        <Frame CornerRadius="6" Padding="5" BorderColor="#2aa0ea" Margin="4">
             <StackLayout Padding="10">
                 <Label Text="Do you really want to delete the message?" FontSize="20" Margin="3" TextColor="#2aa0ea"/>
                 <FlexLayout>

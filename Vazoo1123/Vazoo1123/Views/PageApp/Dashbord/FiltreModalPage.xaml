@@ -22,7 +22,7 @@
     <StackLayout VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"
                  Margin="10">
-        <Frame Padding="0" BorderColor="#2c4dff">
+        <Frame Padding="0" BorderColor="#2c4dff" CornerRadius="7">
             <StackLayout>
                 <StackLayout BackgroundColor="#2c4dff" HeightRequest="40" Padding="10">
                     <Label Text="Filter" FontSize="20" VerticalOptions="Center" VerticalTextAlignment="Center" TextColor="White"/>
