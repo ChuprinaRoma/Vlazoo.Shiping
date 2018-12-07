@@ -33,7 +33,12 @@
                                         </StackLayout.GestureRecognizers>
                                         <StackLayout HorizontalOptions="Start">
                                             <Image HorizontalOptions="Start" HeightRequest="50" WidthRequest="50" Source="{Binding ImageFile}"/>
-                                            <Image IsVisible="{Binding IsMesages}" HorizontalOptions="Start" HeightRequest="15" WidthRequest="15" Source="https://vlazoo.com/images/MsgClosed.gif" Margin="5"/>
+                                            <Image IsVisible="{Binding IsMesages}" HorizontalOptions="Start" HeightRequest="15" WidthRequest="15" Source="https://vlazoo.com/images/MsgClosed.gif" Margin="5">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Label Text="{Binding MessageID}" x:Name="MessageID" IsVisible="False"/>
                                         </StackLayout>
                                         <StackLayout>
                                             <Label Text="{Binding EBayUserID}"  TextColor="#2c4dff" FontSize="17"/>
@@ -57,7 +62,11 @@
                                                 <Label Text="Record Id:" FontSize="12" TextColor="#2c4dff"/>
                                                 <Label x:Name="recordId" Text="{Binding RecordNumber}" FontSize="12" TextColor="#2c4dff"/>
                                             </StackLayout>
-                                            <Label Text="{Binding TrackingNumber}" FontSize="10" TextColor="#2c4dff" />
+                                            <Label Text="{Binding TrackingNumber}" FontSize="10" TextColor="#2aabb1" >
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
                                             <Label Text="{Binding PaymentMethod}" TextColor="#2c4dff" />
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="Qty:" FontSize="12" TextColor="#2c4dff"/>

@@ -1,6 +1,7 @@
 ﻿using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Vazoo1123.NewElement;
 using Vazoo1123.ViewModels.Dashbord;
@@ -42,6 +43,8 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                 });
                 if (stateAuth == 3)
                 {
+                    dashbordMW.SelectProduct = new List<Models.OrderInfo>();
+                    dashbordMW.CountSelectOrder = "";
                     if (dashbordMW.Type == 1)
                     {
                         dashbordMW.Title = $"Paid {dashbordMW.countOrder}";

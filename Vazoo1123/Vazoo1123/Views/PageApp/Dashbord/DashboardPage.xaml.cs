@@ -10,6 +10,8 @@ using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Services;
 using Vazoo1123.Views.Menu;
 using Refractored.XamForms.PullToRefresh;
+using Vazoo1123.Views.Printing.ModalViews;
+using Vazoo1123.Views.Messages;
 
 namespace Vazoo1123.Views.PageApp
 {
@@ -17,10 +19,12 @@ namespace Vazoo1123.Views.PageApp
     public partial class DashboardPage : ContentPage
     {
         public DashbordMW dashbordMW = null;
+        private ManagerVazoo managerVazoo = null;
 
         public DashboardPage(ManagerVazoo managerVazoo, MenuDetalePage menuDetalePage)
         {
             InitializeComponent();
+            this.managerVazoo = managerVazoo;
             dashbordMW = new DashbordMW(managerVazoo, menuDetalePage)
             { Navigation = this.Navigation };
             InitElement();
@@ -133,6 +137,22 @@ namespace Vazoo1123.Views.PageApp
                     });
                 }
             });
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Label label = (Label)sender;
+            if (label.Text != "")
+            {
+                await PopupNavigation.PushAsync(new LabalPageView(label.Text));
+            }
+        }
+
+        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            Image image = (Image)sender;
+            string messageID = image.FindByName<Label>("MessageID").Text;
+            await Navigation.PushAsync(new Conversation(managerVazoo, null, null, messageID));
         }
     }
 }

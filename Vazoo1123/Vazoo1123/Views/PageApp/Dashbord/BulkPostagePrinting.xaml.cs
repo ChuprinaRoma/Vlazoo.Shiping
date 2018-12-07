@@ -8,6 +8,7 @@ using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Dashbord;
 using Vazoo1123.Views.LoadViews;
 using Vazoo1123.Views.ModalView;
+using Vazoo1123.Views.Printing.ModalViews;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using static Vazoo1123.ViewModels.Dashbord.DashbordMW;
@@ -161,6 +162,15 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             else if (fullOrderSettings.WeightLBS != "0")
             {
                 fullOrderSettings.WeightKG = "0";
+            }
+        }
+
+        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            Label label = (Label)sender;
+            if (label.Text != "")
+            {
+                await PopupNavigation.PushAsync(new LabalPageView(label.Text));
             }
         }
     }

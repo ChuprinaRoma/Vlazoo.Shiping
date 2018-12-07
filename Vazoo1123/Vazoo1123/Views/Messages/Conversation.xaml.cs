@@ -16,9 +16,9 @@ namespace Vazoo1123.Views.Messages
 	{
         private ConversationAndPurchasesMV conversationMV = null;
 
-        public Conversation (ManagerVazoo managerVazoo, Models.Messages messages, InitMesage initMesage)
+        public Conversation (ManagerVazoo managerVazoo, Models.Messages messages, InitMesage initMesage, string mesageID = null)
 		{
-            conversationMV = new ConversationAndPurchasesMV(managerVazoo, messages, initMesage);
+            conversationMV = new ConversationAndPurchasesMV(managerVazoo, initMesage, messages, mesageID);
             conversationMV.Navigation = Navigation;
             InitializeComponent ();
             BindingContext = conversationMV;

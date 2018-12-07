@@ -40,6 +40,7 @@
         public string LastNoted { get; set; }
         public string DateDeleted { get; set; }
         public string ImageFile { get; set; }
+        public string MessageID { get; set; }
         public string ImageStatusMessage
         {
             get => $"https://vlazoo.com/images/{ImageFile}";

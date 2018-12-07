@@ -24,13 +24,13 @@
         <Frame CornerRadius="4" Padding="8" BorderColor="#2c4dff" Margin="4">
             <StackLayout>
                 <FlexLayout Direction="Row" Margin="0">
-                    <Button x:Name="btnUSPS" Text="USPS" BackgroundColor="White" TextColor="#2c4dff" Clicked="Button_Clicked"/>
-                    <Button x:Name="btnUPS" Text="UPS" BackgroundColor="White" TextColor="#2c4dff" Clicked="Button_Clicked"/>
-                    <Button x:Name="btnFedEx" Text="FedEx" BackgroundColor="White" TextColor="#2c4dff" Clicked="Button_Clicked"/>
+                    <Button x:Name="btnUSPS" Text="USPS" BackgroundColor="White" TextColor="#2aa0ea" Clicked="Button_Clicked"/>
+                    <Button x:Name="btnUPS" Text="UPS" BackgroundColor="White" TextColor="#2aa0ea" Clicked="Button_Clicked"/>
+                    <Button x:Name="btnFedEx" Text="FedEx" BackgroundColor="White" TextColor="#2aa0ea" Clicked="Button_Clicked"/>
                 </FlexLayout>
                 <BoxView HeightRequest="2" BackgroundColor="#2c4dff"/>
                 <StackLayout x:Name="stLaUSPS" IsVisible="True">
-                    <Label FontSize="18" TextColor="#2c4dff" Text="USPS" HorizontalTextAlignment="Center"/>
+                    <Label FontSize="18" TextColor="#2aa0ea" Text="USPS" HorizontalTextAlignment="Center"/>
                     <ListView ItemsSource="{Binding CarriersUSPS}" HasUnevenRows="True" SeparatorColor="#2c4dff">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -42,9 +42,9 @@
                                             </Frame.GestureRecognizers>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label x:Name="IdLabel" Text="{Binding Id}" IsVisible="False"/>
-                                                <Label Text="{Binding Title}" TextColor="#2c4dff"/>
-                                                <Label Text="{Binding Price}" TextColor="#2c4dff"/>
-                                                <Label Text="$" TextColor="#2c4dff"/>
+                                                <Label Text="{Binding Title}" TextColor="#2aa0ea"/>
+                                                <Label Text="{Binding Price}" TextColor="#2aa0ea"/>
+                                                <Label Text="$" TextColor="#2aa0ea"/>
                                             </StackLayout>
                                         </Frame>
                                     </ViewCell.View>

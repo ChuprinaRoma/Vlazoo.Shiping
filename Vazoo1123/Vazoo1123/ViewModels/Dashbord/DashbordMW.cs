@@ -177,7 +177,6 @@ namespace Vazoo1123.ViewModels.Dashbord
                     TypeCheck1 = false;
                     TypeCheck2 = false;
                     menuDetalePage.CheckAndSetCountDashbord(countOrder);
-                    CountSelectOrder = "";
                 }
                 else if (Type == 2)
                 {

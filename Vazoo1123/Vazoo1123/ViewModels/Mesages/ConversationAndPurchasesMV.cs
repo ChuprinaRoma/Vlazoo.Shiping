@@ -2,6 +2,7 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Vazoo1123.Models;
@@ -24,16 +25,23 @@ namespace Vazoo1123.ViewModels.Mesages
         InitMesage initMesage;
         public INavigation Navigation { get; set; } 
 
-        public ConversationAndPurchasesMV(ManagerVazoo managerVazoo, Models.Messages messages, InitMesage initMesage)
+        public ConversationAndPurchasesMV(ManagerVazoo managerVazoo, InitMesage initMesage,  Models.Messages messages = null, string mesageID = null)
         {
             this.managerVazoo = managerVazoo;
-            Messages = messages;
             ToPurchasesCommand = new DelegateCommand(ToPurchases);
             ToSettingsCommand = new DelegateCommand(ToSettings);
             SendOrRaplyCommand = new DelegateCommand(SendOrRaply);
             DeletedMsgCommand = new DelegateCommand(Confirm);
             RefreshMessageCommand = new DelegateCommand(InitConversation);
             this.initMesage = initMesage;
+            if(messages != null)
+            {
+                MessagesID = messages.ID.ToString();
+            }
+            else
+            {
+                MessagesID = mesageID;
+            }
             InitConversation();
             InitPurchases();
         }
@@ -80,6 +88,13 @@ namespace Vazoo1123.ViewModels.Mesages
             set => SetProperty(ref messages, value);
         }
 
+        private string messagesID = null;
+        public string MessagesID
+        {
+            get => messagesID;
+            set => SetProperty(ref messagesID, value);
+        }
+
         private List<Models.Messages> messagess = null;
         public List<Models.Messages> Messagess
         {
@@ -113,7 +128,7 @@ namespace Vazoo1123.ViewModels.Mesages
             int stateAuth = 0;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.MesagesWork("Purchases", ref totalResulte, ref orderInfo, email, idCompany, psw, Messages.ID.ToString(), "0");
+                stateAuth = managerVazoo.MesagesWork("Purchases", ref totalResulte, ref orderInfo, email, idCompany, psw, MessagesID, "0");
             });
             if (stateAuth == 3)
             {
@@ -151,15 +166,15 @@ namespace Vazoo1123.ViewModels.Mesages
             int stateAuth = 0;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.MesagesWork("Conversation", ref description, ref totalResulte, ref messagesss, email, idCompany, psw, Messages.ID.ToString());
+                stateAuth = managerVazoo.MesagesWork("Conversation", ref description, ref totalResulte, ref messagesss, email, idCompany, psw, MessagesID);
             });
             if (stateAuth == 3)
             {
                 await Task.Run(() =>
                 {
-                    managerVazoo.MesagesWork("MessageSetRead", Messages.ID, ref description, email, idCompany, psw, Msg);
+                    managerVazoo.MesagesWork("MessageSetRead", Convert.ToInt32(MessagesID), ref description, email, idCompany, psw, Msg);
                 });
-                initMesage();
+                initMesage?.Invoke();
                 Messagess = messagesss;
                 if (Messagess.Count != 0)
                 {
@@ -230,12 +245,12 @@ namespace Vazoo1123.ViewModels.Mesages
             int stateAuth = 0;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.MesagesWork("SendMessageReply", Messages.ID, DisplayToPublic, EmailCopyToSender, ref description, email, idCompany, psw, Msg);
+                stateAuth = managerVazoo.MesagesWork("SendMessageReply", Convert.ToInt32(MessagesID), DisplayToPublic, EmailCopyToSender, ref description, email, idCompany, psw, Msg);
             });
             if (stateAuth == 3)
             {
                 await PopupNavigation.PushAsync(new Compleat("Send Successfully"), true);
-                initMesage();
+                initMesage?.Invoke();
                 await Navigation.PopAsync(true);
 
             }
@@ -273,7 +288,7 @@ namespace Vazoo1123.ViewModels.Mesages
             int stateAuth = 0;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.MesagesWork("SendMessageReply", Messages.ID, ref description, email, idCompany, psw, Msg);
+                stateAuth = managerVazoo.MesagesWork("SendMessageReply", Convert.ToInt32(MessagesID), ref description, email, idCompany, psw, Msg);
             });
             if (stateAuth == 3)
             {

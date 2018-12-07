@@ -41,7 +41,11 @@
                         </StackLayout>
                     </StackLayout>
                 </FlexLayout>
-                <Label Text="{Binding OrderInfo.TrackingNumber}" FontSize="14" TextColor="#2aa0ea" Margin="2" FlexLayout.Grow="2"/>
+                <Label Text="{Binding OrderInfo.TrackingNumber}" FontSize="14" TextColor="#2aabb1" Margin="2" FlexLayout.Grow="2">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
                 <BoxView BackgroundColor="#2c4dff" HeightRequest="1"/>
                 <Label Text="{Binding OrderInfo.ItemTitle}" FontSize="12" TextColor="#2aa0ea" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                 <Frame CornerRadius="10" BorderColor="#2c4dff" Margin="2">
@@ -108,7 +112,7 @@
                 <Frame BorderColor="#2aa0ea">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="How many Parcels?" TextColor="#2c4dff" VerticalTextAlignment="Center" />
+                            <Label Text="How many Parcels?" TextColor="#2aa0ea" VerticalTextAlignment="Center" />
                             <local:CrossEntry Placeholder="N" Keyboard="Numeric" Text="{Binding LabelsQty}"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">

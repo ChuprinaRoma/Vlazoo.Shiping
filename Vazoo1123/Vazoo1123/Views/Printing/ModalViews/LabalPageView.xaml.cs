@@ -17,7 +17,7 @@ namespace Vazoo1123.Views.Printing.ModalViews
 
         private void Init(string tracking)
         {
-            trackinImgs = tracking.Split(',');
+            trackinImgs = tracking.Split(';', ',');
             if (trackinImgs.Length > 1)
             {
                 for (int i = 0; i < trackinImgs.Length; i++)
