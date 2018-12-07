@@ -26,11 +26,11 @@ namespace Vazoo1123.Droid.NewElementRender
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
-                Control.BackgroundTintList = ColorStateList.ValueOf(Android.Graphics.Color.Rgb(44, 77, 255));
+                Control.BackgroundTintList = ColorStateList.ValueOf(Android.Graphics.Color.Rgb(42, 160, 234));
             }
             else
             {
-                Control.Background.SetColorFilter(Android.Graphics.Color.Rgb(44, 77, 255), Android.Graphics.PorterDuff.Mode.SrcAtop);
+                Control.Background.SetColorFilter(Android.Graphics.Color.Rgb(42, 160, 234), Android.Graphics.PorterDuff.Mode.SrcAtop);
             }
         }
     }

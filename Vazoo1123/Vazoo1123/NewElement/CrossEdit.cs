@@ -24,7 +24,7 @@ namespace Vazoo1123.NewElement
 
         public CrossEdit()
         {
-            this.TextColor = Color.FromHex("#2c4dff");
+            this.TextColor = Color.FromHex("#2aa0ea");
             this.PlaceholderColor = Color.FromHex("#8094ff");
         }
     }
