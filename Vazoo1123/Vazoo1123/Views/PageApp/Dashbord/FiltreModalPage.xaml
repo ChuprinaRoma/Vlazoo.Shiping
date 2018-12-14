@@ -22,17 +22,17 @@
     <StackLayout VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"
                  Margin="10">
-        <Frame Padding="0" BorderColor="#2c4dff" CornerRadius="7">
+        <Frame Padding="0" BorderColor="#2aa0ea" CornerRadius="7">
             <StackLayout>
-                <StackLayout BackgroundColor="#2c4dff" HeightRequest="40" Padding="10">
+                <StackLayout BackgroundColor="#2aa0ea" HeightRequest="40" Padding="10">
                     <Label Text="Filter" FontSize="20" VerticalOptions="Center" VerticalTextAlignment="Center" TextColor="White"/>
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center" Padding="10">
-                    <Label HorizontalTextAlignment="Center" Text="Sorting by quantity" TextColor="#2c4dff" Font="18"/>
+                    <Label HorizontalTextAlignment="Center" Text="Sorting by quantity" TextColor="#2aa0ea" Font="18"/>
                     <inp:RadioButtonGroupView x:Name="gr">
-                        <local:CrossAddRadiobtn Idi="1" Text="Dashbord" TextColor="#2c4dff" Clicked="RadioButton_Clicked"  IsChecked="{Binding TypeCheck}"/>
-                        <local:CrossAddRadiobtn Idi="2" Text="Sold Last 3 month" TextColor="#2c4dff" Clicked="RadioButton_Clicked"   IsChecked="{Binding TypeCheck1}"/>
-                        <local:CrossAddRadiobtn Idi="3" Text="Labels Printed Last 72h" TextColor="#2c4dff" Clicked="RadioButton_Clicked"   IsChecked="{Binding TypeCheck2}"/>
+                        <local:CrossAddRadiobtn Idi="1" Text="Dashbord" TextColor="#2aa0ea" Clicked="RadioButton_Clicked"  IsChecked="{Binding TypeCheck}"/>
+                        <local:CrossAddRadiobtn Idi="2" Text="Sold Last 3 month" TextColor="#2aa0ea" Clicked="RadioButton_Clicked"   IsChecked="{Binding TypeCheck1}"/>
+                        <local:CrossAddRadiobtn Idi="3" Text="Labels Printed Last 72h" TextColor="#2aa0ea" Clicked="RadioButton_Clicked"   IsChecked="{Binding TypeCheck2}"/>
                     </inp:RadioButtonGroupView>
                 </StackLayout>
             </StackLayout>

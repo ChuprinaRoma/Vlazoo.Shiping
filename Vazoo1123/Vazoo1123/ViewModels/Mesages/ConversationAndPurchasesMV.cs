@@ -160,13 +160,14 @@ namespace Vazoo1123.ViewModels.Mesages
             string description = null;
             int totalResulte = 0;
             OrderInfo orderInfo = null;
+            int temp = 0;
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
             int stateAuth = 0;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.MesagesWork("Conversation", ref description, ref totalResulte, ref messagesss, email, idCompany, psw, MessagesID);
+                stateAuth = managerVazoo.MesagesWork("Conversation", ref description, ref totalResulte, ref messagesss, ref temp, email, idCompany, psw, MessagesID);
             });
             if (stateAuth == 3)
             {

@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Rg.Plugins.Popup.Services;
+using System;
 using Vazoo1123.Service;
 using Vazoo1123.Views;
 using Vazoo1123.Views.A_R.ModalView;
@@ -16,6 +17,8 @@ namespace Vazoo1123.ViewModels
         public DelegateCommand ToRegistrationCommand { get; set; }
         public DelegateCommand BackCommand { get; set; }
         private ManagerVazoo managerVazoo { get; set; }
+        public DelegateCommand ToYoutubeCommand { get; set; }
+        public DelegateCommand ToFaceBockCommand { get; set; }
 
         public RegistrationViewModels()
         {
@@ -23,6 +26,8 @@ namespace Vazoo1123.ViewModels
             managerVazoo = new ManagerVazoo();
             BackCommand = new DelegateCommand(Back);
             ToRegistrationCommand = new DelegateCommand(ToRegistration);
+            ToYoutubeCommand = new DelegateCommand(ToYoutube);
+            ToFaceBockCommand = new DelegateCommand(ToFaceBock);
         }
 
         private string userName = "";
@@ -85,6 +90,16 @@ namespace Vazoo1123.ViewModels
             {
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
             }
+        }
+
+        private async void ToYoutube()
+        {
+            Device.OpenUri(new Uri("https://www.facebook.com/vlazoo2016/"));
+        }
+
+        private async void ToFaceBock()
+        {
+            Device.OpenUri(new Uri("https://www.youtube.com/playlist?list=PL_mS334Pp9GB6hmiAe9aOC1ugoA1HuqDt"));
         }
     }
 }

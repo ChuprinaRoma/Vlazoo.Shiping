@@ -5,7 +5,7 @@
                   Title="Vazoo">
     <MasterDetailPage.Master>
         <ContentPage Title="Master" WidthRequest="500">
-            <ScrollView>
+           
                 <StackLayout x:Name="body" BackgroundColor="White"  SizeChanged="Body_SizeChanged">
                     <AbsoluteLayout HeightRequest="150">
                         <Image Margin="5,10,5,10" Source="head.png" BackgroundColor="White"
@@ -19,6 +19,7 @@
                         </StackLayout>
                     </AbsoluteLayout>
                     <BoxView BackgroundColor="#2abdea" Margin="3" HeightRequest="2"/>
+                     <ScrollView>
                     <StackLayout x:Name="mainMenu">
                         <StackLayout HeightRequest="45" Orientation="Horizontal">
                             <StackLayout.GestureRecognizers>
@@ -78,11 +79,20 @@
                             <Label Text="Log Out" TextColor="#2aa0ea" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center"/>
                         </StackLayout>
                     </StackLayout>
-                    <BoxView Margin="4, 0, 4, 0" HeightRequest="1" BackgroundColor="#8fcaf5"/>
+                </ScrollView>
+                <BoxView Margin="4, 0, 4, 0" HeightRequest="1" BackgroundColor="#8fcaf5"/>
                     <StackLayout Margin="10">
                         <FlexLayout JustifyContent="Start">
-                            <Image Source="Yotube.png" HeightRequest="35" WidthRequest="35"/>
-                            <Image Source="fasbook.png" HeightRequest="35" WidthRequest="35"/>
+                        <Image Source="Yotube.png" HeightRequest="35" WidthRequest="35">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToYoutubeCommand}" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image Source="fasbook.png" HeightRequest="35" WidthRequest="35">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToFaceBockCommand}" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
                             <Image Source="help.png" HeightRequest="35" WidthRequest="35">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ToHelpCommand}" NumberOfTapsRequired="1" />
@@ -95,7 +105,6 @@
                            TextColor="#2aa0ea"/>
                     </StackLayout>
                 </StackLayout>
-            </ScrollView>
         </ContentPage>
     </MasterDetailPage.Master>
 </MasterDetailPage>

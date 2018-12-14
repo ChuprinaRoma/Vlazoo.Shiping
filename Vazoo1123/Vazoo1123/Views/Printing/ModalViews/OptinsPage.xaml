@@ -31,12 +31,12 @@
                 <BoxView HeightRequest="2" BackgroundColor="#2aa0ea"/>
                 <StackLayout x:Name="stLaUSPS" IsVisible="True">
                     <Label FontSize="18" TextColor="#2aa0ea" Text="USPS" HorizontalTextAlignment="Center"/>
-                    <ListView ItemsSource="{Binding CarriersUSPS}" HasUnevenRows="True" SeparatorColor="#2aa0ea">
+                    <ListView ItemsSource="{Binding CarriersUSPS}" HasUnevenRows="True" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
-                                        <Frame x:Name="fUSPS" Padding="6" BackgroundColor="White" CornerRadius="4">
+                                        <Frame x:Name="fUSPS" Padding="6" BackgroundColor="White" CornerRadius="4" Margin="2" BorderColor="#bfebf9">
                                             <Frame.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
                                             </Frame.GestureRecognizers>
@@ -55,12 +55,12 @@
                 </StackLayout>
                 <StackLayout x:Name="stLaUPS" IsVisible="False">
                     <Label FontSize="18" TextColor="#2aa0ea" Text="UPS" HorizontalTextAlignment="Center"/>
-                    <ListView ItemsSource="{Binding CarriersUPS}" HasUnevenRows="True" SeparatorColor="#2aa0ea">
+                    <ListView ItemsSource="{Binding CarriersUPS}" HasUnevenRows="True" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
-                                        <Frame x:Name="fUPS" Padding="6" BackgroundColor="White">
+                                        <Frame x:Name="fUPS" Padding="6" BackgroundColor="White" Margin="2" BorderColor="#bfebf9">
                                             <Frame.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
                                             </Frame.GestureRecognizers>
@@ -79,12 +79,12 @@
                 </StackLayout>
                 <StackLayout x:Name="stLaFedEx" IsVisible="False">
                     <Label FontSize="18" TextColor="#2aa0ea" Text="FedEx" HorizontalTextAlignment="Center"/>
-                    <ListView  ItemsSource="{Binding CarriersFedEx}" HasUnevenRows="True" SeparatorColor="#2aa0ea">
+                    <ListView  ItemsSource="{Binding CarriersFedEx}" HasUnevenRows="True" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
-                                        <Frame x:Name="fFedEx" Padding="6" BackgroundColor="White">
+                                        <Frame x:Name="fFedEx" Padding="6" BackgroundColor="White" Margin="2" BorderColor="#bfebf9">
                                             <Frame.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
                                             </Frame.GestureRecognizers>

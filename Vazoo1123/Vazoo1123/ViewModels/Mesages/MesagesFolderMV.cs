@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Vazoo1123.Service;
 using Vazoo1123.Views.LoadViews;
@@ -10,6 +11,7 @@ using Vazoo1123.Views.Menu;
 
 namespace Vazoo1123.ViewModels.Mesages
 {
+
     public class MesagesFolderMV : BindableBase
     {
         public ManagerVazoo managerVazoo = null;
@@ -30,8 +32,10 @@ namespace Vazoo1123.ViewModels.Mesages
             InitMessages();
         }
 
-        private List<Models.Messages> messagesss = null;
-        public List<Models.Messages> Messagesss
+        public List<Models.Messages> messagesss1 = null;
+
+        private ObservableCollection<Models.Messages> messagesss = null;
+        public ObservableCollection<Models.Messages> Messagesss
         {
             get => messagesss;
             set => SetProperty(ref messagesss, value);
@@ -65,24 +69,26 @@ namespace Vazoo1123.ViewModels.Mesages
             set => SetProperty(ref name, value);
         }
 
+        public int countPage = 0;
+
         public async void InitMessages()
         {
             IsBusy = true;
             string description = null;
             int totalResulte = 0;
-            List<Models.Messages> messagess = null;
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
             int stateAuth = 0;
+            countPage = 0;
+            messagesss1 = null;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.MesagesWork("MessagesGet", ref description, ref totalResulte, ref messagess, email, idCompany, psw, (Type).ToString(), "", "0");
+                stateAuth = managerVazoo.MesagesWork("MessagesGet", ref description, ref totalResulte, ref messagesss1, ref countPage, email, idCompany, psw, Type.ToString(), "", countPage.ToString());
             });
             if (stateAuth == 3)
             {
-                //TranslationIntoFormatDate(messagess);
-                Messagesss = messagess;
+                Messagesss = new ObservableCollection<Models.Messages>(messagesss1.GetRange(0, 10 > messagesss1.Count ? messagesss1.Count : 10));
                 Title = $"{name} {totalResulte}";
                 if (type == 1)
                 {
@@ -104,17 +110,16 @@ namespace Vazoo1123.ViewModels.Mesages
             IsBusy = false;
         }
 
-        private List<Models.Messages> TranslationIntoFormatDate(List<Models.Messages> messagess1)
+        public  void GetMessages()
         {
-            //foreach(var mesage in messagess1)
-            //{
-            //    mesage.ExpirationDate = mesage.ExpirationDate.Remove()
-            //}
-            
-            DateTime dateTime = new DateTime(0,0,0,0,0,0,0);
-
-            dateTime.AddTicks(636767136000000000);
-            return null;
+            IsBusy = true;
+            string description = null;
+            int totalResulte = 0;
+            string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+            managerVazoo.MesagesWork("MessagesGet", ref description, ref totalResulte, ref messagesss1, ref countPage, email, idCompany, psw, (Type).ToString(), "", countPage.ToString());
+            IsBusy = false;
         }
     }
 }

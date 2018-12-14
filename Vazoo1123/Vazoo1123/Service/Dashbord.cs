@@ -9,6 +9,45 @@ namespace Vazoo1123.Service
 {
     class Dashbord
     {
+        //public int OrderGet(int ClientID, string Login, string Password, int OrderID)
+        //    string content = null;
+        //    int state = 0;
+        //    try
+        //    {
+        //        string body = "{" + $"'ClientID':'{clientID}','Login':'{login}','Password':'{password}','Type':'{type}','Page':'{page}'" + "}";
+        //        RestClient client = new RestClient("https://vlazoo.com");
+        //        RestRequest request = new RestRequest("/WS/Mobile.asmx/OrdersGet", Method.POST);
+        //        request.AddHeader("Accept", "application/json");
+        //        request.Parameters.Clear();
+        //        request.AddParameter("application/json", body, ParameterType.RequestBody);
+        //        IRestResponse response = client.Execute(request);
+        //        content = response.Content;
+        //        if (content == "" || response.StatusCode == System.Net.HttpStatusCode.NotFound)
+        //        {
+        //            return 4;
+        //        }
+        //        else
+        //        {
+        //            ParseJson(content, ref state, ref description, ref orderInfos, ref countOrder, ref page, isNewOrder);
+        //            page++;
+        //            if (page == 1 && countOrder >= 99)
+        //            {
+        //                state = GetDashbord(clientID, login, password, type, ref page, ref description, ref orderInfos, ref countOrder, false);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return 2;
+        //    }
+
+        //    if (state != 3)
+        //    {
+        //        page = 1;
+        //    }
+        //    return state;
+        //}
+
         public int GetDashbord(string clientID, string login, string password, int type, ref int page, ref string description,
             ref List<OrderInfo> orderInfos, ref int countOrder, bool isNewOrder)
         {

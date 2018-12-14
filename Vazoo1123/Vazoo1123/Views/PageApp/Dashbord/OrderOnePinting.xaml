@@ -98,7 +98,7 @@
                     <Label Text="X" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="DHeigh" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsL}" TextChanged="CrossEntry_TextChanged"/>
                 </StackLayout>
-                <Label Text="{Binding StrCalc}" TextColor="#2c4dff" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                <Label Text="{Binding StrCalc}" TextColor="#2aa0ea" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
                 <local:CrossEntry Placeholder="Email" Text="{Binding OrderInfo.ShopperEmail}" HorizontalOptions="Center"/>
                 <Frame Padding="5" BorderColor="#2aa0ea" CornerRadius="10">
                     <StackLayout Orientation="Horizontal">
@@ -141,7 +141,6 @@
                     </StackLayout>
                 </Frame>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                    <Button Text="print to local printer" FontSize="10" TextColor="White" BackgroundColor="#2aa0ea"/>
                     <Button Text="print to remote printer" FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Clicked="Button_Clicked_1"/>
                 </StackLayout>
             </StackLayout>

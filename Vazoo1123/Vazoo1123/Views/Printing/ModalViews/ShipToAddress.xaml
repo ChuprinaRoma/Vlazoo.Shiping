@@ -39,7 +39,7 @@
                         <Switch IsToggled="{Binding ToNotification}"/>
                         <Label Text="Send notification"/>
                     </StackLayout>
-                    <Button Text="Ок" TextColor="White" BackgroundColor="#2aa0ea" Command="{Binding InitToAddressCommand}"/>
+                    <Button Text="Save" TextColor="White" BackgroundColor="#2aa0ea" Command="{Binding InitToAddressCommand}"/>
                 </StackLayout>
             </ScrollView>
         </Frame>

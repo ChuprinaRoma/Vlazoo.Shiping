@@ -10,19 +10,21 @@
         <ScrollView>
             <StackLayout>
                 <ListView x:Name="messageList" ItemsSource="{Binding Messagesss}" Refreshing="OrderList_Refreshing"
-                      HasUnevenRows="True" SeparatorColor="#2abdea" IsRefreshing="{Binding IsBusy}"
-                      ItemSelected="OrderList_ItemSelected" IsPullToRefreshEnabled="True">
+                      HasUnevenRows="True" SeparatorVisibility="None" IsRefreshing="{Binding IsBusy}"
+                      ItemSelected="OrderList_ItemSelected" IsPullToRefreshEnabled="True" ItemAppearing="OrderList_ItemAppearing">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.View>
-                                    <StackLayout Orientation="Vertical" BackgroundColor="White" Margin="2" Padding="7">
-                                        <FlexLayout>
-                                            <Image HeightRequest="15" WidthRequest="15" Source="{Binding ImageStatusMessage}"/>
-                                            <Label HorizontalTextAlignment="Center" TextColor="#2aa0ea" FontSize="20" Text="{Binding Sender}"/>
-                                        </FlexLayout>
-                                        <Label HorizontalTextAlignment="Center" TextColor="#2aa0ea" FontSize="14" Text="{Binding Subject}"/>
-                                    </StackLayout>
+                                    <Frame Padding="2" Margin="5" BorderColor="#bfebf9" CornerRadius="6">
+                                        <StackLayout Orientation="Vertical" BackgroundColor="White" Margin="2" Padding="7">
+                                            <FlexLayout>
+                                                <Image HeightRequest="15" WidthRequest="15" Source="{Binding ImageStatusMessage}"/>
+                                                <Label HorizontalTextAlignment="Center" TextColor="#2aa0ea" FontSize="20" Text="{Binding Sender}"/>
+                                            </FlexLayout>
+                                            <Label HorizontalTextAlignment="Center" TextColor="#2aa0ea" FontSize="14" Text="{Binding Subject}"/>
+                                        </StackLayout>
+                                    </Frame>
                                 </ViewCell.View>
                             </ViewCell>
                         </DataTemplate>

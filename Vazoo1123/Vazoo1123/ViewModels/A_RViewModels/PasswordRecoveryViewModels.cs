@@ -16,6 +16,9 @@ namespace Vazoo1123.ViewModels
         public DelegateCommand BackCommand { get; set; }
         public DelegateCommand ToVlazoo_WebCommand { get; set; }
         public DelegateCommand RemindPasswordCommand { get; set; }
+        public DelegateCommand ToYoutubeCommand { get; set; }
+        public DelegateCommand ToFaceBockCommand { get; set; }
+
         ManagerVazoo managerVazoo = null;
 
         public PasswordRecoveryViewModels()
@@ -25,6 +28,8 @@ namespace Vazoo1123.ViewModels
             ToHelpeCommand = new DelegateCommand(ToHelpe);
             ToVlazoo_WebCommand = new DelegateCommand(ToVlazoo_Web);
             RemindPasswordCommand = new DelegateCommand(RemindPassword);
+            ToYoutubeCommand = new DelegateCommand(ToYoutube);
+            ToFaceBockCommand = new DelegateCommand(ToFaceBock);
         }
 
         private string email = "";
@@ -71,6 +76,16 @@ namespace Vazoo1123.ViewModels
             {
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
             }
+        }
+
+        private async void ToYoutube()
+        {
+            Device.OpenUri(new Uri("https://www.facebook.com/vlazoo2016/"));
+        }
+
+        private async void ToFaceBock()
+        {
+            Device.OpenUri(new Uri("https://www.youtube.com/playlist?list=PL_mS334Pp9GB6hmiAe9aOC1ugoA1HuqDt"));
         }
     }
 }

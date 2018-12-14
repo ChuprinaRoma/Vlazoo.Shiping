@@ -232,7 +232,12 @@ namespace Vazoo1123.ViewModels.Dashbord
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
-            string printerId = CrossSettings.Current.GetValueOrDefault("printerId", "");
+            string printerId = CrossSettings.Current.GetValueOrDefault("printer", "");
+            string[] idOrNamePrinter = printerId.Split(',');
+            if (idOrNamePrinter[0] == "Default Printer")
+            {
+                printerId = GetIdDefaultPrinter();
+            }
             foreach (var serlectProduct in SelectProduct)
             {
                 if (serlectProduct.TypeShipeMethod == "USPS")
@@ -270,6 +275,16 @@ namespace Vazoo1123.ViewModels.Dashbord
                 }
             }
             await PopupNavigation.PopAllAsync(true);
+        }
+
+        private string GetIdDefaultPrinter()
+        {
+            List<string[]> dropDwnChooseRemovePrinters = null;
+            string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+            managerVazoo.PrintingWork("OptionsGet", ref dropDwnChooseRemovePrinters, idCompany, email, psw);
+            return dropDwnChooseRemovePrinters.Find(d => d[0] == "Default Printer")[1];
         }
 
         private async void GoToSettings()

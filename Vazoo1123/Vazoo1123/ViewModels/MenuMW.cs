@@ -2,16 +2,20 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Vazoo1123.Service;
 using Vazoo1123.Views;
+using Xamarin.Forms;
 
 namespace Vazoo1123.ViewModels
 {
     public class MenuMW : BindableBase
     {
         public DelegateCommand ToHelpCommand { get; set; }
+        public DelegateCommand ToYoutubeCommand { get; set; }
+        public DelegateCommand ToFaceBockCommand { get; set; }
         public ManagerVazoo managerVazoo = null;
 
         public MenuMW()
@@ -19,6 +23,9 @@ namespace Vazoo1123.ViewModels
             managerVazoo = new ManagerVazoo();
             ToHelpCommand = new DelegateCommand(ToHelp);
             InitMessages();
+            ToYoutubeCommand = new DelegateCommand(ToYoutube);
+            ToFaceBockCommand = new DelegateCommand(ToFaceBock);
+            NameProfile = CrossSettings.Current.GetValueOrDefault("userName", "N/D");
         }
 
         private string nameProfile;
@@ -100,12 +107,13 @@ namespace Vazoo1123.ViewModels
             {
                 string description = null;
                 int totalResulte = 0;
+                int temp = 0;
                 string email = CrossSettings.Current.GetValueOrDefault("userName", "");
                 string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
                 string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
                 int stateAuth = 0;
                 List<Models.Messages> messagess = null;
-                stateAuth = managerVazoo.MesagesWork("MesageCountToDay", ref description, ref totalResulte, ref messagess, email, idCompany, psw, "1", "", "0");
+                stateAuth = managerVazoo.MesagesWork("MesageCountToDay", ref description, ref totalResulte, ref messagess, ref temp, email, idCompany, psw, "1", "", "0");
                 if (stateAuth == 3)
                 {
                     CheckAndSetCountMessage(totalResulte.ToString());
@@ -116,6 +124,16 @@ namespace Vazoo1123.ViewModels
         private async void ToHelp()
         {
             await PopupNavigation.PushAsync(new ContexWindowHelp(), true);
+        }
+
+        private async void ToYoutube()
+        {
+            Device.OpenUri(new Uri("https://www.facebook.com/vlazoo2016/"));
+        }
+
+        private async void ToFaceBock()
+        {
+            Device.OpenUri(new Uri("https://www.youtube.com/playlist?list=PL_mS334Pp9GB6hmiAe9aOC1ugoA1HuqDt"));
         }
     }
 }

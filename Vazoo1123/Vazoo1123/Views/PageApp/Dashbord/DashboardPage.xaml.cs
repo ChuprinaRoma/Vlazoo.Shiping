@@ -38,12 +38,12 @@ namespace Vazoo1123.Views.PageApp
 
         private async void OnDoubleTapped(object sender, EventArgs e)
         {
-            var elStaL = ((StackLayout)sender);
+            var elStaL = ((Frame)sender);
             string itemId = elStaL.FindByName<Label>("itemId").Text;
             string recordId = elStaL.FindByName<Label>("recordId").Text;
             if (dashbordMW.SelectProduct.FirstOrDefault(sp => sp.EBayItemID == itemId && sp.RecordNumber == recordId) != null)
             {
-                elStaL.BackgroundColor = Color.White;
+                elStaL.BorderColor = Color.FromHex("#bfebf9");
                 await elStaL.ScaleTo(1, 100);
                 dashbordMW.SelectProduct.Remove(dashbordMW.SelectProduct.FirstOrDefault(sp => sp.EBayItemID == itemId && sp.RecordNumber == recordId));
                 if (dashbordMW.SelectProduct.Count == 0)
@@ -58,9 +58,9 @@ namespace Vazoo1123.Views.PageApp
             }
             else
             {
-                elStaL.BackgroundColor = Color.FromHex("#bfebf9");
+                elStaL.BorderColor = Color.FromHex("#2c4dff");
                 printing.Icon = "Printing1.png;";
-                await elStaL.ScaleTo(0.93, 50);
+                await elStaL.ScaleTo(0.97, 50);
                 dashbordMW.SelectProduct.Add(dashbordMW.Product.FirstOrDefault(sp => sp.EBayItemID == itemId && sp.RecordNumber == recordId));
                 dashbordMW.CountSelectOrder = dashbordMW.SelectProduct.Count.ToString();
             }

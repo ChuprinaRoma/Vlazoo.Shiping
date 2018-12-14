@@ -93,15 +93,13 @@ namespace Vazoo1123.Service
                     $"'ShipToEmail':'{ShipToEmail}','SignatureWaiver':'{SignatureWaiver}','WeightOZ':'{WeightOZ}','dim':{dimJsonStr},'SourceAddr':{SourceAddrJsonStr}," +
                     $"'DestinationAddr':{DestinationAddrJsonStr},'DeliveryConfirmation':'{DeliveryConfirmation}','SignatureConfirmation':'{SignatureConfirmation}'," +
                     $"'NoValidate':'{NoValidate}','EmailNotification':'{EmailNotification}','OrderNumber':'{OrderNumber}','ItemDescription':'{ItemDescription}'," +
-                    $"'PrinterID':'{128}','InsuranceAmount':'{InsuranceAmount}'" + "}";
+                    $"'PrinterID':'{PrinterID}','InsuranceAmount':'{InsuranceAmount}'" + "}";
                 RestClient client = new RestClient("https://vlazoo.com");
                 RestRequest request = new RestRequest("/WS/Mobile.asmx/ShippingCreate", Method.POST);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
                 request.AddParameter("application/json", body, ParameterType.RequestBody);
                 IRestResponse response = client.Execute(request);
-                //string strResponse = JsonConvert.SerializeObject(response);
-                //string strReqvest = JsonConvert.SerializeObject(request);
                 content = response.Content;
                 if (content == "" || response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
@@ -134,7 +132,7 @@ namespace Vazoo1123.Service
                     $"'ShipToEmail':'{ShipToEmail}','SignatureWaiver':'{SignatureWaiver}','WeightOZ':'{WeightOZ}','dim':{dimJsonStr},'SourceAddr':{SourceAddrJsonStr}," +
                     $"'DestinationAddr':{DestinationAddrJsonStr},'DeliveryConfirmation':'{DeliveryConfirmation}','SignatureConfirmation':'{SignatureConfirmation}'," +
                     $"'NoValidate':'{NoValidate}','EmailNotification':'{EmailNotification}','OrderNumber':'{OrderNumber}','ItemDescription':'{ItemDescription}'," +
-                    $"'PrinterID':'{128}','InsuranceAmount':'{InsuranceAmount}'" + "}";
+                    $"'PrinterID':'{PrinterID}','InsuranceAmount':'{InsuranceAmount}'" + "}";
                 RestClient client = new RestClient("https://vlazoo.com");
                 RestRequest request = new RestRequest("/WS/Mobile.asmx/ShippingCreateOrder", Method.POST);
                 request.AddHeader("Accept", "application/json");

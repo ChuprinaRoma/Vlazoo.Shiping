@@ -194,7 +194,7 @@ namespace Vazoo1123.Service
             return stateDashbord;
         }
 
-        public int MesagesWork(string typeMesages, ref string description, ref int totalResulte, ref List<Models.Messages> mesagess, params string[] dataMesages)
+        public int MesagesWork(string typeMesages, ref string description, ref int totalResulte, ref List<Models.Messages> mesagess, ref int page, params string[] dataMesages)
         {
             mesages = new Mesages();
             int stateMesges = 1;
@@ -206,7 +206,7 @@ namespace Vazoo1123.Service
                 }
                 else if (typeMesages == "MessagesGet")
                 {
-                    stateMesges = mesages.MessagesGet(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], Convert.ToInt32(dataMesages[3]), dataMesages[4], Convert.ToInt32(dataMesages[5]), ref description, ref mesagess, ref totalResulte);
+                    stateMesges = mesages.MessagesGet(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], Convert.ToInt32(dataMesages[3]), dataMesages[4], ref page, ref description, ref mesagess, ref totalResulte);
                 }
                 else if(typeMesages == "MesageCountToDay")
                 {

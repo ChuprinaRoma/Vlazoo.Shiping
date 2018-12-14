@@ -19,7 +19,7 @@
                             <BoxView Margin="2" HeightRequest="1" BackgroundColor="#2aa0ea"/>
                             <Label Text="{Binding ShipFromAddress}"  TextColor="#2aa0ea"/>
                         </StackLayout>
-                        <StackLayout HorizontalOptions="StartAndExpand">
+                        <StackLayout HorizontalOptions="EndAndExpand">
                             <Button x:Name="fillOutSender" Text="fill out the recipient" FontSize="10" HorizontalOptions="Center" BackgroundColor="#2aa0ea" TextColor="White"
                                     Clicked="ClicBtnOut"/>
                             <Label Margin="3" Text="Ship To Address" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
@@ -99,7 +99,7 @@
                     </StackLayout>
                 </Frame>
                 <StackLayout Orientation="Horizontal" FlexLayout.AlignSelf="End" Margin="5">
-                    <Button FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Text="Create Label" Clicked="Button_Clicked_1"/>
+                    <Button FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Text="print to remote printer" Clicked="Button_Clicked_1"/>
                 </StackLayout>
             </FlexLayout>
         </ScrollView>

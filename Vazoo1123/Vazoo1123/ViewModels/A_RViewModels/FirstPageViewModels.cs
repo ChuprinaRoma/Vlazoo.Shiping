@@ -1,5 +1,6 @@
 ﻿using Prism.Commands;
 using Rg.Plugins.Popup.Services;
+using System;
 using Vazoo1123.Views;
 using Vazoo1123.Views.A_R;
 using Xamarin.Forms;
@@ -12,12 +13,16 @@ namespace Vazoo1123.ViewModels.A_RViewModels
         public DelegateCommand ToHelpCommand { get; set; }
         public DelegateCommand  ToSigUpCommand { get; set; }
         public DelegateCommand  ToLogInCommand { get; set; }
+        public DelegateCommand ToYoutubeCommand { get; set; }
+        public DelegateCommand ToFaceBockCommand { get; set; }
 
         public FirstPageViewModels()
         {
             ToHelpCommand = new DelegateCommand(ToHelp);
             ToLogInCommand = new DelegateCommand(ToLogIn);
             ToSigUpCommand = new DelegateCommand(ToSigUp);
+            ToYoutubeCommand = new DelegateCommand(ToYoutube);
+            ToFaceBockCommand = new DelegateCommand(ToFaceBock);
         }
 
         private async void ToHelp()
@@ -33,6 +38,16 @@ namespace Vazoo1123.ViewModels.A_RViewModels
         private void ToLogIn()
         {
             Navigation.PushModalAsync(new Authorization());
+        }
+
+        private async void ToYoutube()
+        {
+            Device.OpenUri(new Uri("https://www.facebook.com/vlazoo2016/"));
+        }
+
+        private async void ToFaceBock()
+        {
+            Device.OpenUri(new Uri("https://www.youtube.com/playlist?list=PL_mS334Pp9GB6hmiAe9aOC1ugoA1HuqDt"));
         }
     }
 }

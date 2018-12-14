@@ -28,7 +28,12 @@
                         
                     </StackLayout>
                 </ScrollView>
-                <Image x:Name="labelImj" />
+                <Label IsVisible="False" x:Name="tarakingLaba"/>
+                <Image x:Name="labelImj">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
             </StackLayout>
         </Frame>
     </StackLayout>

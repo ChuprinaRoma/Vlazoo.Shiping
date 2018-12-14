@@ -34,7 +34,7 @@
                     <local:CrossEntry Placeholder="State" Text="{Binding FromState}"/>
                     <local:CrossEntry Placeholder="ZIP" Keyboard="Numeric" Text="{Binding FromZIP}"/>
                     <local:CrossEntry Placeholder="Phone" Keyboard="Telephone" Text="{Binding FromPhone}"/>
-                    <Button Text="Ок" TextColor="White" BackgroundColor="#2aa0ea" Command="{Binding InitFromAddressCommand}"/>
+                    <Button Text="Save" TextColor="White" BackgroundColor="#2aa0ea" Command="{Binding InitFromAddressCommand}"/>
                 </StackLayout>
             </ScrollView>
         </Frame>

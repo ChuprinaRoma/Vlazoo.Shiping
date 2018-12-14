@@ -39,7 +39,7 @@ namespace Vazoo1123.Views.PageApp
         {
             if (e.NewItemIndex != -1 && e.NewItem != null && e.NewItem.ToString() != "")
             {
-                CrossSettings.Current.AddOrUpdateValue("printer", $"{profileMW.DropDwnChooseRemovePrinters[e.NewItemIndex][0]}, {profileMW.DropDwnChooseRemovePrinters[e.NewItemIndex][1]}");
+                CrossSettings.Current.AddOrUpdateValue("printer", $"{profileMW.DropDwnChooseRemovePrinters[e.NewItemIndex][0]},{profileMW.DropDwnChooseRemovePrinters[e.NewItemIndex][1]}");
             }
         }
     }

@@ -30,6 +30,7 @@ namespace Vazoo1123.Views.Printing.ModalViews
                     btnTab.Children.Add(button);
                 }
             }
+            tarakingLaba.Text = $"https://vlazoo.com/shippinglabels/{trackinImgs[0].Trim()}.png";
             labelImj.Source = $"https://vlazoo.com/shippinglabels/{trackinImgs[0].Trim()}.png";
         }
 
@@ -43,7 +44,13 @@ namespace Vazoo1123.Views.Printing.ModalViews
         private void Button_Clicked(object sender, EventArgs e)
         {
             Button button = ((Button)sender);
+            tarakingLaba.Text = $"https://vlazoo.com/shippinglabels/{trackinImgs[Convert.ToInt32(button.Text) - 1].Trim()}.png";
             labelImj.Source = $"https://vlazoo.com/shippinglabels/{trackinImgs[Convert.ToInt32(button.Text) - 1].Trim()}.png";
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri($"{tarakingLaba.Text.Trim()}"));
         }
     }
 }

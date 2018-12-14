@@ -21,59 +21,61 @@
             <StackLayout AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional" 
                          AbsoluteLayout.LayoutBounds=".5, 1, 1, AutoSize" x:Name="bodySt">
                 <ListView x:Name="OrderList" ItemsSource="{Binding Product}"
-                      HasUnevenRows="True" SeparatorColor="#2c4dff" ItemAppearing="OrderList_ItemAppearing" IsRefreshing="{Binding IsBusy}" 
+                      HasUnevenRows="True" SeparatorVisibility="None" ItemAppearing="OrderList_ItemAppearing" IsRefreshing="{Binding IsBusy}" 
                           IsPullToRefreshEnabled="True" RefreshCommand="{Binding UpdateCommandOrder}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.View>
-                                    <StackLayout Orientation="Horizontal" BackgroundColor="White">
-                                        <StackLayout.GestureRecognizers>
+                                    <Frame Padding="2" Margin="5" BorderColor="#bfebf9" CornerRadius="6">
+                                        <Frame.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnDoubleTapped" NumberOfTapsRequired="1" />
-                                        </StackLayout.GestureRecognizers>
-                                        <StackLayout HorizontalOptions="Start">
-                                            <Image HorizontalOptions="Start" HeightRequest="50" WidthRequest="50" Source="{Binding ImageFile}"/>
-                                            <Image IsVisible="{Binding IsMesages}" HorizontalOptions="Start" HeightRequest="15" WidthRequest="15" Source="https://vlazoo.com/images/MsgClosed.gif" Margin="5">
-                                                <Image.GestureRecognizers>
-                                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
-                                                </Image.GestureRecognizers>
-                                            </Image>
-                                            <Label Text="{Binding MessageID}" x:Name="MessageID" IsVisible="False"/>
-                                        </StackLayout>
-                                        <StackLayout>
-                                            <Label Text="{Binding EBayUserID}"  TextColor="#2c4dff" FontSize="17"/>
-                                            <Label Text="{Binding ItemTitle}" TextColor="#2c4dff" FontSize="12"/>
-                                            <Label Text="{Binding ShopperEmail}" TextColor="#2c4dff" FontSize="12"/>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="Price:" FontSize="12" TextColor="#2c4dff"/>
-                                                <FlexLayout>
-                                                    <Label Text="$" FontSize="12" TextColor="#2c4dff"/>
-                                                    <Label Text="{Binding TransactionPrice}" FontSize="12" TextColor="#2c4dff"/>
-                                                    <Label Text="{Binding TotalTransactionPrice}" FontSize="12" TextColor="#2c4dff"/>
-                                                </FlexLayout>
+                                        </Frame.GestureRecognizers>
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="White">
+                                            <StackLayout HorizontalOptions="Start">
+                                                <Image HorizontalOptions="Start" HeightRequest="50" WidthRequest="50" Source="{Binding ImageFile}"/>
+                                                <Image IsVisible="{Binding IsMesages}" HorizontalOptions="Start" HeightRequest="15" WidthRequest="15" Source="https://vlazoo.com/images/MsgClosed.gif" Margin="5">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <Label Text="{Binding MessageID}" x:Name="MessageID" IsVisible="False"/>
+                                            </StackLayout>
+                                            <StackLayout>
+                                                <Label Text="{Binding EBayUserID}"  TextColor="#2c4dff" FontSize="17"/>
+                                                <Label Text="{Binding ItemTitle}" TextColor="#2c4dff" FontSize="12"/>
+                                                <Label Text="{Binding ShopperEmail}" TextColor="#2c4dff" FontSize="12"/>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Price:" FontSize="12" TextColor="#2c4dff"/>
+                                                    <FlexLayout>
+                                                        <Label Text="$" FontSize="12" TextColor="#2c4dff"/>
+                                                        <Label Text="{Binding TransactionPrice}" FontSize="12" TextColor="#2c4dff"/>
+                                                        <Label Text="{Binding TotalTransactionPrice}" FontSize="12" TextColor="#2c4dff"/>
+                                                    </FlexLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout WidthRequest="470">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Item Id:" FontSize="12" TextColor="#2c4dff"/>
+                                                    <Label x:Name="itemId" Text="{Binding EBayItemID}" FontSize="12" TextColor="#2c4dff"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Record Id:" FontSize="12" TextColor="#2c4dff"/>
+                                                    <Label x:Name="recordId" Text="{Binding RecordNumber}" FontSize="12" TextColor="#2c4dff"/>
+                                                </StackLayout>
+                                                <Label Text="{Binding TrackingNumber}" FontSize="10" TextColor="#2aabb1" >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                                <Label Text="{Binding PaymentMethod}" TextColor="#2c4dff" />
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Qty:" FontSize="12" TextColor="#2c4dff"/>
+                                                    <Label Text="{Binding TrackingNumbersCount}" FontSize="12" TextColor="#2c4dff"/>
+                                                </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
-                                        <StackLayout WidthRequest="470">
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="Item Id:" FontSize="12" TextColor="#2c4dff"/>
-                                                <Label x:Name="itemId" Text="{Binding EBayItemID}" FontSize="12" TextColor="#2c4dff"/>
-                                            </StackLayout>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="Record Id:" FontSize="12" TextColor="#2c4dff"/>
-                                                <Label x:Name="recordId" Text="{Binding RecordNumber}" FontSize="12" TextColor="#2c4dff"/>
-                                            </StackLayout>
-                                            <Label Text="{Binding TrackingNumber}" FontSize="10" TextColor="#2aabb1" >
-                                                <Label.GestureRecognizers>
-                                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
-                                                </Label.GestureRecognizers>
-                                            </Label>
-                                            <Label Text="{Binding PaymentMethod}" TextColor="#2c4dff" />
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="Qty:" FontSize="12" TextColor="#2c4dff"/>
-                                                <Label Text="{Binding TrackingNumbersCount}" FontSize="12" TextColor="#2c4dff"/>
-                                            </StackLayout>
-                                        </StackLayout>
-                                    </StackLayout>
+                                    </Frame>
                                 </ViewCell.View>
                             </ViewCell>
                         </DataTemplate>

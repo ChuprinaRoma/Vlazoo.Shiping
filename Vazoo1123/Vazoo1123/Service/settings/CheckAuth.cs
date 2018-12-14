@@ -12,6 +12,7 @@ namespace Vazoo1123.Service.settings
             CrossSettings.Current.AddOrUpdateValue("idCompany", idCompany);
             CrossSettings.Current.AddOrUpdateValue("userName", userName);
             CrossSettings.Current.AddOrUpdateValue("psw", psw);
+            CrossSettings.Current.AddOrUpdateValue("printer", "");
         }
 
         public static void RmovegAccount()

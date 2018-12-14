@@ -40,12 +40,13 @@ namespace Vazoo1123.Service
             return profilear;
         }
 
-        public int MessagesGet(int ClientID, string Login, string Password, int Type, string Folder, int Page, ref string description, ref List<Models.Messages> mesages, ref int totalResulte)
+        public int MessagesGet(int ClientID, string Login, string Password, int Type, string Folder, ref int Page, ref string description, ref List<Models.Messages> mesages, ref int totalResulte)
         {
             string content = null;
             int profilear = 1;
             try
             {
+                int state = 0;
                 string body = "{" + $"'ClientID':'{ClientID}','Login':'{Login}','Password':'{Password}', 'Type':'{Type}','Folder':'{Folder}','Page':'{Page}'" + "}";
                 RestClient client = new RestClient("https://vlazoo.com");
                 RestRequest request = new RestRequest("/WS/Mobile.asmx/MessagesGet", Method.POST);
@@ -61,6 +62,11 @@ namespace Vazoo1123.Service
                 else
                 {
                     ParseJson(content, ref profilear, ref description, ref mesages, ref totalResulte);
+                    Page++;
+                    if (Page == 1)
+                    {
+                        state = MessagesGet(ClientID, Login, Password, Type, "", ref Page, ref description, ref mesages, ref totalResulte);
+                    }
                 }
             }
             catch (Exception e)
@@ -287,9 +293,16 @@ namespace Vazoo1123.Service
                 .First.Value<int>("totalResults");
             if (stateResponse == "success")
             {
-                mesages = new List<Models.Messages>();
-                mesages.AddRange(JsonConvert.DeserializeObject<List<Models.Messages>>(objJsonRespons.
-                        First.First.SelectToken("Messages").ToString()));
+                if ( mesages != null)
+                {
+                    mesages.AddRange(JsonConvert.DeserializeObject<List<Models.Messages>>(objJsonRespons.
+                            First.First.SelectToken("Messages").ToString()));
+                }
+                else
+                {
+                    mesages = JsonConvert.DeserializeObject<List<Models.Messages>>(objJsonRespons.
+                            First.First.SelectToken("Messages").ToString());
+                }
                 state = 3;
             }
             else

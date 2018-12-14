@@ -439,6 +439,7 @@ namespace Vazoo1123.ViewModels.Printing
             {
                 ShipToAddress = "-------------------";
             }
+            await PopupNavigation.PopAsync(true);
         }
 
         public bool CheckToAddress()
@@ -465,6 +466,7 @@ namespace Vazoo1123.ViewModels.Printing
             {
                 ShipFromAddress = "-------------------";
             }
+            await PopupNavigation.PopAsync(true);
         }
 
         public bool CheckFromAddress()
@@ -577,7 +579,8 @@ namespace Vazoo1123.ViewModels.Printing
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
-            string printerId = CrossSettings.Current.GetValueOrDefault("printerId", "");
+            string printerId = CrossSettings.Current.GetValueOrDefault("printer", "");
+            string[] idOrNamePrinter = printerId.Split(',');
             if (TypeShipeMethod == "USPS")
             {
                  shipingMethod = "USPS_" + carrier.AccountID + "=" + carrier.Code + "=" + (carrier.IsL5 ? "Y" : carrier.IsShippo ? "S" : "N")
@@ -591,8 +594,12 @@ namespace Vazoo1123.ViewModels.Printing
             {
                  shipingMethod = "FedEx_" + carrier.Code;
             }
+            if (idOrNamePrinter[0] == "Default Printer")
+            {
+                printerId = GetIdDefaultPrinter();
+            }
             int stateAuth = managerVazoo.ShippingCreate(Convert.ToInt32(idCompany), email, psw, LabelsQty, shipingMethod, ToEmaile, SignatureWaiver, Oz, cDimensions, SourceAddr, 
-                cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, ToNotification, OrderNumber, ItemDescription, "", InsuranceAmount, ref tracking, ref description);
+                cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, ToNotification, OrderNumber, ItemDescription, printerId, InsuranceAmount, ref tracking, ref description);
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)
             {
@@ -618,6 +625,16 @@ namespace Vazoo1123.ViewModels.Printing
             {
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
             }
+        }
+
+        private string GetIdDefaultPrinter()
+        {
+            List<string[]> dropDwnChooseRemovePrinters = null;
+            string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+            managerVazoo.PrintingWork("OptionsGet", ref dropDwnChooseRemovePrinters, idCompany, email, psw);
+            return dropDwnChooseRemovePrinters.Find(d => d[0] == "Default Printer")[1];
         }
 
         public bool SetCarrier(string id)
