@@ -170,6 +170,8 @@ namespace Vazoo1123.ViewModels.Dashbord
             {
                 Thread.Sleep(100);
                 SelectProduct = new List<OrderInfo>();
+                SelectProduct = new List<OrderInfo>();
+                CountSelectOrder = "";
                 if (Type == 1)
                 {
                     Title = $"Paid {countOrder}";

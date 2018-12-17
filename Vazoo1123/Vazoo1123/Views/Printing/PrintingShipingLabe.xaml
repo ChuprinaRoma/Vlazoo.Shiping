@@ -73,12 +73,6 @@
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Switch HorizontalOptions="Start"/>
-                            <Label Text="Agreement with Vlazoo.com" TextColor="#2aa0ea"/>
-                            <Label Text="Terms and Conditions" TextColor="#2aabb1">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnTappedLabel" NumberOfTapsRequired="1" />
-                                </Label.GestureRecognizers>
-                            </Label>
                         </StackLayout>
                         <Button FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Text="Display shipping options"
                                 Clicked="Button_Clicked" x:Name="DSOBtn"/>
