@@ -37,10 +37,5 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             }
             await confirmationL.FadeTo(1, 300);
         }
-
-        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            await PopupNavigation.PushAsync(new Conditions(), true);
-        }
     }
 }

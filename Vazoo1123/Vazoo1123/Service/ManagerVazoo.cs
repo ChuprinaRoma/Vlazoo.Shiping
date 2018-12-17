@@ -1,5 +1,4 @@
-﻿
-using Plugin.Connectivity;
+﻿using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using Vazoo1123.Models;
@@ -188,6 +187,21 @@ namespace Vazoo1123.Service
                 else if (typeDashbord == "OrdersGet1")
                 {
                     stateDashbord = dashbord.GetDashbord(dataDashbord[0], dataDashbord[1], dataDashbord[2], type, ref countPage, ref description, ref orderInfos, ref countOrder, isNewOrder);
+                }
+            }
+            dashbord = null;
+            return stateDashbord;
+        }
+
+        public int DashbordWork(string typeDashbord, ref string description, int orderid, ref string trakingOrder, params string[] dataDashbord)
+        {
+            dashbord = new Dashbord();
+            int stateDashbord = 1;
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                if (typeDashbord == "OrderGet")
+                {
+                    stateDashbord = dashbord.OrderGet(Convert.ToInt32(dataDashbord[1]), dataDashbord[0], dataDashbord[2], orderid, ref trakingOrder);
                 }
             }
             dashbord = null;

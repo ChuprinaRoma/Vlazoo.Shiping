@@ -456,7 +456,6 @@ namespace Vazoo1123.ViewModels.Profile
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
             string[] _xzType = managerVazoo.PofiletWork("ProfileSet", ref description, Profile, idCompany, email, psw);
             int stateAuth = Convert.ToInt32(_xzType[0]);
-            Update();
             if (stateAuth == 4)
             {
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
@@ -468,6 +467,11 @@ namespace Vazoo1123.ViewModels.Profile
             else if (stateAuth == 1)
             {
                 await PopupNavigation.PushAsync(new Error("No network"), true);
+            }
+            else if(stateAuth == 3)
+            {
+                Update();
+                await PopupNavigation.PopAsync(true);
             }
         }
 

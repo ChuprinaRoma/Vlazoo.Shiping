@@ -21,10 +21,10 @@
     <StackLayout VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"
                  Margin="20">
-        <Frame Padding="0" BackgroundColor="White" BorderColor="#2c4dff">
+        <Frame Padding="0" BackgroundColor="White" BorderColor="#2aa0ea">
             <ScrollView>
                 <StackLayout Padding="10">
-                    <Label Text="Edit Shiping To Addres" FontSize="22" TextColor="#2c4dff" HorizontalOptions="Center" 
+                    <Label Text="Edit Shiping To Addres" FontSize="22" TextColor="#2aa0ea" HorizontalOptions="Center" 
                            VerticalTextAlignment="Center"/>
                     <local:CrossEntry Placeholder="Contact Name" Text="{Binding Name}"/>
                     <local:CrossEntry Placeholder="Addres" Text="{Binding Addres}"/>
@@ -33,7 +33,7 @@
                     <local:CrossEntry Placeholder="Zip" Text="{Binding Zip}"/>
                     <local:CrossEntry Placeholder="Phone" Text="{Binding Phone}"/>
                     <FlexLayout Direction="Row" JustifyContent="End" HorizontalOptions="CenterAndExpand" >
-                        <Button Text="Edit" BackgroundColor="#2c4dff" TextColor="White" Margin="2"
+                        <Button Text="Save" BackgroundColor="#2aa0ea" TextColor="White" Margin="2"
                                 Command="{Binding EditCommand}"/>
                     </FlexLayout>
                 </StackLayout>

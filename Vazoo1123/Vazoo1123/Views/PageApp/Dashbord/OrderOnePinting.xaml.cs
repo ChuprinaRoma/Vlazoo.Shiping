@@ -69,11 +69,6 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             fullInfoOneOrderAndPrintingMV.DisplayShippingOptions();
         }
 
-        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            await PopupNavigation.PushAsync(new Conditions(), true);
-        }
-
         private async void Button_Clicked_1(object sender, EventArgs e)
         {
             if (fullInfoOneOrderAndPrintingMV.IsValid)

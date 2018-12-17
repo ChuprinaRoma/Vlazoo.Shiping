@@ -71,9 +71,6 @@
                             <Label Text="Insurance, $" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                             <local:CrossEntry Placeholder="0.00" Keyboard="Numeric" Text="{Binding InsuranceAmount}"/>
                         </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Switch HorizontalOptions="Start"/>
-                        </StackLayout>
                         <Button FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Text="Display shipping options"
                                 Clicked="Button_Clicked" x:Name="DSOBtn"/>
                         <Frame Padding="5" BorderColor="#2aa0ea" CornerRadius="10">

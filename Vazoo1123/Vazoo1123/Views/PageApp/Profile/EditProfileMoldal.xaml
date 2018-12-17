@@ -42,7 +42,7 @@
                     <local:CrossEntry Placeholder="Phone" Text="{Binding Profile.WarehousePhone}" Keyboard="Telephone"/>
                     <FlexLayout Direction="Row" JustifyContent="End" HorizontalOptions="CenterAndExpand" >
                         <Button Text="Cancle" BackgroundColor="#2aa0ea" TextColor="White" Margin="2"/>
-                        <Button Text="Edit" BackgroundColor="#2aa0ea" TextColor="White" Margin="2"
+                        <Button Text="Save" BackgroundColor="#2aa0ea" TextColor="White" Margin="2"
                                 Command="{Binding EditCommand}"/>
                     </FlexLayout>
                 </StackLayout>

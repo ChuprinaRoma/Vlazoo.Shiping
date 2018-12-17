@@ -46,13 +46,13 @@
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
                     </Label.GestureRecognizers>
                 </Label>
-                <BoxView BackgroundColor="#2c4dff" HeightRequest="1"/>
+                <BoxView BackgroundColor="#2aa0ea" HeightRequest="1"/>
                 <Label Text="{Binding OrderInfo.ItemTitle}" FontSize="12" TextColor="#2aa0ea" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                <Frame CornerRadius="10" BorderColor="#2c4dff" Margin="2">
+                <Frame CornerRadius="10" BorderColor="#2aa0ea" Margin="2">
                     <FlexLayout Direction="Column">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
                             <Label Text="Shipping Address" FontSize="22" TextColor="#2aa0ea" HorizontalOptions="Start"/>
-                            <Button HorizontalOptions="End" Text="Edit" TextColor="#2aa0ea" BackgroundColor="White" Clicked="Button_Clicked_2"/>
+                            <Button HorizontalOptions="EndAndExpand" Text="Edit" TextColor="#2aa0ea" BackgroundColor="White" Clicked="Button_Clicked_2" HeightRequest="30" />
                         </StackLayout>
                         <BoxView HeightRequest="2" BackgroundColor="#2aa0ea" Margin="0, 3, 0, 3"/>
                         <StackLayout Orientation="Horizontal" Margin="5">
@@ -126,9 +126,6 @@
                         <StackLayout Orientation="Horizontal">
                             <Switch HorizontalOptions="Start" IsToggled="{Binding NoValidate}"/>
                             <Label Text="No street level address validation" TextColor="#2aa0ea"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Switch HorizontalOptions="Start" IsToggled="True"/>
                         </StackLayout>
                         <Button FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Text="Display shipping options"
                                 Clicked="Button_Clicked" x:Name="DSOBtn"/>

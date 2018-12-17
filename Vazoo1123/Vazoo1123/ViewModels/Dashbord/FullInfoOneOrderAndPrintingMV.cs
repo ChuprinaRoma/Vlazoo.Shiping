@@ -1,4 +1,5 @@
 ﻿using Plugin.Settings;
+using Prism.Commands;
 using Prism.Mvvm;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -21,6 +22,7 @@ namespace Vazoo1123.ViewModels.Dashbord
         private CAddressBase SourceAddr = null;
         private CDimensions cDimensions = null;
         private List<Carrier> carriers = null;
+        public DelegateCommand EditCommand { get; set; }
         public INavigation Navigation { get; set; }
         InitDasbordDelegate initDasbord;
 
@@ -230,6 +232,8 @@ namespace Vazoo1123.ViewModels.Dashbord
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
             int stateAuth = 0;
+            string s = null;
+            managerVazoo.DashbordWork("OrderGet", ref description, OrderInfo.ID, ref s, email, idCompany, psw);
             stateAuth = managerVazoo.ShippingEstimateOrderint("Options", OrderInfo.ID, ref description, ref carriers, email, idCompany, psw);
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)
@@ -441,6 +445,11 @@ namespace Vazoo1123.ViewModels.Dashbord
                 Carrier = carrier1;
             }
             return isSelect;
+        }
+
+        private async void EditShipToAddres()
+        {
+            await PopupNavigation.PopAsync(true);
         }
     }
 }

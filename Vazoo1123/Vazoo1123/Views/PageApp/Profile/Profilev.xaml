@@ -19,7 +19,7 @@
                         </StackLayout>
                         <BoxView HeightRequest="2" BackgroundColor="#6ad1f0" Margin="0, 3, 0, 3"/>
                         <StackLayout Orientation="Horizontal" Margin="5">
-                            <Label Text="Commpany ID:" FontSize="16" TextColor="#2abdea" HorizontalOptions="Start"/>
+                            <Label Text="Commpany ID:" FontSize="16" TextColor="#2aa0ea" HorizontalOptions="Start"/>
                             <Label Text="{Binding IdCompany}" FontSize="16" TextColor="#2aa0ea"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Margin="5">

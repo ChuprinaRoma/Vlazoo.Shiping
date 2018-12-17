@@ -36,9 +36,6 @@
                             <Switch HorizontalOptions="Start" IsToggled="{Binding NoValidate}"/>
                             <Label Text="No street level address validation" TextColor="#2aa0ea"/>
                         </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Switch HorizontalOptions="Start"/>
-                        </StackLayout>
                     </StackLayout>
                 </Frame>
             </StackLayout>

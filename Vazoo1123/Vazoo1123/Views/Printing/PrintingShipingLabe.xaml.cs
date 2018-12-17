@@ -53,11 +53,6 @@ namespace Vazoo1123.Views.Printing
         {
             await PopupNavigation.PushAsync(new ShipToAddress(printingShipingLabeMW), true);
         }
-
-        private async void OnTappedLabel(object sender, EventArgs args)
-        {
-            await PopupNavigation.PushAsync(new Conditions(), true);
-        }
         
         private void CrossEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
