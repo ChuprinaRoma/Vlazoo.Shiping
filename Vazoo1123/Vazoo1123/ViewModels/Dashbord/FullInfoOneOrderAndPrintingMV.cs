@@ -5,11 +5,13 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Vazoo1123.Models;
 using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Printing.Models;
 using Vazoo1123.Views.LoadViews;
+using Vazoo1123.Views.Printing.ModalViews;
 using Xamarin.Forms;
 using static Vazoo1123.ViewModels.Dashbord.DashbordMW;
 
@@ -232,8 +234,6 @@ namespace Vazoo1123.ViewModels.Dashbord
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
             int stateAuth = 0;
-            string s = null;
-            managerVazoo.DashbordWork("OrderGet", ref description, OrderInfo.ID, ref s, email, idCompany, psw);
             stateAuth = managerVazoo.ShippingEstimateOrderint("Options", OrderInfo.ID, ref description, ref carriers, email, idCompany, psw);
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)
@@ -241,6 +241,9 @@ namespace Vazoo1123.ViewModels.Dashbord
                 CarriersUSPS = new List<Carrier>(carriers.FindAll(c => c.Company == 1));
                 CarriersUPS = new List<Carrier>(carriers.FindAll(c => c.Company == 2));
                 CarriersFedEx = new List<Carrier>(carriers.FindAll(c => c.Company == 3));
+                CarriersUSPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                CarriersUPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                CarriersFedEx.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
                 IsValid = true;
             }
             else if (stateAuth == 2)
@@ -287,6 +290,10 @@ namespace Vazoo1123.ViewModels.Dashbord
                 CarriersUSPS = new List<Carrier>(carriers.FindAll(c => c.Company == 1));
                 CarriersUPS = new List<Carrier>(carriers.FindAll(c => c.Company == 2));
                 CarriersFedEx = new List<Carrier>(carriers.FindAll(c => c.Company == 3));
+                CarriersUSPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                CarriersUPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                CarriersFedEx.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+
                 await PopupNavigation.PushAsync(new Views.PageApp.Dashbord.OptinsPage(this, CarriersUSPS.Count != 0, CarriersUPS.Count != 0, CarriersFedEx.Count != 0), true);
                 IsValid = true;
             }
@@ -332,9 +339,10 @@ namespace Vazoo1123.ViewModels.Dashbord
                 SourceAddr.State = _xzType[13];
                 SourceAddr.ZIP5 = _xzType[14];
                 SourceAddr.Phone = _xzType[15];
-                cDimensions.Heigh = Convert.ToDouble(OrderInfo.DimensionsH != "" ? OrderInfo.DimensionsH.Replace('.', ',') : "0");
-                cDimensions.Width = Convert.ToDouble(OrderInfo.DimensionsW != "" ? OrderInfo.DimensionsW.Replace('.', ',') : "0");
-                cDimensions.Length = Convert.ToDouble(OrderInfo.DimensionsL != "" ? OrderInfo.DimensionsL.Replace('.', ',') : "0");
+
+                cDimensions.Heigh = Convert.ToDouble(OrderInfo.DimensionsH != "" ? OrderInfo.DimensionsH : "0");
+                cDimensions.Width = Convert.ToDouble(OrderInfo.DimensionsW != "" ? OrderInfo.DimensionsW : "0");
+                cDimensions.Length = Convert.ToDouble(OrderInfo.DimensionsL != "" ? OrderInfo.DimensionsL : "0");
                 if (orderInfo.ShipToAddress.Address1 != "")
                 {
                     cAddressBase.Address1 = orderInfo.ShipToAddress.Address1;
@@ -373,8 +381,6 @@ namespace Vazoo1123.ViewModels.Dashbord
             return stateAuth;
         }
 
-
-
         public async void ShippingCreate()
         {
             await PopupNavigation.PushAsync(new LoadPage());
@@ -405,22 +411,37 @@ namespace Vazoo1123.ViewModels.Dashbord
             }
             int stateAuth = managerVazoo.ShippingCreateOrder(Convert.ToInt32(idCompany), email, psw, OrderInfo.ID, LabelsQty, shipingMethod, OrderInfo.ShopperEmail, SignatureWaiver,
                 Oz, cDimensions, SourceAddr, cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, true, "", "", printerId, 0, ref tracking, ref description);
-            await PopupNavigation.PopAllAsync();
+            
             if (stateAuth == 3)
             {
-                await PopupNavigation.PushAsync(new Compleat("Print Succefull"), true);
+                string trakingOrder = null;
                 initDasbord.Invoke();
+                await Navigation.PopAsync();
+                    managerVazoo.DashbordWork("OrderGet", ref description, OrderInfo.ID, ref trakingOrder, email, idCompany, psw);
+                Thread.Sleep(2000);
+                await PopupNavigation.PopAllAsync();
+                if (trakingOrder != null && trakingOrder != "")
+                {
+                    await PopupNavigation.PushAsync(new LabalPageView(trakingOrder));
+                }
+                else
+                {
+                    await PopupNavigation.PushAsync(new Compleat("Label successfully printed, look for label in \'Labels Printed Last 72h\'"), true);
+                }
             }
             else if (stateAuth == 2)
             {
+                await PopupNavigation.PopAllAsync();
                 await PopupNavigation.PushAsync(new Error(description), true);
             }
             else if (stateAuth == 1)
             {
+                await PopupNavigation.PopAllAsync();
                 await PopupNavigation.PushAsync(new Error(description), true);
             }
             else if (stateAuth == 4)
             {
+                await PopupNavigation.PopAllAsync();
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
             }
         }

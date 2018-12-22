@@ -5,15 +5,18 @@
                   Title="Vazoo">
     <MasterDetailPage.Master>
         <ContentPage Title="Master" WidthRequest="500">
-           
-                <StackLayout x:Name="body" BackgroundColor="White"  SizeChanged="Body_SizeChanged">
+            <StackLayout x:Name="body" BackgroundColor="White"  SizeChanged="Body_SizeChanged">
                     <AbsoluteLayout HeightRequest="150">
-                        <Image Margin="5,10,5,10" Source="head.png" BackgroundColor="White"
+                    <Image Margin="5,10,5,10" Source="head.png" BackgroundColor="White"
                                AbsoluteLayout.LayoutFlags="All"
-                               AbsoluteLayout.LayoutBounds=".5,.5,1,1"/>
+                               AbsoluteLayout.LayoutBounds=".5,.5,1,1">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                         <StackLayout Orientation="Horizontal" Margin="10"
                                      AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
-                                     AbsoluteLayout.LayoutBounds=".1,.9, .99, AutoSize">
+                                     AbsoluteLayout.LayoutBounds=".1, 1.1, .99, AutoSize">
                             <Label HorizontalOptions="Start" Text="User:" FontSize="18" TextColor="#2aa0ea"/>
                             <Label x:Name="nameProfile" Text="{Binding NameProfile}" FontSize="18" TextColor="#2aa0ea"/>
                         </StackLayout>
@@ -26,7 +29,7 @@
                                 <TapGestureRecognizer Tapped="ToDashbord" NumberOfTapsRequired="1" />
                             </StackLayout.GestureRecognizers>
                             <Image Source="Dashbord.png" HorizontalOptions="Start" HeightRequest="25" WidthRequest="25" Margin="10,0,10,0"/>
-                            <Label Text="Paid and Awaiting" TextColor="#2aa0ea" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <Label Text="Paid and Awaiting Shipping" TextColor="#2aa0ea" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center"/>
                             <Label x:Name="countDasbord" Text="{Binding CountDashbord}" FontSize="15" TextColor="Red" HorizontalTextAlignment="End" VerticalOptions="Center" />
                         </StackLayout>
                         <BoxView Margin="4, 0, 4, 0" BackgroundColor="#8fcaf5" HeightRequest="1"/>

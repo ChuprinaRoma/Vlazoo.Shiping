@@ -15,6 +15,8 @@ namespace Vazoo1123.ViewModels
         public DelegateCommand ToVlazoo_WebCommand { get; set; }
         public DelegateCommand SendCommand { get; set; }
         private ManagerVazoo managerVazoo = null;
+        public DelegateCommand ToYoutubeCommand { get; set; }
+        public DelegateCommand ToFaceBockCommand { get; set; }
 
         public HelpViewModels()
         {
@@ -22,6 +24,8 @@ namespace Vazoo1123.ViewModels
             ToBackCommand = new DelegateCommand(ToBack);
             ToVlazoo_WebCommand = new DelegateCommand(ToVlazoo_Web);
             SendCommand = new DelegateCommand(Send);
+            ToYoutubeCommand = new DelegateCommand(ToYoutube);
+            ToFaceBockCommand = new DelegateCommand(ToFaceBock);
         }
 
         private string email;
@@ -73,6 +77,16 @@ namespace Vazoo1123.ViewModels
             {
                 await PopupNavigation.PushAsync(new Error("No network"), true);
             }
+        }
+
+        private async void ToYoutube()
+        {
+            Device.OpenUri(new Uri("https://www.youtube.com/channel/UCBgNOYRYH3Wr9mcl3lHkqKg?view_as=subscriber"));
+        }
+
+        private async void ToFaceBock()
+        {
+            Device.OpenUri(new Uri("https://www.facebook.com/vlazoo2016/"));
         }
     }
 }

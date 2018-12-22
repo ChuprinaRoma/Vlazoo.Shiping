@@ -16,7 +16,11 @@
                     </Image>
                 </StackLayout>
                 <FlexLayout Direction="Row" x:Name="image" JustifyContent="Center" AlignContent="Center" AlignItems="Center">
-                    <Image x:Name="headImg" Source="head.png"/>
+                    <Image x:Name="headImg" Source="head.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </FlexLayout>
                 <AbsoluteLayout HeightRequest="440">
                     <Label Text="New User Registration" 

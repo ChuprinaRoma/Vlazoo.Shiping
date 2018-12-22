@@ -17,7 +17,7 @@ namespace Vazoo1123.Service
             {
                 string body = "{" + $"'ClientID':'{ClientID}','Login':'{Login}','Password':'{Password}','OrderID':'{OrderID}'" + "}";
                 RestClient client = new RestClient("https://vlazoo.com");
-                RestRequest request = new RestRequest("/WS/Mobile.asmx/OrdersGet", Method.POST);
+                RestRequest request = new RestRequest("/WS/Mobile.asmx/OrderGet", Method.POST);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
                 request.AddParameter("application/json", body, ParameterType.RequestBody);
@@ -117,9 +117,10 @@ namespace Vazoo1123.Service
             JObject objJsonRespons = JObject.Parse(jsonResponse);
             stateResponse = objJsonRespons.First
                 .First.Value<string>("status");
+            trakingNumber = objJsonRespons.First
+                .First.Value<string>("TrackingNumber");
             if (stateResponse == "success")
             {
-
                 state = 3;
             }
             else

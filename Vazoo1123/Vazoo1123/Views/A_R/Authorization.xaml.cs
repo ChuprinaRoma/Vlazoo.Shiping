@@ -42,5 +42,10 @@ namespace Vazoo1123.Views.A_R
             double onePercentwidth = Application.Current.MainPage.Width / 100;
             image.HeightRequest = onePercentheigth * 25;
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://cgi6.ebay.com/ws/eBayISAPI.dll?SolutionsDirectory&page=details&solutionId=705082875"));
+        }
     }
 }

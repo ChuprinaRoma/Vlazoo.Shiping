@@ -39,15 +39,15 @@ namespace Vazoo1123.ViewModels.A_RViewModels
         {
             Navigation.PushModalAsync(new Authorization());
         }
-
+        
         private async void ToYoutube()
         {
-            Device.OpenUri(new Uri("https://www.facebook.com/vlazoo2016/"));
+            Device.OpenUri(new Uri("https://www.youtube.com/channel/UCBgNOYRYH3Wr9mcl3lHkqKg?view_as=subscriber"));
         }
 
         private async void ToFaceBock()
         {
-            Device.OpenUri(new Uri("https://www.youtube.com/playlist?list=PL_mS334Pp9GB6hmiAe9aOC1ugoA1HuqDt"));
+            Device.OpenUri(new Uri("https://www.facebook.com/vlazoo2016/"));
         }
     }
 }

@@ -2,7 +2,7 @@
 <pages:PopupPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Vazoo1123.NewElement"
+    xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     x:Class="Vazoo1123.Views.ModalView.Confirm">
@@ -60,7 +60,7 @@
                     </StackLayout>
                 </StackLayout>
                 <FlexLayout>
-                    <Button Text="Cancle" Clicked="Button_Clicked_1" FlexLayout.Grow="1" BackgroundColor="#2aa0ea" TextColor="White" Margin="3"/>
+                    <Button Text="Cancele" Clicked="Button_Clicked_1" FlexLayout.Grow="1" BackgroundColor="#2aa0ea" TextColor="White" Margin="3"/>
                     <Button Text="confirm" Clicked="Button_Clicked" FlexLayout.Grow="1" BackgroundColor="#2aa0ea" TextColor="White" Margin="3"/>
                 </FlexLayout>
             </StackLayout>

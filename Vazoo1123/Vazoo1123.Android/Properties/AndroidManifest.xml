@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Vazoo.Vazoo.x16.x11.x18" android:installLocation="auto" android:versionName="1" android:versionCode="1">
-	<uses-sdk android:minSdkVersion="21" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Vazoo.Vazoo.x12.x17.x18" android:installLocation="internalOnly" android:versionName="1" android:versionCode="1">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="25" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<application android:label="Vlazoo Shiping Printing 29.11.18"></application>

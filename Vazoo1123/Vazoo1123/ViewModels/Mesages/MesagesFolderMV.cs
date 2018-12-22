@@ -1,7 +1,6 @@
 ﻿using Plugin.Settings;
 using Prism.Mvvm;
 using Rg.Plugins.Popup.Services;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -27,7 +26,7 @@ namespace Vazoo1123.ViewModels.Mesages
             this.managerVazoo = managerVazoo;
             this.menuDetalePage = menuDetalePage;
             Type = 1;
-            Name = "To Day";
+            Name = "Today";
             initMesage = InitMessages;
             InitMessages();
         }

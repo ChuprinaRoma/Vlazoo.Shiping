@@ -546,6 +546,9 @@ namespace Vazoo1123.ViewModels.Printing
                 CarriersUSPS = new List<Carrier>(carriers.FindAll(c => c.Company == 1));
                 CarriersUPS = new List<Carrier>(carriers.FindAll(c => c.Company == 2));
                 CarriersFedEx = new List<Carrier>(carriers.FindAll(c => c.Company == 3));
+                CarriersUSPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                CarriersUPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                CarriersFedEx.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
                 await PopupNavigation.PushAsync(new OptinsPage(this, CarriersUSPS.Count != 0, CarriersUPS.Count != 0, CarriersFedEx.Count != 0), true);
                 IsValid = true;
             }

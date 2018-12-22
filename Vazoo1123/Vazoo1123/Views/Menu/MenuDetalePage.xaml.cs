@@ -105,5 +105,10 @@ namespace Vazoo1123.Views.Menu
             countDasbord.Margin = new Thickness(mainMenu.Width - 216, 0, 0, 0);
             countMessage.Margin = new Thickness(mainMenu.Width - 161, 0, 0, 0);
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://cgi6.ebay.com/ws/eBayISAPI.dll?SolutionsDirectory&page=details&solutionId=705082875"));
+        }
     }
 }

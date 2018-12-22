@@ -1,4 +1,5 @@
 ﻿using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Threading.Tasks;
 using Vazoo1123.ViewModels.Printing;
@@ -27,7 +28,7 @@ namespace Vazoo1123.Views.Printing.ModalViews
 
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             if (frame != ((Frame)sender))
             {
@@ -41,6 +42,7 @@ namespace Vazoo1123.Views.Printing.ModalViews
                 {
                     frame.BorderColor = Color.FromHex("#2abdea");
                 }
+                await PopupNavigation.PopAsync(true);
             }
         }
 

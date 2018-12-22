@@ -224,7 +224,13 @@ namespace Vazoo1123.Service
                 }
                 else if(typeMesages == "MesageCountToDay")
                 {
-                    stateMesges = mesages.MessagesGetCount(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], 1, "", ref totalResulte);
+                    int totalResulteTmp = 0;
+                    stateMesges = mesages.MessagesGetCount(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], 1, "", ref totalResulteTmp);
+                    totalResulte += totalResulteTmp;
+                    stateMesges = mesages.MessagesGetCount(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], 2, "", ref totalResulteTmp);
+                    totalResulte += totalResulteTmp;
+                    stateMesges = mesages.MessagesGetCount(Convert.ToInt32(dataMesages[1]), dataMesages[0], dataMesages[2], 3, "", ref totalResulteTmp);
+                    totalResulte += totalResulteTmp;
                 }
                 else if (typeMesages == "Conversation")
                 {

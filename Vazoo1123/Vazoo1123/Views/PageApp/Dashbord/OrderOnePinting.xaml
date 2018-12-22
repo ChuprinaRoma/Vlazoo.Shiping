@@ -24,7 +24,7 @@
                             <Label Text="{Binding OrderInfo.EBayItemID}" FontSize="14" TextColor="#2aa0ea"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="RNumber:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="Record#" FontSize="14" TextColor="#2aa0ea"/>
                             <Label Text="{Binding OrderInfo.RecordNumber}" FontSize="14" TextColor="#2aa0ea"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
@@ -51,8 +51,8 @@
                 <Frame CornerRadius="10" BorderColor="#2aa0ea" Margin="2">
                     <FlexLayout Direction="Column">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                            <Label Text="Shipping Address" FontSize="22" TextColor="#2aa0ea" HorizontalOptions="Start"/>
-                            <Button HorizontalOptions="EndAndExpand" Text="Edit" TextColor="#2aa0ea" BackgroundColor="White" Clicked="Button_Clicked_2" HeightRequest="30" />
+                            <Label Text="Shipping Address" FontSize="20" TextColor="#2aa0ea" HorizontalOptions="Start" VerticalTextAlignment="Center"/>
+                            <Button HorizontalOptions="EndAndExpand" Text="Edit" TextColor="#2aa0ea" BackgroundColor="White" Clicked="Button_Clicked_2" HeightRequest="41"/>
                         </StackLayout>
                         <BoxView HeightRequest="2" BackgroundColor="#2aa0ea" Margin="0, 3, 0, 3"/>
                         <StackLayout Orientation="Horizontal" Margin="5">

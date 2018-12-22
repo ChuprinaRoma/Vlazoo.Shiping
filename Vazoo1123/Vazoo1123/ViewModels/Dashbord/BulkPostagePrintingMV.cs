@@ -131,6 +131,9 @@ namespace Vazoo1123.ViewModels.Dashbord
                     order.CarriersUSPS = new List<Carrier>(order.carriers.FindAll(c => c.Company == 1));
                     order.CarriersUPS = new List<Carrier>(order.carriers.FindAll(c => c.Company == 2));
                     order.CarriersFedEx = new List<Carrier>(order.carriers.FindAll(c => c.Company == 3));
+                    CarriersUSPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                    CarriersUPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                    CarriersFedEx.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
                 }
                 else if (stateAuth != 3)
                 {
@@ -172,6 +175,9 @@ namespace Vazoo1123.ViewModels.Dashbord
                 order.CarriersUSPS = new List<Carrier>(order.carriers.FindAll(c => c.Company == 1));
                 order.CarriersUPS = new List<Carrier>(order.carriers.FindAll(c => c.Company == 2));
                 order.CarriersFedEx = new List<Carrier>(order.carriers.FindAll(c => c.Company == 3));
+                CarriersUSPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                CarriersUPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                CarriersFedEx.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
             }
             else if (stateAuth != 3)
             {

@@ -2,12 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vazoo1123.Views.PageApp.DashboardPage"
-             xmlns:refresh="clr-namespace:Refractored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh"
              xmlns:local="clr-namespace:Vazoo1123.NewElement"
              Title="{Binding Title}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="counterOrder" Priority="1"  Text="{Binding CountSelectOrder}"/>
-        <ToolbarItem Icon="Serch.png" Priority="3" Clicked="ToolbarItem_Clicked"/>
         <ToolbarItem x:Name="printing" Icon="Printing.png" Priority="2" Command="{Binding ToBulkPostagePrintingCommand}"/>
         <ToolbarItem Icon="filter.png" Clicked="ToolbarItem_Clicked_1" Priority="4"/>
     </ContentPage.ToolbarItems>

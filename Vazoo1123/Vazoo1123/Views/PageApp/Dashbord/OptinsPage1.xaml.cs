@@ -1,4 +1,5 @@
 ﻿using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Threading.Tasks;
 using Vazoo1123.ViewModels.Dashbord;
@@ -28,7 +29,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             btnFedEx.IsEnabled = isCountFedEx;
         }
         
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             if (frame != ((Frame)sender))
             {
@@ -43,7 +44,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                     frame.BorderColor = Color.FromHex("#2c4dff");
                 }
                 
-                Task.Run(() =>
+                await Task.Run(() =>
                 {
                     double tempPostage = 0;
                     foreach (var selectProduct1 in bulkPostagePrintingMV.SelectProduct)
@@ -52,6 +53,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                     }
                     bulkPostagePrintingMV.PostageTotal = $"${tempPostage}";
                 });
+                await PopupNavigation.PopAsync(true);
             }
         }
 

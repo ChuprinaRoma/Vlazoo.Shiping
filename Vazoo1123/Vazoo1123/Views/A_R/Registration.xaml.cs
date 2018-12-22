@@ -56,12 +56,12 @@ namespace Vazoo1123.Views.A_R
             isCount = password.Count() >= 7 ? true : false;
             if (isSpecialChar && isNumber && isCount && isUpper)
             {
-                psw.BackgroundColor = Color.FromRgba(0, 255, 0, 122);
+                psw.TextColor = Color.FromHex("2aa0ea");
                 isValidPsw = true;
             }
             else
             {
-                psw.BackgroundColor = Color.FromRgba(255, 0, 0, 122);
+                psw.TextColor = Color.Red;
                 isValidPsw = false;
             }
             CountValid_Password();
@@ -71,12 +71,12 @@ namespace Vazoo1123.Views.A_R
         {
             if (psw.Text == cpsw.Text)
             {
-                cpsw.BackgroundColor = Color.FromRgba(0, 255, 0, 122);
+                cpsw.TextColor = Color.FromHex("2aa0ea");
                 isEqpsw = true;
             }
             else
             {
-                cpsw.BackgroundColor = Color.FromRgba(255, 0, 0, 122);
+                cpsw.TextColor = Color.Red;
                 isEqpsw = false;
             }
             SetEnableVBtn();
@@ -99,6 +99,11 @@ namespace Vazoo1123.Views.A_R
             {
                 sigUpBtn.IsEnabled = false;
             }
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://cgi6.ebay.com/ws/eBayISAPI.dll?SolutionsDirectory&page=details&solutionId=705082875"));
         }
     }
 }
