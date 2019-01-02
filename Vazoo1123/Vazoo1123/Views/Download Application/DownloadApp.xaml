@@ -2,18 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vazoo1123.Views.Download_Application.DownloadApp"
-             Title="Download App">
+             Title="Download Desktop Application">
     <ContentPage.Content>
         <StackLayout Margin="10">
-            <Label Text="Warning: Printing application is not running"
-                       FontSize="18" TextColor="#2aa0ea" Margin="5"/>
-            <Button Text="Download printing Application" TextColor="White" BackgroundColor="#2aa0ea" Margin="2" Clicked="Button_Clicked"/>
             <Label Text="1. Download and unzip printing application to any computer connected to the internet"
                        FontSize="18" TextColor="#2aa0ea" Margin="5"/>
             <Label Text="2. Instal printing application"
                        FontSize="18" TextColor="#2aa0ea" Margin="3"/>
-            <Label Text="3. Choose remote print above  .by defult labes will prit to 'Print Label' Printer Login credentials were sent in initial SignIn email You can always create another  printer LogIn and have multiple printers runinng in differend locations"
+            <Label Text="3. Choose remote print above. By defult labes will prit to 'Print Label' Printer Login credentials were sent in initial SignIn email You can always create another  printer LogIn and have multiple printers runinng in differend locations"
                        FontSize="18" TextColor="#2aa0ea" Margin="5"/>
+            <Button Text="Download Desktop Application" TextColor="White" BackgroundColor="#2aa0ea" Margin="2" Clicked="Button_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

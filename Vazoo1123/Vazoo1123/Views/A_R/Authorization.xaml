@@ -9,7 +9,7 @@
         <ScrollView>
             <FlexLayout SizeChanged="OnSizeChanged"  Direction="Column" BackgroundColor="White">
                 <StackLayout HeightRequest="23" BackgroundColor="White">
-                    <Image HorizontalOptions="Start" HeightRequest="23" WidthRequest="23" Source="Back.png" Margin="2">
+                    <Image HorizontalOptions="Start" HeightRequest="23" WidthRequest="23" Source="Back.png" Margin="8">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding BackCommand}" NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>

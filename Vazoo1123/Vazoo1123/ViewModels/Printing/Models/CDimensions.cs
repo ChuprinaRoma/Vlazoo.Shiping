@@ -4,6 +4,6 @@
     {
         public double Length { get; set; }
         public double Width { get; set; }
-        public double Heigh { get; set; }
+        public double Height { get; set; }
     }
 }

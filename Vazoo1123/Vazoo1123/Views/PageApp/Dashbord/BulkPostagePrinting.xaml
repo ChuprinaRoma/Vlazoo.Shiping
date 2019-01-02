@@ -11,8 +11,8 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="OrderList" ItemsSource="{Binding SelectProduct}" IsRefreshing="{Binding IsBusy}" IsPullToRefreshEnabled="True"
-                      HasUnevenRows="True" SeparatorColor="#2aa0ea" Refreshing="ToolbarItem_Clicked">
+            <ListView x:Name="OrderList" ItemsSource="{Binding SelectProduct}"
+                      HasUnevenRows="True" SeparatorColor="#2aa0ea" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -49,15 +49,7 @@
                                                 <local:CrossEdit Text="{Binding LabelsQty}" Placeholder="Qty" FontSize="12" TextColor="#2aa0ea"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
-                                                <Image Source="update1.jpg" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Margin="20, 0, 0, 0">
-                                                    <Image.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
-                                                    </Image.GestureRecognizers>
-                                                </Image>
-                                                <Image Source="update1.jpg" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Margin="10, 0, 0, 0"/>
-                                            </StackLayout>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Button Text="Display Shiping" HorizontalOptions="Center" Margin="20, 0, 0, 0" HeightRequest="50" WidthRequest="70"
+                                                <Button Text="Display Dhipping Options" HorizontalOptions="Center" Margin="20, 0, 0, 0" HeightRequest="50" WidthRequest="100"
                                                         FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" BorderWidth="0" Clicked="Button_Clicked" />
                                             </StackLayout>
                                         </StackLayout>
@@ -67,7 +59,7 @@
                                             <Label Text="Weight:" FontSize="12"  TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry x:Name="WLbsCrEntry" FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightLBS}" TextChanged="WOzCrEntry_TextChanged"/>
                                             <Label Text="(lbs)" FontSize="12" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                                            <local:CrossEntry x:Name="WOzCrEntry" FontSize="12"  Placeholder="Num" Text="{Binding WeightOZ}" TextChanged="WOzCrEntry_TextChanged"/>
+                                            <local:CrossEntry x:Name="WOzCrEntry" FontSize="12" Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightOZ}" TextChanged="WOzCrEntry_TextChanged"/>
                                             <Label Text="(oz)" FontSize="12" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry x:Name="WkgCrEntry" FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding WeightKG}" TextChanged="WOzCrEntry_TextChanged"/>
                                             <Label Text="(kg)" FontSize="12"  TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
@@ -76,9 +68,9 @@
                                             <Label FontSize="12" Text="Dim (in):" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding DimensionsL}" TextChanged="CrossEntry_TextChanged"/>
                                             <Label Text="X" FontSize="12"  TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                                            <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding DimensionsW}" TextChanged="CrossEntry_TextChanged"/>
-                                            <Label Text="X" FontSize="12"  TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                                             <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding DimensionsH}" TextChanged="CrossEntry_TextChanged"/>
+                                            <Label Text="X" FontSize="12"  TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                                            <local:CrossEntry FontSize="12"  Keyboard="Numeric" Placeholder="Num" Text="{Binding DimensionsW}" TextChanged="CrossEntry_TextChanged"/>
                                         </StackLayout>
                                         <Label Text="{Binding StrCalc}" TextColor="#2aa0ea" Margin="5, 0, 0, 0" VerticalTextAlignment="Start" FontSize="12"/>
                                     </StackLayout>

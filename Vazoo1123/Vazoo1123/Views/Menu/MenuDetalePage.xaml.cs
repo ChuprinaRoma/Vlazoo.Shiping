@@ -102,8 +102,8 @@ namespace Vazoo1123.Views.Menu
             double height = Application.Current.MainPage.Height;
             double Width = mainMenu.Width;
             body.HeightRequest = height - 20;
-            countDasbord.Margin = new Thickness(mainMenu.Width - 216, 0, 0, 0);
-            countMessage.Margin = new Thickness(mainMenu.Width - 161, 0, 0, 0);
+            countDasbord.Margin = new Thickness(mainMenu.Width - 285, 0, 0, 0);
+            countMessage.Margin = new Thickness(mainMenu.Width - 180, 0, 0, 0);
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

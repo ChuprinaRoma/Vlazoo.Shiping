@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Vazoo1123.Models;
 using Vazoo1123.NewElement;
 using Vazoo1123.Service;
@@ -29,24 +30,47 @@ namespace Vazoo1123.Views.PageApp.Dashbord
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
+            StackLayout stackLayout = ((Button)sender).FindByName<StackLayout>("st");
+            await stackLayout.FadeTo(0.2, 300);
+
             string itemId = ((Button)sender).FindByName<Label>("itemId").Text;
             string recordId = ((Button)sender).FindByName<Label>("recordId").Text;
             FullOrderSettings fullOrderSettings = bulkPostagePrintingMV.SelectProduct
                 .Find(s => s.EBayItemID == itemId && s.RecordNumber == recordId);
+            fullOrderSettings.cDimensions.Height = Convert.ToDouble(fullOrderSettings.DimensionsH);
+            fullOrderSettings.cDimensions.Width = Convert.ToDouble(fullOrderSettings.DimensionsW);
+            fullOrderSettings.cDimensions.Length = Convert.ToDouble(fullOrderSettings.DimensionsL);
             int indexSelectProduct = bulkPostagePrintingMV.SelectProduct
                 .FindIndex(s => s.EBayItemID == itemId && s.RecordNumber == recordId);
-            bulkPostagePrintingMV.CarriersFedEx = fullOrderSettings.CarriersFedEx;
-            bulkPostagePrintingMV.CarriersUPS = fullOrderSettings.CarriersUPS;
-            bulkPostagePrintingMV.CarriersUSPS = fullOrderSettings.CarriersUSPS;
-            if (bulkPostagePrintingMV.CarriersFedEx.Count != 0 || bulkPostagePrintingMV.CarriersUPS.Count != 0 || bulkPostagePrintingMV.CarriersUSPS.Count != 0)
+            var WOzCrEntry = ((Button)sender).FindByName<CrossEntry>("WOzCrEntry");
+            var WLbsCrEntry = ((Button)sender).FindByName<CrossEntry>("WLbsCrEntry");
+            var WkgCrEntry = ((Button)sender).FindByName<CrossEntry>("WkgCrEntry");
+            if (fullOrderSettings.Oz != 0)
             {
-                await PopupNavigation.PushAsync(new OptinsPage1(bulkPostagePrintingMV, fullOrderSettings.CarriersUSPS.Count != 0, fullOrderSettings.CarriersUPS.Count != 0, fullOrderSettings.CarriersFedEx.Count != 0, indexSelectProduct), true);
+                await Task.Run(() => bulkPostagePrintingMV.UpdateOneOrder(fullOrderSettings));
+                bulkPostagePrintingMV.CarriersFedEx = fullOrderSettings.CarriersFedEx;
+                bulkPostagePrintingMV.CarriersUPS = fullOrderSettings.CarriersUPS;
+                bulkPostagePrintingMV.CarriersUSPS = fullOrderSettings.CarriersUSPS;
+                if (bulkPostagePrintingMV.CarriersFedEx.Count != 0 || bulkPostagePrintingMV.CarriersUPS.Count != 0 || bulkPostagePrintingMV.CarriersUSPS.Count != 0)
+                {
+                    await PopupNavigation.PushAsync(new OptinsPage1(bulkPostagePrintingMV, fullOrderSettings.CarriersUSPS.Count != 0, fullOrderSettings.CarriersUPS.Count != 0, fullOrderSettings.CarriersFedEx.Count != 0, indexSelectProduct), true);
+                }
+                else
+                {
+                    await PopupNavigation.PushAsync(new Error("Carrer does not exist or did not have time to boot"), true);
+                }
+                WOzCrEntry.TextColor = Color.FromHex("#2aa0ea");
+                WLbsCrEntry.TextColor = Color.FromHex("#2aa0ea");
+                WkgCrEntry.TextColor = Color.FromHex("#2aa0ea");
+                ValidWeight(itemId, recordId);
             }
             else
             {
-                await PopupNavigation.PushAsync(new Error("Carrer does not exist or did not have time to boot"), true);
+                WOzCrEntry.TextColor = Color.Red;
+                WLbsCrEntry.TextColor = Color.Red;
+                WkgCrEntry.TextColor = Color.Red;
             }
-            ValidWeight(itemId, recordId);
+            await stackLayout.FadeTo(1, 250);
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -62,10 +86,9 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                 .Find(s => s.EBayItemID == itemId && s.RecordNumber == recordId);
             if (fullOrderSettings.Oz != 0)
             {
-                WOzCrEntry.TextColor = Color.FromHex("#2c4dff");
-                WLbsCrEntry.TextColor = Color.FromHex("#2c4dff");
-                WkgCrEntry.TextColor = Color.FromHex("#2c4dff");
-                bulkPostagePrintingMV.UpdateOneOrder(itemId, recordId);
+                WOzCrEntry.TextColor = Color.FromHex("#2aa0ea");
+                WLbsCrEntry.TextColor = Color.FromHex("#2aa0ea");
+                WkgCrEntry.TextColor = Color.FromHex("#2aa0ea");
             }
             else
             {
@@ -74,25 +97,6 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                 WkgCrEntry.TextColor = Color.Red;
             }
             await stackLayout.FadeTo(1, 250);
-        }
-
-        private async void ToolbarItem_Clicked(object sender, EventArgs e)
-        {
-            bulkPostagePrintingMV.IsBusy = true;
-            if (bulkPostagePrintingMV.SelectProduct.Find(s => s.WeightOZ == "0" || s.WeightOZ == "" ) == null)
-            {
-                foreach (var order in bulkPostagePrintingMV.SelectProduct)
-                {
-                    await OrderList.FadeTo(0.2, 150);
-                    bulkPostagePrintingMV.FullUpdateOrders(order);
-                    await OrderList.FadeTo(1, 150);
-                }
-            }
-            else
-            {
-                await PopupNavigation.PushAsync(new Error("Please fill in the 'Weight OZ' field"), true);
-            }
-            bulkPostagePrintingMV.IsBusy = false;
         }
 
         private void CrossEntry_TextChanged(object sender, TextChangedEventArgs e)
@@ -121,9 +125,13 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                 bulkPostagePrintingMV.SelectProduct
                 .Find(s => s.EBayItemID == itemId && s.RecordNumber == recordId).StrCalc = "";
             }
-            if (((Entry)sender).Text == "")
+            if (((CrossEntry)sender).Text == "")
             {
-                ((Entry)sender).Text = "0";
+                ((CrossEntry)sender).Text = "0";
+            }
+            else if (e.OldTextValue != null && e.OldTextValue == "0")
+            {
+                ((CrossEntry)sender).Text = e.NewTextValue.Remove(0, 1);
             }
         }
 
@@ -141,9 +149,14 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             {
                 bulkPostagePrintingMV.IsValid = false;
             }
-            if (((Entry)sender).Text == "")
+
+            if (((CrossEntry)sender).Text == "")
             {
-                ((Entry)sender).Text = "0";
+                ((CrossEntry)sender).Text = "0";
+            }
+            else if (e.OldTextValue != null && e.OldTextValue == "0")
+            {
+                ((CrossEntry)sender).Text = e.NewTextValue.Remove(0, 1);
             }
         }
 

@@ -25,7 +25,7 @@
             <StackLayout Padding="10">
                 <Label Text="Do you really want to delete the message?" FontSize="20" Margin="3" TextColor="#2aa0ea"/>
                 <FlexLayout>
-                    <Button FlexLayout.Grow="1" Text="Cancele" BackgroundColor="#2aa0ea" TextColor="White" Clicked="Button_Clicked" Margin="2"/>
+                    <Button FlexLayout.Grow="1" Text="Cancel" BackgroundColor="#2aa0ea" TextColor="White" Clicked="Button_Clicked" Margin="2"/>
                     <Button FlexLayout.Grow="1" Text="Confirm" BackgroundColor="#2aa0ea" TextColor="White" Clicked="Button_Clicked_1" Margin="2"/>
                 </FlexLayout>
             </StackLayout>

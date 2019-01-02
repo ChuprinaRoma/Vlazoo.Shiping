@@ -1,9 +1,11 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Plugin.Settings;
+using Rg.Plugins.Popup.Services;
 using System;
 using Vazoo1123.NewElement;
 using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Printing;
 using Vazoo1123.Views.ModalView;
+using Vazoo1123.Views.PageApp.Profile;
 using Vazoo1123.Views.Printing.ModalViews;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,6 +26,10 @@ namespace Vazoo1123.Views.Printing
             confirmationL.Text = "Delivery Confirmation";
             printingShipingLabeMW.SignatureConfirmation = false;
             printingShipingLabeMW.DeliveryConfirmation = true;
+            DLength.Text = "";
+            DHeigh.Text = "";
+            DWidth.Text = "";
+
         }
 
         private async void switcher_Toggled(object sender, ToggledEventArgs e)
@@ -56,9 +62,13 @@ namespace Vazoo1123.Views.Printing
         
         private void CrossEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (((Entry)sender).Text == "")
+            if (((CrossEntry)sender).Text == "")
             {
-                ((CrossEntry)sender).Text = "0";
+                ((CrossEntry)sender).Text = "1";
+            }
+            else if (e.OldTextValue != null && e.OldTextValue == "1")
+            {
+                ((CrossEntry)sender).Text = e.NewTextValue.Remove(0, 1);
             }
             if (printingShipingLabeMW.DHeigh != 0 && printingShipingLabeMW.DWidth != 0 && printingShipingLabeMW.DLength != 0)
             {
@@ -75,23 +85,6 @@ namespace Vazoo1123.Views.Printing
         private void Button_Clicked(object sender, EventArgs e)
         {
             ValidOption();
-            ValidWeight();
-        }
-
-        private void ValidWeight()
-        {
-            if(printingShipingLabeMW.WeigthLOz != 0 && printingShipingLabeMW.WeigthLbs != 0)
-            {
-                printingShipingLabeMW.WeigthLKg = 0;
-            }
-            else if(printingShipingLabeMW.WeigthLOz != 0)
-            {
-                printingShipingLabeMW.WeigthLKg = 0;
-            }
-            else if(printingShipingLabeMW.WeigthLbs != 0)
-            {
-                printingShipingLabeMW.WeigthLKg = 0;
-            }
         }
 
         private void ValidOption()
@@ -137,6 +130,7 @@ namespace Vazoo1123.Views.Printing
                 kgInp.TextColor = Color.Red;
                 isWeigthLOz = false;
             }
+
             if (isToAddress && isFromAddress && isWeigthLOz)
             {
                 printingShipingLabeMW.TypeShipeMethod = "USPS";
@@ -161,10 +155,26 @@ namespace Vazoo1123.Views.Printing
 
         private void KgInp_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (((Entry)sender).Text == "")
+            if (((CrossEntry)sender).Text == "")
             {
                 ((CrossEntry)sender).Text = "0";
             }
+            else if(e.OldTextValue != null && e.OldTextValue == "0")
+            {
+                ((CrossEntry)sender).Text = e.NewTextValue;
+            }
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            await Navigation.PushAsync(new Replenishment($"https://vlazoo.com/BuyPostagePP.aspx?ClientID={idCompany}&Amount={printingShipingLabeMW.Postage}", "PayPal"));
+        }
+
+        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            await Navigation.PushAsync(new Replenishment($"https://vlazoo.com/BuyPostageCC.aspx?ClientID={idCompany}&Amount={printingShipingLabeMW.Postage}", "Visa or MasterCard"));
         }
     }
 }

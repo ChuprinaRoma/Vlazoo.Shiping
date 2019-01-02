@@ -113,11 +113,10 @@ namespace Vazoo1123.Models
             Zip = orderInfo.ShipToAddress.ZIP5;
             Phone = orderInfo.ShipToAddress.Phone;
             Status = orderInfo.ShipToAddress.Status;
-            Comments = orderInfo.ShipToAddress.Comments;
             //////////////////////////////////////////////////////////
-            cDimensions.Heigh = Convert.ToDouble(orderInfo.DimensionsH != "" ? orderInfo.DimensionsH.Replace('.', ',') : "0");
-            cDimensions.Width = Convert.ToDouble(orderInfo.DimensionsW != "" ? orderInfo.DimensionsW.Replace('.', ',') : "0");
-            cDimensions.Length = Convert.ToDouble(orderInfo.DimensionsL != "" ? orderInfo.DimensionsL.Replace('.', ',') : "0");
+            cDimensions.Height = Convert.ToDouble(orderInfo.DimensionsH != "" ? orderInfo.DimensionsH : "0");
+            cDimensions.Width = Convert.ToDouble(orderInfo.DimensionsW != "" ? orderInfo.DimensionsW : "0");
+            cDimensions.Length = Convert.ToDouble(orderInfo.DimensionsL != "" ? orderInfo.DimensionsL : "0");
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             cAddressBase.Address1 = orderInfo.ShipToAddress.Address1;
             cAddressBase.Address2 = orderInfo.ShipToAddress.Address2;

@@ -11,6 +11,7 @@ using Vazoo1123.Models;
 using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Printing.Models;
 using Vazoo1123.Views.LoadViews;
+using Vazoo1123.Views.PageApp.Dashbord;
 using Vazoo1123.Views.Printing.ModalViews;
 using Xamarin.Forms;
 using static Vazoo1123.ViewModels.Dashbord.DashbordMW;
@@ -27,9 +28,11 @@ namespace Vazoo1123.ViewModels.Dashbord
         public DelegateCommand EditCommand { get; set; }
         public INavigation Navigation { get; set; }
         InitDasbordDelegate initDasbord;
+        DashbordMW dashbordMW = null;
 
-        public FullInfoOneOrderAndPrintingMV(OrderInfo orderInfo, ManagerVazoo managerVazoo, InitDasbordDelegate initDasbord)
+        public FullInfoOneOrderAndPrintingMV(OrderInfo orderInfo, ManagerVazoo managerVazoo, InitDasbordDelegate initDasbord, DashbordMW dashbordMW)
         {
+            this.dashbordMW = dashbordMW;
             carriers = new List<Carrier>();
             this.managerVazoo = managerVazoo;
             this.initDasbord = initDasbord;
@@ -340,7 +343,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 SourceAddr.ZIP5 = _xzType[14];
                 SourceAddr.Phone = _xzType[15];
 
-                cDimensions.Heigh = Convert.ToDouble(OrderInfo.DimensionsH != "" ? OrderInfo.DimensionsH : "0");
+                cDimensions.Height = Convert.ToDouble(OrderInfo.DimensionsH != "" ? OrderInfo.DimensionsH : "0");
                 cDimensions.Width = Convert.ToDouble(OrderInfo.DimensionsW != "" ? OrderInfo.DimensionsW : "0");
                 cDimensions.Length = Convert.ToDouble(OrderInfo.DimensionsL != "" ? OrderInfo.DimensionsL : "0");
                 if (orderInfo.ShipToAddress.Address1 != "")
@@ -426,13 +429,13 @@ namespace Vazoo1123.ViewModels.Dashbord
                 }
                 else
                 {
-                    await PopupNavigation.PushAsync(new Compleat("Label successfully printed, look for label in \'Labels Printed Last 72h\'"), true);
+                    await PopupNavigation.PushAsync(new ConfirmGoLabal(dashbordMW), true);
                 }
             }
             else if (stateAuth == 2)
             {
                 await PopupNavigation.PopAllAsync();
-                await PopupNavigation.PushAsync(new Error(description), true);
+                await PopupNavigation.PushAsync(new Error(description+ ". Look for label in Herror Label"), true);
             }
             else if (stateAuth == 1)
             {

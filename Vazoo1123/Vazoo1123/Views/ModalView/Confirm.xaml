@@ -60,7 +60,7 @@
                     </StackLayout>
                 </StackLayout>
                 <FlexLayout>
-                    <Button Text="Cancele" Clicked="Button_Clicked_1" FlexLayout.Grow="1" BackgroundColor="#2aa0ea" TextColor="White" Margin="3"/>
+                    <Button Text="Cancel" Clicked="Button_Clicked_1" FlexLayout.Grow="1" BackgroundColor="#2aa0ea" TextColor="White" Margin="3"/>
                     <Button Text="confirm" Clicked="Button_Clicked" FlexLayout.Grow="1" BackgroundColor="#2aa0ea" TextColor="White" Margin="3"/>
                 </FlexLayout>
             </StackLayout>

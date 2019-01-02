@@ -32,5 +32,14 @@ namespace Vazoo1123.Views.Messages
                 await PopupNavigation.PushAsync(new LabalPageView(label.Text));
             }
         }
+
+        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            Label label = (Label)sender;
+            if (label.Text != "")
+            {
+                await PopupNavigation.PushAsync(new LabalPageView(label.Text));
+            }
+        }
     }
 }

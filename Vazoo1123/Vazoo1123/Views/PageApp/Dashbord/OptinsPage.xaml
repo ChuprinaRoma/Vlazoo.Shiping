@@ -42,6 +42,7 @@
                                             </Frame.GestureRecognizers>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label x:Name="IdLabel" Text="{Binding Id}" IsVisible="False"/>
+                                                <Label Text="{Binding AccountID}" TextColor="#2aa0ea" />
                                                 <Label Text="{Binding Title}" TextColor="#2aa0ea"/>
                                                 <FlexLayout>
                                                     <Label Text="$" TextColor="#2aa0ea"/>

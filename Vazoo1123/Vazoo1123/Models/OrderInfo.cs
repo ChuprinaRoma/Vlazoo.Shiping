@@ -31,12 +31,12 @@
         }
         public int TrackingNumbersCount
         {
-            get => TrackingNumber.Split(';').Length;
+            get => QuantityPurchased;
         }
 
         public string TotalTransactionPrice
         {
-            get => TransactionPrice * TrackingNumbersCount != TransactionPrice ? $"/{(TransactionPrice * TrackingNumbersCount)}" : "";
+            get => TransactionPrice * QuantityPurchased != TransactionPrice ? $"/{(TransactionPrice * QuantityPurchased)}" : "";
         }
         public Carrier CarrierOptimal { get; set; }
         public CAddressBase ShipToAddress { get; set; }

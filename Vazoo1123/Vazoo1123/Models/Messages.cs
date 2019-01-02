@@ -17,7 +17,18 @@
         public int Importance { get; set; }
         public string MessageType { get; set; }
         public string QuestionType { get; set; }
-        public string ReceiveDate { get; set; }
+        public string ReceiveDate
+        {
+            get
+            {
+                string dataTemp = DateEntered.Replace("Z", "");
+                return dataTemp.Replace("T", "");
+            }
+            set
+            {
+
+            }
+        }
         public string RecipientUserID { get; set; }
         public string ReadBy { get; set; }
         public string ReadAt { get; set; }

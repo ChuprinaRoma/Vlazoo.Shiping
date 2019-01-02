@@ -289,11 +289,13 @@ namespace Vazoo1123.ViewModels.Mesages
             int stateAuth = 0;
             await Task.Run(() =>
             {
-                stateAuth = managerVazoo.MesagesWork("SendMessageReply", Convert.ToInt32(MessagesID), ref description, email, idCompany, psw, Msg);
+                stateAuth = managerVazoo.MesagesWork("MessageDelete", Convert.ToInt32(MessagesID), ref description, email, idCompany, psw, Msg);
+                initMesage.Invoke();
             });
             if (stateAuth == 3)
             {
-                await PopupNavigation.PushAsync(new Compleat("Send Deleted"), true);
+                await PopupNavigation.PushAsync(new Compleat(""), true);
+                await Navigation.PopAsync(true);
             }
             else if (stateAuth == 2)
             {

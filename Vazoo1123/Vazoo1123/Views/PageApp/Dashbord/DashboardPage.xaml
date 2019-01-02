@@ -58,7 +58,7 @@
                                                     <Label x:Name="itemId" Text="{Binding EBayItemID}" FontSize="12" TextColor="#2c4dff"/>
                                                 </StackLayout>
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Label Text="Record Id:" FontSize="12" TextColor="#2c4dff"/>
+                                                    <Label Text="Record#" FontSize="12" TextColor="#2c4dff"/>
                                                     <Label x:Name="recordId" Text="{Binding RecordNumber}" FontSize="12" TextColor="#2c4dff"/>
                                                 </StackLayout>
                                                 <Label Text="{Binding TrackingNumber}" FontSize="10" TextColor="#2aabb1" >

@@ -20,7 +20,7 @@
     <StackLayout VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"
                  Margin="10">
-        <Frame Padding="0" BorderColor="#2abdea" CornerRadius="6">
+        <Frame Padding="5" BorderColor="#2abdea" CornerRadius="6">
             <StackLayout Orientation="Vertical"  Padding="6" BackgroundColor="White">
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround">
                     <StackLayout Orientation="Vertical">
@@ -32,11 +32,11 @@
                     </StackLayout>
                     <StackLayout Orientation="Vertical">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="item id:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="Item id:" FontSize="14" TextColor="#2aa0ea"/>
                             <Label Text="{Binding OrderInfo.EBayItemID}" FontSize="14" TextColor="#2aa0ea"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="RecordNumber:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="Record#" FontSize="14" TextColor="#2aa0ea"/>
                             <Label Text="{Binding OrderInfo.RecordNumber}" FontSize="14" TextColor="#2aa0ea"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
@@ -58,22 +58,17 @@
                     </Label.GestureRecognizers>
                 </Label>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Label Text="Data Create:" FontSize="14" TextColor="#2aa0ea"/>
+                    <Label Text="Date Created:" FontSize="14" TextColor="#2aa0ea"/>
                     <Label Text="{Binding OrderInfo.DateCreated}" FontSize="14" TextColor="#2aa0ea"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                     <Label Text="Tracking:" FontSize="14" TextColor="#2aa0ea"/>
-                    <Label Text="{Binding OrderInfo.TrackingNumber}" FontSize="14" TextColor="#2aa0ea"/>
+                    <Label Text="{Binding OrderInfo.TrackingNumber}" FontSize="14" TextColor="#2aa0ea">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
                 </StackLayout>
-                <Frame Padding="5" BorderColor="#2aa0ea" CornerRadius="10">
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding Carrier.Title}" TextColor="#2aa0ea"/>
-                        <FlexLayout>
-                            <Label Text="$" TextColor="#2aa0ea"/>
-                            <Label Text="{Binding Carrier.Price}" TextColor="#2aa0ea"/>
-                        </FlexLayout>
-                    </StackLayout>
-                </Frame>
             </StackLayout>
         </Frame>
     </StackLayout>

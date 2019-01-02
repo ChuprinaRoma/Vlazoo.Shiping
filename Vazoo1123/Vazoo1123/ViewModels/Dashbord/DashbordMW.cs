@@ -94,6 +94,13 @@ namespace Vazoo1123.ViewModels.Dashbord
             set { SetProperty(ref typeCheck2, value); }
         }
 
+        private bool typeCheck3;
+        public bool TypeCheck3
+        {
+            get { return typeCheck3; }
+            set { SetProperty(ref typeCheck3, value); }
+        }
+
         private string title = "";
         public string Title
         {
@@ -136,6 +143,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 TypeCheck = true;
                 TypeCheck1 = false;
                 TypeCheck2 = false;
+                TypeCheck3 = false;
             }
             else if (stateAuth == 2)
             {
@@ -178,6 +186,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                     TypeCheck = true;
                     TypeCheck1 = false;
                     TypeCheck2 = false;
+                    TypeCheck3 = false;
                     menuDetalePage.CheckAndSetCountDashbord(countOrder);
                 }
                 else if (Type == 2)
@@ -186,6 +195,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                     TypeCheck = false;
                     TypeCheck1 = true;
                     TypeCheck2 = false;
+                    TypeCheck3 = false;
                 }
                 else if (Type == 3)
                 {
@@ -193,6 +203,15 @@ namespace Vazoo1123.ViewModels.Dashbord
                     TypeCheck = false;
                     TypeCheck1 = false;
                     TypeCheck2 = true;
+                    TypeCheck3 = false;
+                }
+                else if (Type == 4)
+                {
+                    Title = $"Printing label error {countOrder}";
+                    TypeCheck = false;
+                    TypeCheck1 = false;
+                    TypeCheck2 = false;
+                    TypeCheck3 = true;
                 }
                 Product = new ObservableCollection<OrderInfo>(managerVazoo.orderInfos.GetRange(0, managerVazoo.orderInfos.Count >= 40 ? 40 : managerVazoo.orderInfos.Count));
             }
@@ -236,7 +255,7 @@ namespace Vazoo1123.ViewModels.Dashbord
         {
             if (SelectProduct.Count == 1)
             {
-                await Navigation.PushAsync(new OrderOnePinting(SelectProduct[0], managerVazoo, initDasbordDelegate));
+                await Navigation.PushAsync(new OrderOnePinting(SelectProduct[0], managerVazoo, initDasbordDelegate, this));
             }
             else if(SelectProduct.Count != 0)
             {

@@ -1,6 +1,7 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
 using Vazoo1123.Models;
+using Vazoo1123.NewElement;
 using Vazoo1123.Service;
 using Vazoo1123.ViewModels.Dashbord;
 using Vazoo1123.Views.ModalView;
@@ -16,9 +17,9 @@ namespace Vazoo1123.Views.PageApp.Dashbord
     {
         FullInfoOneOrderAndPrintingMV fullInfoOneOrderAndPrintingMV = null;
 
-        public OrderOnePinting(OrderInfo orderInfo, ManagerVazoo managerVazoo, InitDasbordDelegate initDasbord)
+        public OrderOnePinting(OrderInfo orderInfo, ManagerVazoo managerVazoo, InitDasbordDelegate initDasbord, DashbordMW dashbordMW)
         {
-            fullInfoOneOrderAndPrintingMV = new FullInfoOneOrderAndPrintingMV(orderInfo, managerVazoo, initDasbord) { Navigation = this.Navigation};
+            fullInfoOneOrderAndPrintingMV = new FullInfoOneOrderAndPrintingMV(orderInfo, managerVazoo, initDasbord, dashbordMW) { Navigation = this.Navigation};
             InitializeComponent();
             BindingContext = fullInfoOneOrderAndPrintingMV;
             sw.IsToggled = false;
@@ -96,9 +97,13 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             {
                 fullInfoOneOrderAndPrintingMV.IsValid = false;
             }
-            if (((Entry)sender).Text == "")
+            if (((CrossEntry)sender).Text == "")
             {
-                ((Entry)sender).Text = "0";
+                ((CrossEntry)sender).Text = "0";
+            }
+            else if (e.OldTextValue != null && e.OldTextValue == "0")
+            {
+                ((CrossEntry)sender).Text = e.NewTextValue.Remove(0, 1);
             }
             Init();
         }
@@ -125,9 +130,13 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             {
                 fullInfoOneOrderAndPrintingMV.IsValid = false;
             }
-            if (((Entry)sender).Text == "")
+            if (((CrossEntry)sender).Text == "")
             {
-                ((Entry)sender).Text = "0";
+                ((CrossEntry)sender).Text = "0";
+            }
+            else if (e.OldTextValue != null && e.OldTextValue == "0")
+            {
+                ((CrossEntry)sender).Text = e.NewTextValue.Remove(0, 1);
             }
         }
 

@@ -51,6 +51,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                         dashbordMW.TypeCheck = true;
                         dashbordMW.TypeCheck1 = false;
                         dashbordMW.TypeCheck2 = false;
+                        dashbordMW.TypeCheck3 = false;
                         dashbordMW.menuDetalePage.CheckAndSetCountDashbord(dashbordMW.countOrder);
                     }
                     else if (dashbordMW.Type == 2)
@@ -59,6 +60,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                         dashbordMW.TypeCheck = false;
                         dashbordMW.TypeCheck1 = true;
                         dashbordMW.TypeCheck2 = false;
+                        dashbordMW.TypeCheck3 = false;
                     }
                     else if (dashbordMW.Type == 3)
                     {
@@ -66,6 +68,15 @@ namespace Vazoo1123.Views.PageApp.Dashbord
                         dashbordMW.TypeCheck = false;
                         dashbordMW.TypeCheck1 = false;
                         dashbordMW.TypeCheck2 = true;
+                        dashbordMW.TypeCheck3 = false;
+                    }
+                    else if (dashbordMW.Type == 4)
+                    {
+                        dashbordMW.Title = $"Printing label error {dashbordMW.countOrder}";
+                        dashbordMW.TypeCheck = false;
+                        dashbordMW.TypeCheck1 = false;
+                        dashbordMW.TypeCheck2 = false;
+                        dashbordMW.TypeCheck3 = true;
                     }
                 }
                 else if (stateAuth == 2)

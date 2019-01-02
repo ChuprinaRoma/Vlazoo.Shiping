@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="Vazoo1123.Views.PageApp.Dashbord.ConfirmGoLabal">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="3"
+            ScaleOut="1.5"
+            DurationIn="600"
+            DurationOut="200"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center" Margin="40"
+                 HorizontalOptions="FillAndExpand">
+        <Frame CornerRadius="10"
+               Padding="0"
+               BackgroundColor="#81F781">
+            <StackLayout Padding="17">
+                <Label Text="Completed"
+                       FontSize="15"/>
+                <Label Text="Label successfully printed, look for label in \'Labels Printed Last 72h\'"
+                       FontSize="13"/>
+                <Button Text="OK" BorderWidth="1" BorderColor="Black" BackgroundColor="#81F781"
+                        FontSize="13" Clicked="Button_Clicked_1"/>
+                <Button Text="View label" BorderWidth="1" BorderColor="Black" BackgroundColor="#81F781"
+                        FontSize="13" Clicked="Button_Clicked"/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

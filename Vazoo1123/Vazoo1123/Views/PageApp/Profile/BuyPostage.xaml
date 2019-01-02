@@ -12,9 +12,9 @@
             <FlexLayout SizeChanged="OnSizeChanged" Direction="Column" HorizontalOptions="CenterAndExpand" Margin="5">
                 <FlexLayout Direction="Row" Margin="10" JustifyContent="SpaceAround" HeightRequest="50" BackgroundColor="White">
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Buy postage:" TextColor="#2abdea" FontSize="18" VerticalTextAlignment="Center"/>
-                        <local:CrossEntry Keyboard="Numeric"  TextColor="#2aa0ea" FontSize="18" 
-                                      Placeholder="$" WidthRequest="50" Text="{Binding Postage}" />
+                        <Label Text="Buy postage $" TextColor="#2abdea" FontSize="18" VerticalTextAlignment="Center"/>
+                        <local:CrossEntry  TextColor="#2aa0ea" FontSize="18" 
+                                       WidthRequest="60" Text="{Binding Postage}" />
                     </StackLayout>
                 </FlexLayout>
                 <StackLayout>

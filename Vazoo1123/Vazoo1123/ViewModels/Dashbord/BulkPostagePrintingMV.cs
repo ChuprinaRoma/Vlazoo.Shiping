@@ -113,7 +113,6 @@ namespace Vazoo1123.ViewModels.Dashbord
 
         public async void InitDisplayShippingOptions()
         {
-            IsBusy = true;
             string description = null;
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
@@ -131,9 +130,9 @@ namespace Vazoo1123.ViewModels.Dashbord
                     order.CarriersUSPS = new List<Carrier>(order.carriers.FindAll(c => c.Company == 1));
                     order.CarriersUPS = new List<Carrier>(order.carriers.FindAll(c => c.Company == 2));
                     order.CarriersFedEx = new List<Carrier>(order.carriers.FindAll(c => c.Company == 3));
-                    CarriersUSPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
-                    CarriersUPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
-                    CarriersFedEx.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                    order.CarriersUSPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                    order.CarriersUPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
+                    order.CarriersFedEx.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
                 }
                 else if (stateAuth != 3)
                 {
@@ -143,90 +142,36 @@ namespace Vazoo1123.ViewModels.Dashbord
                     order.CarriersFedEx = new List<Carrier>();
                 }
             }
-            IsBusy = false;
         }
 
-        public async void FullUpdateOrders(FullOrderSettings order)
+        public async void UpdateOneOrder(FullOrderSettings fullOrderSettings)
         {
-            IsBusy = true;
-            int stateAuth = 0;
             string description = null;
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
-            await Task.Run(() =>
-            {
-                stateAuth = managerVazoo.PrintingWork("Options", ref description, order.cDimensions, SourceAddr, order.cAddressBase,
-                       order.Oz, SignatureConfirmation,
-                       DeliveryConfirmation, NoValidate, 0, ref order.carriers, email, idCompany, psw);
-                Task.Run(() =>
-                {
-                    double tempPostage = 0;
-                    foreach (var selectProduct1 in SelectProduct)
-                    {
-                        selectProduct1.SetCarrier(selectProduct1.CarrierOptimal);
-                        tempPostage += selectProduct1.CarrierOptimal.Price;
-                    }
-                    PostageTotal = $"${tempPostage}";
-                });
-            });
+            List<Carrier> carriers = null;
+            int stateAuth = managerVazoo.PrintingWork("Options", ref description, fullOrderSettings.cDimensions, SourceAddr, fullOrderSettings.cAddressBase,
+                       fullOrderSettings.Oz, SignatureConfirmation,
+                       DeliveryConfirmation, NoValidate, 0, ref carriers, email, idCompany, psw);
             if (stateAuth == 3)
             {
-                order.CarriersUSPS = new List<Carrier>(order.carriers.FindAll(c => c.Company == 1));
-                order.CarriersUPS = new List<Carrier>(order.carriers.FindAll(c => c.Company == 2));
-                order.CarriersFedEx = new List<Carrier>(order.carriers.FindAll(c => c.Company == 3));
+                isValid = true;
+                CarriersUSPS = new List<Carrier>(carriers.FindAll(c => c.Company == 1));
+                CarriersUPS = new List<Carrier>(carriers.FindAll(c => c.Company == 2));
+                CarriersFedEx = new List<Carrier>(carriers.FindAll(c => c.Company == 3));
                 CarriersUSPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
                 CarriersUPS.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
                 CarriersFedEx.Sort((c1, c2) => c1.Price.CompareTo(c2.Price));
-            }
-            else if (stateAuth != 3)
-            {
-                order.CarriersUSPS = new List<Carrier>();
-                order.CarriersUPS = new List<Carrier>();
-                order.CarriersFedEx = new List<Carrier>();
-            }
-            IsBusy = false;
-        }
 
-        public async void UpdateOneOrder(string idItem, string RecordNum)
-        {
-            IsBusy = true;
-            string description = null;
-            string email = CrossSettings.Current.GetValueOrDefault("userName", "");
-            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
-            string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
-            FullOrderSettings fullOrderSettings = SelectProduct.Find(s => s.EBayItemID == idItem && s.RecordNumber == RecordNum);
-            await Task.Run(() =>
-            {
-                int stateAuth = managerVazoo.PrintingWork("Options", ref description, fullOrderSettings.cDimensions, SourceAddr, fullOrderSettings.cAddressBase,
-                           fullOrderSettings.Oz, SignatureConfirmation,
-                           DeliveryConfirmation, NoValidate, 0, ref fullOrderSettings.carriers, email, idCompany, psw);
-                if (stateAuth == 3)
+                double tempPostage = 0;
+                foreach (var selectProduct1 in SelectProduct)
                 {
-                    isValid = true;
-                    fullOrderSettings.CarriersUSPS = new List<Carrier>(fullOrderSettings.carriers.FindAll(c => c.Company == 1));
-                    fullOrderSettings.CarriersUPS = new List<Carrier>(fullOrderSettings.carriers.FindAll(c => c.Company == 2));
-                    fullOrderSettings.CarriersFedEx = new List<Carrier>(fullOrderSettings.carriers.FindAll(c => c.Company == 3));
-                    Task.Run(() =>
-                    {
-                        double tempPostage = 0;
-                        foreach (var selectProduct1 in SelectProduct)
-                        {
-                            selectProduct1.SetCarrier(selectProduct1.CarrierOptimal);
-                            tempPostage += selectProduct1.CarrierOptimal.Price;
-                        }
-                        PostageTotal = $"${tempPostage}";
-                    });
+                    selectProduct1.SetCarrier(selectProduct1.CarrierOptimal);
+                    tempPostage += selectProduct1.CarrierOptimal.Price;
                 }
-                else if (stateAuth != 3)
-                {
-                    isValid = false;
-                    fullOrderSettings.CarriersUSPS = new List<Carrier>();
-                    fullOrderSettings.CarriersUPS = new List<Carrier>();
-                    fullOrderSettings.CarriersFedEx = new List<Carrier>();
-                }
-            });
-            IsBusy = false;
+                PostageTotal = $"${tempPostage}";
+            }
         }
 
         public async void ShippingCreate()
@@ -269,7 +214,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 }
                 else if (stateAuth == 2)
                 {
-                    await PopupNavigation.PushAsync(new Error(description), true);
+                    await PopupNavigation.PushAsync(new Error(description + ". Look for label in Herror Label"), true);
                 }
                 else if (stateAuth == 1)
                 {
@@ -303,13 +248,6 @@ namespace Vazoo1123.ViewModels.Dashbord
         {
             get => isValid;
             set => SetProperty(ref isValid, value);
-        }
-
-        private bool isBusy = true;
-        public bool IsBusy
-        {
-            get => isBusy;
-            set => SetProperty(ref isBusy, value);
         }
 
         private string postageTotal = "0";

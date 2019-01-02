@@ -13,7 +13,7 @@
                     </Image>
                 </FlexLayout>
                 <AbsoluteLayout HeightRequest="440">
-                    <Label Text="eBay Postage Printing, Message" 
+                    <Label Text="eBay Postage Printing, Messaging" 
                        AbsoluteLayout.LayoutFlags="PositionProportional"
                        AbsoluteLayout.LayoutBounds=".6, .0, AutoSize, AutoSize"
                        FontSize="23" TextColor="#2aa0ea"/>

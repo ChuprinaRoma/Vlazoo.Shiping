@@ -85,18 +85,18 @@
                     <Label Text="Weight:" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightLBS}" TextChanged="OzInp_TextChanged"/>
                     <Label Text="(lbs)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                    <local:CrossEntry x:Name="ozInp" Placeholder="Num" Text="{Binding OrderInfo.WeightOZ}" TextChanged="OzInp_TextChanged"/>
+                    <local:CrossEntry x:Name="ozInp" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightOZ}" TextChanged="OzInp_TextChanged"/>
                     <Label Text="(oz)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightKG}" TextChanged="OzInp_TextChanged"/>
                     <Label Text="(kg)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label Text="Dim (in):" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                    <local:CrossEntry x:Name="DLength" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsW}" TextChanged="CrossEntry_TextChanged"/>
+                    <local:CrossEntry x:Name="DLength" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsL}"  TextChanged="CrossEntry_TextChanged"/>
                     <Label Text="X" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="DWidth" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsH}" TextChanged="CrossEntry_TextChanged"/>
                     <Label Text="X" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                    <local:CrossEntry x:Name="DHeigh" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsL}" TextChanged="CrossEntry_TextChanged"/>
+                    <local:CrossEntry x:Name="DHeigh" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsW}" TextChanged="CrossEntry_TextChanged"/>
                 </StackLayout>
                 <Label Text="{Binding StrCalc}" TextColor="#2aa0ea" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
                 <local:CrossEntry Placeholder="Email" Text="{Binding OrderInfo.ShopperEmail}" HorizontalOptions="Center"/>

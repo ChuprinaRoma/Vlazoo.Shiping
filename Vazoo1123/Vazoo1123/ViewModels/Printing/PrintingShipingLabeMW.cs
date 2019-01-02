@@ -35,6 +35,7 @@ namespace Vazoo1123.ViewModels.Printing
             InitToAddressCommand = new DelegateCommand(InitToAddress);
             InitFromAddressCommand = new DelegateCommand(InitFromAddress);
             DisplayShippingOptionsCommand = new DelegateCommand(DisplayShippingOptions);
+            Postage = "10.00";
             Init();
         }
 
@@ -333,7 +334,7 @@ namespace Vazoo1123.ViewModels.Printing
             set
             {
                 SetProperty(ref dHeigh, value);
-                cDimensions.Heigh = dHeigh;
+                cDimensions.Height = dHeigh;
             }
         }
         //////////////////////////////////////////////////////
@@ -423,6 +424,14 @@ namespace Vazoo1123.ViewModels.Printing
             set => SetProperty(ref strCalc, value);
         }
 
+        private string postage = "";
+        public string Postage
+        {
+            get => postage;
+            set => SetProperty(ref postage, value);
+        }
+
+
         public bool IsValid { get; set; }
 
         public string TypeShipeMethod { get; set; }
@@ -430,23 +439,24 @@ namespace Vazoo1123.ViewModels.Printing
         private async void InitToAddress()
         {
             IsValid = false;
-            if ((ToAddress1 != "" && ToAddress1 != null)  && (ToCity != "" && ToCity != null) && (ToState != "" && ToState != null) 
-                && (ToZIP != "" && ToZIP != null)  && (ToPhone != "" && ToPhone != null) && (ToEmaile != "" && ToEmaile != null))
+            if (ToContactName != "" && ToAddress1 != "" && ToCity != "" && ToState != "" && ToZIP != "" )
             {
-                ShipToAddress = $"{ToAddress1}, {ToAddress2}, {ToCity}, {ToState}, {ToZIP}, {ToPhone}, {ToEmaile}";
+                ShipToAddress = $"{ToContactName}, {ToAddress1}, {ToCity}, {ToState}, {ToZIP}";
             }
             else
             {
                 ShipToAddress = "-------------------";
             }
-            await PopupNavigation.PopAsync(true);
+            if (PopupNavigation.PopupStack != null && PopupNavigation.PopupStack.Count != 0)
+            {
+                await PopupNavigation.PopAsync(true);
+            }
         }
 
         public bool CheckToAddress()
         {
             bool isToAddress = false;
-            if ((ToCity != "" && ToCity != null) && (ToState != "" && ToState != null)
-                && (ToZIP != "" && ToZIP != null) && (ToPhone != "" && ToPhone != null))
+            if (ToCity != "" && ToState != "" && ToContactName != ""  && ToZIP != "")
             {
                 isToAddress = true;
             }
@@ -457,24 +467,25 @@ namespace Vazoo1123.ViewModels.Printing
         {
             IsValid = false;
             Carrier = null;
-            if ((FromCity != "" && FromCity != null) && (FromState != "" && FromState != null) 
-                && (FromZIP != "" && FromZIP != null) && (FromPhone != "" && FromPhone != null))
+            if (FromCompanyName != "" && FromCity != "" && FromState != null && FromZIP != "" && FromAddress1 != "")
             {
-                ShipFromAddress = $"{FromAddress1}, {FromAddress2}, {FromCity}, {FromState}, {FromZIP}, {FromPhone}";
+                ShipFromAddress = $"{FromCompanyName}, {FromAddress1}, {FromCity}, {FromState}, {FromZIP}";
             }
             else
             {
                 ShipFromAddress = "-------------------";
             }
-            await PopupNavigation.PopAsync(true);
+            if (PopupNavigation.PopupStack != null && PopupNavigation.PopupStack.Count != 0)
+            {
+                await PopupNavigation.PopAsync(true);
+            }
         }
 
         public bool CheckFromAddress()
         {
             bool isFromAddress = false;
             Carrier = null;
-            if ((FromCity != "" && FromCity != null) && (FromState != "" && FromState != null)
-                && (FromZIP != "" && FromZIP != null) && (FromPhone != "" && FromPhone != null))
+            if (FromAddress1 != "" && FromCity != "" && FromState != "" && FromZIP != "")
             {
                 isFromAddress = true;
             }
@@ -526,16 +537,11 @@ namespace Vazoo1123.ViewModels.Printing
             string email = CrossSettings.Current.GetValueOrDefault("userName", "");
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
-            
-            if(Oz != 0)
-            {
-                stateAuth = 5;
-            }
-            else if (Carrier == null)
+            if (Carrier == null)
             {
                 stateAuth = managerVazoo.PrintingWork("Options", ref description, cDimensions, SourceAddr, cAddressBase,
                     Oz, SignatureConfirmation, DeliveryConfirmation, NoValidate, InsuranceAmount, ref carriers, email, idCompany, psw);
-            }   
+            }
             else
             {
                 stateAuth = 3;
@@ -566,10 +572,6 @@ namespace Vazoo1123.ViewModels.Printing
             {
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
                 IsValid = false;
-            }
-            else if(stateAuth == 5)
-            {
-
             }
         }
 
@@ -606,19 +608,11 @@ namespace Vazoo1123.ViewModels.Printing
             await PopupNavigation.PopAllAsync();
             if (stateAuth == 3)
             {
-                if(tracking != null || tracking != "")
-                {
-                    await PopupNavigation.PushAsync(new LabalPageView(tracking), true);
-                }
-                else
-                {
-                    await PopupNavigation.PushAsync(new Compleat("Label successfully printed"), true);
-                }
-                
+                await PopupNavigation.PushAsync(new Compleat("Label successfully printed"), true);
             }
             else if (stateAuth == 2)
             {
-                await PopupNavigation.PushAsync(new Error(description), true);
+                await PopupNavigation.PushAsync(new Error(description + ". Look for label in Herror Label"), true);
             }
             else if (stateAuth == 1)
             {

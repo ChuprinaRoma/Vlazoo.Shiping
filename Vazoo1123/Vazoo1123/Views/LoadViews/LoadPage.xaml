@@ -16,7 +16,8 @@
             EasingOut="SinIn"
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
-    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="50">
-        <Label TextColor="#FF8000" Text="Load" x:Name="loadL" FontSize="30" HorizontalTextAlignment="Center"/>
+    <StackLayout VerticalOptions="Center" Padding="10" Margin="50" Orientation="Horizontal">
+        <ActivityIndicator IsRunning="True" HeightRequest="40" WidthRequest="40" />
+        <Label TextColor="#FF8000" Text="Loading..." x:Name="loadL" FontSize="30" HorizontalTextAlignment="Center"/>
     </StackLayout>
 </pages:PopupPage>

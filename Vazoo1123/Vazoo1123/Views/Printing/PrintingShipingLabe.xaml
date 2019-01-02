@@ -39,7 +39,7 @@
                     <Label Text="Weight:" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="lbsInp" Keyboard="Numeric" Placeholder="Num" Text="{Binding WeigthLbs}" TextChanged="KgInp_TextChanged"/>
                     <Label Text="(lbs)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                    <local:CrossEntry x:Name="ozInp" Placeholder="Num" Text="{Binding WeigthLOz}" TextChanged="KgInp_TextChanged"/>
+                    <local:CrossEntry x:Name="ozInp" Keyboard="Numeric" Placeholder="Num" Text="{Binding WeigthLOz}" TextChanged="KgInp_TextChanged"/>
                     <Label Text="(oz)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="kgInp" Keyboard="Numeric" Placeholder="Num" Text="{Binding WeigthLKg}" TextChanged="KgInp_TextChanged"/>
                     <Label Text="(kg)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
@@ -83,9 +83,20 @@
                             </StackLayout>
                         </Frame>
                         <StackLayout Orientation="Horizontal">
-                            <local:CrossEntry Placeholder="50.0" Keyboard="Numeric"/>
-                            <Image Source="PayPal.jpg" WidthRequest="40" HeightRequest="60"/>
-                            <Image Source="Visa.png" WidthRequest="40" HeightRequest="60"/>
+                            <FlexLayout>
+                                <Label Text="$" TextColor="#2aa0ea"/>
+                                <local:CrossEntry Text="{Binding Postage}" Keyboard="Numeric"/>
+                            </FlexLayout>
+                            <Image Source="PayPal.jpg" WidthRequest="40" HeightRequest="60">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Image Source="Visa.png" WidthRequest="40" HeightRequest="60">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                                </Image.GestureRecognizers>
+                            </Image>
                         </StackLayout>
                     </StackLayout>
                 </Frame>

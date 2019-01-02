@@ -15,6 +15,7 @@ namespace Vazoo1123.ViewModels.Profile
         {
             this.managerVazoo = managerVazoo;
             Init();
+            Postage = "10.00";
         }
 
         private string balance;
