@@ -75,6 +75,7 @@
                                 Clicked="Button_Clicked" x:Name="DSOBtn"/>
                         <Frame Padding="5" BorderColor="#2aa0ea" CornerRadius="10">
                             <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Carrier.AccountID}" TextColor="#2aa0ea" />
                                 <Label Text="{Binding Carrier.Title}" TextColor="#2aa0ea"/>
                                 <FlexLayout>
                                     <Label Text="$" TextColor="#2aa0ea"/>
@@ -101,8 +102,10 @@
                     </StackLayout>
                 </Frame>
                 <StackLayout Orientation="Horizontal" FlexLayout.AlignSelf="End" Margin="5">
+                    <Button FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Text="Create Label" Clicked="Button_Clicked_2"/>
                     <Button FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Text="print to remote printer" Clicked="Button_Clicked_1"/>
                 </StackLayout>
+                <Label Text="{Binding FeedBack}" TextColor="{Binding ColorFeedBack}" HorizontalOptions="End"  HorizontalTextAlignment="End"/>
             </FlexLayout>
         </ScrollView>
     </ContentPage.Content>

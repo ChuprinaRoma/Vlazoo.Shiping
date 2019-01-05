@@ -3,5 +3,6 @@
     public interface ICreateShiping
     {
         void ShippingCreate();
+        void ShippingCreate1();
     }
 }

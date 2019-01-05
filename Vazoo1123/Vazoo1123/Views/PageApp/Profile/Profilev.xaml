@@ -109,6 +109,7 @@
                                 <local:CrossEntry Text="{Binding UserID}" TextColor="#2aa0ea" WidthRequest="150"/>
                             </StackLayout>
                             <Button BackgroundColor="#2aa0ea" TextColor="White" Text="ALLOW ACCESS" Command="{Binding EBayAllowAccessCommand}"/>
+                            <Label Text="{Binding EBayFeedBackSubscraba}" FontSize="16" TextColor="{Binding EBayFeedBackSubscrabaColor}"/>
                         </StackLayout>
                     </FlexLayout>
                 </Frame>

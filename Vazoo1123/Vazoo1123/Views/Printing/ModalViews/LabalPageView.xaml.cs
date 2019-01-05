@@ -22,7 +22,12 @@ namespace Vazoo1123.Views.Printing.ModalViews
             {
                 for (int i = 0; i < trackinImgs.Length; i++)
                 {
-                    Button button = new Button();
+                    Button button = new Button() { BorderWidth = 0, BorderColor = Color.FromHex("2aa0ea") };
+                    if(i == 0)
+                    {
+                        button.BorderWidth = 1;
+                        buttonSelect = button;
+                    }
                     button.Text = $"{i+1}";
                     button.BackgroundColor = Color.White;
                     button.TextColor = Color.FromHex("#2aa0ea");
@@ -41,9 +46,13 @@ namespace Vazoo1123.Views.Printing.ModalViews
             labelImj.WidthRequest = (stackLayout.Width / 100) * 99;
         }
 
+        private Button buttonSelect = null;
         private void Button_Clicked(object sender, EventArgs e)
         {
             Button button = ((Button)sender);
+            buttonSelect.BorderWidth = 0;
+            button.BorderWidth = 1;
+            buttonSelect = button;
             tarakingLaba.Text = $"https://vlazoo.com/shippinglabels/{trackinImgs[Convert.ToInt32(button.Text) - 1].Trim()}.png";
             labelImj.Source = $"https://vlazoo.com/shippinglabels/{trackinImgs[Convert.ToInt32(button.Text) - 1].Trim()}.png";
         }

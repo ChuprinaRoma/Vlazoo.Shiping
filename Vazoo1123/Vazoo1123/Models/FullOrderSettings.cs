@@ -37,7 +37,7 @@ namespace Vazoo1123.Models
         }
         public string TotalTransactionPrice
         {
-            get => TransactionPrice * TrackingNumbersCount != TransactionPrice ? $"/{(TransactionPrice * TrackingNumbersCount)}" : "";
+            get => TransactionPrice * QuantityPurchased != TransactionPrice ? $"/{(TransactionPrice * QuantityPurchased)}" : "";
         }
         //////////////////////////////////////////////////
         private Carrier carrier = null;
@@ -89,7 +89,7 @@ namespace Vazoo1123.Models
                 {
                     tempOz = Convert.ToDouble(WeightKG) * 35.274;
                 }
-                return tempOz;
+                return tempOz * QuantityPurchased;
             }
         }
 

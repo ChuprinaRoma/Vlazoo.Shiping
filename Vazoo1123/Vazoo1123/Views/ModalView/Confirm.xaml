@@ -2,7 +2,6 @@
 <pages:PopupPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     x:Class="Vazoo1123.Views.ModalView.Confirm">
@@ -52,7 +51,7 @@
                         <Label x:Name="lCount" Text="0" TextColor="#2aa0ea" FontSize="17"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" Margin="3">
-                        <Label Text="Labels Postage:" TextColor="#2aa0ea" FontSize="17"/>
+                        <Label Text="Postage:" TextColor="#2aa0ea" FontSize="17"/>
                         <FlexLayout>
                             <Label Text="$" TextColor="#2aa0ea" FontSize="17"/>
                             <Label x:Name="lPostage" Text="0" TextColor="#2aa0ea" FontSize="17"/>

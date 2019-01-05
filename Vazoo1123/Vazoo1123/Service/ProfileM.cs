@@ -260,7 +260,7 @@ namespace Vazoo1123.Service
                 .Value<string>("description");
             if (stateResponse == "success")
             {
-                profile = new string[19];
+                profile = new string[20];
                 profile[0] = "3";
                 profile[1] = objJsonRespons.First
                 .First.Value<string>("id");
@@ -314,6 +314,9 @@ namespace Vazoo1123.Service
                 profile[18] = objJsonRespons.First
                     .First.SelectToken("Profile")
                     .Value<string>("PostageBalance");
+                profile[19] = objJsonRespons.First
+                    .First.SelectToken("Profile")
+                    .Value<string>("TokenCreated");
             }
             else
             {

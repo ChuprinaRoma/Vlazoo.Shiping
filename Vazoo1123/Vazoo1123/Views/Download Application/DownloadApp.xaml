@@ -9,7 +9,7 @@
                        FontSize="18" TextColor="#2aa0ea" Margin="5"/>
             <Label Text="2. Instal printing application"
                        FontSize="18" TextColor="#2aa0ea" Margin="3"/>
-            <Label Text="3. Choose remote print above. By defult labes will prit to 'Print Label' Printer Login credentials were sent in initial SignIn email You can always create another  printer LogIn and have multiple printers runinng in differend locations"
+            <Label Text="3. Choose remote printer above. By default, labes will print to a printer named 'Print Label'. Login credentials were sent in initial Sign In email.  You can always create another printer here: https://vlazoo.com/Settings3.aspx. Log In and have multiple printers running in different locations.For more help email to: support@vlazoo.com or call: (888) 698-3720 Extension 0 VLAZOO https://vlazoo.com"
                        FontSize="18" TextColor="#2aa0ea" Margin="5"/>
             <Button Text="Download Desktop Application" TextColor="White" BackgroundColor="#2aa0ea" Margin="2" Clicked="Button_Clicked"/>
         </StackLayout>

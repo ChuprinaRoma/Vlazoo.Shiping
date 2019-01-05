@@ -9,6 +9,8 @@ using Vazoo1123.Models;
 using Vazoo1123.Service;
 using Vazoo1123.Views.LoadViews;
 using Vazoo1123.Views.PageApp.Dashbord;
+using Vazoo1123.Views.Printing.ModalViews;
+using Xamarin.Forms;
 using static Vazoo1123.ViewModels.Dashbord.DashbordMW;
 
 namespace Vazoo1123.ViewModels.Dashbord
@@ -19,6 +21,7 @@ namespace Vazoo1123.ViewModels.Dashbord
         public CAddressBase SourceAddr = null;
         public DelegateCommand GoToSettingsCommand { get; set; }
         private InitDasbordDelegate initDasbord;
+        public INavigation Navigation = null;
 
         public BulkPostagePrintingMV(ManagerVazoo managerVazoo, List<OrderInfo> selectProducts, InitDasbordDelegate initDasbord)
         {
@@ -27,6 +30,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             this.initDasbord = initDasbord;
             this.managerVazoo = managerVazoo;
             Init(selectProducts);
+            CheckPrintingApp();
         }
 
         private async void Init(List<OrderInfo> selectProducts)
@@ -157,6 +161,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             if (stateAuth == 3)
             {
                 isValid = true;
+                fullOrderSettings.carriers = carriers;
                 CarriersUSPS = new List<Carrier>(carriers.FindAll(c => c.Company == 1));
                 CarriersUPS = new List<Carrier>(carriers.FindAll(c => c.Company == 2));
                 CarriersFedEx = new List<Carrier>(carriers.FindAll(c => c.Company == 3));
@@ -167,16 +172,79 @@ namespace Vazoo1123.ViewModels.Dashbord
                 double tempPostage = 0;
                 foreach (var selectProduct1 in SelectProduct)
                 {
-                    selectProduct1.SetCarrier(selectProduct1.CarrierOptimal);
-                    tempPostage += selectProduct1.CarrierOptimal.Price;
+                    selectProduct1.SetCarrier(selectProduct1.Carrier);
+                    tempPostage += selectProduct1.Carrier.Price;
                 }
                 PostageTotal = $"${tempPostage}";
             }
         }
 
+        private string feedBack = "";
+        public string FeedBack
+        {
+            get => feedBack;
+            set => SetProperty(ref feedBack, value);
+        }
+
+        private string colorFeedBack = "#000000";
+        public string ColorFeedBack
+        {
+            get => colorFeedBack;
+            set => SetProperty(ref colorFeedBack, value);
+        }
+
+        private async Task<bool> CheckPrintingApp()
+        {
+            string description = null;
+            string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+            bool isPrinting = false;
+            int stateAuth = 0;
+            await Task.Run(() =>
+            {
+                stateAuth = managerVazoo.PrintingWork("PrintingAppStatus", ref description, ref isPrinting, email, idCompany, psw);
+            });
+            if (stateAuth == 3)
+            {
+                FeedBack = description;
+                if (isPrinting)
+                {
+                    ColorFeedBack = "#01DF01";
+                }
+                else
+                {
+                    ColorFeedBack = "#DF0101";
+                }
+            }
+            else if (stateAuth == 2)
+            {
+                await PopupNavigation.PushAsync(new Error(description), true);
+                IsValid = false;
+            }
+            else if (stateAuth == 1)
+            {
+                await PopupNavigation.PushAsync(new Error(description), true);
+                IsValid = false;
+            }
+            else if (stateAuth == 4)
+            {
+                await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
+                IsValid = false;
+            }
+            return isPrinting;
+        }
+
         public async void ShippingCreate()
         {
             await PopupNavigation.PushAsync(new LoadPage());
+            bool isPrinted = await CheckPrintingApp();
+            if (!isPrinted)
+            {
+                await PopupNavigation.PopAllAsync();
+                await PopupNavigation.PushAsync(new Error(FeedBack), true);
+                return;
+            }
             string description = null;
             string tracking = null; ;
             string shipingMethod = null;
@@ -185,6 +253,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
             string printerId = CrossSettings.Current.GetValueOrDefault("printer", "");
             string[] idOrNamePrinter = printerId.Split(',');
+            int stait = 0;
             if (idOrNamePrinter[0] == "Default Printer")
             {
                 printerId = GetIdDefaultPrinter();
@@ -204,28 +273,106 @@ namespace Vazoo1123.ViewModels.Dashbord
                 {
                     shipingMethod = "FedEx_" + serlectProduct.Carrier.Code;
                 }
-                int stateAuth = managerVazoo.ShippingCreateOrder(Convert.ToInt32(idCompany), email, psw, serlectProduct.ID, serlectProduct.LabelsQty, shipingMethod, 
+                int stateAuth = managerVazoo.ShippingCreateOrder(Convert.ToInt32(idCompany), email, psw, serlectProduct.ID, serlectProduct.QuantityPurchased, shipingMethod, 
                     serlectProduct.ShopperEmail, SignatureWaiver, serlectProduct.Oz, serlectProduct.cDimensions, SourceAddr,
-                    serlectProduct.cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, true, "", "", "", 0, ref tracking, ref description);
+                    serlectProduct.cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, true, "", "", printerId, 0, ref tracking, ref description);
                 if (stateAuth == 3)
                 {
-                    await PopupNavigation.PushAsync(new Compleat($"Print Succefull {serlectProduct.Name}"), true);
+                    stait = 3;
                     initDasbord.Invoke();
                 }
                 else if (stateAuth == 2)
                 {
+                    stait = 2;
                     await PopupNavigation.PushAsync(new Error(description + ". Look for label in Herror Label"), true);
+                    break;
+                }
+                else if (stateAuth == 1)
+                {
+                    stait = 1;
+                    await PopupNavigation.PushAsync(new Error(description), true);
+                    break;
+                }
+                else if (stateAuth == 4)
+                {
+                    stait = 4;
+                    await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
+                    break;
+                }
+            }
+            if (stait == 3)
+            {
+                await PopupNavigation.PushAsync(new Compleat($"Print Succefull"), true);
+                await Navigation.PopAsync(true);
+            }
+        }
+
+        public async void ShippingCreate1()
+        {
+            await PopupNavigation.PushAsync(new LoadPage());
+            string description = null;
+            string tracking = null; ;
+            string shipingMethod = null;
+            string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+            string tracingAll = null;
+            int stait = 0;
+            foreach (var serlectProduct in SelectProduct)
+            {
+                if (serlectProduct.TypeShipeMethod == "USPS")
+                {
+                    shipingMethod = "USPS_" + serlectProduct.Carrier.AccountID + "=" + serlectProduct.Carrier.Code + "=" + (serlectProduct.Carrier.IsL5 ? "Y" : serlectProduct.Carrier.IsShippo ? "S" : "N")
+                       + "=" + serlectProduct.Carrier.RateID + "=" + serlectProduct.Carrier.Cost.ToString("f") + "=" + serlectProduct.Carrier.Price.ToString("f");
+                }
+                else if (serlectProduct.TypeShipeMethod == "UPS")
+                {
+                    shipingMethod = "UPS_" + serlectProduct.Carrier.Code;
+                }
+                else if (serlectProduct.TypeShipeMethod == "FedEx")
+                {
+                    shipingMethod = "FedEx_" + serlectProduct.Carrier.Code;
+                }
+                int stateAuth = managerVazoo.ShippingCreateOrder(Convert.ToInt32(idCompany), email, psw, serlectProduct.ID, serlectProduct.QuantityPurchased, shipingMethod,
+                    serlectProduct.ShopperEmail, SignatureWaiver, serlectProduct.Oz, serlectProduct.cDimensions, SourceAddr,
+                    serlectProduct.cAddressBase, DeliveryConfirmation, SignatureConfirmation, NoValidate, true, "", "", null, 0, ref tracking, ref description);
+                if (stateAuth == 3)
+                {
+                    stait = 3;
+                    initDasbord.Invoke();
+                    if (tracingAll != null)
+                    {
+                        tracingAll += "," + tracking;
+                    }
+                    else
+                    {
+                        tracingAll = tracking;
+                    }
+                }
+                else if (stateAuth == 2)
+                {
+                    await PopupNavigation.PushAsync(new Error(description + ". Look for label in Herror Label"), true);
+                    stait = 2;
+                    break;
                 }
                 else if (stateAuth == 1)
                 {
                     await PopupNavigation.PushAsync(new Error(description), true);
+                    stait = 1;
+                    break;
                 }
                 else if (stateAuth == 4)
                 {
                     await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
+                    stait = 4;
+                    break;
                 }
             }
-            await PopupNavigation.PopAllAsync(true);
+            if (stait == 3)
+            {
+                await PopupNavigation.PushAsync(new LabalPageView(tracingAll));
+                await Navigation.PopAsync(true);
+            }
         }
 
         private string GetIdDefaultPrinter()
@@ -242,7 +389,7 @@ namespace Vazoo1123.ViewModels.Dashbord
         {
             await PopupNavigation.PushAsync(new SettingsCarrer(this), true);
         }
-
+        
         private bool isValid = false;
         public bool IsValid
         {

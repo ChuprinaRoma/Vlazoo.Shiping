@@ -186,6 +186,64 @@ namespace Vazoo1123.Service
             return profilear;
         }
 
+        public int PrintingAppStatus(int ClientID, string Login, string Password, ref string description, ref bool isPrinted)
+        {
+            string content = null;
+            int profilear = 1;
+            try
+            {
+                string body = "{" + $"'ClientID':'{ClientID}','Login':'{Login}','Password':'{Password}'" + "}";
+                RestClient client = new RestClient("https://vlazoo.com");
+                RestRequest request = new RestRequest("/WS/Mobile.asmx/PrintingAppStatus", Method.POST);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                content = response.Content;
+                if (content == "" || response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return 4;
+                }
+                else
+                {
+                    ParseJson(content, out profilear, ref description, ref isPrinted);
+                }
+            }
+            catch (Exception e)
+            {
+                return 2;
+            }
+            return profilear;
+        }
+
+        private void ParseJson(string jsonResponse, out int profile, ref string description, ref bool isPrinted)
+        {
+            string stateResponse = null;
+            JObject objJsonRespons = JObject.Parse(jsonResponse);
+            stateResponse = objJsonRespons.First
+                .First.Value<string>("status");
+            description = objJsonRespons.First
+                .First.Value<string>("description");
+            if (stateResponse == "success")
+            {   
+                if(description == "YES")
+                {
+                    isPrinted = true;
+                    description = "Remote Printer Turned on";
+                }
+                else if(description == "NO")
+                {
+                    isPrinted = false;
+                    description = "Remote Printer Turned Off";
+                }
+                profile = 3;
+            }
+            else
+            {
+                profile = 2;
+            }
+        }
+
         private void ParseJson(string jsonResponse, out int profile, ref List<string[]> dropDwnChooseRemovePrinter)
         {
             string stateResponse = null;

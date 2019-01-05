@@ -97,11 +97,14 @@
                     <local:CrossEntry x:Name="DWidth" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsH}" TextChanged="CrossEntry_TextChanged"/>
                     <Label Text="X" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="DHeigh" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsW}" TextChanged="CrossEntry_TextChanged"/>
+                    <Label Text="Qty" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                    <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.QuantityPurchased}" TextChanged="CrossEntry_TextChanged_1"/>
                 </StackLayout>
                 <Label Text="{Binding StrCalc}" TextColor="#2aa0ea" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
                 <local:CrossEntry Placeholder="Email" Text="{Binding OrderInfo.ShopperEmail}" HorizontalOptions="Center"/>
                 <Frame Padding="5" BorderColor="#2aa0ea" CornerRadius="10">
                     <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Carrier.AccountID}" TextColor="#2aa0ea" />
                         <Label Text="{Binding Carrier.Title}" TextColor="#2aa0ea"/>
                         <FlexLayout>
                             <Label Text="$" TextColor="#2aa0ea"/>
@@ -132,8 +135,10 @@
                     </StackLayout>
                 </Frame>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                    <Button Text="Create Label" FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Clicked="Button_Clicked_3"/>
                     <Button Text="print to remote printer" FontSize="10" TextColor="White" BackgroundColor="#2aa0ea" Clicked="Button_Clicked_1"/>
                 </StackLayout>
+                <Label Text="{Binding FeedBack}" TextColor="{Binding ColorFeedBack}" HorizontalOptions="End"  HorizontalTextAlignment="End"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

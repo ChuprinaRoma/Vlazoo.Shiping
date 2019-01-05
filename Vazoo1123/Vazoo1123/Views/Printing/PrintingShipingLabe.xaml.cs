@@ -142,7 +142,7 @@ namespace Vazoo1123.Views.Printing
         {
             if (printingShipingLabeMW.IsValid)
             {
-                await PopupNavigation.PushAsync(new Confirm(printingShipingLabeMW, printingShipingLabeMW.Carrier.Price.ToString(), null, printingShipingLabeMW.Carrier));
+                await PopupNavigation.PushAsync(new Confirm(printingShipingLabeMW, printingShipingLabeMW.Carrier.Price.ToString(), true, null, printingShipingLabeMW.Carrier));
                 DSOBtn.BorderColor = Color.Default;
                 DSOBtn.BorderWidth = 0;
             }
@@ -175,6 +175,21 @@ namespace Vazoo1123.Views.Printing
         {
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
             await Navigation.PushAsync(new Replenishment($"https://vlazoo.com/BuyPostageCC.aspx?ClientID={idCompany}&Amount={printingShipingLabeMW.Postage}", "Visa or MasterCard"));
+        }
+
+        private async void Button_Clicked_2(object sender, EventArgs e)
+        {
+            if (printingShipingLabeMW.IsValid)
+            {
+                await PopupNavigation.PushAsync(new Confirm(printingShipingLabeMW, printingShipingLabeMW.Carrier.Price.ToString(), false, null, printingShipingLabeMW.Carrier));
+                DSOBtn.BorderColor = Color.Default;
+                DSOBtn.BorderWidth = 0;
+            }
+            else
+            {
+                DSOBtn.BorderColor = Color.Red;
+                DSOBtn.BorderWidth = 1;
+            }
         }
     }
 }

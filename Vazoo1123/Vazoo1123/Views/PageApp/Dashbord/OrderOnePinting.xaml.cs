@@ -74,7 +74,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
         {
             if (fullInfoOneOrderAndPrintingMV.IsValid)
             {
-                await PopupNavigation.PushAsync(new Confirm(fullInfoOneOrderAndPrintingMV, fullInfoOneOrderAndPrintingMV.Carrier.Price.ToString(), null, fullInfoOneOrderAndPrintingMV.Carrier));
+                await PopupNavigation.PushAsync(new Confirm(fullInfoOneOrderAndPrintingMV, fullInfoOneOrderAndPrintingMV.Carrier.Price.ToString(), true, null, fullInfoOneOrderAndPrintingMV.Carrier));
                 DSOBtn.BorderColor = Color.Default;
                 DSOBtn.BorderWidth = 0;
             }
@@ -146,6 +146,29 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             if (label.Text != "")
             {
                 await PopupNavigation.PushAsync(new LabalPageView(label.Text));
+            }
+        }
+
+        private async void Button_Clicked_3(object sender, EventArgs e)
+        {
+            if (fullInfoOneOrderAndPrintingMV.IsValid)
+            {
+                await PopupNavigation.PushAsync(new Confirm(fullInfoOneOrderAndPrintingMV, fullInfoOneOrderAndPrintingMV.Carrier.Price.ToString(), false, null, fullInfoOneOrderAndPrintingMV.Carrier));
+                DSOBtn.BorderColor = Color.Default;
+                DSOBtn.BorderWidth = 0;
+            }
+            else
+            {
+                DSOBtn.BorderColor = Color.Red;
+                DSOBtn.BorderWidth = 1;
+            }
+        }
+
+        private void CrossEntry_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            if (e.OldTextValue != null)
+            {
+                fullInfoOneOrderAndPrintingMV.IsValid = false;
             }
         }
     }

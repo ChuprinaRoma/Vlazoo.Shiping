@@ -127,6 +127,21 @@ namespace Vazoo1123.Service
             return Printing;
         }
 
+        public int PrintingWork(string typeSuport, ref string description, ref bool isPrinting, params string[] dataSuport)
+        {
+            printing = new Printing();
+            int Printing = 1;
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                if (typeSuport == "PrintingAppStatus")
+                {
+                    Printing = printing.PrintingAppStatus(Convert.ToInt32(dataSuport[1]), dataSuport[0], dataSuport[2], ref description, ref isPrinting);
+                }
+            }
+            printing = null;
+            return Printing;
+        }
+
         public int ShippingEstimateOrderint(string typeSuport, int OrderID, ref string description, ref List<Carrier> carriers, params string[] dataSuport)
         {
             printing = new Printing();

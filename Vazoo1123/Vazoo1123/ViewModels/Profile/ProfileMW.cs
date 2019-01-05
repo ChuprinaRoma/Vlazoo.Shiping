@@ -328,6 +328,20 @@ namespace Vazoo1123.ViewModels.Profile
             set => SetProperty(ref selectDropDwmSourse, value);
         }
 
+        private string eBayFeedBackSubscraba = "";
+        public string EBayFeedBackSubscraba
+        {
+            get => eBayFeedBackSubscraba;
+            set => SetProperty(ref eBayFeedBackSubscraba, value);
+        }
+
+        private string eBayFeedBackSubscrabaColor = "#000000";
+        public string EBayFeedBackSubscrabaColor
+        {
+            get => eBayFeedBackSubscrabaColor;
+            set => SetProperty(ref eBayFeedBackSubscrabaColor, value);
+        }
+
         public List<string[]> DropDwnChooseRemovePrinters { get; set; }
 
         private async void Init()
@@ -362,6 +376,16 @@ namespace Vazoo1123.ViewModels.Profile
                 Zip = _xzType[14];
                 Phone = _xzType[15];
                 UserID = _xzType[16];
+                EBayFeedBackSubscraba = _xzType[19];
+                if (EBayFeedBackSubscraba != "")
+                {
+                    EBayFeedBackSubscrabaColor = "#3ADF00";
+                }
+                else
+                {
+                    EBayFeedBackSubscraba = "You will not see any eBay information(messages, listings and etc)in the system until you allow access.";
+                    EBayFeedBackSubscrabaColor = "#FF0040";
+                }
             }
             else if (stateAuth == 2)
             {
@@ -426,6 +450,15 @@ namespace Vazoo1123.ViewModels.Profile
                 Zip = _xzType[14];
                 Phone = _xzType[15];
                 UserID = _xzType[16];
+                EBayFeedBackSubscraba = _xzType[19];
+                if(EBayFeedBackSubscraba != "")
+                {
+                    EBayFeedBackSubscrabaColor = "#3ADF00";
+                }
+                else
+                {
+                    EBayFeedBackSubscrabaColor = "#FF0040";
+                }
             }
             else if (stateAuth == 2)
             {

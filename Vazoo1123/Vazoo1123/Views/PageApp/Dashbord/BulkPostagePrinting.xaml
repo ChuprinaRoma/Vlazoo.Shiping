@@ -7,7 +7,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{Binding PostageTotal}"/>
         <ToolbarItem Text="{Binding TotalLabels}"/>
-        <ToolbarItem Text="S" Command="{Binding GoToSettingsCommand}"/>
+        <ToolbarItem Icon="Setings.png" Command="{Binding GoToSettingsCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
@@ -29,7 +29,6 @@
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="Price:" FontSize="12" TextColor="#2aa0ea"/>
                                                 <FlexLayout>
-                                                    <Label Text="$" FontSize="12" TextColor="#2aa0ea"/>
                                                     <Label Text="{Binding TransactionPrice}" FontSize="12" TextColor="#2aa0ea"/>
                                                     <Label Text="{Binding TotalTransactionPrice}" FontSize="12" TextColor="#2aa0ea"/>
                                                 </FlexLayout>
@@ -46,7 +45,7 @@
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="Qty:" VerticalTextAlignment="Center" FontSize="12" TextColor="#2aa0ea"/>
-                                                <local:CrossEdit Text="{Binding LabelsQty}" Placeholder="Qty" FontSize="12" TextColor="#2aa0ea"/>
+                                                <local:CrossEdit Text="{Binding QuantityPurchased}" Placeholder="Qty" FontSize="12" TextColor="#2aa0ea"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
                                                 <Button Text="Display Dhipping Options" HorizontalOptions="Center" Margin="20, 0, 0, 0" HeightRequest="50" WidthRequest="100"
@@ -79,8 +78,9 @@
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
                                         </Label.GestureRecognizers>
                                     </Label>
-                                        <Frame Padding="3" BorderColor="#2aa0ea" CornerRadius="10">
+                                    <Frame Padding="3" BorderColor="#2aa0ea" CornerRadius="10">
                                         <FlexLayout Direction="Row" Wrap="Wrap">
+                                            <Label Text="{Binding Carrier.AccountID}" TextColor="#2aa0ea" Margin="0,0,3,0"/>
                                             <Label Text="{Binding Carrier.Title}" TextColor="#2aa0ea"/>
                                             <Label Text="$" TextColor="#2aa0ea" Margin="5,0,0,0"/>
                                             <Label Text="{Binding Carrier.Price}" TextColor="#2aa0ea"/>
@@ -93,8 +93,10 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <Button Text="Create Label" FontSize="12" TextColor="White" BackgroundColor="#2aa0ea" Clicked="Button_Clicked_2"/>
                 <Button Text="print to remote printer" FontSize="12" TextColor="White" BackgroundColor="#2aa0ea" Clicked="Button_Clicked_1"/>
             </StackLayout>
+            <Label Text="{Binding FeedBack}" TextColor="{Binding ColorFeedBack}" HorizontalOptions="End"  HorizontalTextAlignment="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

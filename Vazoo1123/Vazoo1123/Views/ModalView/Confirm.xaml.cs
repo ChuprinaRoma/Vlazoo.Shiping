@@ -16,9 +16,11 @@ namespace Vazoo1123.Views.ModalView
     {
         private ICreateShiping createShiping = null;
         private List<Carrier> carriers = null;
+        private bool isPrinted = true;
 
-        public Confirm(ICreateShiping createShiping, string postageCarr, List<Carrier> carriers = null, Carrier carrier = null)
+        public Confirm(ICreateShiping createShiping, string postageCarr, bool isPrinted = true, List<Carrier> carriers = null, Carrier carrier = null)
         {
+            this.isPrinted = isPrinted;
             this.createShiping = createShiping;
             InitializeComponent();;
             this.carriers = new List<Carrier>();
@@ -37,7 +39,14 @@ namespace Vazoo1123.Views.ModalView
 
         private void Button_Clicked(object sender, System.EventArgs e)
         {
-            createShiping.ShippingCreate();
+            if (isPrinted)
+            {
+                createShiping.ShippingCreate();
+            }
+            else
+            {
+                createShiping.ShippingCreate1();
+            }
         }
 
         private async void Button_Clicked_1(object sender, System.EventArgs e)

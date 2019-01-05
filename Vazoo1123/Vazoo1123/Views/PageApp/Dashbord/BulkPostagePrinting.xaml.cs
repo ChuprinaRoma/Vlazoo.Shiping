@@ -23,7 +23,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
 
         public BulkPostagePrinting (ManagerVazoo managerVazoo, List<OrderInfo> SelectProduct, InitDasbordDelegate initDasbord)
 		{
-            bulkPostagePrintingMV = new BulkPostagePrintingMV(managerVazoo, SelectProduct, initDasbord);
+            bulkPostagePrintingMV = new BulkPostagePrintingMV(managerVazoo, SelectProduct, initDasbord) { Navigation = this.Navigation};
             InitializeComponent ();
             BindingContext = bulkPostagePrintingMV;
         }
@@ -32,7 +32,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
         {
             StackLayout stackLayout = ((Button)sender).FindByName<StackLayout>("st");
             await stackLayout.FadeTo(0.2, 300);
-
+            await PopupNavigation.PushAsync(new LoadPage());
             string itemId = ((Button)sender).FindByName<Label>("itemId").Text;
             string recordId = ((Button)sender).FindByName<Label>("recordId").Text;
             FullOrderSettings fullOrderSettings = bulkPostagePrintingMV.SelectProduct
@@ -48,9 +48,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             if (fullOrderSettings.Oz != 0)
             {
                 await Task.Run(() => bulkPostagePrintingMV.UpdateOneOrder(fullOrderSettings));
-                bulkPostagePrintingMV.CarriersFedEx = fullOrderSettings.CarriersFedEx;
-                bulkPostagePrintingMV.CarriersUPS = fullOrderSettings.CarriersUPS;
-                bulkPostagePrintingMV.CarriersUSPS = fullOrderSettings.CarriersUSPS;
+                await PopupNavigation.PopAllAsync();
                 if (bulkPostagePrintingMV.CarriersFedEx.Count != 0 || bulkPostagePrintingMV.CarriersUPS.Count != 0 || bulkPostagePrintingMV.CarriersUSPS.Count != 0)
                 {
                     await PopupNavigation.PushAsync(new OptinsPage1(bulkPostagePrintingMV, fullOrderSettings.CarriersUSPS.Count != 0, fullOrderSettings.CarriersUPS.Count != 0, fullOrderSettings.CarriersFedEx.Count != 0, indexSelectProduct), true);
@@ -139,7 +137,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
         {
             if (bulkPostagePrintingMV.IsValid)
             {
-                await PopupNavigation.PushAsync(new Confirm(bulkPostagePrintingMV, bulkPostagePrintingMV.PostageTotal, bulkPostagePrintingMV.SelectProduct.Select(s => s.Carrier).ToList(), null));
+                await PopupNavigation.PushAsync(new Confirm(bulkPostagePrintingMV, bulkPostagePrintingMV.PostageTotal, true, bulkPostagePrintingMV.SelectProduct.Select(s => s.Carrier).ToList(), null));
             }
         }
 
@@ -184,6 +182,14 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             if (label.Text != "")
             {
                 await PopupNavigation.PushAsync(new LabalPageView(label.Text));
+            }
+        }
+
+        private async void Button_Clicked_2(object sender, EventArgs e)
+        {
+            if (bulkPostagePrintingMV.IsValid)
+            {
+                await PopupNavigation.PushAsync(new Confirm(bulkPostagePrintingMV, bulkPostagePrintingMV.PostageTotal, false, bulkPostagePrintingMV.SelectProduct.Select(s => s.Carrier).ToList(), null));
             }
         }
     }

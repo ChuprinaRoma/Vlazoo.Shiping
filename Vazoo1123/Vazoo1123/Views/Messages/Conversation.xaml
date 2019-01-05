@@ -4,7 +4,7 @@
              x:Class="Vazoo1123.Views.Messages.Conversation"
              Title="Conversations">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Purchases" Command="{Binding ToPurchasesCommand}"/>
+        <ToolbarItem Icon="ShipingCart.png" Command="{Binding ToPurchasesCommand}"/>
         <ToolbarItem Icon="Setings.png" Command="{Binding ToSettingsCommand}"/>
         <ToolbarItem Icon="MsgDeleted.png" Command="{Binding DeletedMsgCommand}"/>
     </ContentPage.ToolbarItems>
