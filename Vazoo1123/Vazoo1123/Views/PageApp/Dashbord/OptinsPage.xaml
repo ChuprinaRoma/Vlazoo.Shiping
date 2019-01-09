@@ -36,17 +36,17 @@
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
-                                        <Frame x:Name="fUSPS" Padding="6" BackgroundColor="White" CornerRadius="4" Margin="2" BorderColor="#bfebf9">
+                                        <Frame x:Name="fUSPS" Padding="3" BackgroundColor="White" CornerRadius="4" Margin="2" BorderColor="#bfebf9">
                                             <Frame.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
                                             </Frame.GestureRecognizers>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label x:Name="IdLabel" Text="{Binding Id}" IsVisible="False"/>
-                                                <Label Text="{Binding AccountID}" TextColor="#2aa0ea" />
-                                                <Label Text="{Binding Title}" TextColor="#2aa0ea"/>
+                                                <Label Text="{Binding AccountID}" TextColor="#2aa0ea" FontSize="14" />
+                                                <Label Text="{Binding Title}" TextColor="#2aa0ea" FontSize="14"/>
                                                 <FlexLayout>
-                                                    <Label Text="$" TextColor="#2aa0ea"/>
-                                                    <Label Text="{Binding Price}" TextColor="#2aa0ea"/>
+                                                    <Label Text="$" TextColor="#2aa0ea" FontSize="14"/>
+                                                    <Label Text="{Binding Price}" TextColor="#2aa0ea" FontSize="14"/>
                                                 </FlexLayout>
                                             </StackLayout>
                                         </Frame>
@@ -63,16 +63,16 @@
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
-                                        <Frame x:Name="fUPS" Padding="6" BackgroundColor="White" Margin="2" BorderColor="#bfebf9">
+                                        <Frame x:Name="fUPS" Padding="3" BackgroundColor="White" Margin="2" BorderColor="#bfebf9">
                                             <Frame.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
                                             </Frame.GestureRecognizers>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label x:Name="IdLabel" Text="{Binding Id}" IsVisible="False"/>
-                                                <Label Text="{Binding Title}" TextColor="#2aa0ea"/>
+                                                <Label Text="{Binding Title}" TextColor="#2aa0ea" FontSize="14"/>
                                                 <FlexLayout>
-                                                    <Label Text="$" TextColor="#2aa0ea"/>
-                                                    <Label Text="{Binding Price}" TextColor="#2aa0ea"/>
+                                                    <Label Text="$" TextColor="#2aa0ea" FontSize="14"/>
+                                                    <Label Text="{Binding Price}" TextColor="#2aa0ea" FontSize="14"/>
                                                 </FlexLayout>
                                             </StackLayout>
                                         </Frame>
@@ -89,16 +89,16 @@
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
-                                        <Frame x:Name="fFedEx" Padding="6" BackgroundColor="White" Margin="2" BorderColor="#bfebf9">
+                                        <Frame x:Name="fFedEx" Padding="3" BackgroundColor="White" Margin="2" BorderColor="#bfebf9">
                                             <Frame.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
                                             </Frame.GestureRecognizers>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label x:Name="IdLabel" Text="{Binding Id}" IsVisible="False"/>
-                                                <Label Text="{Binding Title}" TextColor="#2aa0ea"/>
+                                                <Label Text="{Binding Title}" TextColor="#2aa0ea" FontSize="14"/>
                                                 <FlexLayout>
                                                     <Label Text="$" TextColor="#2aa0ea"/>
-                                                    <Label Text="{Binding Price}" TextColor="#2aa0ea"/>
+                                                    <Label Text="{Binding Price}" TextColor="#2aa0ea" FontSize="14"/>
                                                 </FlexLayout>
                                             </StackLayout>
                                         </Frame>

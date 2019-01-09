@@ -32,7 +32,14 @@ namespace Vazoo1123.Views.Messages
             if (e.SelectedItem != null)
             {
                 Models.Messages messages = (Models.Messages)e.SelectedItem;
-                await Navigation.PushAsync(new Conversation(mesagesFolderMV.managerVazoo, messages, mesagesFolderMV.initMesage));
+                if(messages.Sender == "eBay")
+                {
+                    await Navigation.PushAsync(new PageForeBay(messages.EBayURL, messages.Subject));
+                }
+                else
+                {
+                    await Navigation.PushAsync(new Conversation(mesagesFolderMV.managerVazoo, messages, mesagesFolderMV.initMesage));
+                }
                 messageList.SelectedItem = null;
             }
         }

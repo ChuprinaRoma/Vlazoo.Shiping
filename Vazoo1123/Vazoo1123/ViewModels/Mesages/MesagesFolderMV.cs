@@ -89,10 +89,6 @@ namespace Vazoo1123.ViewModels.Mesages
             {
                 Messagesss = new ObservableCollection<Models.Messages>(messagesss1.GetRange(0, 10 > messagesss1.Count ? messagesss1.Count : 10));
                 Title = $"{name} {totalResulte}";
-                if (type == 1)
-                {
-                    menuDetalePage.CheckAndSetCountMessage(totalResulte);
-                }
             }
             else if (stateAuth == 2)
             {

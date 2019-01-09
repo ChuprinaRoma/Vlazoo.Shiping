@@ -52,7 +52,7 @@
                         </StackLayout>
                     </StackLayout>
                 </FlexLayout>
-                <Label Text="{Binding OrderInfo.ItemTitle}" FontSize="14" TextColor="#2aabb1" HorizontalOptions="Start" HorizontalTextAlignment="Start">
+                <Label Text="{Binding OrderInfo.ItemTitle}" FontSize="14" TextColor="#2aa0ea" HorizontalOptions="Start" HorizontalTextAlignment="Start">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
                     </Label.GestureRecognizers>
@@ -62,8 +62,8 @@
                     <Label Text="{Binding OrderInfo.DateCreated}" FontSize="14" TextColor="#2aa0ea"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                    <Label Text="Tracking:" FontSize="14" TextColor="#2aa0ea"/>
-                    <Label Text="{Binding OrderInfo.TrackingNumber}" FontSize="14" TextColor="#2aa0ea">
+                    <Label Text="Tracking:" FontSize="14" TextColor="#2aabb1"/>
+                    <Label Text="{Binding OrderInfo.TrackingNumber}" FontSize="14" TextColor="#2aabb1">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>

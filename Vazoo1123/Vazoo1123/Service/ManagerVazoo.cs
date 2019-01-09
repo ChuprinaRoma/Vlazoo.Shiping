@@ -271,6 +271,21 @@ namespace Vazoo1123.Service
             return stateMesges;
         }
 
+        public int MesagesWork(string typeMesages, List<string> EBayItemID, ref string description, ref Listings listings, params string[] dataMesages)
+        {
+            mesages = new Mesages();
+            int stateMesges = 1;
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                if (typeMesages == "ListingsGet")
+                {
+                    stateMesges = mesages.ListingsGet(Convert.ToInt32(dataMesages[0]), dataMesages[1], dataMesages[2], EBayItemID, ref description, ref listings);
+                }
+            }
+            mesages = null;
+            return stateMesges;
+        }
+
         public int MesagesWork(string typeMesages, int Id, bool DisplayToPublic, bool EmailCopyToSender, ref string description, params string[] dataMesages)
         {
             mesages = new Mesages();

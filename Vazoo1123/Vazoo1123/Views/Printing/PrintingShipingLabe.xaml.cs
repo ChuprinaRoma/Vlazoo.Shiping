@@ -142,7 +142,7 @@ namespace Vazoo1123.Views.Printing
         {
             if (printingShipingLabeMW.IsValid)
             {
-                await PopupNavigation.PushAsync(new Confirm(printingShipingLabeMW, printingShipingLabeMW.Carrier.Price.ToString(), true, null, printingShipingLabeMW.Carrier));
+                await PopupNavigation.PushAsync(new Confirm(printingShipingLabeMW, printingShipingLabeMW.Carrier.Price.ToString(), await printingShipingLabeMW.GetAndSetPostageBalance(), Navigation, true, null, printingShipingLabeMW.Carrier));
                 DSOBtn.BorderColor = Color.Default;
                 DSOBtn.BorderWidth = 0;
             }
@@ -181,7 +181,7 @@ namespace Vazoo1123.Views.Printing
         {
             if (printingShipingLabeMW.IsValid)
             {
-                await PopupNavigation.PushAsync(new Confirm(printingShipingLabeMW, printingShipingLabeMW.Carrier.Price.ToString(), false, null, printingShipingLabeMW.Carrier));
+                await PopupNavigation.PushAsync(new Confirm(printingShipingLabeMW, printingShipingLabeMW.Carrier.Price.ToString(), await printingShipingLabeMW.GetAndSetPostageBalance(), Navigation, false, null, printingShipingLabeMW.Carrier));
                 DSOBtn.BorderColor = Color.Default;
                 DSOBtn.BorderWidth = 0;
             }

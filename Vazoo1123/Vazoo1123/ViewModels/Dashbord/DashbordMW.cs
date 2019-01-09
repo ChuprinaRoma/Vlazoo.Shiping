@@ -12,6 +12,7 @@ using Vazoo1123.Views.PageApp.Dashbord;
 using Xamarin.Forms;
 using Vazoo1123.Views.Menu;
 using System.Threading;
+using System;
 
 namespace Vazoo1123.ViewModels.Dashbord
 {
@@ -21,6 +22,7 @@ namespace Vazoo1123.ViewModels.Dashbord
         public INavigation Navigation { get; set; }
         public DelegateCommand ToBulkPostagePrintingCommand { get; set; }
         public DelegateCommand UpdateCommandOrder { get; set; }
+        public DelegateCommand UpdatePostageBalannseCommandOrder { get; set; }
         public MenuDetalePage menuDetalePage = null;
         public delegate  void InitDasbordDelegate();
         public InitDasbordDelegate initDasbordDelegate;
@@ -115,7 +117,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             get { return countSelectOrder; }
             set { SetProperty(ref countSelectOrder, value); }
         }
-
+        
         public int countPage = 0;
         public int countFullPage = 0;
         public int countOrder = 0;
@@ -159,7 +161,6 @@ namespace Vazoo1123.ViewModels.Dashbord
             }
             IsBusy = false;
         }
-
 
         public async void UpdateOrder()
         {
@@ -259,7 +260,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             }
             else if(SelectProduct.Count != 0)
             {
-                await Navigation.PushAsync(new BulkPostagePrinting(managerVazoo, SelectProduct, initDasbordDelegate));
+                await Navigation.PushAsync(new BulkPostagePrinting(managerVazoo, SelectProduct, initDasbordDelegate, this));
             }
             else
             {

@@ -18,11 +18,11 @@
                             <ViewCell.View>
                                 <FlexLayout Margin="10" Direction="Column">
                                     <StackLayout Orientation="Horizontal" HeightRequest="30" Margin="15, 0, 0, 0">
-                                        <Label TextColor="#2aa0ea" FontSize="12" FlexLayout.AlignSelf="2" Text="{Binding ReceiveDate}"/>
+                                        <Label TextColor="#2aa0ea" FontSize="13" FlexLayout.AlignSelf="2" Text="{Binding ReceiveDate}"/>
                                     </StackLayout>
-                                    <Frame BackgroundColor="{Binding Color}" Padding="8" CornerRadius="30">
+                                    <Frame BackgroundColor="{Binding Color}" Padding="5" CornerRadius="30">
                                             <FlexLayout BackgroundColor="{Binding Color}" Padding="7">
-                                                <Label TextColor="#2aa0ea" FontSize="12" FlexLayout.AlignSelf="2" Text="{Binding BodyShort}"/>
+                                                <Label TextColor="#2aa0ea" FontSize="15" FlexLayout.AlignSelf="2" Text="{Binding BodyShort}"/>
                                             </FlexLayout>
                                         </Frame>
                                     </FlexLayout>

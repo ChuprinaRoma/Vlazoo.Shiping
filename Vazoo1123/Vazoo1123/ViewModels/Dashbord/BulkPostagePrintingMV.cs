@@ -22,9 +22,11 @@ namespace Vazoo1123.ViewModels.Dashbord
         public DelegateCommand GoToSettingsCommand { get; set; }
         private InitDasbordDelegate initDasbord;
         public INavigation Navigation = null;
+        private DashbordMW dashbordMW = null;
 
-        public BulkPostagePrintingMV(ManagerVazoo managerVazoo, List<OrderInfo> selectProducts, InitDasbordDelegate initDasbord)
+        public BulkPostagePrintingMV(ManagerVazoo managerVazoo, List<OrderInfo> selectProducts, InitDasbordDelegate initDasbord, DashbordMW dashbordMW)
         {
+            this.dashbordMW = dashbordMW;
             GoToSettingsCommand = new DelegateCommand(GoToSettings);
             SourceAddr = new CAddressBase();
             this.initDasbord = initDasbord;
@@ -108,10 +110,17 @@ namespace Vazoo1123.ViewModels.Dashbord
                         isValidTemp = selectProduct1.CarrierOptimal != null;
                     }
                     selectProduct1.SetCarrier(selectProduct1.CarrierOptimal);
-                    tempPostage += selectProduct1.CarrierOptimal.Price;
+                    try
+                    {
+                        tempPostage += selectProduct1.CarrierOptimal.Price;
+                    }
+                    catch(Exception E)
+                    {
+
+                    }
                 }
                 IsValid = isValidTemp;
-                PostageTotal = $"${tempPostage}";
+                PostageTotal = $"{tempPostage}";
             });
         }
 
@@ -175,7 +184,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                     selectProduct1.SetCarrier(selectProduct1.Carrier);
                     tempPostage += selectProduct1.Carrier.Price;
                 }
-                PostageTotal = $"${tempPostage}";
+                PostageTotal = $"{tempPostage}";
             }
         }
 
@@ -284,7 +293,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 else if (stateAuth == 2)
                 {
                     stait = 2;
-                    await PopupNavigation.PushAsync(new Error(description + ". Look for label in Herror Label"), true);
+                    await PopupNavigation.PushAsync(new Error(description + ". Look for label in Error Label"), true);
                     break;
                 }
                 else if (stateAuth == 1)
@@ -302,7 +311,8 @@ namespace Vazoo1123.ViewModels.Dashbord
             }
             if (stait == 3)
             {
-                await PopupNavigation.PushAsync(new Compleat($"Print Succefull"), true);
+                await PopupNavigation.PopAllAsync();
+                await PopupNavigation.PushAsync(new ConfirmGoLabal(dashbordMW), true);
                 await Navigation.PopAsync(true);
             }
         }
@@ -351,7 +361,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 }
                 else if (stateAuth == 2)
                 {
-                    await PopupNavigation.PushAsync(new Error(description + ". Look for label in Herror Label"), true);
+                    await PopupNavigation.PushAsync(new Error(description + " Look for label in Error Label"), true);
                     stait = 2;
                     break;
                 }
@@ -370,6 +380,7 @@ namespace Vazoo1123.ViewModels.Dashbord
             }
             if (stait == 3)
             {
+                await PopupNavigation.PopAllAsync();
                 await PopupNavigation.PushAsync(new LabalPageView(tracingAll));
                 await Navigation.PopAsync(true);
             }
@@ -389,7 +400,31 @@ namespace Vazoo1123.ViewModels.Dashbord
         {
             await PopupNavigation.PushAsync(new SettingsCarrer(this), true);
         }
-        
+
+        public async Task<double> GetAndSetPostageBalance()
+        {
+            await PopupNavigation.PushAsync(new LoadPage());
+            string[] _xzType = null;
+            int stateAuth = 0;
+            await Task.Run(() =>
+            {
+                string description = null;
+                string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+                string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+                string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+                _xzType = managerVazoo.PofiletWork("PostageBuyGet", ref description, null, idCompany, email, psw);
+                stateAuth = Convert.ToInt32(_xzType[0]);
+            });
+            if (stateAuth == 3)
+            {
+                Balance = Convert.ToDouble(_xzType[1]);
+            }
+            await PopupNavigation.PopAsync(true);
+            return Balance;
+        }
+
+        public double Balance { get; set; }
+
         private bool isValid = false;
         public bool IsValid
         {

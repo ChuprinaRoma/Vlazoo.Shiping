@@ -21,9 +21,9 @@ namespace Vazoo1123.Views.PageApp.Dashbord
 	{
         private BulkPostagePrintingMV bulkPostagePrintingMV = null;
 
-        public BulkPostagePrinting (ManagerVazoo managerVazoo, List<OrderInfo> SelectProduct, InitDasbordDelegate initDasbord)
+        public BulkPostagePrinting (ManagerVazoo managerVazoo, List<OrderInfo> SelectProduct, InitDasbordDelegate initDasbord, DashbordMW dashbordMW)
 		{
-            bulkPostagePrintingMV = new BulkPostagePrintingMV(managerVazoo, SelectProduct, initDasbord) { Navigation = this.Navigation};
+            bulkPostagePrintingMV = new BulkPostagePrintingMV(managerVazoo, SelectProduct, initDasbord, dashbordMW) { Navigation = this.Navigation};
             InitializeComponent ();
             BindingContext = bulkPostagePrintingMV;
         }
@@ -137,7 +137,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
         {
             if (bulkPostagePrintingMV.IsValid)
             {
-                await PopupNavigation.PushAsync(new Confirm(bulkPostagePrintingMV, bulkPostagePrintingMV.PostageTotal, true, bulkPostagePrintingMV.SelectProduct.Select(s => s.Carrier).ToList(), null));
+                await PopupNavigation.PushAsync(new Confirm(bulkPostagePrintingMV, bulkPostagePrintingMV.PostageTotal, await bulkPostagePrintingMV.GetAndSetPostageBalance(), Navigation, true, bulkPostagePrintingMV.SelectProduct.Select(s => s.Carrier).ToList(), null));
             }
         }
 
@@ -189,7 +189,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
         {
             if (bulkPostagePrintingMV.IsValid)
             {
-                await PopupNavigation.PushAsync(new Confirm(bulkPostagePrintingMV, bulkPostagePrintingMV.PostageTotal, false, bulkPostagePrintingMV.SelectProduct.Select(s => s.Carrier).ToList(), null));
+                await PopupNavigation.PushAsync(new Confirm(bulkPostagePrintingMV, bulkPostagePrintingMV.PostageTotal, await bulkPostagePrintingMV.GetAndSetPostageBalance(), Navigation, false, bulkPostagePrintingMV.SelectProduct.Select(s => s.Carrier).ToList(), null));
             }
         }
     }

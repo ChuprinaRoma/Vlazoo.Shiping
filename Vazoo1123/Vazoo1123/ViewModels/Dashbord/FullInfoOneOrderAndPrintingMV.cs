@@ -207,6 +207,8 @@ namespace Vazoo1123.ViewModels.Dashbord
             set => SetProperty(ref colorFeedBack, value);
         }
 
+        public double Balance { get; set; }
+
         public double Oz
         {
             get
@@ -322,7 +324,7 @@ namespace Vazoo1123.ViewModels.Dashbord
                 IsValid = false;
             }
         }
-
+         
         public async void DisplayShippingOptions()
         {
             await PopupNavigation.PushAsync(new LoadPage());
@@ -372,6 +374,28 @@ namespace Vazoo1123.ViewModels.Dashbord
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
                 IsValid = false;
             }
+        }
+
+        public async Task<double> GetAndSetPostageBalance()
+        {
+            await PopupNavigation.PushAsync(new LoadPage());
+            string[] _xzType = null;
+            int stateAuth = 0;
+            await Task.Run(() =>
+            {
+                string description = null;
+                string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+                string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+                string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+                _xzType = managerVazoo.PofiletWork("PostageBuyGet", ref description, null, idCompany, email, psw);
+                stateAuth = Convert.ToInt32(_xzType[0]);
+            });
+            if (stateAuth == 3)
+            {
+                Balance = Convert.ToDouble(_xzType[1]);
+            }
+            await PopupNavigation.PopAsync(true);
+            return Balance;
         }
 
         private async Task<int> InitForDisplayShippingOptions()

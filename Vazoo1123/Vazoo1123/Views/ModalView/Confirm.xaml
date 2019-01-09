@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:local="clr-namespace:Vazoo1123.NewElement"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     x:Class="Vazoo1123.Views.ModalView.Confirm">
     <pages:PopupPage.Animation>
@@ -22,8 +23,26 @@
                  Margin="5">
         <Frame CornerRadius="5" Padding="5" BorderColor="#2aa0ea" Margin="4">
             <StackLayout HeightRequest="250">
-                <Label Text="Want to print a label?" FontSize="20" Margin="3" TextColor="#2aa0ea"/>
-                    <StackLayout x:Name="CarresList" Margin="3">
+                <StackLayout Orientation="Horizontal">
+                    <FlexLayout>
+                        <Label Text="Postage" FontSize="13" Margin="0, 0, 0, 3" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                        <Label x:Name="postageBalance" FontSize="13" Margin="3,0,3,0" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                        <Label Text="Buy More" FontSize="13" Margin="3,0,3,0" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                        <Label Text="$" FontSize="13" Margin="3, 0, 0, 0" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
+                        <local:CrossEntry x:Name="lp" Text="20" FontSize="13" Margin="3" TextColor="#2aa0ea" WidthRequest="30"/>
+                        <Image Source="PayPal.jpg" WidthRequest="30" HeightRequest="30" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped_1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image Source="Visa.png" WidthRequest="30" HeightRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </FlexLayout>
+                </StackLayout>
+                <StackLayout x:Name="CarresList" Margin="3">
                     <ListView  ItemsSource="{Binding}" 
                       HasUnevenRows="True" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
@@ -60,7 +79,7 @@
                 </StackLayout>
                 <FlexLayout>
                     <Button Text="Cancel" Clicked="Button_Clicked_1" FlexLayout.Grow="1" BackgroundColor="#2aa0ea" TextColor="White" Margin="3"/>
-                    <Button Text="confirm" Clicked="Button_Clicked" FlexLayout.Grow="1" BackgroundColor="#2aa0ea" TextColor="White" Margin="3"/>
+                    <Button x:Name="btnConfirm" Text="confirm" Clicked="Button_Clicked" FlexLayout.Grow="1" BackgroundColor="#2aa0ea" TextColor="White" Margin="3"/>
                 </FlexLayout>
             </StackLayout>
         </Frame>

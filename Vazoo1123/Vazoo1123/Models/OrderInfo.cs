@@ -25,6 +25,7 @@
         public string TrackingNumber { get; set; }
         public int UnansweredMessages { get; set; }
         public string MessageID { get; set; }
+        public string[] TrackingURL { get; set; }
         public bool IsMesages
         {
             get => UnansweredMessages > 0 ? true : false;

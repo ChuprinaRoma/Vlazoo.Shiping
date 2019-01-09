@@ -21,7 +21,11 @@
                     <StackLayout Orientation="Vertical">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="item id:" FontSize="14" TextColor="#2aa0ea"/>
-                            <Label Text="{Binding OrderInfo.EBayItemID}" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="{Binding OrderInfo.EBayItemID}" FontSize="14" TextColor="#2aabb1">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                                </Label.GestureRecognizers>
+                            </Label>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Record#" FontSize="14" TextColor="#2aa0ea"/>
@@ -81,7 +85,7 @@
                         </StackLayout>
                     </FlexLayout>
                 </Frame>
-                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                <FlexLayout HorizontalOptions="Center">
                     <Label Text="Weight:" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightLBS}" TextChanged="OzInp_TextChanged"/>
                     <Label Text="(lbs)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
@@ -89,8 +93,8 @@
                     <Label Text="(oz)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.WeightKG}" TextChanged="OzInp_TextChanged"/>
                     <Label Text="(kg)" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                </StackLayout>
-                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                </FlexLayout>
+                <FlexLayout HorizontalOptions="Center" >
                     <Label Text="Dim (in):" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="DLength" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsL}"  TextChanged="CrossEntry_TextChanged"/>
                     <Label Text="X" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
@@ -98,8 +102,8 @@
                     <Label Text="X" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="DHeigh" Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.DimensionsW}" TextChanged="CrossEntry_TextChanged"/>
                     <Label Text="Qty" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
-                    <local:CrossEntry Keyboard="Numeric" Placeholder="Num" Text="{Binding OrderInfo.QuantityPurchased}" TextChanged="CrossEntry_TextChanged_1"/>
-                </StackLayout>
+                    <local:CrossEntry Keyboard="Numeric" WidthRequest="30" Text="{Binding OrderInfo.QuantityPurchased}" TextChanged="CrossEntry_TextChanged_1"/>
+                </FlexLayout>
                 <Label Text="{Binding StrCalc}" TextColor="#2aa0ea" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
                 <local:CrossEntry Placeholder="Email" Text="{Binding OrderInfo.ShopperEmail}" HorizontalOptions="Center"/>
                 <Frame Padding="5" BorderColor="#2aa0ea" CornerRadius="10">

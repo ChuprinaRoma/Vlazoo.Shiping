@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Vazoo1123.Models;
 
 namespace Vazoo1123.Service
@@ -129,6 +130,38 @@ namespace Vazoo1123.Service
                 else
                 {
                     ParseJson(content, ref profilear, ref orderInfo);
+                }
+            }
+            catch (Exception e)
+            {
+                return 2;
+            }
+
+            return profilear;
+        }
+
+        public int ListingsGet(int ClientID, string Login, string Password, List<string> EBayItemID, ref string descriprtion, ref Listings listings)
+        {
+            string content = null;
+            int profilear = 1;
+            try
+            {
+                string eBayItemIdInJson = JsonConvert.SerializeObject(EBayItemID);
+                string body = "{" + $"'ClientID':'{ClientID}','Login':'{Login}','Password':'{Password}','EBayItemID':{eBayItemIdInJson}" + "}";
+                RestClient client = new RestClient("https://vlazoo.com");
+                RestRequest request = new RestRequest("/WS/Mobile.asmx/ListingsGet", Method.POST);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                content = response.Content;
+                if (content == "" || response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return 4;
+                }
+                else
+                {
+                    ParseJson(content, ref profilear, ref listings);
                 }
             }
             catch (Exception e)
@@ -274,6 +307,25 @@ namespace Vazoo1123.Service
                 .First.Value<int>("totalResults");
             if (stateResponse == "success")
             {
+                state = 3;
+            }
+            else
+            {
+                state = 2;
+            }
+        }
+
+        private void ParseJson(string jsonResponse, ref int state, ref Listings listings)
+        {
+            string stateResponse = null;
+            JObject objJsonRespons = JObject.Parse(jsonResponse);
+            stateResponse = objJsonRespons.First
+                .First.Value<string>("status");
+            if (stateResponse == "success")
+            {
+                List<Listings> listingss = JsonConvert.DeserializeObject<List<Listings>>(objJsonRespons.First
+                .First.SelectToken("Listings").ToString());
+                listings = listingss[0];
                 state = 3;
             }
             else

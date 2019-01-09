@@ -37,6 +37,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Messages\Purchases1.xaml.cs">
+      <DependentUpon>Purchases1.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\PageApp\Profile\Profilev.xaml.cs">
       <DependentUpon>ProfileV.xaml</DependentUpon>
     </Compile>
@@ -71,6 +74,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Messages\ModelFilterMesage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Messages\PageForeBay.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Messages\Purchases.xaml">

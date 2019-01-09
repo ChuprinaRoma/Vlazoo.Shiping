@@ -146,6 +146,7 @@ namespace Vazoo1123.Models
             if (carrier1 != null)
             {
                 isSelect = true;
+                TypeShipeMethod = carrier1.CompanyName;
                 Carrier = carrier1;
             }
             return isSelect;

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="Vazoo1123.Views.Messages.Purchases1">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="3"
+            ScaleOut="1.5"
+            DurationIn="200"
+            DurationOut="200"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center"
+                 HorizontalOptions="FillAndExpand"
+                 Margin="10">
+        <Frame Padding="5" BorderColor="#2abdea" CornerRadius="6">
+            <StackLayout Orientation="Vertical"  Padding="6" BackgroundColor="White">
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround">
+                    <StackLayout Orientation="Vertical">
+                        <Image Source="{Binding Listings.ImageFile}" HeightRequest="69" WidthRequest="80"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="UPC:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="{Binding Listings.UPC}" FontSize="14" TextColor="#2aa0ea"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Item id:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="{Binding Listings.EBayItemID}" FontSize="14" TextColor="#2aabb1">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="MPN:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="{Binding Listings.MPN}" FontSize="14" TextColor="#2aa0ea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Brand:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="{Binding Listings.Brand}" FontSize="14" TextColor="#2aa0ea"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="SKU:" FontSize="14" TextColor="#2aa0ea"/>
+                            <Label Text="{Binding Listings.SKU}" FontSize="14" TextColor="#2aa0ea"/>
+                        </StackLayout>
+                    </StackLayout>
+                </FlexLayout>
+                <Label Text="{Binding Listings.Title}" FontSize="14" TextColor="#2aa0ea" HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

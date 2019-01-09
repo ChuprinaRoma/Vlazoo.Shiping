@@ -221,7 +221,7 @@ namespace Vazoo1123.Service
                 .First.Value<string>("status");
             if (stateResponse == "success")
             {
-                profile = new string[17];
+                profile = new string[2];
                 profile[0] = "3";
                 profile[1] = objJsonRespons.First
                     .First.SelectToken("Profile")

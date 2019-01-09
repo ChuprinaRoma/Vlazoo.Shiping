@@ -52,6 +52,7 @@
         public string DateDeleted { get; set; }
         public string ImageFile { get; set; }
         public string MessageID { get; set; }
+        public string EBayURL { get; set; }
         public string ImageStatusMessage
         {
             get => $"https://vlazoo.com/images/{ImageFile}";

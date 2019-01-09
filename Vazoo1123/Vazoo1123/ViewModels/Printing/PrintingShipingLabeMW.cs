@@ -48,11 +48,11 @@ namespace Vazoo1123.ViewModels.Printing
             set { SetProperty(ref carrier, value); }
         }
 
-        private string balance = "0";
-        public string Balance
+        private string postageBalance1 = "0";
+        public string PostageBalance1
         {
-            get { return balance; }
-            set { SetProperty(ref balance, "$"+value); }
+            get { return postageBalance1; }
+            set { SetProperty(ref postageBalance1, "$"+value); }
         }
         /////////////////////////////////////////////////////
         private string fromCompanyName = "";
@@ -375,7 +375,7 @@ namespace Vazoo1123.ViewModels.Printing
             set { SetProperty(ref signatureWaiver, value); }
         }
 
-        private string orderNumber = "";
+        private string orderNumber = "Order #";
         public string OrderNumber
         {
             get { return orderNumber; }
@@ -451,6 +451,8 @@ namespace Vazoo1123.ViewModels.Printing
             get => colorFeedBack;
             set => SetProperty(ref colorFeedBack, value);
         }
+
+        public double Balance { get; set; }
 
         private async Task<bool> CheckPrintingApp()
         {
@@ -570,7 +572,7 @@ namespace Vazoo1123.ViewModels.Printing
                 FromState = _xzType[13];
                 FromZIP = _xzType[14];
                 FromPhone = _xzType[15];
-                Balance = _xzType[18];
+                PostageBalance1 = _xzType[18];
                 InitFromAddress();
             }
             else if (stateAuth == 2)
@@ -753,6 +755,28 @@ namespace Vazoo1123.ViewModels.Printing
             {
                 await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
             }
+        }
+
+        public async Task<double> GetAndSetPostageBalance()
+        {
+            await PopupNavigation.PushAsync(new LoadPage());
+            string[] _xzType = null;
+            int stateAuth = 0;
+            await Task.Run(() =>
+            {
+                string description = null;
+                string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+                string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+                string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+                _xzType = managerVazoo.PofiletWork("PostageBuyGet", ref description, null, idCompany, email, psw);
+                stateAuth = Convert.ToInt32(_xzType[0]);
+            });
+            if (stateAuth == 3)
+            {
+                Balance = Convert.ToDouble(_xzType[1]);
+            }
+            await PopupNavigation.PopAsync(true);
+            return Balance;
         }
     }
 }

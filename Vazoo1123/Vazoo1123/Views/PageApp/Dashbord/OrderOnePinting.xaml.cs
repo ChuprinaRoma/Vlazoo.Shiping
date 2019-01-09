@@ -74,7 +74,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
         {
             if (fullInfoOneOrderAndPrintingMV.IsValid)
             {
-                await PopupNavigation.PushAsync(new Confirm(fullInfoOneOrderAndPrintingMV, fullInfoOneOrderAndPrintingMV.Carrier.Price.ToString(), true, null, fullInfoOneOrderAndPrintingMV.Carrier));
+                await PopupNavigation.PushAsync(new Confirm(fullInfoOneOrderAndPrintingMV, fullInfoOneOrderAndPrintingMV.Carrier.Price.ToString(), await fullInfoOneOrderAndPrintingMV.GetAndSetPostageBalance(), Navigation, true, null, fullInfoOneOrderAndPrintingMV.Carrier));
                 DSOBtn.BorderColor = Color.Default;
                 DSOBtn.BorderWidth = 0;
             }
@@ -153,7 +153,7 @@ namespace Vazoo1123.Views.PageApp.Dashbord
         {
             if (fullInfoOneOrderAndPrintingMV.IsValid)
             {
-                await PopupNavigation.PushAsync(new Confirm(fullInfoOneOrderAndPrintingMV, fullInfoOneOrderAndPrintingMV.Carrier.Price.ToString(), false, null, fullInfoOneOrderAndPrintingMV.Carrier));
+                await PopupNavigation.PushAsync(new Confirm(fullInfoOneOrderAndPrintingMV, fullInfoOneOrderAndPrintingMV.Carrier.Price.ToString(), await fullInfoOneOrderAndPrintingMV.GetAndSetPostageBalance(), Navigation, false, null, fullInfoOneOrderAndPrintingMV.Carrier));
                 DSOBtn.BorderColor = Color.Default;
                 DSOBtn.BorderWidth = 0;
             }
@@ -170,6 +170,12 @@ namespace Vazoo1123.Views.PageApp.Dashbord
             {
                 fullInfoOneOrderAndPrintingMV.IsValid = false;
             }
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Label label = ((Label)sender);
+            Device.OpenUri(new Uri($"https://www.ebay.com/itm/{label.Text}"));
         }
     }
 }

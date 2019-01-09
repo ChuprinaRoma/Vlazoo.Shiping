@@ -29,7 +29,7 @@
                                 <TapGestureRecognizer Tapped="ToDashbord" NumberOfTapsRequired="1" />
                             </StackLayout.GestureRecognizers>
                             <Image Source="Dashbord.png" HorizontalOptions="Start" HeightRequest="25" WidthRequest="25" Margin="10,0,10,0"/>
-                            <Label Text="Paid and Awaiting Shipping" TextColor="#2aa0ea" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <Label Text="Dashboard" TextColor="#2aa0ea" FontSize="15" HorizontalOptions="Start" VerticalOptions="Center"/>
                             <Label x:Name="countDasbord" Text="{Binding CountDashbord}" FontSize="15" TextColor="Red" HorizontalTextAlignment="End" VerticalOptions="Center" />
                         </StackLayout>
                         <BoxView Margin="4, 0, 4, 0" BackgroundColor="#8fcaf5" HeightRequest="1"/>

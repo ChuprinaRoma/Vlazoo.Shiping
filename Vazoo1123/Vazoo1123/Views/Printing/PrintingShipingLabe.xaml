@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:Vazoo1123.NewElement"
              Title="Printing Shipping Label">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{Binding Balance}"/>
+        <ToolbarItem Text="{Binding PostageBalance1}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView Padding="10">
@@ -31,10 +31,10 @@
                 <StackLayout Orientation="Horizontal">
                     <local:CrossEntry Placeholder="Order #" Text="{Binding OrderNumber}"/>
                     <Label Text="How many Parcels?" TextColor="#2aa0ea" VerticalTextAlignment="Center" />
-                    <local:CrossEntry Placeholder="N" Keyboard="Numeric" Text="{Binding LabelsQty}"/>
+                    <local:CrossEntry Placeholder="N" Keyboard="Numeric" Text="{Binding LabelsQty}" />
                 </StackLayout>
                 <BoxView HeightRequest="1" Margin="2" BackgroundColor="#2aa0ea"/>
-                <local:CrossEdit Placeholder="Item Description" HeightRequest="70" FontSize="13" Text="{Binding ItemDescription}" />
+                <local:CrossEdit Placeholder="Item Description" HeightRequest="50" FontSize="13" Text="{Binding ItemDescription}" MaxLength="60"/>
                 <StackLayout FlexLayout.AlignSelf="Center" Orientation="Horizontal">
                     <Label Text="Weight:" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                     <local:CrossEntry x:Name="lbsInp" Keyboard="Numeric" Placeholder="Num" Text="{Binding WeigthLbs}" TextChanged="KgInp_TextChanged"/>
@@ -83,22 +83,24 @@
                                 </FlexLayout>
                             </StackLayout>
                         </Frame>
-                        <StackLayout Orientation="Horizontal">
-                            <FlexLayout>
-                                <Label Text="$" TextColor="#2aa0ea"/>
-                                <local:CrossEntry Text="{Binding Postage}" Keyboard="Numeric"/>
-                            </FlexLayout>
-                            <Image Source="PayPal.jpg" WidthRequest="40" HeightRequest="60">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Image Source="Visa.png" WidthRequest="40" HeightRequest="60">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
-                                </Image.GestureRecognizers>
-                            </Image>
-                        </StackLayout>
+                        <FlexLayout Direction="Column">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="$" VerticalTextAlignment="Center" TextColor="#2aa0ea"/>
+                                <local:CrossEntry Text="{Binding Postage}" Keyboard="Numeric" WidthRequest="80"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="PayPal.jpg" WidthRequest="40" HeightRequest="60" Margin="3">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image Source="Visa.png" WidthRequest="40" HeightRequest="60" Margin="3">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </StackLayout>
+                        </FlexLayout>
                     </StackLayout>
                 </Frame>
                 <StackLayout Orientation="Horizontal" FlexLayout.AlignSelf="End" Margin="5">

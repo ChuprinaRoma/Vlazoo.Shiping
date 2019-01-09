@@ -116,6 +116,13 @@ namespace Vazoo1123.ViewModels.Mesages
             set => SetProperty(ref carrier, value);
         }
 
+        private Listings listings = null;
+        public Listings Listings
+        {
+            get => listings;
+            set => SetProperty(ref listings, value);
+        }
+
         private async void InitPurchases()
         {
             IsBusy = true;
@@ -168,6 +175,10 @@ namespace Vazoo1123.ViewModels.Mesages
             await Task.Run(() =>
             {
                 stateAuth = managerVazoo.MesagesWork("Conversation", ref description, ref totalResulte, ref messagesss, ref temp, email, idCompany, psw, MessagesID);
+                if(messagesss == null)
+                {
+                    messagesss = new List<Messages>();
+                }
             });
             if (stateAuth == 3)
             {
@@ -219,19 +230,60 @@ namespace Vazoo1123.ViewModels.Mesages
 
         private async void ToPurchases()
         {
-            if(OrderInfo != null)
+            if (Messagess != null)
             {
-                await PopupNavigation.PushAsync(new Purchases(this));
+                if (OrderInfo != null)
+                {
+                    await PopupNavigation.PushAsync(new Purchases(this));
+                }
+                else
+                {
+                    ListingsGet();
+                }
             }
             else
             {
-                await PopupNavigation.PushAsync(new Error("there is no order or it has not loaded yet"), true);
+                await PopupNavigation.PushAsync(new Error("Wait load messages"));
             }
         }
 
         private async void ToSettings()
         {
             await PopupNavigation.PushAsync(new MessageSettings(this));
+        }
+
+        private async void ListingsGet()
+        {
+            await PopupNavigation.PushAsync(new LoadPage());
+            string description = null;
+            int totalResulte = 0;
+            Listings listings1 = null;
+            string email = CrossSettings.Current.GetValueOrDefault("userName", "");
+            string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
+            string psw = CrossSettings.Current.GetValueOrDefault("psw", "");
+            int stateAuth = 0;
+            await Task.Run(() =>
+            {
+                stateAuth = managerVazoo.MesagesWork("ListingsGet", new List<string>() { Messagess[0].EBayItemID}, ref description, ref listings1, idCompany, email,  psw);
+            });
+            await PopupNavigation.PopAsync();
+            if (stateAuth == 3)
+            {
+                Listings = listings1;
+                await PopupNavigation.PushAsync(new Purchases1(this));
+            }
+            else if (stateAuth == 2)
+            {
+                await PopupNavigation.PushAsync(new Error(description), true);
+            }
+            else if (stateAuth == 1)
+            {
+                await PopupNavigation.PushAsync(new Error(description), true);
+            }
+            else if (stateAuth == 4)
+            {
+                await PopupNavigation.PushAsync(new Error("Technical works on the server"), true);
+            }
         }
 
         private async void SendOrRaply()
