@@ -113,6 +113,20 @@
                         </StackLayout>
                     </FlexLayout>
                 </Frame>
+                <Frame CornerRadius="10" BorderColor="#2aa0ea" Margin="2">
+                    <FlexLayout Direction="Column">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Change Password" FontSize="22" TextColor="#2aa0ea" HorizontalOptions="Start"/>
+                        </StackLayout>
+                        <BoxView HeightRequest="2" BackgroundColor="#6ad1f0" Margin="0, 3, 0, 3"/>
+                        <StackLayout>
+                            <Label Text="To change or update password go directly to full website Vlazoo.com on your desktop computer.
+If you need more help please contact out tech support
+support@vlazoo.com
+(888) 698 3720 #0"/>
+                        </StackLayout>
+                    </FlexLayout>
+                </Frame>
                 <input:Dropdown Title="Choose Remote printer" BorderColor="#2aa0ea" ItemsSource="{Binding NameDropDwnSourse}" Color="#2aa0ea"
                                 SelectedItem="{Binding SelectDropDwmSourse}" Margin="5" TextColor="#2aa0ea" SelectedItemChanged="Dropdown_SelectedItemChanged"/>
             </StackLayout>

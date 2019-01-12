@@ -28,13 +28,13 @@ namespace Vazoo1123.Views.PageApp.Profile
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
-            await Navigation.PushAsync(new Replenishment($"https://vlazoo.com/BuyPostagePP.aspx?ClientID={idCompany}&Amount=${buyPostageMW.Postage}", "PayPal"));
+            await Navigation.PushAsync(new Replenishment($"https://vlazoo.com/BuyPostagePP.aspx?ClientID={idCompany}&Amount={buyPostageMW.Postage}", "PayPal"));
         }
 
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
             string idCompany = CrossSettings.Current.GetValueOrDefault("idCompany", "");
-            await Navigation.PushAsync(new Replenishment($"https://vlazoo.com/BuyPostageCC.aspx?ClientID={idCompany}&Amount=${buyPostageMW.Postage}", "Visa or MasterCard"));
+            await Navigation.PushAsync(new Replenishment($"https://vlazoo.com/BuyPostageCC.aspx?ClientID={idCompany}&Amount={buyPostageMW.Postage}", "Visa or MasterCard"));
         }
     }
 }

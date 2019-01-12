@@ -34,7 +34,7 @@ namespace Vazoo1123.Views.Messages
                 Models.Messages messages = (Models.Messages)e.SelectedItem;
                 if(messages.Sender == "eBay")
                 {
-                    await Navigation.PushAsync(new PageForeBay(messages.EBayURL, messages.Subject));
+                    await Navigation.PushAsync(new PageForeBay(messages.EBayURL, messages.Subject, mesagesFolderMV.managerVazoo, messages.ID.ToString()));
                 }
                 else
                 {

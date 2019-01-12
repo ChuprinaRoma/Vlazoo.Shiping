@@ -30,12 +30,12 @@
                         <Label Text="Buy More" FontSize="13" Margin="3,0,3,0" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                         <Label Text="$" FontSize="13" Margin="3, 0, 0, 0" TextColor="#2aa0ea" VerticalTextAlignment="Center"/>
                         <local:CrossEntry x:Name="lp" Text="20" FontSize="13" Margin="3" TextColor="#2aa0ea" WidthRequest="30"/>
-                        <Image Source="PayPal.jpg" WidthRequest="30" HeightRequest="30" >
+                        <Image Source="PayPal.jpg" WidthRequest="50" HeightRequest="50" >
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped_1"/>
                             </Image.GestureRecognizers>
                         </Image>
-                        <Image Source="Visa.png" WidthRequest="30" HeightRequest="30">
+                        <Image Source="Visa.png" WidthRequest="50" HeightRequest="50">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>

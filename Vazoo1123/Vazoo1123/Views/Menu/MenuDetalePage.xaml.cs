@@ -10,6 +10,7 @@ using Vazoo1123.Views.Messages;
 using Vazoo1123.Views.PageApp;
 using Vazoo1123.Views.PageApp.Profile;
 using Vazoo1123.Views.Printing;
+using Vazoo1123.Views.ShippingTransactions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -56,6 +57,13 @@ namespace Vazoo1123.Views.Menu
             IsPresented = false;
             AnimateBtn(s, e);
             Detail = new NavigationPage(new PrintingShipingLabe(menuMW.managerVazoo));
+        }
+
+        private void ToShippingTransactions(object s, EventArgs e)
+        {
+            IsPresented = false;
+            AnimateBtn(s, e);
+            Detail = new NavigationPage(new ShippingTransactionsPage());
         }
 
         private async void ToToProfile(object s, EventArgs e)

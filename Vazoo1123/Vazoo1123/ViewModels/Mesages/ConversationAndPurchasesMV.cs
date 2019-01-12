@@ -25,7 +25,7 @@ namespace Vazoo1123.ViewModels.Mesages
         InitMesage initMesage;
         public INavigation Navigation { get; set; } 
 
-        public ConversationAndPurchasesMV(ManagerVazoo managerVazoo, InitMesage initMesage,  Models.Messages messages = null, string mesageID = null)
+        public ConversationAndPurchasesMV(ManagerVazoo managerVazoo, InitMesage initMesage = null,  Models.Messages messages = null, string mesageID = null, bool iseBay = false)
         {
             this.managerVazoo = managerVazoo;
             ToPurchasesCommand = new DelegateCommand(ToPurchases);
@@ -42,8 +42,15 @@ namespace Vazoo1123.ViewModels.Mesages
             {
                 MessagesID = mesageID;
             }
-            InitConversation();
-            InitPurchases();
+            if (!iseBay)
+            {
+                InitConversation();
+                InitPurchases();
+            }
+            else
+            {
+                IsEnambleSend = true;
+            }
         }
 
         private bool isBusy = false;

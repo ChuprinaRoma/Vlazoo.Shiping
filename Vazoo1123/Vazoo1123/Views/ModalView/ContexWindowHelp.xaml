@@ -31,14 +31,12 @@
                        FontSize="13"/>
                 <Label Text="10:00 AM - 7:00 PM Central time"
                        FontSize="13"/>
-                <Label Text="Or you can ask us a question by clicking on the button"
-                       FontSize="14"/>
-                <Button Text="Go to"
+                <Button Text="Send a Message"
                         BorderWidth="1"
                         BorderColor="#29220A"
                         BackgroundColor="#F5DA81"
                         FontSize="10"
-                        WidthRequest="40"
+                        HeightRequest="40"
                         Clicked="ToHelpe"/>
                 <Button Text="Close"
                         BorderWidth="1"

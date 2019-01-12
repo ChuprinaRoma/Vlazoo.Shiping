@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Vazoo1123.Service;
+using Vazoo1123.ViewModels.Mesages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,12 +10,15 @@ namespace Vazoo1123.Views.Messages
 	public partial class PageForeBay : ContentPage
 	{
         private string eBayUrl = null;
+        private ConversationAndPurchasesMV conversationAndPurchasesMV = null;
 
-		public PageForeBay (string eBayUrl, string subject)
+        public PageForeBay (string eBayUrl, string subject, ManagerVazoo managerVazoo, string messageID)
 		{
+            conversationAndPurchasesMV = new ConversationAndPurchasesMV(managerVazoo, null, null, messageID, true);
             this.eBayUrl = eBayUrl;
 			InitializeComponent ();
             subj.Text = subject;
+            BindingContext = conversationAndPurchasesMV;
         }
 
         private void Button_Clicked(object sender, EventArgs e)

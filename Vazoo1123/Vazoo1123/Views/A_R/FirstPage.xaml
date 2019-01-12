@@ -40,7 +40,7 @@
                                 <TapGestureRecognizer Command="{Binding ToFaceBockCommand}" NumberOfTapsRequired="1" />
                             </Image.GestureRecognizers>
                         </Image>
-                        <Image Source="help.png" HeightRequest="35" WidthRequest="35">
+                        <Image Margin="3, 0,0,0" Source="help1.png" HeightRequest="35" WidthRequest="35">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ToHelpCommand}" NumberOfTapsRequired="1" />
                             </Image.GestureRecognizers>

@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vazoo1123.Views.Messages.PageForeBay"
              Title="eBay">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="MsgDeleted.png" Command="{Binding DeletedMsgCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="10">
             <Label x:Name="subj" TextColor="#2aa0ea"/>
